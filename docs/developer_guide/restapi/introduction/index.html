@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="Bitprim Team">
+        <link rel="canonical" href="http://www.bitprim.org/developer_guide/restapi/introduction/">
+        <link rel="shortcut icon" href="../../../img/favicon.ico">
+        <title>Rest Api - Bitprim</title>
+        <link href="../../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../../css/font-awesome-4.5.0.css" rel="stylesheet">
+        <link href="../../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="../../../css/highlight.css">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+        <script src="../../../js/jquery-1.10.2.min.js"></script>
+        <script src="../../../js/bootstrap-3.0.3.min.js"></script>
+        <script src="../../../js/highlight.pack.js"></script> 
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="../../..">Bitprim</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                    <li >
+                        <a href="../../..">Home</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">User Guide <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+<li >
+    <a href="../../../user_guide/introduction/">Introduction</a>
+</li>
+                            
+<li >
+    <a href="../../../user_guide/installation/">Installation</a>
+</li>
+                            
+<li >
+    <a href="../../../user_guide/rpc/">RPC</a>
+</li>
+                            
+<li >
+    <a href="../../../user_guide/releases_notes/">Release Notes</a>
+</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Developer Guide <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+<li >
+    <a href="../../introduction/">Introduction</a>
+</li>
+                            
+<li class="active">
+    <a href="./">Rest Api</a>
+</li>
+                            
+  <li class="dropdown-submenu">
+    <a href="#">.Net</a>
+    <ul class="dropdown-menu">
+            
+<li >
+    <a href="../../dotnet/dotnet-Interface/">Introduction</a>
+</li>
+            
+<li >
+    <a href="../../dotnet/dotnet-interface-details/">Reference</a>
+</li>
+    </ul>
+  </li>
+                            
+  <li class="dropdown-submenu">
+    <a href="#">C</a>
+    <ul class="dropdown-menu">
+            
+<li >
+    <a href="../../c/C-interface/">Introduction</a>
+</li>
+            
+<li >
+    <a href="../../c/api/">Reference</a>
+</li>
+    </ul>
+  </li>
+                            
+  <li class="dropdown-submenu">
+    <a href="#">C++</a>
+    <ul class="dropdown-menu">
+            
+<li >
+    <a href="../../c%2B%2B/C---interface/">Introduction</a>
+</li>
+    </ul>
+  </li>
+                            
+  <li class="dropdown-submenu">
+    <a href="#">Python</a>
+    <ul class="dropdown-menu">
+            
+<li >
+    <a href="../../python/Python-interface/">Introduction</a>
+</li>
+            
+<li >
+    <a href="../../python/Python-interface-details/">Reference</a>
+</li>
+    </ul>
+  </li>
+                            
+  <li class="dropdown-submenu">
+    <a href="#">Go</a>
+    <ul class="dropdown-menu">
+            
+<li >
+    <a href="../../go/Go-interface/">Introduction</a>
+</li>
+    </ul>
+  </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">About <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+<li >
+    <a href="../../../team/">Team</a>
+</li>
+                        </ul>
+                    </li>
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                        <i class="fa fa-search"></i> Search
+                    </a>
+                </li>
+                    <li >
+                        <a rel="next" href="../../introduction/">
+                            <i class="fa fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../../dotnet/dotnet-Interface/">
+                            Next <i class="fa fa-arrow-right"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/mkdocs/mkdocs/"><i class="fa fa-github"></i> GitHub</a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#introduction">Introduction</a></li>
+            <li><a href="#installation-requirements">Installation Requirements</a></li>
+            <li><a href="#building-procedure">Building Procedure</a></li>
+            <li><a href="#configuration-options">Configuration Options</a></li>
+            <li><a href="#api-http-endpoints">API HTTP Endpoints</a></li>
+            <li><a href="#web-socket-api">Web Socket API</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<h1 id="introduction">Introduction</h1>
+<p><em>Bitprim Insight</em> </p>
+<blockquote>
+<p>Multi-Cryptocurrency <em>Rest</em> API.</p>
+</blockquote>
+<p><em>Bitprim Insight</em> is a REST API written in <em>C#</em> with .NET Core 2.x which exposes methods matching the insight API interface</p>
+<p>Bitprim Insight supports the following cryptocurrencies:
+  * <a href="https://www.bitcoincash.org/">Bitcoin Cash</a>
+  * <a href="https://bitcoin.org/">Bitcoin</a>
+  * <a href="https://litecoin.org/">Litecoin</a> (coming soon)</p>
+<h2 id="installation-requirements">Installation Requirements</h2>
+<ul>
+<li>64-bit machine.</li>
+<li><a href="https://www.conan.io/">Conan</a> package manager, version 1.1.0 or newer. See <a href="http://docs.conan.io/en/latest/installation.html#install-with-pip-recommended">Conan Installation</a>.</li>
+<li><a href="https://www.microsoft.com/net/download/">.NET Core 2.0 SDK</a></li>
+</ul>
+<p>In case there are no pre-built binaries for your platform, conan will automatically try to build from source code. In such a scenario, the following requirements must be added to the previous ones:</p>
+<ul>
+<li>C++11 Conforming Compiler.</li>
+<li><a href="https://cmake.org/">CMake</a> building tool, version 3.4 or newer.</li>
+</ul>
+<h2 id="building-procedure">Building Procedure</h2>
+<p>The <em>Bitprim</em> libraries can be installed using conan (see below) on Linux, macOS, FreeBSD, Windows and others. These binaries are pre-built for the most usual operating system/compiler combinations and are downloaded from an online repository. If there are no pre-built binaries for your platform, conan will attempt to build from source during the installation.</p>
+<ol>
+<li>Build </li>
+</ol>
+<p>In the project folder run:</p>
+<p>For Bitcoin Cash</p>
+<pre><code>dotnet build /property:Platform=x64 /p:BCH=true -c Release -f netcoreapp2.0 -v normal
+</code></pre>
+
+<p>For Bitcoin</p>
+<pre><code>dotnet build /property:Platform=x64 /p:BTC=true -c Release -f netcoreapp2.0 -v normal
+</code></pre>
+
+<ol>
+<li>Run</li>
+</ol>
+<pre><code>dotnet bin/x64/Release/netcoreapp2.0/bitprim.insight.dll --server.port=3000 --server.address=0.0.0.0
+</code></pre>
+
+<p>or you can publish the app and run over the published folder </p>
+<pre><code>dotnet publish /property:Platform=x64 /p:BTC=true -c Release -f netcoreapp2.0 -v normal -o published
+</code></pre>
+
+<pre><code>dotnet bin/x64/Release/netcoreapp2.0/published/bitprim.insight.dll --server.port=3000 --server.address=0.0.0.0
+</code></pre>
+
+<h3 id="command-line-arguments">Command line arguments</h3>
+<p><strong>--server.port</strong>: Defines the listening TCP port. </p>
+<p><em>Default value:1549</em></p>
+<p><strong>--server.address</strong>: Defines the listening IP address.</p>
+<p><em>Default value:localhost</em></p>
+<h2 id="configuration-options">Configuration Options</h2>
+<p>You need to create an appsettings.json file in the build directory to run the application. You can use appsettings.example.json as a starting point.</p>
+<p>Eg.</p>
+<pre><code>{
+  &quot;ApiPrefix&quot; : &quot;api&quot;,
+  &quot;AcceptStaleRequests&quot; : true,
+  &quot;AllowedOrigins&quot;: &quot;http://localhost:1549&quot;,
+  &quot;Connections&quot;: 8,
+  &quot;DateInputFormat&quot;: &quot;yyyy-MM-dd&quot;,
+  &quot;EstimateFeeDefault&quot;: &quot;0.00001000&quot;,
+  &quot;ForwardUrl&quot; : &quot;http://localhost:1234&quot;,
+  &quot;InitializeNode&quot; : true,
+  &quot;LongResponseCacheDurationInSeconds&quot;: 86400,
+  &quot;MaxBlockSummarySize&quot;: 500,
+  &quot;MaxCacheSize&quot;: 50000,
+  &quot;MaxSocketPublishRetries&quot;: 3,
+  &quot;NodeConfigFile&quot;: &quot;config.cfg&quot;,
+  &quot;NodeType&quot;: &quot;bitprim node&quot;,
+  &quot;PoolsFile&quot;:  &quot;pools.json&quot;, 
+  &quot;ProtocolVersion&quot;: &quot;70015&quot;,
+  &quot;Proxy&quot;: &quot;&quot;,
+  &quot;RelayFee&quot;: &quot;0.00001&quot;,
+  &quot;ShortResponseCacheDurationInSeconds&quot;: 30,
+  &quot;SocketPublishRetryIntervalInSeconds&quot;: 1,
+  &quot;TimeOffset&quot;: &quot;0&quot;,
+  &quot;TransactionsByAddressPageSize&quot;: 10,
+  &quot;Version&quot;: &quot;170000&quot;,
+  &quot;HttpClientTimeoutInSeconds&quot; : 5,
+  &quot;WebsocketForwarderClientRetryDelay&quot;: 10,
+  &quot;Serilog&quot;:
+  {
+    &quot;Using&quot;: [&quot;Serilog.Sinks.Console&quot;, &quot;Serilog.Sinks.File&quot;],
+    &quot;MinimumLevel&quot;:
+    {
+      &quot;Default&quot;: &quot;Information&quot;,
+      &quot;Override&quot;:
+      {
+        &quot;Microsoft&quot;: &quot;Warning&quot;
+      }
+    },
+    &quot;WriteTo&quot;:
+    [
+      {
+        &quot;Name&quot;: &quot;Console&quot;,
+        &quot;Args&quot;:
+        {
+          &quot;outputTemplate&quot; : &quot;[{Timestamp:yyyy-MM-dd HH:mm:ss} {TimeZone}] {Level:u3} {SourceIP} {RequestId} {HttpMethod} {RequestPath} {HttpProtocol} {HttpResponseStatusCode} {HttpResponseLength} {ElapsedMs} {Message:lj}{NewLine}{Exception}&quot;
+        }
+      },
+      {
+        &quot;Name&quot;: &quot;File&quot;,
+        &quot;Args&quot;:
+        {
+           &quot;path&quot;: &quot;log-.txt&quot;,
+           &quot;rollingInterval&quot;: &quot;Day&quot;,
+           &quot;fileSizeLimitBytes&quot;: null,
+           &quot;retainedFileCountLimit&quot; : 5, 
+           &quot;outputTemplate&quot; : &quot;[{Timestamp:yyyy-MM-dd HH:mm:ss} {TimeZone}] {Level:u3} {SourceIP} {RequestId} {HttpMethod} {RequestPath} {HttpProtocol} {HttpResponseStatusCode} {HttpResponseLength} {ElapsedMs} {Message:lj}{NewLine}{Exception}&quot;
+        }
+      }
+    ],
+    &quot;Enrich&quot;: [&quot;FromLogContext&quot;]
+  }
+}
+</code></pre>
+
+<p>All the settings can be passed as command line arguments prefixing the name with '--'</p>
+<p>Eg.</p>
+<pre><code>dotnet bin/x64/Release/netcoreapp2.0/published/bitprim.insight.dll --server.port=3000 --server.address=0.0.0.0 --MaxBlockSummarySize=1000
+</code></pre>
+
+<p>The application has two different operation modes. As a <strong>Full Node</strong> or a <strong>Forwarder</strong>.</p>
+<p>In <strong>Full Node</strong> mode, the application starts a full Bitprim node, generating a copy of the blockchain.</p>
+<p>In <strong>Forwarder</strong> mode, the application only relays the request to a <strong>Full Node</strong> application.</p>
+<h3 id="settings">Settings</h3>
+<p><strong>ApiPrefix</strong>: Defines the name of the url segment where you expose the api methods.</p>
+<pre><code>http://blockdozer.com/[ApiPrefix]/blocks/
+</code></pre>
+
+<p><em>Default value:api</em></p>
+<p><strong>AcceptStaleRequests</strong>: Allows the API to respond to requests even if the chain is stale (the local copy of the blockchain isn't fully synchronized with the network). 
+<em>Default value:true</em></p>
+<p><strong>AllowedOrigins</strong>: Configure the allowed CORS origins. For multiple origins, separate them with semicolon (;).
+<em>Default value:</em>*</p>
+<p><strong>Connections</strong>: Configures the value returned in the <em>connection</em> element of the /status request. 
+<em>Default value:8</em></p>
+<p><strong>DateInputFormat</strong>: Defines the date format used by /blocks and other requests that require dates.
+<em>Default value:yyyy-MM-dd</em></p>
+<p><strong>EstimateFeeDefault</strong>: Sets the value returned by /utils/estimatefee.
+<em>Default value:0.00001000</em></p>
+<p><strong>ForwardUrl</strong>: When you use the application in <strong>Forwarder</strong> mode, this settings defines the Full Node's URL. 
+<em>Default value:""</em></p>
+<p><strong>InitializeNode</strong>: This setting defines the node's working mode: <em>True</em> for Full Node, <em>False</em> for Forwarder Node.
+<em>Default value:true</em></p>
+<p><strong>LongResponseCacheDurationInSeconds</strong>: Duration of the long cache responses. Used to cache results for the following requests: 
+<em> /rawblock 
+</em> /rawtx
+<em>Default value:86400</em> </p>
+<p><strong>MaxBlockSummarySize</strong>: Defines the max limit of the /blocks method.
+<em>Default value:500</em> </p>
+<p><strong>MaxCacheSize</strong>: Configures the cache size limit; this is an adimensional value, because measuring object size is not trivial. The size for each cache entry is also adimensional and arbitrarily set by the user. The total size sum will never exceed this value.
+<em>Default value:50000</em></p>
+<p><strong>MaxSocketPublishRetries</strong>: Defines how many times the server retries when publishing websocket messages before throwing an exception.<br />
+<em>Default value:3</em></p>
+<p><strong>NodeConfigFile</strong>: Node config file path; can be absolute, or relative to the project directory. Only use in <strong>Full Node</strong> mode.
+<em>Default value:""</em></p>
+<p><strong>NodeType</strong>: The value returned in <em>type</em> element by the /sync method.
+<em>Default value:bitprim node</em></p>
+<p><strong>PoolsFile</strong>: Path to the json file with the mining pool information.
+<em>Default value:pools.json</em></p>
+<p><strong>ProtocolVersion</strong>: The value returned in <em>protocolversion</em> element by the /status method.
+<em>Default value:70015</em></p>
+<p><strong>Proxy</strong>: The value returned in <em>proxy</em> element by the /status method.
+<em>Default value:""</em></p>
+<p><strong>RelayFee</strong>: The value returned in <em>relayfee</em> element by the /status method.
+<em>Default value:0.00001</em></p>
+<p><strong>ShortResponseCacheDurationInSeconds</strong>: Duration of the short cache responses. Used to cache results for the following requests:
+<em> /txs
+</em> /addrs/{paymentAddresses}/txs
+<em> /addrs/txs
+</em> /tx/{hash}
+<em> /txs
+</em> /rawblock-index/{height}
+<em> /blocks
+</em> /block/{hash}
+<em> /block-index/{height}
+</em> /sync
+<em> /status
+</em> /addr/{paymentAddress}/balance
+<em> /addr/{paymentAddress}/totalReceived
+</em> /addr/{paymentAddress}/totalSent
+<em> /addr/{paymentAddress}/unconfirmedBalance
+</em> /addr/{paymentAddress}/utxo
+<em> /addrs/{paymentAddresses}/utxo
+</em> /addrs/utxo
+<em> /addr/{paymentAddress}
+</em> /peer
+<em> /version
+</em>Default value:30*</p>
+<p><strong>SocketPublishRetryIntervalInSeconds</strong>: Delay in seconds between retries for "Publish" websocket messages.
+<em>Default value:1</em></p>
+<p><strong>MaxSocketPublishRetries</strong>: Maximum number of retries for a "Publish" websocket message
+<em>Default value:3</em></p>
+<p><strong>TimeOffset</strong>: The value returned in <em>timeoffset</em> element by the /status method.
+<em>Default value:0</em></p>
+<p><strong>TransactionsByAddressPageSize</strong>: The max page limit used by the /txs method. 
+<em>Default value:10</em></p>
+<p><strong>Version</strong>: The value returned in <em>version</em> element by the /status method. 
+<em>Default value:""</em></p>
+<p><strong>HttpClientTimeoutInSeconds</strong>: Defines HttpClient timeout. Used in forwarder mode. 
+<em>Default value:5</em></p>
+<p><strong>WebsocketForwarderClientRetryDelay</strong>: The delay in seconds beetween retries when the websocket connection to the fullnode fails.
+<em>Default value:10</em></p>
+<p><strong>Serilog</strong>: The Serilog configuration. For more detailed documentation, check https://github.com/serilog/serilog/wiki/Getting-Started</p>
+<h2 id="api-http-endpoints">API HTTP Endpoints</h2>
+<h3 id="block">Block</h3>
+<pre><code>/api/block/[:hash]
+/api/block/00000000a967199a2fad0877433c93df785a8d8ce062e5f9b451cd1397bdbf62
+</code></pre>
+<h3 id="block-index">Block Index</h3>
+<p>Get block hash by height</p>
+<pre><code>/api/block-index/[:height]
+/api/block-index/0
+</code></pre>
+<p>This would return:</p>
+<pre><code>{
+    "blockHash":"000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f"
+}
+</code></pre>
+<p>which is the hash of the Genesis block (0 height)</p>
+<h3 id="raw-block">Raw Block</h3>
+<pre><code>/api/rawblock/[:blockHash]
+/api/rawblock/[:blockHeight]
+</code></pre>
+<p>This would return:</p>
+<pre><code>{
+    "rawblock":"blockhexstring..."
+}
+</code></pre>
+<h3 id="block-summaries">Block Summaries</h3>
+<p>Get block summaries by date:</p>
+<pre><code>/api/blocks?limit=3&amp;blockDate=2016-04-22
+</code></pre>
+<p>Example response:</p>
+<pre><code>{
+    "blocks": [
+        {
+            "height": 408495,
+            "size": 989237,
+            "hash": "00000000000000000108a1f4d4db839702d72f16561b1154600a26c453ecb378",
+            "time": 1461360083,
+            "txlength": 1695,
+            "poolInfo": {
+                "poolName": "BTCC Pool",
+                "url": "https://pool.btcc.com/"
+            }
+        }
+    ],
+    "length": 1,
+    "pagination": {
+        "next": "2016-04-23",
+        "prev": "2016-04-21",
+        "currentTs": 1461369599,
+        "current": "2016-04-22",
+        "isToday": true,
+        "more": true,
+        "moreTs": 1461369600
+    }
+}
+</code></pre>
+<h3 id="transaction">Transaction</h3>
+<pre><code>/api/tx/[:txid]
+/api/tx/525de308971eabd941b139f46c7198b5af9479325c2395db7f2fb5ae8562556c
+/api/rawtx/[:rawid]
+/api/rawtx/525de308971eabd941b139f46c7198b5af9479325c2395db7f2fb5ae8562556c
+</code></pre>
+<h3 id="address">Address</h3>
+<pre><code>/api/addr/[:addr][?noTxList=1][&amp;from=&amp;to=]
+/api/addr/mmvP3mTe53qxHdPqXEvdu8WdC7GfQ2vmx5?noTxList=1
+/api/addr/mmvP3mTe53qxHdPqXEvdu8WdC7GfQ2vmx5?from=1000&amp;to=2000
+</code></pre>
+<ul>
+<li>noTxList: 1 to include transactions, 0 otherwise.    </li>
+</ul>
+<h3 id="address-properties">Address Properties</h3>
+<pre><code>/api/addr/[:addr]/balance
+/api/addr/[:addr]/totalReceived
+/api/addr/[:addr]/totalSent
+/api/addr/[:addr]/unconfirmedBalance
+</code></pre>
+<p>The response contains the value in Satoshis.</p>
+<h3 id="unspent-outputs">Unspent Outputs</h3>
+<pre><code>        /api/addr/[:addr]/utxo
+</code></pre>
+<p>Sample return:</p>
+<pre><code>[
+    {
+        "address":"mo9ncXisMeAoXwqcV5EWuyncbmCcQN4rVs",
+        "txid":"d5f8a96faccf79d4c087fa217627bb1120e83f8ea1a7d84b1de4277ead9bbac1",
+        "vout":0,
+        "scriptPubKey":"76a91453c0307d6851aa0ce7825ba883c6bd9ad242b48688ac",
+        "amount":0.000006,
+        "satoshis":600,
+        "confirmations":0,
+        "ts":1461349425
+    },
+    {
+        "address": "mo9ncXisMeAoXwqcV5EWuyncbmCcQN4rVs",
+        "txid": "bc9df3b92120feaee4edc80963d8ed59d6a78ea0defef3ec3cb374f2015bfc6e",
+        "vout": 1,
+        "scriptPubKey": "76a91453c0307d6851aa0ce7825ba883c6bd9ad242b48688ac",
+        "amount": 0.12345678,
+        "satoshis: 12345678,
+        "confirmations": 1,
+        "height": 300001
+    }
+]
+</code></pre>
+<h3 id="unspent-outputs-for-multiple-addresses">Unspent Outputs for Multiple Addresses</h3>
+<p>GET method:</p>
+<pre><code>/api/addrs/[:addrs]/utxo
+/api/addrs/2NF2baYuJAkCKo5onjUKEPdARQkZ6SYyKd5,2NAre8sX2povnjy4aeiHKeEh97Qhn97tB1f/utxo
+</code></pre>
+<p>POST method:</p>
+<pre><code>/api/addrs/utxo
+</code></pre>
+<p>POST params:</p>
+<pre><code>addrs: 2NF2baYuJAkCKo5onjUKEPdARQkZ6SYyKd5,2NAre8sX2povnjy4aeiHKeEh97Qhn97tB1f
+</code></pre>
+<h3 id="transactions-by-block">Transactions by Block</h3>
+<pre><code>/api/txs/?block=HASH
+/api/txs/?block=00000000fa6cf7367e50ad14eb0ca4737131f256fc4c5841fd3c3f140140e6b6
+</code></pre>
+<h3 id="transactions-by-address">Transactions by Address</h3>
+<pre><code>/api/txs/?address=ADDR
+/api/txs/?address=mmhmMNfBiZZ37g1tgg2t8DDbNoEdqKVxAL
+</code></pre>
+<h3 id="transactions-for-multiple-addresses">Transactions for Multiple Addresses</h3>
+<p>GET method:</p>
+<pre><code>/api/addrs/[:addrs]/txs[?from=&amp;to=]
+/api/addrs/2NF2baYuJAkCKo5onjUKEPdARQkZ6SYyKd5,2NAre8sX2povnjy4aeiHKeEh97Qhn97tB1f/txs?from=0&amp;to=20
+</code></pre>
+<p>POST method:</p>
+<pre><code>/api/addrs/txs
+</code></pre>
+<p>POST params:</p>
+<pre><code>addrs: 2NF2baYuJAkCKo5onjUKEPdARQkZ6SYyKd5,2NAre8sX2povnjy4aeiHKeEh97Qhn97tB1f
+from (optional): 0
+to (optional): 20
+noAsm (optional): 1 (will omit script asm from results)
+noScriptSig (optional): 1 (will omit the scriptSig from all inputs)
+noSpent (option): 1 (will omit spent information per output)
+</code></pre>
+<p>Sample output:</p>
+<pre><code>{
+    totalItems: 100,
+    from: 0,
+    to: 20,
+    items: [
+        {
+            txid: '3e81723d069b12983b2ef694c9782d32fca26cc978de744acbc32c3d3496e915',
+           version: 1,
+           locktime: 0,
+           vin: [Object],
+           vout: [Object],
+           blockhash: '00000000011a135e5277f5493c52c66829792392632b8b65429cf07ad3c47a6c',
+           confirmations: 109367,
+           time: 1393659685,
+           blocktime: 1393659685,
+           valueOut: 0.3453,
+           size: 225,
+           firstSeenTs: undefined,
+           valueIn: 0.3454,
+           fees: 0.0001
+        },
+        { ... },
+        { ... },
+          ...
+        { ... }
+    ]
+}
+</code></pre>
+<p>Note: if pagination params are not specified, the result is an array of transactions.</p>
+<h3 id="transaction-broadcasting">Transaction Broadcasting</h3>
+<p>POST method:</p>
+<pre><code>/api/tx/send
+</code></pre>
+<p>POST params:</p>
+<pre><code>{
+    "rawtx": "signed transaction as hex string"
+}
+
+eg
+
+{
+    "rawtx": "01000000017b1eabe0209b1fe794124575ef807057c77ada2138ae4fa8d6c4de0398a14f3f00000000494830450221008949f0cb400094ad2b5eb399d59d01c14d73d8fe6e96df1a7150deb388ab8935022079656090d7f6bac4c9a94e0aad311a4268e082a725f8aeae0573fb12ff866a5f01ffffffff01f0ca052a010000001976a914cbc20a7664f2f69e5355aa427045bc15e7c6c77288ac00000000"
+}
+</code></pre>
+<p>POST response:</p>
+<pre><code>{
+    txid: [:txid]
+}
+
+eg
+
+{
+    txid: "c7736a0a0046d5a8cc61c8c3c2821d4d7517f5de2bc66a966011aaa79965ffba"
+}
+</code></pre>
+<h3 id="historic-blockchain-data-sync-status">Historic Blockchain Data Sync Status</h3>
+<pre><code>/api/sync
+</code></pre>
+<h3 id="live-network-p2p-data-sync-status">Live Network P2P Data Sync Status</h3>
+<pre><code>/api/peer
+</code></pre>
+<h3 id="status-of-the-bitcoin-network">Status of the Bitcoin Network</h3>
+<pre><code>/api/status?q=method
+</code></pre>
+<p>Where "method" can be:</p>
+<ul>
+<li>getInfo</li>
+<li>getDifficulty</li>
+<li>getBestBlockHash</li>
+<li>getLastBlockHash</li>
+</ul>
+<h3 id="utility-methods">Utility Methods</h3>
+<pre><code>/api/utils/estimatefee[?nbBlocks=2]
+</code></pre>
+<h3 id="healthcheck-methods">Healthcheck Methods</h3>
+<pre><code>* /api/healthcheck[?minimumSync]
+* /forwarderhealth (only for Forwarder mode)
+</code></pre>
+<h2 id="web-socket-api">Web Socket API</h2>
+<p>The web socket API is served using <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebSocket">standard, pure web sockets</a>. The first step is connecting to <code>_domain_/wss</code>; once connection is established, specific messages need to be sent to the server in order to subscribe to the different events (see each event entry). To simplify event subscription, the <code>ScopedPureWebSocket</code> class can be used.</p>
+<p>The following are the events published by insight:</p>
+<p><code>tx</code>: new transaction received from network. To receive this event, after connecting to the websocket endpoint, send the <code>SubscribeToTxs</code> plain text message.</p>
+<p>Sample output:</p>
+<pre><code>{
+    "eventname": 'tx',
+    "txid":"00c1b1acb310b87085c7deaaeba478cef5dc9519fab87a4d943ecbb39bd5b053",
+    "valueOut: "0.564BCH",
+    "addresses": ["17orHVW3pF86VQqraegS6PCjk579EasXYg", "12vJYnCm5QgY4vntutTG95SkiLfXhgbiAc"]
+    ...
+}
+</code></pre>
+<p>Output fields: <code>txid</code> is the transaction hash, <code>valueOut</code> is the sum of all the transaction outputs, and <code>addresses</code> contains a list of the addresses involved in the transaction, considering inputs and outputs.</p>
+<p><code>block</code>: new block received from network. After connecting to the webscoket endpoint, send the <code>SubscribeToBlocks</code> plain text message to begin receiving these notifications.</p>
+<p>Sample output:</p>
+<pre><code>{
+    "eventname":"block"
+}
+</code></pre>
+<p><code>&lt;addresstx&gt;</code>: new transaction received on a specific address. To subscribe to a specific address, send a message with that address in legacy format in plain text.</p>
+<p>Sample output:</p>
+<pre><code>{
+    eventname: 'addresstx',
+    txid: "00c1b1acb310b87085c7deaaeba478cef5dc9519fab87a4d943ecbb39bd5b053"
+}
+</code></pre>
+<h3 id="example-usage">Example Usage</h3>
+<p>The following html page connects to the web socket insight API and listens for new transactions.</p>
+<pre><code>&lt;html&gt;
+    &lt;body&gt;
+        &lt;script&gt;
+            var socket = new WebSocket('http://domain.com/ws');
+            socket.onopen = function() {
+                socket.send("SubscribeToTxs"); 
+            };
+            socket.onmessage = function(msg) {
+                var messageData = JSON.parse(msg.data);
+                if(messageData.eventname != undefined &amp;&amp; messageData.eventname == 'tx')
+                {
+                    console.log("Transaction received! txid: " + messageData.txid);
+                }
+            };
+        &lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+                <p>Copyright &copy; 2018 Bitprim - info@bitprim.org</p>
+            <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>var base_url = '../../..';</script>
+        <script src="../../../js/base.js"></script>
+        <script src="../../../search/require.js"></script>
+        <script src="../../../search/search.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Keyboard Shortcuts</h4>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td><kbd>&larr;</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td><kbd>&rarr;</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    </body>
+</html>
