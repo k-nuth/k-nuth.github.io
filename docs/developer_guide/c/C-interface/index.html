@@ -172,7 +172,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="https://github.com/mkdocs/mkdocs/"><i class="fa fa-github"></i> GitHub</a>
+                        <a href="https://github.com/bitprim/bitprim-docs/"><i class="fa fa-github"></i> GitHub</a>
                     </li>
             </ul>
         </div>
@@ -192,10 +192,10 @@
 <p>Bitprim's C interface, the <a href="https://github.com/bitprim/bitprim-node-cint">bitprim-node-cint</a> project, is built on top of the C++ interface. Asides from allowing a C library or program to consume all the Bitprim functionality, it can act as the base to create bindings for many current popular programming languages, such as Javascript, C#,  Golang, Java and Python. All of these languages can interface easily with C, but not with C++.</p>
 <p>Granted, the Object Oriented paradigm is lost when transitioning to C, but it can be "recovered" when implementing a binding in an object oriented language such as C#. In such a context, classes can be built in order to give application programmers a friendlier interface for integrating Bitcoin in their projects, bridging the gap created by C/C++'s inherent complexity.</p>
 <p>Therefore, Bitprim's interface is not really meant to be consumed directly, but as the basis for a higher level binding in another language. To make this task easier, most functions will receive a parameter which will wrap the implicit object (this), so that OOP can be preserved in the binding if possible.</p>
-<h2 id="resource-management">Resource management</h2>
+<h2 id="resource-management">Resource management<a class="headerlink" href="#resource-management" title="Permanent link">☍</a></h2>
 <hr />
 <p>To avoid memory leaks, all C functions which allocate memory that must be released by the user are clearly documented as such. When implementing a binding on top of the C interface, it is advisable to use the <a href="https://www.hackcraft.net/raii/">RAII idiom</a> whenever possible to relieve the application programmer from the burden of manual memory management.</p>
-<h2 id="basic-structure-memory-management">Basic structure - memory management</h2>
+<h2 id="basic-structure-memory-management">Basic structure - memory management<a class="headerlink" href="#basic-structure-memory-management" title="Permanent link">☍</a></h2>
 <hr />
 <p>Since this is C we're dealing with, there is nothing beyond a set of functions and some user defined types, but there is <a href="https://github.com/bitprim/bitprim-node-cint/tree/master/include/bitprim/nodecint">a structure</a> nevertheless. The main "entry point" for the interface are the functions from <a href="https://github.com/bitprim/bitprim-node-cint/blob/master/include/bitprim/nodecint/executor_c.h">executor_c.h</a> and the types defined in <a href="https://github.com/bitprim/bitprim-node-cint/blob/master/include/bitprim/nodecint/primitives.h">primitives.h</a>. To start consuming node functionality, the first step is calling one of these functions:</p>
 <pre><code class="c">executor_t executor_construct(char const* path, FILE* sout, FILE* serr);
@@ -219,7 +219,7 @@ executor_t executor_construct_fd(char const* path, int sout_fd, int serr_fd);
 
 <p>The second parameter, history, is created dynamically, and therefore must be released by the user, even if he didn't create it. This has to be done this way because there is no way for the C interface to know when the user is done using history. Therefore, it is up to him/her to call history_<em>compact__list</em>_destruct(history)._</p>
 <p>The remaining header files follow these conventions; transaction.h contains functions for manipulating a transaction object, block.h for blocks, and so on. Keep in mind that objects must be destroyed manually.</p>
-<h2 id="api-documentation">API documentation</h2>
+<h2 id="api-documentation">API documentation<a class="headerlink" href="#api-documentation" title="Permanent link">☍</a></h2>
 <hr />
 <p><a href="../api/">Detailed documentation</a></p></div>
         </div>

@@ -172,7 +172,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="https://github.com/mkdocs/mkdocs/"><i class="fa fa-github"></i> GitHub</a>
+                        <a href="https://github.com/bitprim/bitprim-docs/"><i class="fa fa-github"></i> GitHub</a>
                     </li>
             </ul>
         </div>
@@ -192,7 +192,7 @@
 <p>On top of the raw C interface, a 1-1 binding is made in .NET, by using the <a href="https://msdn.microsoft.com/en-us/library/55d3thsc.aspx?f=255&amp;MSPPError=-2147217396">Platform Invoke mechanism</a>, in order to separate access to the API from its usage; this avoids impedance mismatch by separating the marshalling aspects from the binding language idiosyncrasies. That is, the 1-1 interface takes care of marshalling, without changing the interface. Then, the idiomatic interface uses the higher level language tools and idioms in order to hide the complexity from the application programmer.</p>
 <p>It takes another programmer profile in order to tinker with the lower level interfaces or consume them directly, but that is also possible when working with this approach: 3 separate levels of abstraction for accessing the same functionality.</p>
 <p>The platform invoke mechanism was chosen in order  to support as many operating systems as possible, because .NET Core does not support C++/CLI.</p>
-<h2 id="basic-structure">Basic structure</h2>
+<h2 id="basic-structure">Basic structure<a class="headerlink" href="#basic-structure" title="Permanent link">☍</a></h2>
 <hr />
 <p>See <a href="https://github.com/bitprim/bitprim-cs/tree/master">the source in Github</a>:</p>
 <ul>

@@ -172,7 +172,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="https://github.com/mkdocs/mkdocs/"><i class="fa fa-github"></i> GitHub</a>
+                        <a href="https://github.com/bitprim/bitprim-docs/"><i class="fa fa-github"></i> GitHub</a>
                     </li>
             </ul>
         </div>
@@ -192,7 +192,7 @@
 </div></div>
                 <div class="col-md-9" role="main">
 
-<h1 id="introduction">Introduction</h1>
+<h1 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">☍</a></h1>
 <p><em>Bitprim Insight</em> </p>
 <blockquote>
 <p>Multi-Cryptocurrency <em>Rest</em> API.</p>
@@ -202,7 +202,7 @@
   * <a href="https://www.bitcoincash.org/">Bitcoin Cash</a>
   * <a href="https://bitcoin.org/">Bitcoin</a>
   * <a href="https://litecoin.org/">Litecoin</a> (coming soon)</p>
-<h2 id="installation-requirements">Installation Requirements</h2>
+<h2 id="installation-requirements">Installation Requirements<a class="headerlink" href="#installation-requirements" title="Permanent link">☍</a></h2>
 <ul>
 <li>64-bit machine.</li>
 <li><a href="https://www.conan.io/">Conan</a> package manager, version 1.1.0 or newer. See <a href="http://docs.conan.io/en/latest/installation.html#install-with-pip-recommended">Conan Installation</a>.</li>
@@ -213,7 +213,7 @@
 <li>C++11 Conforming Compiler.</li>
 <li><a href="https://cmake.org/">CMake</a> building tool, version 3.4 or newer.</li>
 </ul>
-<h2 id="building-procedure">Building Procedure</h2>
+<h2 id="building-procedure">Building Procedure<a class="headerlink" href="#building-procedure" title="Permanent link">☍</a></h2>
 <p>The <em>Bitprim</em> libraries can be installed using conan (see below) on Linux, macOS, FreeBSD, Windows and others. These binaries are pre-built for the most usual operating system/compiler combinations and are downloaded from an online repository. If there are no pre-built binaries for your platform, conan will attempt to build from source during the installation.</p>
 <ol>
 <li>Build </li>
@@ -240,12 +240,12 @@
 <pre><code>dotnet bin/x64/Release/netcoreapp2.0/published/bitprim.insight.dll --server.port=3000 --server.address=0.0.0.0
 </code></pre>
 
-<h3 id="command-line-arguments">Command line arguments</h3>
+<h3 id="command-line-arguments">Command line arguments<a class="headerlink" href="#command-line-arguments" title="Permanent link">☍</a></h3>
 <p><strong>--server.port</strong>: Defines the listening TCP port. </p>
 <p><em>Default value:1549</em></p>
 <p><strong>--server.address</strong>: Defines the listening IP address.</p>
 <p><em>Default value:localhost</em></p>
-<h2 id="configuration-options">Configuration Options</h2>
+<h2 id="configuration-options">Configuration Options<a class="headerlink" href="#configuration-options" title="Permanent link">☍</a></h2>
 <p>You need to create an appsettings.json file in the build directory to run the application. You can use appsettings.example.json as a starting point.</p>
 <p>Eg.</p>
 <pre><code>{
@@ -319,7 +319,7 @@
 <p>The application has two different operation modes. As a <strong>Full Node</strong> or a <strong>Forwarder</strong>.</p>
 <p>In <strong>Full Node</strong> mode, the application starts a full Bitprim node, generating a copy of the blockchain.</p>
 <p>In <strong>Forwarder</strong> mode, the application only relays the request to a <strong>Full Node</strong> application.</p>
-<h3 id="settings">Settings</h3>
+<h3 id="settings">Settings<a class="headerlink" href="#settings" title="Permanent link">☍</a></h3>
 <p><strong>ApiPrefix</strong>: Defines the name of the url segment where you expose the api methods.</p>
 <pre><code>http://blockdozer.com/[ApiPrefix]/blocks/
 </code></pre>
@@ -399,12 +399,12 @@
 <p><strong>WebsocketForwarderClientRetryDelay</strong>: The delay in seconds beetween retries when the websocket connection to the fullnode fails.
 <em>Default value:10</em></p>
 <p><strong>Serilog</strong>: The Serilog configuration. For more detailed documentation, check https://github.com/serilog/serilog/wiki/Getting-Started</p>
-<h2 id="api-http-endpoints">API HTTP Endpoints</h2>
-<h3 id="block">Block</h3>
+<h2 id="api-http-endpoints">API HTTP Endpoints<a class="headerlink" href="#api-http-endpoints" title="Permanent link">☍</a></h2>
+<h3 id="block">Block<a class="headerlink" href="#block" title="Permanent link">☍</a></h3>
 <pre><code>/api/block/[:hash]
 /api/block/00000000a967199a2fad0877433c93df785a8d8ce062e5f9b451cd1397bdbf62
 </code></pre>
-<h3 id="block-index">Block Index</h3>
+<h3 id="block-index">Block Index<a class="headerlink" href="#block-index" title="Permanent link">☍</a></h3>
 <p>Get block hash by height</p>
 <pre><code>/api/block-index/[:height]
 /api/block-index/0
@@ -415,7 +415,7 @@
 }
 </code></pre>
 <p>which is the hash of the Genesis block (0 height)</p>
-<h3 id="raw-block">Raw Block</h3>
+<h3 id="raw-block">Raw Block<a class="headerlink" href="#raw-block" title="Permanent link">☍</a></h3>
 <pre><code>/api/rawblock/[:blockHash]
 /api/rawblock/[:blockHeight]
 </code></pre>
@@ -424,7 +424,7 @@
     "rawblock":"blockhexstring..."
 }
 </code></pre>
-<h3 id="block-summaries">Block Summaries</h3>
+<h3 id="block-summaries">Block Summaries<a class="headerlink" href="#block-summaries" title="Permanent link">☍</a></h3>
 <p>Get block summaries by date:</p>
 <pre><code>/api/blocks?limit=3&amp;blockDate=2016-04-22
 </code></pre>
@@ -455,13 +455,13 @@
     }
 }
 </code></pre>
-<h3 id="transaction">Transaction</h3>
+<h3 id="transaction">Transaction<a class="headerlink" href="#transaction" title="Permanent link">☍</a></h3>
 <pre><code>/api/tx/[:txid]
 /api/tx/525de308971eabd941b139f46c7198b5af9479325c2395db7f2fb5ae8562556c
 /api/rawtx/[:rawid]
 /api/rawtx/525de308971eabd941b139f46c7198b5af9479325c2395db7f2fb5ae8562556c
 </code></pre>
-<h3 id="address">Address</h3>
+<h3 id="address">Address<a class="headerlink" href="#address" title="Permanent link">☍</a></h3>
 <pre><code>/api/addr/[:addr][?noTxList=1][&amp;from=&amp;to=]
 /api/addr/mmvP3mTe53qxHdPqXEvdu8WdC7GfQ2vmx5?noTxList=1
 /api/addr/mmvP3mTe53qxHdPqXEvdu8WdC7GfQ2vmx5?from=1000&amp;to=2000
@@ -469,14 +469,14 @@
 <ul>
 <li>noTxList: 1 to include transactions, 0 otherwise.    </li>
 </ul>
-<h3 id="address-properties">Address Properties</h3>
+<h3 id="address-properties">Address Properties<a class="headerlink" href="#address-properties" title="Permanent link">☍</a></h3>
 <pre><code>/api/addr/[:addr]/balance
 /api/addr/[:addr]/totalReceived
 /api/addr/[:addr]/totalSent
 /api/addr/[:addr]/unconfirmedBalance
 </code></pre>
 <p>The response contains the value in Satoshis.</p>
-<h3 id="unspent-outputs">Unspent Outputs</h3>
+<h3 id="unspent-outputs">Unspent Outputs<a class="headerlink" href="#unspent-outputs" title="Permanent link">☍</a></h3>
 <pre><code>        /api/addr/[:addr]/utxo
 </code></pre>
 <p>Sample return:</p>
@@ -503,7 +503,7 @@
     }
 ]
 </code></pre>
-<h3 id="unspent-outputs-for-multiple-addresses">Unspent Outputs for Multiple Addresses</h3>
+<h3 id="unspent-outputs-for-multiple-addresses">Unspent Outputs for Multiple Addresses<a class="headerlink" href="#unspent-outputs-for-multiple-addresses" title="Permanent link">☍</a></h3>
 <p>GET method:</p>
 <pre><code>/api/addrs/[:addrs]/utxo
 /api/addrs/2NF2baYuJAkCKo5onjUKEPdARQkZ6SYyKd5,2NAre8sX2povnjy4aeiHKeEh97Qhn97tB1f/utxo
@@ -514,15 +514,15 @@
 <p>POST params:</p>
 <pre><code>addrs: 2NF2baYuJAkCKo5onjUKEPdARQkZ6SYyKd5,2NAre8sX2povnjy4aeiHKeEh97Qhn97tB1f
 </code></pre>
-<h3 id="transactions-by-block">Transactions by Block</h3>
+<h3 id="transactions-by-block">Transactions by Block<a class="headerlink" href="#transactions-by-block" title="Permanent link">☍</a></h3>
 <pre><code>/api/txs/?block=HASH
 /api/txs/?block=00000000fa6cf7367e50ad14eb0ca4737131f256fc4c5841fd3c3f140140e6b6
 </code></pre>
-<h3 id="transactions-by-address">Transactions by Address</h3>
+<h3 id="transactions-by-address">Transactions by Address<a class="headerlink" href="#transactions-by-address" title="Permanent link">☍</a></h3>
 <pre><code>/api/txs/?address=ADDR
 /api/txs/?address=mmhmMNfBiZZ37g1tgg2t8DDbNoEdqKVxAL
 </code></pre>
-<h3 id="transactions-for-multiple-addresses">Transactions for Multiple Addresses</h3>
+<h3 id="transactions-for-multiple-addresses">Transactions for Multiple Addresses<a class="headerlink" href="#transactions-for-multiple-addresses" title="Permanent link">☍</a></h3>
 <p>GET method:</p>
 <pre><code>/api/addrs/[:addrs]/txs[?from=&amp;to=]
 /api/addrs/2NF2baYuJAkCKo5onjUKEPdARQkZ6SYyKd5,2NAre8sX2povnjy4aeiHKeEh97Qhn97tB1f/txs?from=0&amp;to=20
@@ -568,7 +568,7 @@ noSpent (option): 1 (will omit spent information per output)
 }
 </code></pre>
 <p>Note: if pagination params are not specified, the result is an array of transactions.</p>
-<h3 id="transaction-broadcasting">Transaction Broadcasting</h3>
+<h3 id="transaction-broadcasting">Transaction Broadcasting<a class="headerlink" href="#transaction-broadcasting" title="Permanent link">☍</a></h3>
 <p>POST method:</p>
 <pre><code>/api/tx/send
 </code></pre>
@@ -594,13 +594,13 @@ eg
     txid: "c7736a0a0046d5a8cc61c8c3c2821d4d7517f5de2bc66a966011aaa79965ffba"
 }
 </code></pre>
-<h3 id="historic-blockchain-data-sync-status">Historic Blockchain Data Sync Status</h3>
+<h3 id="historic-blockchain-data-sync-status">Historic Blockchain Data Sync Status<a class="headerlink" href="#historic-blockchain-data-sync-status" title="Permanent link">☍</a></h3>
 <pre><code>/api/sync
 </code></pre>
-<h3 id="live-network-p2p-data-sync-status">Live Network P2P Data Sync Status</h3>
+<h3 id="live-network-p2p-data-sync-status">Live Network P2P Data Sync Status<a class="headerlink" href="#live-network-p2p-data-sync-status" title="Permanent link">☍</a></h3>
 <pre><code>/api/peer
 </code></pre>
-<h3 id="status-of-the-bitcoin-network">Status of the Bitcoin Network</h3>
+<h3 id="status-of-the-bitcoin-network">Status of the Bitcoin Network<a class="headerlink" href="#status-of-the-bitcoin-network" title="Permanent link">☍</a></h3>
 <pre><code>/api/status?q=method
 </code></pre>
 <p>Where "method" can be:</p>
@@ -610,14 +610,14 @@ eg
 <li>getBestBlockHash</li>
 <li>getLastBlockHash</li>
 </ul>
-<h3 id="utility-methods">Utility Methods</h3>
+<h3 id="utility-methods">Utility Methods<a class="headerlink" href="#utility-methods" title="Permanent link">☍</a></h3>
 <pre><code>/api/utils/estimatefee[?nbBlocks=2]
 </code></pre>
-<h3 id="healthcheck-methods">Healthcheck Methods</h3>
+<h3 id="healthcheck-methods">Healthcheck Methods<a class="headerlink" href="#healthcheck-methods" title="Permanent link">☍</a></h3>
 <pre><code>* /api/healthcheck[?minimumSync]
 * /forwarderhealth (only for Forwarder mode)
 </code></pre>
-<h2 id="web-socket-api">Web Socket API</h2>
+<h2 id="web-socket-api">Web Socket API<a class="headerlink" href="#web-socket-api" title="Permanent link">☍</a></h2>
 <p>The web socket API is served using <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebSocket">standard, pure web sockets</a>. The first step is connecting to <code>_domain_/wss</code>; once connection is established, specific messages need to be sent to the server in order to subscribe to the different events (see each event entry). To simplify event subscription, the <code>ScopedPureWebSocket</code> class can be used.</p>
 <p>The following are the events published by insight:</p>
 <p><code>tx</code>: new transaction received from network. To receive this event, after connecting to the websocket endpoint, send the <code>SubscribeToTxs</code> plain text message.</p>
@@ -644,7 +644,7 @@ eg
     txid: "00c1b1acb310b87085c7deaaeba478cef5dc9519fab87a4d943ecbb39bd5b053"
 }
 </code></pre>
-<h3 id="example-usage">Example Usage</h3>
+<h3 id="example-usage">Example Usage<a class="headerlink" href="#example-usage" title="Permanent link">☍</a></h3>
 <p>The following html page connects to the web socket insight API and listens for new transactions.</p>
 <pre><code>&lt;html&gt;
     &lt;body&gt;

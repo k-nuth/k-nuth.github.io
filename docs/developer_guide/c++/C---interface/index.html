@@ -172,7 +172,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="https://github.com/mkdocs/mkdocs/"><i class="fa fa-github"></i> GitHub</a>
+                        <a href="https://github.com/bitprim/bitprim-docs/"><i class="fa fa-github"></i> GitHub</a>
                     </li>
             </ul>
         </div>
@@ -190,10 +190,10 @@
                 <div class="col-md-9" role="main">
 
 <p>Bitprim's C++ interface is the base layer of the platform, the lowest abstraction level available. It's a fork of the Satoshi/reference implementation with several improvements, the main of them being modularization. Being monolithic, the reference client is harder to change, not only because a change ripples across the whole system, but also because it's not possible to mix and match different module implementations.</p>
-<h2 id="package-diagram">Package diagram</h2>
+<h2 id="package-diagram">Package diagram<a class="headerlink" href="#package-diagram" title="Permanent link">☍</a></h2>
 <hr />
 <p>If we were to view the Bitprim projects as UML packages, their dependencies would look like this (some projects omitted for simplicity):</p>
-<h2 id="which-is-the-main-responsibilityfunctionality-for-each-package"><img alt="" src="../assets/bitprim_package_diagram.png" />Which is the main responsibility/functionality for each package?</h2>
+<h2 id="which-is-the-main-responsibilityfunctionality-for-each-package"><img alt="" src="../assets/bitprim_package_diagram.png" />Which is the main responsibility/functionality for each package?<a class="headerlink" href="#which-is-the-main-responsibilityfunctionality-for-each-package" title="Permanent link">☍</a></h2>
 <hr />
 <ul>
 <li><strong>secp256k1</strong>: Implementation of the standard of the same name which deals with ellyptic curves cryptography.</li>
@@ -205,7 +205,7 @@
 <li><strong>bitprim-blockchain</strong>: Interface for accessing the Bitcoin public ledger, a.k.a. blockchain, in which all transactions are linked between them.</li>
 <li><strong>bitprim-node</strong>: The highest level of abstraction: a full node in the Bitcoin network; it can query the blockchain in many ways and insert blocks as well.</li>
 </ul>
-<h2 id="exploring-the-public-interface-for-each-package">Exploring the public interface for each package</h2>
+<h2 id="exploring-the-public-interface-for-each-package">Exploring the public interface for each package<a class="headerlink" href="#exploring-the-public-interface-for-each-package" title="Permanent link">☍</a></h2>
 <hr />
 <p>All packages follow the same structure: At the top level of their source tree, they have an <strong>include</strong> directory. Inside it, there's a single .hpp file which #includes all the public headers for the package for convenience. Then, inside the include directory, all the public headers for the library reside. These represent the public interface, i.e. those classes meant to be consumed by other packages or programs built on top of the package.</p>
 <p>For example, for <a href="https://github.com/bitprim/bitprim-node">bitprim-node</a>:</p>
