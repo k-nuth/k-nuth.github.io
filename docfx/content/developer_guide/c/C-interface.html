@@ -1,0 +1,148 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Resource management | Bitprim Documentation Site </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Resource management | Bitprim Documentation Site ">
+    <meta name="generator" content="docfx 2.37.0.0">
+    
+    <link rel="shortcut icon" href="../../../favicon.ico">
+    <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../styles/main.css">
+    <meta property="docfx:navrel" content="../../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    <meta property="docfx:rel" content="../../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../content/assets/b.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+
+<p>Bitprim's C interface, the <a href="https://github.com/bitprim/bitprim-node-cint">bitprim-node-cint</a> project, is built on top of the C++ interface. Asides from allowing a C library or program to consume all the Bitprim functionality, it can act as the base to create bindings for many current popular programming languages, such as Javascript, C#,  Golang, Java and Python. All of these languages can interface easily with C, but not with C++.</p>
+<p>Granted, the Object Oriented paradigm is lost when transitioning to C, but it can be &quot;recovered&quot; when implementing a binding in an object oriented language such as C#. In such a context, classes can be built in order to give application programmers a friendlier interface for integrating Bitcoin in their projects, bridging the gap created by C/C++'s inherent complexity.</p>
+<p>Therefore, Bitprim's interface is not really meant to be consumed directly, but as the basis for a higher level binding in another language. To make this task easier, most functions will receive a parameter which will wrap the implicit object (this), so that OOP can be preserved in the binding if possible.</p>
+<h2 id="resource-management">Resource management</h2>
+<hr>
+<p>To avoid memory leaks, all C functions which allocate memory that must be released by the user are clearly documented as such. When implementing a binding on top of the C interface, it is advisable to use the <a href="https://www.hackcraft.net/raii/">RAII idiom</a> whenever possible to relieve the application programmer from the burden of manual memory management.</p>
+<h2 id="basic-structure---memory-management">Basic structure - memory management</h2>
+<hr>
+<p>Since this is C we're dealing with, there is nothing beyond a set of functions and some user defined types, but there is <a href="https://github.com/bitprim/bitprim-node-cint/tree/master/include/bitprim/nodecint">a structure</a> nevertheless. The main &quot;entry point&quot; for the interface are the functions from <a href="https://github.com/bitprim/bitprim-node-cint/blob/master/include/bitprim/nodecint/executor_c.h">executor_c.h</a> and the types defined in <a href="https://github.com/bitprim/bitprim-node-cint/blob/master/include/bitprim/nodecint/primitives.h">primitives.h</a>. To start consuming node functionality, the first step is calling one of these functions:</p>
+<pre><code class="lang-c">executor_t executor_construct(char const* path, FILE* sout, FILE* serr);
+
+executor_t executor_construct_fd(char const* path, int sout_fd, int serr_fd);
+</code></pre>
+<p>Any function with the <strong>construct</strong> suffix will create an object in dynamic memory, which will have to be released by calling the associated <strong>destruct</strong>:</p>
+<pre><code class="lang-c">void executor_destruct(executor_t exec);
+</code></pre>
+<p>This pattern will be seen with many other types; whenever an object is created by the user with a construct function, it will need to be released with destruct as soon as it is no longer needed.</p>
+<p>Another case is when a function needs to create an object for returning it. For example, if we wanted to fetch the transaction history for a specific Bitcoin address, we could use the fetch_history function:</p>
+<pre><code class="lang-c">void fetch_history(executor_t exec, payment_address_t address, size_t limit, size_t from_height,
+                   history_fetch_handler_t handler);
+</code></pre>
+<p>There's another concept in play here: a pointer to function acting as a callback. Looking at the definition for history_fetch_handler_t in primitives.h:</p>
+<pre><code class="lang-c">typedef void (*history_fetch_handler_t)(int error, history_compact_list_t history);
+</code></pre>
+<p>The second parameter, history, is created dynamically, and therefore must be released by the user, even if he didn't create it. This has to be done this way because there is no way for the C interface to know when the user is done using history. Therefore, it is up to him/her to call history_<em>compact__list</em>_destruct(history)._</p>
+<p>The remaining header files follow these conventions; transaction.h contains functions for manipulating a transaction object, block.h for blocks, and so on. Keep in mind that objects must be destroyed manually.</p>
+<h2 id="api-documentation">API documentation</h2>
+<hr>
+<p><a href="api.md">Detailed documentation</a></p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/bitprim/bitprim-docs/blob/dev/content/developer_guide/c/C-interface.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            <span>Copyright © 2018 Bitprim</span>
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>
