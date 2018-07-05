@@ -1,6 +1,6 @@
 {
   "homepages": [],
-  "source_base_path": "c:/Sources/bitprim-docs",
+  "source_base_path": "c:/aa/bitprim-docs",
   "xrefmap": "xrefmap.yml",
   "files": [
     {
@@ -336,7 +336,7 @@
       "output": {
         ".html": {
           "relative_path": "bitprim-cs/Bitprim.ApiCallResult-1.html",
-          "hash": "e4iwziV+vNmfFl7nSGv2iw=="
+          "hash": "zNdxTcy8V5uEtUhbayaOiw=="
         }
       },
       "is_incremental": false,
@@ -348,7 +348,7 @@
       "output": {
         ".html": {
           "relative_path": "bitprim-cs/Bitprim.Binary.html",
-          "hash": "eoYnWK1q5xW5RciTkuLNgg=="
+          "hash": "Q0oZXAjbIpzEE48sxIf4WQ=="
         }
       },
       "is_incremental": false,
@@ -360,7 +360,7 @@
       "output": {
         ".html": {
           "relative_path": "bitprim-cs/Bitprim.Block.html",
-          "hash": "61fL7qNkgK7ZUrcdnkYnwA=="
+          "hash": "K18BvsHJ+kt+C7oBQvzOmw=="
         }
       },
       "is_incremental": false,
@@ -372,7 +372,7 @@
       "output": {
         ".html": {
           "relative_path": "bitprim-cs/Bitprim.BlockIndexList.html",
-          "hash": "o/pyrYFP+ppPsNlqz2mvrg=="
+          "hash": "VVYISFD8Q8sfxRwmMfRkIQ=="
         }
       },
       "is_incremental": false,
@@ -384,7 +384,7 @@
       "output": {
         ".html": {
           "relative_path": "bitprim-cs/Bitprim.BlockList.html",
-          "hash": "aTEu0xeEAvWXajXnR6ovdA=="
+          "hash": "cPJwKO8X5u0EVJpXWrMqJA=="
         }
       },
       "is_incremental": false,
@@ -396,7 +396,7 @@
       "output": {
         ".html": {
           "relative_path": "bitprim-cs/Bitprim.BlockReader.html",
-          "hash": "bcvVDP0mj5HgUd0Dr2L+1w=="
+          "hash": "lLvq1P+sATU6jUXxQ/CVGg=="
         }
       },
       "is_incremental": false,
@@ -408,7 +408,7 @@
       "output": {
         ".html": {
           "relative_path": "bitprim-cs/Bitprim.Chain.html",
-          "hash": "rZ9vsYXVYqwWbNI74XZ36A=="
+          "hash": "9oj1zWSW7IhwyGzfYFCP5g=="
         }
       },
       "is_incremental": false,
@@ -420,7 +420,7 @@
       "output": {
         ".html": {
           "relative_path": "bitprim-cs/Bitprim.CompactBlock.html",
-          "hash": "Jc9hsDePARETucec1z4zeA=="
+          "hash": "8JGM8f4+yIMxoVZnFVBf6Q=="
         }
       },
       "is_incremental": false,
@@ -432,7 +432,7 @@
       "output": {
         ".html": {
           "relative_path": "bitprim-cs/Bitprim.CurrencyType.html",
-          "hash": "N01FII/++8UKzn3/FtvXRA=="
+          "hash": "vjyd0Lt1/lLBMcskxHt2kw=="
         }
       },
       "is_incremental": false,
@@ -444,7 +444,7 @@
       "output": {
         ".html": {
           "relative_path": "bitprim-cs/Bitprim.DisposableApiCallResult-1.html",
-          "hash": "8imWUKb0W90xz6mBPPROZw=="
+          "hash": "14p/68IdsSO6QvkXDJRIOw=="
         }
       },
       "is_incremental": false,
@@ -456,7 +456,7 @@
       "output": {
         ".html": {
           "relative_path": "bitprim-cs/Bitprim.ErrorCode.html",
-          "hash": "MpQKNX/uItMmsmLkCl2RwQ=="
+          "hash": "ZFGw89aRTtO9GOb5pLnG3g=="
         }
       },
       "is_incremental": false,
@@ -468,7 +468,7 @@
       "output": {
         ".html": {
           "relative_path": "bitprim-cs/Bitprim.Executor.BlockHandler.html",
-          "hash": "1NOp5QVmlTibPwEtZTIpvQ=="
+          "hash": "hNILiq/Bpu/5ApqdJEqAJA=="
         }
       },
       "is_incremental": false,
@@ -480,7 +480,7 @@
       "output": {
         ".html": {
           "relative_path": "bitprim-cs/Bitprim.Executor.TransactionHandler.html",
-          "hash": "Aae9hUXw9Z4+gxIJVo115g=="
+          "hash": "jSjrcpm0KKJ426CTnEMPew=="
         }
       },
       "is_incremental": false,
@@ -492,7 +492,7 @@
       "output": {
         ".html": {
           "relative_path": "bitprim-cs/Bitprim.Executor.html",
-          "hash": "wWY3fYXkpRredcxDwPSv/g=="
+          "hash": "7l4OPY/5pKR83nCmqeWSnQ=="
         }
       },
       "is_incremental": false,
@@ -504,7 +504,7 @@
       "output": {
         ".html": {
           "relative_path": "bitprim-cs/Bitprim.GetBlockDataResult-1.html",
-          "hash": "9PwDTBdyLO5f9+nAjZIRJA=="
+          "hash": "B4hvwo6L78383/cFJPOwqg=="
         }
       },
       "is_incremental": false,
@@ -516,7 +516,7 @@
       "output": {
         ".html": {
           "relative_path": "bitprim-cs/Bitprim.GetBlockHashTimestampResult.html",
-          "hash": "TuolNzj2ID8EtX1ivcfllg=="
+          "hash": "W+bDwo9V6Ggzo86++4b3Lg=="
         }
       },
       "is_incremental": false,
@@ -528,7 +528,7 @@
       "output": {
         ".html": {
           "relative_path": "bitprim-cs/Bitprim.GetBlockHeaderByHashTxSizeResult.html",
-          "hash": "bUSE50/v/6bKAi0vlrbWqw=="
+          "hash": "DqHrh0h2e4ik3+XFsFsfCA=="
         }
       },
       "is_incremental": false,
@@ -540,7 +540,7 @@
       "output": {
         ".html": {
           "relative_path": "bitprim-cs/Bitprim.GetTxDataResult.html",
-          "hash": "o3cC5nVOtO4IsqLlcUotkA=="
+          "hash": "RQMmC0KsIh7WBYku8NrG0Q=="
         }
       },
       "is_incremental": false,
@@ -552,7 +552,7 @@
       "output": {
         ".html": {
           "relative_path": "bitprim-cs/Bitprim.GetTxPositionResult.html",
-          "hash": "2Yz5hW+QF5GtZMX0R9uALA=="
+          "hash": "JYMoEjWX3CSxm6ZaSx6s9g=="
         }
       },
       "is_incremental": false,
@@ -564,7 +564,7 @@
       "output": {
         ".html": {
           "relative_path": "bitprim-cs/Bitprim.HashList.html",
-          "hash": "mLI0YbjJVlAVR3NUQ2zBZg=="
+          "hash": "VRWD4owljoCFsGtsBZcqFg=="
         }
       },
       "is_incremental": false,
@@ -576,7 +576,7 @@
       "output": {
         ".html": {
           "relative_path": "bitprim-cs/Bitprim.Header.html",
-          "hash": "+Tk5+4d2pmGBmCJDHlYCjQ=="
+          "hash": "HSTKb30mUU7mDeXkaJdo3Q=="
         }
       },
       "is_incremental": false,
@@ -588,7 +588,7 @@
       "output": {
         ".html": {
           "relative_path": "bitprim-cs/Bitprim.HeaderReader.html",
-          "hash": "gezX8mOhC5tohEIX8z+0JA=="
+          "hash": "+cGCBXFKzzmnib6Z3J+nfg=="
         }
       },
       "is_incremental": false,
@@ -600,7 +600,7 @@
       "output": {
         ".html": {
           "relative_path": "bitprim-cs/Bitprim.HistoryCompact.html",
-          "hash": "YNyAukovuXfUNqF6uVDiJA=="
+          "hash": "NNR2s/kMUpwAxRxbITNeZg=="
         }
       },
       "is_incremental": false,
@@ -612,7 +612,7 @@
       "output": {
         ".html": {
           "relative_path": "bitprim-cs/Bitprim.HistoryCompactList.html",
-          "hash": "Vbg1fpecnoVvYEjs/nY9iw=="
+          "hash": "jadNHCd5+w5AKP4MwhvUsw=="
         }
       },
       "is_incremental": false,
@@ -624,7 +624,7 @@
       "output": {
         ".html": {
           "relative_path": "bitprim-cs/Bitprim.Input.html",
-          "hash": "bJ9n9UVs9cAWpmSJHtJCsg=="
+          "hash": "6hadzCgBlkR/C+KNz3qjHQ=="
         }
       },
       "is_incremental": false,
@@ -636,7 +636,7 @@
       "output": {
         ".html": {
           "relative_path": "bitprim-cs/Bitprim.InputList.html",
-          "hash": "cK39Zwrn7NDHc+/F+Epi+Q=="
+          "hash": "uDgmefzO+YFvn2KK1LchoA=="
         }
       },
       "is_incremental": false,
@@ -648,7 +648,7 @@
       "output": {
         ".html": {
           "relative_path": "bitprim-cs/Bitprim.MempoolTransaction.html",
-          "hash": "hjPIq03EC5utEYvmhWhawg=="
+          "hash": "3Cg3y/kpJTz4h3d29H3I6w=="
         }
       },
       "is_incremental": false,
@@ -660,7 +660,7 @@
       "output": {
         ".html": {
           "relative_path": "bitprim-cs/Bitprim.MempoolTransactionList.html",
-          "hash": "Ygz58Tphw7qzGfJmaWAWeA=="
+          "hash": "TuLFa3X7kwN6/oDcc9W77w=="
         }
       },
       "is_incremental": false,
@@ -672,7 +672,7 @@
       "output": {
         ".html": {
           "relative_path": "bitprim-cs/Bitprim.MerkleBlock.html",
-          "hash": "/EQKPJ66jl/q1QFU8Dl0Ng=="
+          "hash": "sT1ud9wZW0q6fu7qYB12Eg=="
         }
       },
       "is_incremental": false,
@@ -684,7 +684,7 @@
       "output": {
         ".html": {
           "relative_path": "bitprim-cs/Bitprim.NativeList-1.html",
-          "hash": "QVi/7xCARaHvabKmGdN/Aw=="
+          "hash": "BesLTUid86WtcG91hCMlDw=="
         }
       },
       "is_incremental": false,
@@ -696,7 +696,7 @@
       "output": {
         ".html": {
           "relative_path": "bitprim-cs/Bitprim.NetworkType.html",
-          "hash": "llwnB9nstaiqWG0Ekonmsg=="
+          "hash": "s+3GINc85SANZZX7f2plUg=="
         }
       },
       "is_incremental": false,
@@ -708,7 +708,7 @@
       "output": {
         ".html": {
           "relative_path": "bitprim-cs/Bitprim.NodeSettings.html",
-          "hash": "jCf/B1QIaGbEk0eS8ASTAQ=="
+          "hash": "CoktGNm+oRw1E45xO/1Bzw=="
         }
       },
       "is_incremental": false,
@@ -720,7 +720,7 @@
       "output": {
         ".html": {
           "relative_path": "bitprim-cs/Bitprim.Output.html",
-          "hash": "NucLjHYg6tLmPkYfmMl08w=="
+          "hash": "8JlO+S7N8rqoOBxSBSz7NQ=="
         }
       },
       "is_incremental": false,
@@ -732,7 +732,7 @@
       "output": {
         ".html": {
           "relative_path": "bitprim-cs/Bitprim.OutputList.html",
-          "hash": "Y5TDlTB3jOIzqAxMR/g0lw=="
+          "hash": "uTpGb47a1Odt8ppAUHimuQ=="
         }
       },
       "is_incremental": false,
@@ -744,7 +744,7 @@
       "output": {
         ".html": {
           "relative_path": "bitprim-cs/Bitprim.OutputPoint.html",
-          "hash": "PEJ3EHgmH254i6YN1x9MaQ=="
+          "hash": "8C//qfx6zkTQjgngHlU+3Q=="
         }
       },
       "is_incremental": false,
@@ -756,7 +756,7 @@
       "output": {
         ".html": {
           "relative_path": "bitprim-cs/Bitprim.PaymentAddress.html",
-          "hash": "yxNJBWrJMo351ALULMlqOw=="
+          "hash": "2Qc4KfyLg5Fl7Y4T8fKcRA=="
         }
       },
       "is_incremental": false,
@@ -768,7 +768,7 @@
       "output": {
         ".html": {
           "relative_path": "bitprim-cs/Bitprim.Point.html",
-          "hash": "cozaK9+Ve1gIgnVAwMngIQ=="
+          "hash": "aURRE51eb7qwmaHoPhAweA=="
         }
       },
       "is_incremental": false,
@@ -780,7 +780,7 @@
       "output": {
         ".html": {
           "relative_path": "bitprim-cs/Bitprim.PointKind.html",
-          "hash": "KNNTCtw+e6EWHJ1uCuUa+w=="
+          "hash": "etzyj7TzckyF8d2yBbP9RQ=="
         }
       },
       "is_incremental": false,
@@ -792,7 +792,7 @@
       "output": {
         ".html": {
           "relative_path": "bitprim-cs/Bitprim.PointList.html",
-          "hash": "r2szY0BbZGgWCjm78pfoFw=="
+          "hash": "G2giD2WOdFQjTQX6OP9SfQ=="
         }
       },
       "is_incremental": false,
@@ -804,7 +804,7 @@
       "output": {
         ".html": {
           "relative_path": "bitprim-cs/Bitprim.Script.html",
-          "hash": "f2PLFXQN7i2uKIMYTR/bsw=="
+          "hash": "7lBzpT9r9kSRpbrg6fIpqg=="
         }
       },
       "is_incremental": false,
@@ -816,7 +816,7 @@
       "output": {
         ".html": {
           "relative_path": "bitprim-cs/Bitprim.StealthCompact.html",
-          "hash": "1cm48/c//8M28hp3XYpPHQ=="
+          "hash": "oHHojjp482JbiOk5CX78RA=="
         }
       },
       "is_incremental": false,
@@ -828,7 +828,7 @@
       "output": {
         ".html": {
           "relative_path": "bitprim-cs/Bitprim.StealthCompactList.html",
-          "hash": "FXcKsmIAC0g+0pGRYEiqNw=="
+          "hash": "L3EBGQqPxjpD+Bv1F8/kVA=="
         }
       },
       "is_incremental": false,
@@ -840,7 +840,7 @@
       "output": {
         ".html": {
           "relative_path": "bitprim-cs/Bitprim.Transaction.html",
-          "hash": "ylI2NWj/VaeiZ9o03C0IYA=="
+          "hash": "gn9K2Z+YbecvIl9YEA6Vng=="
         }
       },
       "is_incremental": false,
@@ -852,7 +852,7 @@
       "output": {
         ".html": {
           "relative_path": "bitprim-cs/Bitprim.TransactionList.html",
-          "hash": "fSwnHKhfqQjGcGq+SFTyhg=="
+          "hash": "80ancw3MTodTUbuM2u8uAw=="
         }
       },
       "is_incremental": false,
@@ -864,7 +864,7 @@
       "output": {
         ".html": {
           "relative_path": "bitprim-cs/Bitprim.Validations.html",
-          "hash": "vVEH/C9EAJTgGjxrfZV0sA=="
+          "hash": "QDCBgoTyUFlar2FgG+/xwA=="
         }
       },
       "is_incremental": false,
@@ -888,7 +888,7 @@
       "output": {
         ".html": {
           "relative_path": "restapi/bitprim-api.html",
-          "hash": "h8GUcctkLsBcnWte3vE1AQ=="
+          "hash": "Q6qyZWfwTsaHBNjU+iqgXg=="
         }
       },
       "is_incremental": false,
@@ -911,10 +911,20 @@
     {
       "status": {
         "can_incremental": false,
-        "details": "Cannot build incrementally because config changed.",
+        "details": "Cannot build incrementally because last build info is missing.",
         "incrementalPhase": "build"
       },
       "processors": {
+        "TocDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build"
+        },
+        "ResourceDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor ResourceDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build"
+        },
         "RestApiDocumentProcessor": {
           "can_incremental": false,
           "details": "Processor RestApiDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
@@ -926,16 +936,6 @@
         },
         "ConceptualDocumentProcessor": {
           "can_incremental": false,
-          "incrementalPhase": "build"
-        },
-        "ResourceDocumentProcessor": {
-          "can_incremental": false,
-          "details": "Processor ResourceDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
-          "incrementalPhase": "build"
-        },
-        "TocDocumentProcessor": {
-          "can_incremental": false,
-          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
           "incrementalPhase": "build"
         }
       }
