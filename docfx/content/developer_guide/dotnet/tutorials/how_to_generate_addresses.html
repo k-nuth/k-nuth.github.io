@@ -5,21 +5,19 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Enum CurrencyType
-   | Bitprim Documentation Site </title>
+    <title>Generate Seed | Bitprim Documentation Site </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Enum CurrencyType
-   | Bitprim Documentation Site ">
+    <meta name="title" content="Generate Seed | Bitprim Documentation Site ">
     <meta name="generator" content="docfx 2.37.0.0">
     
-    <link rel="shortcut icon" href="../favicon.ico">
-    <link rel="stylesheet" href="../styles/docfx.vendor.css">
-    <link rel="stylesheet" href="../styles/docfx.css">
-    <link rel="stylesheet" href="../styles/main.css">
-    <meta property="docfx:navrel" content="../toc.html">
-    <meta property="docfx:tocrel" content="../content/developer_guide/toc.html">
+    <link rel="shortcut icon" href="../../../../favicon.ico">
+    <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../../styles/main.css">
+    <meta property="docfx:navrel" content="../../../../toc.html">
+    <meta property="docfx:tocrel" content="../../toc.html">
     
-    <meta property="docfx:rel" content="../">
+    <meta property="docfx:rel" content="../../../../">
     
   </head>
   <body data-spy="scroll" data-target="#affix" data-offset="120">
@@ -36,8 +34,8 @@
                 <span class="icon-bar"></span>
               </button>
               
-              <a class="navbar-brand" href="../index.html">
-                <img id="logo" class="svg" src="../content/assets/b.png" alt="">
+              <a class="navbar-brand" href="../../../../index.html">
+                <img id="logo" class="svg" src="../../../../content/assets/b.png" alt="">
               </a>
             </div>
             <div class="collapse navbar-collapse" id="navbar">
@@ -78,47 +76,41 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="Bitprim.CurrencyType">
-  
-  
-  <h1 id="Bitprim_CurrencyType" data-uid="Bitprim.CurrencyType" class="text-break">Enum CurrencyType
-  </h1>
-  <div class="markdown level0 summary"></div>
-  <div class="markdown level0 conceptual"></div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="Bitprim.html">Bitprim</a></h6>
-  <h6><strong>Assembly</strong>: bitprim-bch.dll</h6>
-  <h5 id="Bitprim_CurrencyType_syntax">Syntax</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public enum CurrencyType : int</code></pre>
-  </div>
-  <h3 id="fields">Fields
-  </h3>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    <thead>
-    <tbody>
-      <tr>
-        <td id="Bitprim_CurrencyType_Bitcoin">Bitcoin</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td id="Bitprim_CurrencyType_BitcoinCash">BitcoinCash</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td id="Bitprim_CurrencyType_Litecoin">Litecoin</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td id="Bitprim_CurrencyType_None">None</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </thead></thead></table>
+            <article class="content wrap" id="_content" data-uid="">
+
+<p>#How to create addresses</p>
+<p>If you want to receive coins you need to generate an address.</p>
+<p>In this tutorial you will learn:</p>
+<ul>
+<li>How to generate a seed</li>
+<li>How to generare a private key</li>
+<li>How to generate a public key</li>
+<li>How to generate an address</li>
+</ul>
+<h2 id="generate-seed">Generate Seed</h2>
+<p>First you need a seed to generate the private key. The seed must be a random string with a high degree of entropy.
+For this, we use the following method.</p>
+<pre><code class="lang-c#">
+</code></pre>
+<h2 id="generate-private-key">Generate Private key</h2>
+<p>Now we can generate the private key. The private key has 256 bits in length. And can be encoded in different formats:</p>
+<ul>
+<li>Raw</li>
+<li>Hex</li>
+<li>WIF</li>
+<li>WIF-Compressed</li>
+</ul>
+<pre><code class="lang-c#">
+</code></pre>
+<h2 id="generate-public-key">Generate Public key</h2>
+<p>The public key is derived from the private key using elliptic curve calculations. The public key can be compressed or uncompressed.</p>
+<pre><code class="lang-c#"></code></pre>
+<h2 id="generate-address">Generate Address</h2>
+<p>Now we can generate our public address to share with anyone.
+If K is the public key, the resulting address A is:</p>
+<pre><code>A = Base58Check(RIPEMD160(SHA256(K)))
+</code></pre>
+<pre><code class="lang-c#"></code></pre>
 </article>
           </div>
           
@@ -127,10 +119,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/bitprim/bitprim-cs/new/master/apiSpec/new?filename=Bitprim_CurrencyType.md&amp;value=---%0Auid%3A%20Bitprim.CurrencyType%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
-                  </li>
-                  <li>
-                    <a href="https://github.com/bitprim/bitprim-cs/blob/a91c29449567f8aa51107c032c785fe9d4945efb/bitprim/idiomatic/CurrencyType.cs/#L3" class="contribution-link">View Source</a>
+                    <a href="https://github.com/bitprim/bitprim-docs/blob/master/content/developer_guide/dotnet/tutorials/how_to_generate_addresses.md/#L1" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>
@@ -156,8 +145,8 @@
       </footer>
     </div>
     
-    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
-    <script type="text/javascript" src="../styles/docfx.js"></script>
-    <script type="text/javascript" src="../styles/main.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
   </body>
 </html>
