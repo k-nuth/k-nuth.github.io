@@ -5,21 +5,19 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Enum NetworkType
-   | Bitprim Documentation Site </title>
+    <title>Installation | Bitprim Documentation Site </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Enum NetworkType
-   | Bitprim Documentation Site ">
+    <meta name="title" content="Installation | Bitprim Documentation Site ">
     <meta name="generator" content="docfx 2.37.0.0">
     
-    <link rel="shortcut icon" href="../favicon.ico">
-    <link rel="stylesheet" href="../styles/docfx.vendor.css">
-    <link rel="stylesheet" href="../styles/docfx.css">
-    <link rel="stylesheet" href="../styles/main.css">
-    <meta property="docfx:navrel" content="../toc.html">
-    <meta property="docfx:tocrel" content="../content/developer_guide/toc.html">
+    <link rel="shortcut icon" href="../../../../favicon.ico">
+    <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../../styles/main.css">
+    <meta property="docfx:navrel" content="../../../../toc.html">
+    <meta property="docfx:tocrel" content="../../toc.html">
     
-    <meta property="docfx:rel" content="../">
+    <meta property="docfx:rel" content="../../../../">
     
   </head>
   <body data-spy="scroll" data-target="#affix" data-offset="120">
@@ -36,8 +34,8 @@
                 <span class="icon-bar"></span>
               </button>
               
-              <a class="navbar-brand" href="../index.html">
-                <img id="logo" class="svg" src="../content/assets/b.png" alt="">
+              <a class="navbar-brand" href="../../../../index.html">
+                <img id="logo" class="svg" src="../../../../content/assets/b.png" alt="">
               </a>
             </div>
             <div class="collapse navbar-collapse" id="navbar">
@@ -78,48 +76,38 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="Bitprim.NetworkType">
-  
-  
-  <h1 id="Bitprim_NetworkType" data-uid="Bitprim.NetworkType" class="text-break">Enum NetworkType
-  </h1>
-  <div class="markdown level0 summary"><p>Represents the network type (Mainnet, Testnet, Regtest)</p>
-</div>
-  <div class="markdown level0 conceptual"></div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="Bitprim.html">Bitprim</a></h6>
-  <h6><strong>Assembly</strong>: bitprim-bch.dll</h6>
-  <h5 id="Bitprim_NetworkType_syntax">Syntax</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public enum NetworkType : int</code></pre>
-  </div>
-  <h3 id="fields">Fields
-  </h3>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    <thead>
-    <tbody>
-      <tr>
-        <td id="Bitprim_NetworkType_Mainnet">Mainnet</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td id="Bitprim_NetworkType_None">None</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td id="Bitprim_NetworkType_Regtest">Regtest</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td id="Bitprim_NetworkType_Testnet">Testnet</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </thead></thead></table>
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="installation">Installation</h1>
+
+<h2 id="nuget">Nuget</h2>
+<p>You can install the Bitprim C# binding via Nuget.</p>
+<p>There are two packages available:</p>
+<p>For Bitcoin Cash (BCH) you need to use  <a href="https://www.nuget.org/packages/bitprim-bch/">https://www.nuget.org/packages/bitprim-bch/</a>
+and for Bitcoin Legacy (BTC) you need to use <a href="https://www.nuget.org/packages/bitprim-btc/">https://www.nuget.org/packages/bitprim-btc/</a></p>
+<p>If you use Visual Studio , right click on your proyect, Manage Nuget Packages.</p>
+<p>Or</p>
+<p>use the package manager.</p>
+<pre><code>Install-Package bitprim-bch -Version 0.4.2
+Install-Package bitprim-btc -Version 0.4.2
+</code></pre>
+<p>If you are using dotnet cli:</p>
+<pre><code>dotnet add package bitprim-bch --version 0.4.2
+dotnet add package bitprim-btc --version 0.4.2
+</code></pre>
+<h2 id="building-from-source">Building from source</h2>
+<p>If you want to build from source, you need the following prerequisites:</p>
+<ul>
+<li>.Net framework 4.6.1</li>
+<li>.Net Core 2.0</li>
+<li>Powershell</li>
+</ul>
+<p>Run the following commands:</p>
+<pre><code>git clone https://github.com/bitprim/bitprim-cs.git
+cd bitprim-cs
+powershell ./build.ps1
+</code></pre>
+<p>if you have problems running build.ps1 please check this link
+<a href="https://cakebuild.net/docs/tutorials/powershell-security">https://cakebuild.net/docs/tutorials/powershell-security</a></p>
 </article>
           </div>
           
@@ -128,10 +116,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/bitprim/bitprim-cs/new/master/apiSpec/new?filename=Bitprim_NetworkType.md&amp;value=---%0Auid%3A%20Bitprim.NetworkType%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
-                  </li>
-                  <li>
-                    <a href="https://github.com/bitprim/bitprim-cs/blob/6c3f2a00b28b212645ce16ff8dda7ef0a780008a/bitprim/idiomatic/NetworkType.cs/#L6" class="contribution-link">View Source</a>
+                    <a href="https://github.com/bitprim/bitprim-docs/blob/master/content/developer_guide/dotnet/tutorials/installation.md/#L1" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>
@@ -157,8 +142,8 @@
       </footer>
     </div>
     
-    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
-    <script type="text/javascript" src="../styles/docfx.js"></script>
-    <script type="text/javascript" src="../styles/main.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
   </body>
 </html>
