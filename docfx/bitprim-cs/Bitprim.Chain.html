@@ -104,7 +104,7 @@
     <a href="https://github.com/bitprim/bitprim-cs/new/master/apiSpec/new?filename=Bitprim_Chain_IsStale.md&amp;value=---%0Auid%3A%20Bitprim.Chain.IsStale%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Chain.cs/#L947">View Source</a>
+    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Chain.cs/#L946">View Source</a>
   </span>
   <a id="Bitprim_Chain_IsStale_" data-uid="Bitprim.Chain.IsStale*"></a>
   <h4 id="Bitprim_Chain_IsStale" data-uid="Bitprim.Chain.IsStale">IsStale</h4>
@@ -479,157 +479,10 @@ Identifies it univocally.</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/bitprim/bitprim-cs/new/master/apiSpec/new?filename=Bitprim_Chain_FetchBlockLocatorAsync_Bitprim_BlockIndexList_.md&amp;value=---%0Auid%3A%20Bitprim.Chain.FetchBlockLocatorAsync(Bitprim.BlockIndexList)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Chain.cs/#L813">View Source</a>
-  </span>
-  <a id="Bitprim_Chain_FetchBlockLocatorAsync_" data-uid="Bitprim.Chain.FetchBlockLocatorAsync*"></a>
-  <h4 id="Bitprim_Chain_FetchBlockLocatorAsync_Bitprim_BlockIndexList_" data-uid="Bitprim.Chain.FetchBlockLocatorAsync(Bitprim.BlockIndexList)">FetchBlockLocatorAsync(BlockIndexList)</h4>
-  <div class="markdown level1 summary"><p>Given a list of indexes, fetch a header reader for them, asynchronously</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;DisposableApiCallResult&lt;HeaderReader&gt;&gt; FetchBlockLocatorAsync(BlockIndexList indexes)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Bitprim.BlockIndexList.html">BlockIndexList</a></td>
-        <td><span class="parametername">indexes</span></td>
-        <td><p>Block indexes</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Task</span>&lt;<a class="xref" href="Bitprim.DisposableApiCallResult-1.html">DisposableApiCallResult</a>&lt;<a class="xref" href="Bitprim.HeaderReader.html">HeaderReader</a>&gt;&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/bitprim/bitprim-cs/new/master/apiSpec/new?filename=Bitprim_Chain_FetchCompactBlockByHash_System_Byte___.md&amp;value=---%0Auid%3A%20Bitprim.Chain.FetchCompactBlockByHash(System.Byte%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Chain.cs/#L500">View Source</a>
-  </span>
-  <a id="Bitprim_Chain_FetchCompactBlockByHash_" data-uid="Bitprim.Chain.FetchCompactBlockByHash*"></a>
-  <h4 id="Bitprim_Chain_FetchCompactBlockByHash_System_Byte___" data-uid="Bitprim.Chain.FetchCompactBlockByHash(System.Byte[])">FetchCompactBlockByHash(Byte[])</h4>
-  <div class="markdown level1 summary"><p>Given a block hash, get the compact block from the block it identifies, asynchronously.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;DisposableApiCallResult&lt;GetBlockDataResult&lt;CompactBlock&gt;&gt;&gt; FetchCompactBlockByHash(byte[] blockHash)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.byte">Byte</a>[]</td>
-        <td><span class="parametername">blockHash</span></td>
-        <td><p>32 bytes of the block hash</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Task</span>&lt;<a class="xref" href="Bitprim.DisposableApiCallResult-1.html">DisposableApiCallResult</a>&lt;<a class="xref" href="Bitprim.GetBlockDataResult-1.html">GetBlockDataResult</a>&lt;<a class="xref" href="Bitprim.CompactBlock.html">CompactBlock</a>&gt;&gt;&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/bitprim/bitprim-cs/new/master/apiSpec/new?filename=Bitprim_Chain_FetchCompactBlockByHeightAsync_UInt64_.md&amp;value=---%0Auid%3A%20Bitprim.Chain.FetchCompactBlockByHeightAsync(UInt64)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Chain.cs/#L544">View Source</a>
-  </span>
-  <a id="Bitprim_Chain_FetchCompactBlockByHeightAsync_" data-uid="Bitprim.Chain.FetchCompactBlockByHeightAsync*"></a>
-  <h4 id="Bitprim_Chain_FetchCompactBlockByHeightAsync_UInt64_" data-uid="Bitprim.Chain.FetchCompactBlockByHeightAsync(UInt64)">FetchCompactBlockByHeightAsync(UInt64)</h4>
-  <div class="markdown level1 summary"><p>Given a block height, get the compact block from the block it identifies, asynchronously.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;DisposableApiCallResult&lt;GetBlockDataResult&lt;CompactBlock&gt;&gt;&gt; FetchCompactBlockByHeightAsync(UInt64 height)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">UInt64</span></td>
-        <td><span class="parametername">height</span></td>
-        <td><p>Desired block height</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Task</span>&lt;<a class="xref" href="Bitprim.DisposableApiCallResult-1.html">DisposableApiCallResult</a>&lt;<a class="xref" href="Bitprim.GetBlockDataResult-1.html">GetBlockDataResult</a>&lt;<a class="xref" href="Bitprim.CompactBlock.html">CompactBlock</a>&gt;&gt;&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
     <a href="https://github.com/bitprim/bitprim-cs/new/master/apiSpec/new?filename=Bitprim_Chain_FetchConfirmedTransactionsAsync_Bitprim_PaymentAddress_UInt64_UInt64_.md&amp;value=---%0Auid%3A%20Bitprim.Chain.FetchConfirmedTransactionsAsync(Bitprim.PaymentAddress%2CUInt64%2CUInt64)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Chain.cs/#L741">View Source</a>
+    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Chain.cs/#L740">View Source</a>
   </span>
   <a id="Bitprim_Chain_FetchConfirmedTransactionsAsync_" data-uid="Bitprim.Chain.FetchConfirmedTransactionsAsync*"></a>
   <h4 id="Bitprim_Chain_FetchConfirmedTransactionsAsync_Bitprim_PaymentAddress_UInt64_UInt64_" data-uid="Bitprim.Chain.FetchConfirmedTransactionsAsync(Bitprim.PaymentAddress,UInt64,UInt64)">FetchConfirmedTransactionsAsync(PaymentAddress, UInt64, UInt64)</h4>
@@ -690,7 +543,7 @@ Identifies it univocally.</p>
     <a href="https://github.com/bitprim/bitprim-cs/new/master/apiSpec/new?filename=Bitprim_Chain_FetchHistoryAsync_Bitprim_PaymentAddress_UInt64_UInt64_.md&amp;value=---%0Auid%3A%20Bitprim.Chain.FetchHistoryAsync(Bitprim.PaymentAddress%2CUInt64%2CUInt64)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Chain.cs/#L712">View Source</a>
+    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Chain.cs/#L711">View Source</a>
   </span>
   <a id="Bitprim_Chain_FetchHistoryAsync_" data-uid="Bitprim.Chain.FetchHistoryAsync*"></a>
   <h4 id="Bitprim_Chain_FetchHistoryAsync_Bitprim_PaymentAddress_UInt64_UInt64_" data-uid="Bitprim.Chain.FetchHistoryAsync(Bitprim.PaymentAddress,UInt64,UInt64)">FetchHistoryAsync(PaymentAddress, UInt64, UInt64)</h4>
@@ -880,7 +733,7 @@ Identifies it univocally.</p>
     <a href="https://github.com/bitprim/bitprim-cs/new/master/apiSpec/new?filename=Bitprim_Chain_FetchSpendAsync_Bitprim_OutputPoint_.md&amp;value=---%0Auid%3A%20Bitprim.Chain.FetchSpendAsync(Bitprim.OutputPoint)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Chain.cs/#L679">View Source</a>
+    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Chain.cs/#L678">View Source</a>
   </span>
   <a id="Bitprim_Chain_FetchSpendAsync_" data-uid="Bitprim.Chain.FetchSpendAsync*"></a>
   <h4 id="Bitprim_Chain_FetchSpendAsync_Bitprim_OutputPoint_" data-uid="Bitprim.Chain.FetchSpendAsync(Bitprim.OutputPoint)">FetchSpendAsync(OutputPoint)</h4>
@@ -929,7 +782,7 @@ Identifies it univocally.</p>
     <a href="https://github.com/bitprim/bitprim-cs/new/master/apiSpec/new?filename=Bitprim_Chain_FetchStealthAsync_Bitprim_Binary_UInt64_.md&amp;value=---%0Auid%3A%20Bitprim.Chain.FetchStealthAsync(Bitprim.Binary%2CUInt64)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Chain.cs/#L773">View Source</a>
+    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Chain.cs/#L772">View Source</a>
   </span>
   <a id="Bitprim_Chain_FetchStealthAsync_" data-uid="Bitprim.Chain.FetchStealthAsync*"></a>
   <h4 id="Bitprim_Chain_FetchStealthAsync_Bitprim_Binary_UInt64_" data-uid="Bitprim.Chain.FetchStealthAsync(Bitprim.Binary,UInt64)">FetchStealthAsync(Binary, UInt64)</h4>
@@ -985,7 +838,7 @@ height in the chain, it queries the chain for transactions matching the given fi
     <a href="https://github.com/bitprim/bitprim-cs/new/master/apiSpec/new?filename=Bitprim_Chain_FetchTransactionAsync_System_Byte___System_Boolean_.md&amp;value=---%0Auid%3A%20Bitprim.Chain.FetchTransactionAsync(System.Byte%5B%5D%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Chain.cs/#L589">View Source</a>
+    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Chain.cs/#L588">View Source</a>
   </span>
   <a id="Bitprim_Chain_FetchTransactionAsync_" data-uid="Bitprim.Chain.FetchTransactionAsync*"></a>
   <h4 id="Bitprim_Chain_FetchTransactionAsync_System_Byte___System_Boolean_" data-uid="Bitprim.Chain.FetchTransactionAsync(System.Byte[],System.Boolean)">FetchTransactionAsync(Byte[], Boolean)</h4>
@@ -1040,7 +893,7 @@ height in the chain, it queries the chain for transactions matching the given fi
     <a href="https://github.com/bitprim/bitprim-cs/new/master/apiSpec/new?filename=Bitprim_Chain_FetchTransactionPositionAsync_System_Byte___System_Boolean_.md&amp;value=---%0Auid%3A%20Bitprim.Chain.FetchTransactionPositionAsync(System.Byte%5B%5D%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Chain.cs/#L636">View Source</a>
+    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Chain.cs/#L635">View Source</a>
   </span>
   <a id="Bitprim_Chain_FetchTransactionPositionAsync_" data-uid="Bitprim.Chain.FetchTransactionPositionAsync*"></a>
   <h4 id="Bitprim_Chain_FetchTransactionPositionAsync_System_Byte___System_Boolean_" data-uid="Bitprim.Chain.FetchTransactionPositionAsync(System.Byte[],System.Boolean)">FetchTransactionPositionAsync(Byte[], Boolean)</h4>
@@ -1095,7 +948,7 @@ height in the chain, it queries the chain for transactions matching the given fi
     <a href="https://github.com/bitprim/bitprim-cs/new/master/apiSpec/new?filename=Bitprim_Chain_GetMempoolTransactions_Bitprim_PaymentAddress_System_Boolean_.md&amp;value=---%0Auid%3A%20Bitprim.Chain.GetMempoolTransactions(Bitprim.PaymentAddress%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Chain.cs/#L959">View Source</a>
+    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Chain.cs/#L958">View Source</a>
   </span>
   <a id="Bitprim_Chain_GetMempoolTransactions_" data-uid="Bitprim.Chain.GetMempoolTransactions*"></a>
   <h4 id="Bitprim_Chain_GetMempoolTransactions_Bitprim_PaymentAddress_System_Boolean_" data-uid="Bitprim.Chain.GetMempoolTransactions(Bitprim.PaymentAddress,System.Boolean)">GetMempoolTransactions(PaymentAddress, Boolean)</h4>
@@ -1147,7 +1000,7 @@ height in the chain, it queries the chain for transactions matching the given fi
     <a href="https://github.com/bitprim/bitprim-cs/new/master/apiSpec/new?filename=Bitprim_Chain_OrganizeBlockAsync_Bitprim_Block_.md&amp;value=---%0Auid%3A%20Bitprim.Chain.OrganizeBlockAsync(Bitprim.Block)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Chain.cs/#L853">View Source</a>
+    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Chain.cs/#L852">View Source</a>
   </span>
   <a id="Bitprim_Chain_OrganizeBlockAsync_" data-uid="Bitprim.Chain.OrganizeBlockAsync*"></a>
   <h4 id="Bitprim_Chain_OrganizeBlockAsync_Bitprim_Block_" data-uid="Bitprim.Chain.OrganizeBlockAsync(Bitprim.Block)">OrganizeBlockAsync(Block)</h4>
@@ -1196,7 +1049,7 @@ height in the chain, it queries the chain for transactions matching the given fi
     <a href="https://github.com/bitprim/bitprim-cs/new/master/apiSpec/new?filename=Bitprim_Chain_OrganizeTransactionAsync_Bitprim_Transaction_.md&amp;value=---%0Auid%3A%20Bitprim.Chain.OrganizeTransactionAsync(Bitprim.Transaction)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Chain.cs/#L882">View Source</a>
+    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Chain.cs/#L881">View Source</a>
   </span>
   <a id="Bitprim_Chain_OrganizeTransactionAsync_" data-uid="Bitprim.Chain.OrganizeTransactionAsync*"></a>
   <h4 id="Bitprim_Chain_OrganizeTransactionAsync_Bitprim_Transaction_" data-uid="Bitprim.Chain.OrganizeTransactionAsync(Bitprim.Transaction)">OrganizeTransactionAsync(Transaction)</h4>
@@ -1245,7 +1098,7 @@ height in the chain, it queries the chain for transactions matching the given fi
     <a href="https://github.com/bitprim/bitprim-cs/new/master/apiSpec/new?filename=Bitprim_Chain_ValidateTransactionAsync_Bitprim_Transaction_.md&amp;value=---%0Auid%3A%20Bitprim.Chain.ValidateTransactionAsync(Bitprim.Transaction)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Chain.cs/#L914">View Source</a>
+    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Chain.cs/#L913">View Source</a>
   </span>
   <a id="Bitprim_Chain_ValidateTransactionAsync_" data-uid="Bitprim.Chain.ValidateTransactionAsync*"></a>
   <h4 id="Bitprim_Chain_ValidateTransactionAsync_Bitprim_Transaction_" data-uid="Bitprim.Chain.ValidateTransactionAsync(Bitprim.Transaction)">ValidateTransactionAsync(Transaction)</h4>
