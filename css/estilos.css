@@ -1,0 +1,249 @@
+*{
+    margin: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+    
+}
+
+body{
+    background: #F95700;
+    padding-top: 20px;  
+    padding-bottom: 20px;
+}
+
+.content-cabecera{
+    width: 80%;
+    max-width: 1400px;
+    margin-top: 100px;
+    text-align: center;
+    margin: auto;
+    font-style: oblique;
+    font-size: 12px;
+}
+
+.content-logo{
+    width: 260px;
+    height: 100px;
+    margin: 10px auto;
+    display: block;
+    margin-left: auto;
+}
+
+.content-logo img{
+    width: 100%;
+    height: 100%;
+}
+
+.content-cabecera h1{
+    font-weight: 100;
+    color: white;
+    margin-top: 10px;
+}
+
+.content-cabecera p{
+    margin-top: 10px;
+    color:white;
+}
+
+/*Content general*/
+
+main{
+    max-width: 350px;
+    background: white;
+    padding-top: 20px;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-bottom: 20px;
+    margin: auto;
+    margin-top: 20px;
+    border-radius: 10px;
+}
+
+.content-general{
+    width: 140px;
+    height: 140px;
+    position: relative;
+    font-size: 15px;
+}
+
+.content-general h1{
+    color: #000D71;
+    font-family:url(fuentes/radikal_bold.ttf);
+    
+    
+}
+/*Content Blockdozer*/
+
+.content-general h1{
+    font color:#000D71;
+    font-size: 15px;
+ 
+}
+
+.content1{
+    width: 100%;
+    position:absolute;
+    top:35px;
+    bottom: 0;
+    right: 0px;
+    left:0px;
+    text-align: center;
+}
+
+.img-content1{
+    width: 100%;
+}
+
+.img-content1 img{
+    margin-right: 100px;
+    width: 100px;
+    height: 30px;
+}
+
+.boton1 hr{
+    width: 100px;
+    height: 5px;
+    background: -webkit-linear-gradient(left, #F95700, #000D71);
+    background: -moz-linear-gradient(left, #F95700, #000D71);
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.boton1{
+    width: 65%;
+  
+}
+
+.boton_BCH{
+    text-decoration: none;
+    padding: 1px;
+    font-weight: 600;
+    font-size: 13px;
+    color:#000D71 ;
+    background-color: white;
+    border-radius: 2px;
+    border: 1px solid #F95700;
+}
+.boton_BCH:hover{
+    color:#F95700;
+    border:1px solid #000D71
+}
+
+.boton_BTC{
+    text-decoration: none;
+    padding: 1px;
+    font-weight: 600;
+    font-size: 13px;
+    color:#000D71 ;
+    background-color: white;
+    border-radius: 2px;
+    border: 1px solid #F95700;
+}
+.boton_BTC:hover{
+    color:#F95700;
+    border:1px solid #000D71
+}
+
+
+.text-content1 p{
+   
+    margin-top: 5px;
+    color: black;
+    letter-spacing: 1px;
+    font-size: 10px;
+}
+
+.button-access {
+    width: 100px;
+    padding: 5px;
+    border: 1px solid #dddddd;
+    border-radius: 10px;
+    margin-top: 20px;
+    text-align: center;
+    font-size: 10px;
+}
+
+/*Content Blockdrome*/
+
+.content2{
+    width: 100%;
+    position:absolute;
+    top:35px;
+    bottom:0;
+    right: 0px;
+    left:145px;
+    text-align: center;
+}
+.img-content2{
+    width: 60%;
+    margin-top: 0px;
+    margin-bottom: 0px;
+  
+}
+
+.img-content2 img{
+    margin-right: 0px;
+    width: 100px;
+    height: 30px;
+}
+
+
+.boton2{
+    width: 65%;
+}
+
+
+.boton2 hr{
+    width: 100px;
+    height: 5px;
+    background: -webkit-linear-gradient(left, #F95700, #000D71);
+    background: -moz-linear-gradient(left, #F95700, #000D71);
+    margin-top: 5px;
+    margin-bottom: 5px;
+    
+ }
+
+.boton_ETH{
+    text-decoration: none;
+    padding: 1px;
+    font-weight: 600;
+    font-size: 13px;
+    color:#000D71 ;
+    background-color: white;
+    border-radius: 2px;
+    border: 1px solid #F95700;
+    
+}
+.boton_ETH:hover{
+    color:#F95700;
+    border:1px solid #000D71;
+}
+
+
+.button-access2 {
+    width: 100px;
+    padding: 5px;
+    border: 1px solid #dddddd;
+    border-radius: 10px;
+    margin-top: 20px;
+    text-align: center;
+    font-size: 10px;
+}
+
+/*Twitter*/
+.content-twitter h2{
+    font-size: 10px;
+    margin-top: 40px;
+    text-align: center;   
+}
+/*Contact Us*/
+.contact-us img{
+    width: 80px;
+    height: px;
+    display: block;
+    margin-left: auto;
+    margin-top: 10px;
+}
+    
