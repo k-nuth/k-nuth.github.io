@@ -4934,3 +4934,6 @@ references:
 - uid: bitprim/v1/VerifyMessage
   name: VerifyMessage
   href: restapi/bitprim-api.html#bitprim_v1_VerifyMessage
+- uid: bitprim/v1/VerifyMessagePost
+  name: VerifyMessagePost
+  href: restapi/bitprim-api.html#bitprim_v1_VerifyMessagePost
