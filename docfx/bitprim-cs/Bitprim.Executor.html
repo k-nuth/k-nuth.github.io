@@ -85,7 +85,16 @@
   </h1>
   <div class="markdown level0 summary"><p>Controls the execution of the Bitprim bitcoin node.</p>
 </div>
-  <div class="markdown level0 conceptual"></div>
+  <div class="markdown level0 conceptual">
+<p>Before you can work with transactions, blocks and adresses, you need to instantiate an <em>Executor</em>.</p>
+<p>The executor needs a config file. You need to use the correct config file for the selected coin.
+You can view an example <a href="https://github.com/bitprim/bitprim-config">here</a></p>
+<blockquote>
+<p><strong>NOTE</strong>
+If you pass an empty string, the node will use the default settings.</p>
+</blockquote>
+<p>Then you need to start the executor with <a class="xref" href="Bitprim.Executor.html#Bitprim_Executor_InitAndRunAsync">InitAndRunAsync()</a></p>
+</div>
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
@@ -97,6 +106,9 @@
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public class Executor : IDisposable</code></pre>
   </div>
+  <h5 id="Bitprim_Executor_remarks"><strong>Remarks</strong></h5>
+  <div class="markdown level0 remarks"><p><em>This</em> is the entry point to use the bitprim node</p>
+</div>
   <h3 id="constructors">Constructors
   </h3>
   <span class="small pull-right mobile-hide">
@@ -600,7 +612,7 @@ The callback returns 3 parameters:</p>
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/bitprim/bitprim-cs/new/master/apiSpec/new?filename=Bitprim_Executor.md&amp;value=---%0Auid%3A%20Bitprim.Executor%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/bitprim/bitprim-docs/blob/master/specs/Executor.md/#L2" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
                     <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Executor.cs/#L12" class="contribution-link">View Source</a>
