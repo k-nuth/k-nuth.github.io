@@ -1,0 +1,234 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Tutorials | Bitprim Documentation Site </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Tutorials | Bitprim Documentation Site ">
+    <meta name="generator" content="docfx 2.37.0.0">
+    
+    <link rel="shortcut icon" href="../../../favicon.ico">
+    <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../styles/main.css">
+    <meta property="docfx:navrel" content="../../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    <meta property="docfx:rel" content="../../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../content/assets/b.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="tutorials">Tutorials</h1>
+
+<h2 id="introduction">Introduction</h2>
+<p>As an example of what can be achieved with the bitprim-insight Rest API, we'll show how to implement a <a href="https://memo.cash/">Memo.cash</a>
+explorer consuming the API from a C# console application.</p>
+<p>Memo.cash is a Twitter-like social network built on top of the Bitcoin Cash Network. Posts are published as transactions with OP_RETURN
+output scripts using <a href="https://memo.cash/protocol">Memo-specific prefix codes</a>.</p>
+<p>For this tutorial, our use cases will be:</p>
+<ol>
+<li>Identifying a Memo transaction and scraping them from the BCH blockchain.</li>
+<li>Creating and publishing a Memo post.</li>
+</ol>
+<p>The code for this tutorial is available in <a href="https://github.com/bitprim/bitprim-insight.git">Github</a>, in the <code>bitprim.insight.tutorials</code> folder.</p>
+<h2 id="1-identifying-a-memo-transaction">1. Identifying a Memo transaction</h2>
+<p>Given a transaction hash, we want to be able to tell whether it's a Memo transaction or not. A Memo transaction uses
+OP_RETURN in at least one of its outputs, and that output's script will have the memo opcode. For example,
+transaction <code>4a69a310ce5cade43a12308101822dd9e2988f4be17c53c20785d7060688157d</code>. If we use the bitprim insight API <a href="https://bitprim.github.io/docfx/restapi/bitprim-api.html#bitprim_v1_GetTransactionByHash">GetTransactionByHash method</a> to check its contents:</p>
+<p><code>https://blockdozer.com/api/tx/4a69a310ce5cade43a12308101822dd9e2988f4be17c53c20785d7060688157d</code></p>
+<p>This will be the result:</p>
+<pre><code>{
+  &quot;txid&quot;: &quot;4a69a310ce5cade43a12308101822dd9e2988f4be17c53c20785d7060688157d&quot;,
+  &quot;version&quot;: 1,
+  &quot;locktime&quot;: 0,
+  &quot;vin&quot;: [
+    {
+      &quot;txid&quot;: &quot;93e7dd59c45e287a955437aa33493e31b877f60582c8c4c4f4f85b25e52c9ef9&quot;,
+      &quot;vout&quot;: 0,
+      &quot;scriptSig&quot;: {
+        &quot;asm&quot;: &quot;[3044022012b742ca2a0c4a49070eacbb018c6ed11c28eaa6a9e52282f78cecd3612424ca022023bbc42638af9c29f6bdd8eae293781e8c7b14c387914d81cdecc5525ede968041] [02e2053838670dc0383d945319d3d1a285476696a4388ed0d907ae043b64af9813]&quot;,
+        &quot;hex&quot;: &quot;473044022012b742ca2a0c4a49070eacbb018c6ed11c28eaa6a9e52282f78cecd3612424ca022023bbc42638af9c29f6bdd8eae293781e8c7b14c387914d81cdecc5525ede9680412102e2053838670dc0383d945319d3d1a285476696a4388ed0d907ae043b64af9813&quot;
+      },
+      &quot;addr&quot;: &quot;1KZonibiByMHsXkJi5Vfm9jAySbv6yYVEi&quot;,
+      &quot;valueSat&quot;: 385287,
+      &quot;value&quot;: 0.00385287,
+      &quot;doubleSpentTxID&quot;: null,
+      &quot;sequence&quot;: 4294967295,
+      &quot;n&quot;: 0
+    }
+  ],
+  &quot;vout&quot;: [
+    {
+      &quot;value&quot;: 0.00384891,
+      &quot;n&quot;: 0,
+      &quot;scriptPubKey&quot;: {
+        &quot;asm&quot;: &quot;dup hash160 [cba6a1b91eda58e77ff5f265037326699625dfa0] equalverify checksig&quot;,
+        &quot;hex&quot;: &quot;76a914cba6a1b91eda58e77ff5f265037326699625dfa088ac&quot;,
+        &quot;addresses&quot;: [
+          &quot;1KZonibiByMHsXkJi5Vfm9jAySbv6yYVEi&quot;
+        ],
+        &quot;type&quot;: &quot;pubkeyhash&quot;
+      },
+      &quot;spentTxId&quot;: null,
+      &quot;spentIndex&quot;: null,
+      &quot;spentHeight&quot;: null
+    },
+    {
+      &quot;value&quot;: 0,
+      &quot;n&quot;: 1,
+      &quot;scriptPubKey&quot;: {
+        &quot;asm&quot;: &quot;return [6d0c] [6d656d6f] [596573746572646179203135303633322d3134383539303d32303432206d656d6f207472616e73616374696f6e732e204e756d626572206f66207472616e73616374696f6e73f09f93883230252e2043686172747320617661696c61626c652061742068747470733a2f2f6d656d6f2e636173682f636861727473202e20636f6e7369646572696e6720776865746865722073686f756c6420492073746f702074686973207265636f7264696e673f3f3f]&quot;,
+        &quot;hex&quot;: &quot;6a026d0c046d656d6f4cb1596573746572646179203135303633322d3134383539303d32303432206d656d6f207472616e73616374696f6e732e204e756d626572206f66207472616e73616374696f6e73f09f93883230252e2043686172747320617661696c61626c652061742068747470733a2f2f6d656d6f2e636173682f636861727473202e20636f6e7369646572696e6720776865746865722073686f756c6420492073746f702074686973207265636f7264696e673f3f3f&quot;,
+        &quot;type&quot;: &quot;non_standard&quot;
+      },
+      &quot;spentTxId&quot;: null,
+      &quot;spentIndex&quot;: null,
+      &quot;spentHeight&quot;: null
+    }
+  ],
+  &quot;confirmations&quot;: 13,
+  &quot;isCoinBase&quot;: false,
+  &quot;valueOut&quot;: 0.00384891,
+  &quot;size&quot;: 388,
+  &quot;valueIn&quot;: 0.00385287,
+  &quot;blockhash&quot;: &quot;0000000000000000014f42d36c0c9e42810ab0d8ec55ad95eb5e0634a31521c7&quot;,
+  &quot;time&quot;: 1531833466,
+  &quot;blocktime&quot;: 1531833466,
+  &quot;blockheight&quot;: 539369,
+  &quot;fees&quot;: 0.00000396
+}
+</code></pre>
+<p>Focus on the second output (n=1), in its <code>asm</code> field: it's an OP_RETURN operation. Furthermore, take a look at the
+prefix codes: <code>return [6d0c] [6d656d6f]</code>. By reading the content of the square brackets as hex strings, we get <code>return [m\n] [memo]</code>. The first
+string between square brackets is what identifies this as a Memo transaction, according to the <a href="https://memo.cash/protocol">Memo protocol</a>.
+Finally, if we decode the third hex string between square brackets, we get the Memo post: <code>Yesterday 150632-148590=2042 memo transactions. Number of transactionsð20%. Charts available at https://memo.cash/charts . considering whether should I stop this recording???</code></p>
+<h3 id="reading-the-n-most-recent-memo-posts">Reading the N most recent Memo posts</h3>
+<p>Now that we can tell if a transaction is Memo or not, we can use the Bitprim API to traverse the blockchain and scrape them.
+Suppose we want the N most recent posts. First, we need to know the current BCH blockchain height. This can be done using the <a href="https://bitprim.github.io/docfx/restapi/bitprim-api.html#bitprim_v1_GetSyncStatus">GetSyncStatus method</a>. A sample output of this command would look this way:</p>
+<pre><code>{
+  &quot;status&quot;: &quot;finished&quot;,
+  &quot;blockChainHeight&quot;: 539383,
+  &quot;syncPercentage&quot;: &quot;100.00&quot;,
+  &quot;error&quot;: null,
+  &quot;height&quot;: 539383,
+  &quot;type&quot;: &quot;bitprim node&quot;
+}
+</code></pre>
+<p>The field of interest is <code>blockChainHeight</code> (which matches <code>height</code>, because the node is currently at the top of the blockchain). So, now that blockchain height is known, blocks and their transactions can be examined to search for Memo transactions. Given a block height, the block hash can be retrieved using the <a href="https://bitprim.github.io/docfx/restapi/bitprim-api.html#bitprim_v1_GetBlockByHeight">GetBlockByHeight method</a>. This will yield the block hash; for 539383, it would be:</p>
+<pre><code>{
+  &quot;blockHash&quot;: &quot;000000000000000000c13abc1788effd797a84a951738a423ad78581e5128a27&quot;
+}
+</code></pre>
+<p>With the block hash, its transactions can now be navigated using the <a href="https://bitprim.github.io/docfx/restapi/bitprim-api.html#bitprim_v1_GetTransactions">GetTransactions method</a>, supplying only the <code>block</code> parameter (i.e. the transaction source will be a block hash). The output will have this structure:</p>
+<pre><code>{
+  &quot;pagesTotal&quot;: 10,
+  &quot;txs&quot;: [
+     //Transaction array: elements will have same structure as GetTransactionByHash
+   ]
+} 
+</code></pre>
+<p>For this block, there are 10 pages of transactions to process. It is possible to iterate over the pages by calling <code>GetTransactions</code> again with the same block hash and a different <code>pageNum</code> parameter, from 0 to 9. This way, the whole block can be traversed searching for Memo transactions. These steps can be replicated for the previous block, and so on until N Memo posts are found.</p>
+<p>As an optimization, using these same methods, it would be possible to scrape the whole blockchain from genesis to top to retrieve all Memo posts,
+save them to an external storage and cache them to avoid scraping every time. Then, it could be possible to modify the scraping code to start from
+a specific height, so as to periodically update, or monitor incoming blocks to detect Memo posts as soon as possible (see
+<a href="https://bitprim.github.io/docfx/content/developer_guide/restapi/websockets.html">Websockets API</a>).</p>
+<h2 id="2-making-a-memo-post">2. Making a Memo post</h2>
+<p>To make a post, a transaction must be created with an OP_RETURN output script with the Memo prefix. Once the transaction is created, its hex representation can be handed to the <a href="https://bitprim.github.io/docfx/restapi/bitprim-api.html#bitprim_v1_BroadcastTransaction">BroadcastTransaction method</a>. This will send the transaction to the BCH blockchain, where it should eventually become part of a mined block and permanently added to the blockchain. After a certain time, it should be visible as a new Memo transaction.</p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/bitprim/bitprim-docs/blob/master/content/developer_guide/restapi/tutorials.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            <span>Copyright © 2018 Bitprim</span>
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>
