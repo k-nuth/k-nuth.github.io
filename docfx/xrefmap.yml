@@ -1104,6 +1104,12 @@ references:
   commentId: F:Bitprim.ErrorCode.BlockSizeLimit
   fullName: Bitprim.ErrorCode.BlockSizeLimit
   nameWithType: ErrorCode.BlockSizeLimit
+- uid: Bitprim.ErrorCode.BlockWeightLimit
+  name: BlockWeightLimit
+  href: bitprim-cs/Bitprim.ErrorCode.html#Bitprim_ErrorCode_BlockWeightLimit
+  commentId: F:Bitprim.ErrorCode.BlockWeightLimit
+  fullName: Bitprim.ErrorCode.BlockWeightLimit
+  nameWithType: ErrorCode.BlockWeightLimit
 - uid: Bitprim.ErrorCode.ChannelStopped
   name: ChannelStopped
   href: bitprim-cs/Bitprim.ErrorCode.html#Bitprim_ErrorCode_ChannelStopped
@@ -1152,6 +1158,12 @@ references:
   commentId: F:Bitprim.ErrorCode.Deprecated
   fullName: Bitprim.ErrorCode.Deprecated
   nameWithType: ErrorCode.Deprecated
+- uid: Bitprim.ErrorCode.DirtyWitness
+  name: DirtyWitness
+  href: bitprim-cs/Bitprim.ErrorCode.html#Bitprim_ErrorCode_DirtyWitness
+  commentId: F:Bitprim.ErrorCode.DirtyWitness
+  fullName: Bitprim.ErrorCode.DirtyWitness
+  nameWithType: ErrorCode.DirtyWitness
 - uid: Bitprim.ErrorCode.DoubleSpend
   name: DoubleSpend
   href: bitprim-cs/Bitprim.ErrorCode.html#Bitprim_ErrorCode_DoubleSpend
@@ -1200,6 +1212,12 @@ references:
   commentId: F:Bitprim.ErrorCode.FirstNotCoinbase
   fullName: Bitprim.ErrorCode.FirstNotCoinbase
   nameWithType: ErrorCode.FirstNotCoinbase
+- uid: Bitprim.ErrorCode.ForwardReference
+  name: ForwardReference
+  href: bitprim-cs/Bitprim.ErrorCode.html#Bitprim_ErrorCode_ForwardReference
+  commentId: F:Bitprim.ErrorCode.ForwardReference
+  fullName: Bitprim.ErrorCode.ForwardReference
+  nameWithType: ErrorCode.ForwardReference
 - uid: Bitprim.ErrorCode.FuturisticTimestamp
   name: FuturisticTimestamp
   href: bitprim-cs/Bitprim.ErrorCode.html#Bitprim_ErrorCode_FuturisticTimestamp
@@ -1290,12 +1308,12 @@ references:
   commentId: F:Bitprim.ErrorCode.InvalidSignatureEncoding
   fullName: Bitprim.ErrorCode.InvalidSignatureEncoding
   nameWithType: ErrorCode.InvalidSignatureEncoding
-- uid: Bitprim.ErrorCode.invalidSignatureLaxEncoding
-  name: invalidSignatureLaxEncoding
-  href: bitprim-cs/Bitprim.ErrorCode.html#Bitprim_ErrorCode_invalidSignatureLaxEncoding
-  commentId: F:Bitprim.ErrorCode.invalidSignatureLaxEncoding
-  fullName: Bitprim.ErrorCode.invalidSignatureLaxEncoding
-  nameWithType: ErrorCode.invalidSignatureLaxEncoding
+- uid: Bitprim.ErrorCode.InvalidSignatureLaxEncoding
+  name: InvalidSignatureLaxEncoding
+  href: bitprim-cs/Bitprim.ErrorCode.html#Bitprim_ErrorCode_InvalidSignatureLaxEncoding
+  commentId: F:Bitprim.ErrorCode.InvalidSignatureLaxEncoding
+  fullName: Bitprim.ErrorCode.InvalidSignatureLaxEncoding
+  nameWithType: ErrorCode.InvalidSignatureLaxEncoding
 - uid: Bitprim.ErrorCode.InvalidStackScope
   name: InvalidStackScope
   href: bitprim-cs/Bitprim.ErrorCode.html#Bitprim_ErrorCode_InvalidStackScope
@@ -1308,6 +1326,18 @@ references:
   commentId: F:Bitprim.ErrorCode.InvalidStackSize
   fullName: Bitprim.ErrorCode.InvalidStackSize
   nameWithType: ErrorCode.InvalidStackSize
+- uid: Bitprim.ErrorCode.InvalidWitness
+  name: InvalidWitness
+  href: bitprim-cs/Bitprim.ErrorCode.html#Bitprim_ErrorCode_InvalidWitness
+  commentId: F:Bitprim.ErrorCode.InvalidWitness
+  fullName: Bitprim.ErrorCode.InvalidWitness
+  nameWithType: ErrorCode.InvalidWitness
+- uid: Bitprim.ErrorCode.InvalidWitnessCommitment
+  name: InvalidWitnessCommitment
+  href: bitprim-cs/Bitprim.ErrorCode.html#Bitprim_ErrorCode_InvalidWitnessCommitment
+  commentId: F:Bitprim.ErrorCode.InvalidWitnessCommitment
+  fullName: Bitprim.ErrorCode.InvalidWitnessCommitment
+  nameWithType: ErrorCode.InvalidWitnessCommitment
 - uid: Bitprim.ErrorCode.ListenFailed
   name: ListenFailed
   href: bitprim-cs/Bitprim.ErrorCode.html#Bitprim_ErrorCode_ListenFailed
@@ -1998,6 +2028,18 @@ references:
   commentId: F:Bitprim.ErrorCode.TransactionSizeLimit
   fullName: Bitprim.ErrorCode.TransactionSizeLimit
   nameWithType: ErrorCode.TransactionSizeLimit
+- uid: Bitprim.ErrorCode.TransactionWeightLimit
+  name: TransactionWeightLimit
+  href: bitprim-cs/Bitprim.ErrorCode.html#Bitprim_ErrorCode_TransactionWeightLimit
+  commentId: F:Bitprim.ErrorCode.TransactionWeightLimit
+  fullName: Bitprim.ErrorCode.TransactionWeightLimit
+  nameWithType: ErrorCode.TransactionWeightLimit
+- uid: Bitprim.ErrorCode.UnexpectedWitness
+  name: UnexpectedWitness
+  href: bitprim-cs/Bitprim.ErrorCode.html#Bitprim_ErrorCode_UnexpectedWitness
+  commentId: F:Bitprim.ErrorCode.UnexpectedWitness
+  fullName: Bitprim.ErrorCode.UnexpectedWitness
+  nameWithType: ErrorCode.UnexpectedWitness
 - uid: Bitprim.ErrorCode.Unknown
   name: Unknown
   href: bitprim-cs/Bitprim.ErrorCode.html#Bitprim_ErrorCode_Unknown
