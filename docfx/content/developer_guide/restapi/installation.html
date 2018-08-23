@@ -8,7 +8,7 @@
     <title>Installation Requirements | Bitprim Documentation Site </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Installation Requirements | Bitprim Documentation Site ">
-    <meta name="generator" content="docfx 2.37.2.0">
+    <meta name="generator" content="docfx 2.38.1.0">
     
     <link rel="shortcut icon" href="../../../favicon.ico">
     <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
@@ -116,6 +116,12 @@
 <p><em>Default value:1549</em></p>
 <p><strong>--server.address</strong>: Defines the listening IP address.</p>
 <p><em>Default value:localhost</em></p>
+<p><strong>--max.url</strong>: Maximum allowed URL length for all requests, in characters. Any request
+which exceeds this value will be rejected with error 414 (request URI too long).</p>
+<p><em>Default value:600</em></p>
+<p><strong>--max.post</strong>: Maximum body size for all requests, in bytes. Any request
+which exceeds this value will be rejected with error 413 (payload too large).</p>
+<p><em>Default value:204800 (200kB)</em></p>
 </article>
           </div>
           
