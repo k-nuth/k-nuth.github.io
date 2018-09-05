@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class Block
    | Bitprim Documentation Site ">
-    <meta name="generator" content="docfx 2.38.1.0">
+    <meta name="generator" content="docfx 2.39.1.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -91,12 +91,56 @@
     <div class="level0"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
     <div class="level1"><span class="xref">Block</span></div>
   </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="Bitprim.IBlock.html">IBlock</a></div>
+    <div><span class="xref">IDisposable</span></div>
+  </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="Bitprim.html">Bitprim</a></h6>
   <h6><strong>Assembly</strong>: bitprim-bch.dll</h6>
   <h5 id="Bitprim_Block_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class Block : IDisposable</code></pre>
+    <pre><code class="lang-csharp hljs">public class Block : object, IBlock, IDisposable</code></pre>
   </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/bitprim/bitprim-cs/new/master/apiSpec/new?filename=Bitprim_Block__ctor_UInt32_System_String_.md&amp;value=---%0Auid%3A%20Bitprim.Block.%23ctor(UInt32%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Block.cs/#L16">View Source</a>
+  </span>
+  <a id="Bitprim_Block__ctor_" data-uid="Bitprim.Block.#ctor*"></a>
+  <h4 id="Bitprim_Block__ctor_UInt32_System_String_" data-uid="Bitprim.Block.#ctor(UInt32,System.String)">Block(UInt32, String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Block(UInt32 version, string hexString)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UInt32</span></td>
+        <td><span class="parametername">version</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">hexString</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <h3 id="properties">Properties
   </h3>
   <span class="small pull-right mobile-hide">
@@ -104,7 +148,7 @@
     <a href="https://github.com/bitprim/bitprim-cs/new/master/apiSpec/new?filename=Bitprim_Block_Claim.md&amp;value=---%0Auid%3A%20Bitprim.Block.Claim%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Block.cs/#L147">View Source</a>
+    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Block.cs/#L122">View Source</a>
   </span>
   <a id="Bitprim_Block_Claim_" data-uid="Bitprim.Block.Claim*"></a>
   <h4 id="Bitprim_Block_Claim" data-uid="Bitprim.Block.Claim">Claim</h4>
@@ -135,7 +179,7 @@
     <a href="https://github.com/bitprim/bitprim-cs/new/master/apiSpec/new?filename=Bitprim_Block_Fees.md&amp;value=---%0Auid%3A%20Bitprim.Block.Fees%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Block.cs/#L136">View Source</a>
+    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Block.cs/#L117">View Source</a>
   </span>
   <a id="Bitprim_Block_Fees_" data-uid="Bitprim.Block.Fees*"></a>
   <h4 id="Bitprim_Block_Fees" data-uid="Bitprim.Block.Fees">Fees</h4>
@@ -166,7 +210,7 @@
     <a href="https://github.com/bitprim/bitprim-cs/new/master/apiSpec/new?filename=Bitprim_Block_Hash.md&amp;value=---%0Auid%3A%20Bitprim.Block.Hash%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Block.cs/#L85">View Source</a>
+    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Block.cs/#L72">View Source</a>
   </span>
   <a id="Bitprim_Block_Hash_" data-uid="Bitprim.Block.Hash*"></a>
   <h4 id="Bitprim_Block_Hash" data-uid="Bitprim.Block.Hash">Hash</h4>
@@ -197,7 +241,7 @@
     <a href="https://github.com/bitprim/bitprim-cs/new/master/apiSpec/new?filename=Bitprim_Block_Header.md&amp;value=---%0Auid%3A%20Bitprim.Block.Header%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Block.cs/#L111">View Source</a>
+    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Block.cs/#L98">View Source</a>
   </span>
   <a id="Bitprim_Block_Header_" data-uid="Bitprim.Block.Header*"></a>
   <h4 id="Bitprim_Block_Header" data-uid="Bitprim.Block.Header">Header</h4>
@@ -206,7 +250,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Header Header { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public IHeader Header { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -218,7 +262,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="Bitprim.Header.html">Header</a></td>
+        <td><a class="xref" href="Bitprim.IHeader.html">IHeader</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -228,11 +272,11 @@
     <a href="https://github.com/bitprim/bitprim-cs/new/master/apiSpec/new?filename=Bitprim_Block_IsDistinctTransactionSet.md&amp;value=---%0Auid%3A%20Bitprim.Block.IsDistinctTransactionSet%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Block.cs/#L30">View Source</a>
+    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Block.cs/#L47">View Source</a>
   </span>
   <a id="Bitprim_Block_IsDistinctTransactionSet_" data-uid="Bitprim.Block.IsDistinctTransactionSet*"></a>
   <h4 id="Bitprim_Block_IsDistinctTransactionSet" data-uid="Bitprim.Block.IsDistinctTransactionSet">IsDistinctTransactionSet</h4>
-  <div class="markdown level1 summary"><p>Returns true iif all transactions in the block have a unique hash (i.e. no duplicates)</p>
+  <div class="markdown level1 summary"><p>Returns true if and only if all transactions in the block have a unique hash (i.e. no duplicates)</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -259,11 +303,11 @@
     <a href="https://github.com/bitprim/bitprim-cs/new/master/apiSpec/new?filename=Bitprim_Block_IsExtraCoinbase.md&amp;value=---%0Auid%3A%20Bitprim.Block.IsExtraCoinbase%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Block.cs/#L41">View Source</a>
+    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Block.cs/#L52">View Source</a>
   </span>
   <a id="Bitprim_Block_IsExtraCoinbase_" data-uid="Bitprim.Block.IsExtraCoinbase*"></a>
   <h4 id="Bitprim_Block_IsExtraCoinbase" data-uid="Bitprim.Block.IsExtraCoinbase">IsExtraCoinbase</h4>
-  <div class="markdown level1 summary"><p>Returns true iif there is more than one coinbase transaction in the block.</p>
+  <div class="markdown level1 summary"><p>Returns true if and only if there is more than one coinbase transaction in the block.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -290,11 +334,11 @@
     <a href="https://github.com/bitprim/bitprim-cs/new/master/apiSpec/new?filename=Bitprim_Block_IsInternalDoubleSpend.md&amp;value=---%0Auid%3A%20Bitprim.Block.IsInternalDoubleSpend%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Block.cs/#L52">View Source</a>
+    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Block.cs/#L57">View Source</a>
   </span>
   <a id="Bitprim_Block_IsInternalDoubleSpend_" data-uid="Bitprim.Block.IsInternalDoubleSpend*"></a>
   <h4 id="Bitprim_Block_IsInternalDoubleSpend" data-uid="Bitprim.Block.IsInternalDoubleSpend">IsInternalDoubleSpend</h4>
-  <div class="markdown level1 summary"><p>Returns true iif there is at least one double-spent transaction in this block</p>
+  <div class="markdown level1 summary"><p>Returns true if and only if there is at least one double-spent transaction in this block</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -321,11 +365,11 @@
     <a href="https://github.com/bitprim/bitprim-cs/new/master/apiSpec/new?filename=Bitprim_Block_IsValid.md&amp;value=---%0Auid%3A%20Bitprim.Block.IsValid%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Block.cs/#L63">View Source</a>
+    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Block.cs/#L62">View Source</a>
   </span>
   <a id="Bitprim_Block_IsValid_" data-uid="Bitprim.Block.IsValid*"></a>
   <h4 id="Bitprim_Block_IsValid" data-uid="Bitprim.Block.IsValid">IsValid</h4>
-  <div class="markdown level1 summary"><p>Returns true iif the block is valid</p>
+  <div class="markdown level1 summary"><p>Returns true if and only if the block is valid</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -352,11 +396,11 @@
     <a href="https://github.com/bitprim/bitprim-cs/new/master/apiSpec/new?filename=Bitprim_Block_IsValidMerkleRoot.md&amp;value=---%0Auid%3A%20Bitprim.Block.IsValidMerkleRoot%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Block.cs/#L74">View Source</a>
+    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Block.cs/#L67">View Source</a>
   </span>
   <a id="Bitprim_Block_IsValidMerkleRoot_" data-uid="Bitprim.Block.IsValidMerkleRoot*"></a>
   <h4 id="Bitprim_Block_IsValidMerkleRoot" data-uid="Bitprim.Block.IsValidMerkleRoot">IsValidMerkleRoot</h4>
-  <div class="markdown level1 summary"><p>Returns true iif the generated Merkle root equals the header's Merkle root.</p>
+  <div class="markdown level1 summary"><p>Returns true if and only if the generated Merkle root equals the header's Merkle root.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -383,7 +427,7 @@
     <a href="https://github.com/bitprim/bitprim-cs/new/master/apiSpec/new?filename=Bitprim_Block_MerkleRoot.md&amp;value=---%0Auid%3A%20Bitprim.Block.MerkleRoot%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Block.cs/#L98">View Source</a>
+    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Block.cs/#L85">View Source</a>
   </span>
   <a id="Bitprim_Block_MerkleRoot_" data-uid="Bitprim.Block.MerkleRoot*"></a>
   <h4 id="Bitprim_Block_MerkleRoot" data-uid="Bitprim.Block.MerkleRoot">MerkleRoot</h4>
@@ -414,7 +458,7 @@
     <a href="https://github.com/bitprim/bitprim-cs/new/master/apiSpec/new?filename=Bitprim_Block_Proof.md&amp;value=---%0Auid%3A%20Bitprim.Block.Proof%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Block.cs/#L122">View Source</a>
+    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Block.cs/#L103">View Source</a>
   </span>
   <a id="Bitprim_Block_Proof_" data-uid="Bitprim.Block.Proof*"></a>
   <h4 id="Bitprim_Block_Proof" data-uid="Bitprim.Block.Proof">Proof</h4>
@@ -445,7 +489,7 @@
     <a href="https://github.com/bitprim/bitprim-cs/new/master/apiSpec/new?filename=Bitprim_Block_SignatureOperationsCount.md&amp;value=---%0Auid%3A%20Bitprim.Block.SignatureOperationsCount%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Block.cs/#L158">View Source</a>
+    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Block.cs/#L127">View Source</a>
   </span>
   <a id="Bitprim_Block_SignatureOperationsCount_" data-uid="Bitprim.Block.SignatureOperationsCount*"></a>
   <h4 id="Bitprim_Block_SignatureOperationsCount" data-uid="Bitprim.Block.SignatureOperationsCount">SignatureOperationsCount</h4>
@@ -476,7 +520,7 @@
     <a href="https://github.com/bitprim/bitprim-cs/new/master/apiSpec/new?filename=Bitprim_Block_TransactionCount.md&amp;value=---%0Auid%3A%20Bitprim.Block.TransactionCount%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Block.cs/#L169">View Source</a>
+    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Block.cs/#L132">View Source</a>
   </span>
   <a id="Bitprim_Block_TransactionCount_" data-uid="Bitprim.Block.TransactionCount*"></a>
   <h4 id="Bitprim_Block_TransactionCount" data-uid="Bitprim.Block.TransactionCount">TransactionCount</h4>
@@ -509,7 +553,7 @@
     <a href="https://github.com/bitprim/bitprim-cs/new/master/apiSpec/new?filename=Bitprim_Block_Dispose.md&amp;value=---%0Auid%3A%20Bitprim.Block.Dispose%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Block.cs/#L21">View Source</a>
+    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Block.cs/#L38">View Source</a>
   </span>
   <a id="Bitprim_Block_Dispose_" data-uid="Bitprim.Block.Dispose*"></a>
   <h4 id="Bitprim_Block_Dispose" data-uid="Bitprim.Block.Dispose">Dispose()</h4>
@@ -524,7 +568,7 @@
     <a href="https://github.com/bitprim/bitprim-cs/new/master/apiSpec/new?filename=Bitprim_Block_Dispose_System_Boolean_.md&amp;value=---%0Auid%3A%20Bitprim.Block.Dispose(System.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Block.cs/#L300">View Source</a>
+    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Block.cs/#L245">View Source</a>
   </span>
   <a id="Bitprim_Block_Dispose_" data-uid="Bitprim.Block.Dispose*"></a>
   <h4 id="Bitprim_Block_Dispose_System_Boolean_" data-uid="Bitprim.Block.Dispose(System.Boolean)">Dispose(Boolean)</h4>
@@ -556,7 +600,7 @@
     <a href="https://github.com/bitprim/bitprim-cs/new/master/apiSpec/new?filename=Bitprim_Block_Finalize.md&amp;value=---%0Auid%3A%20Bitprim.Block.Finalize%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Block.cs/#L16">View Source</a>
+    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Block.cs/#L33">View Source</a>
   </span>
   <a id="Bitprim_Block_Finalize_" data-uid="Bitprim.Block.Finalize*"></a>
   <h4 id="Bitprim_Block_Finalize" data-uid="Bitprim.Block.Finalize">Finalize()</h4>
@@ -571,7 +615,7 @@
     <a href="https://github.com/bitprim/bitprim-cs/new/master/apiSpec/new?filename=Bitprim_Block_GetBlockReward_UInt64_.md&amp;value=---%0Auid%3A%20Bitprim.Block.GetBlockReward(UInt64)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Block.cs/#L244">View Source</a>
+    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Block.cs/#L201">View Source</a>
   </span>
   <a id="Bitprim_Block_GetBlockReward_" data-uid="Bitprim.Block.GetBlockReward*"></a>
   <h4 id="Bitprim_Block_GetBlockReward_UInt64_" data-uid="Bitprim.Block.GetBlockReward(UInt64)">GetBlockReward(UInt64)</h4>
@@ -621,7 +665,7 @@
     <a href="https://github.com/bitprim/bitprim-cs/new/master/apiSpec/new?filename=Bitprim_Block_GetNthTransaction_UInt64_.md&amp;value=---%0Auid%3A%20Bitprim.Block.GetNthTransaction(UInt64)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Block.cs/#L234">View Source</a>
+    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Block.cs/#L181">View Source</a>
   </span>
   <a id="Bitprim_Block_GetNthTransaction_" data-uid="Bitprim.Block.GetNthTransaction*"></a>
   <h4 id="Bitprim_Block_GetNthTransaction_UInt64_" data-uid="Bitprim.Block.GetNthTransaction(UInt64)">GetNthTransaction(UInt64)</h4>
@@ -630,7 +674,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Transaction GetNthTransaction(UInt64 n)</code></pre>
+    <pre><code class="lang-csharp hljs">public ITransaction GetNthTransaction(UInt64 n)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -660,7 +704,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="Bitprim.Transaction.html">Transaction</a></td>
+        <td><a class="xref" href="Bitprim.ITransaction.html">ITransaction</a></td>
         <td><p>Full transaction object</p>
 </td>
       </tr>
@@ -671,7 +715,7 @@
     <a href="https://github.com/bitprim/bitprim-cs/new/master/apiSpec/new?filename=Bitprim_Block_GetSerializedSize_UInt32_.md&amp;value=---%0Auid%3A%20Bitprim.Block.GetSerializedSize(UInt32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Block.cs/#L254">View Source</a>
+    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Block.cs/#L211">View Source</a>
   </span>
   <a id="Bitprim_Block_GetSerializedSize_" data-uid="Bitprim.Block.GetSerializedSize*"></a>
   <h4 id="Bitprim_Block_GetSerializedSize_UInt32_" data-uid="Bitprim.Block.GetSerializedSize(UInt32)">GetSerializedSize(UInt32)</h4>
@@ -721,7 +765,7 @@
     <a href="https://github.com/bitprim/bitprim-cs/new/master/apiSpec/new?filename=Bitprim_Block_GetSignatureOperationsCount_System_Boolean_.md&amp;value=---%0Auid%3A%20Bitprim.Block.GetSignatureOperationsCount(System.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Block.cs/#L264">View Source</a>
+    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Block.cs/#L221">View Source</a>
   </span>
   <a id="Bitprim_Block_GetSignatureOperationsCount_" data-uid="Bitprim.Block.GetSignatureOperationsCount*"></a>
   <h4 id="Bitprim_Block_GetSignatureOperationsCount_System_Boolean_" data-uid="Bitprim.Block.GetSignatureOperationsCount(System.Boolean)">GetSignatureOperationsCount(Boolean)</h4>
@@ -745,7 +789,7 @@
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
         <td><span class="parametername">bip16Active</span></td>
-        <td><p>Iif true, count bip16 active operations.</p>
+        <td><p>If and only if true, count bip16 active operations.</p>
 </td>
       </tr>
     </tbody>
@@ -771,7 +815,7 @@
     <a href="https://github.com/bitprim/bitprim-cs/new/master/apiSpec/new?filename=Bitprim_Block_GetSubsidy_UInt64_.md&amp;value=---%0Auid%3A%20Bitprim.Block.GetSubsidy(UInt64)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Block.cs/#L224">View Source</a>
+    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Block.cs/#L191">View Source</a>
   </span>
   <a id="Bitprim_Block_GetSubsidy_" data-uid="Bitprim.Block.GetSubsidy*"></a>
   <h4 id="Bitprim_Block_GetSubsidy_UInt64_" data-uid="Bitprim.Block.GetSubsidy(UInt64)">GetSubsidy(UInt64)</h4>
@@ -821,7 +865,7 @@
     <a href="https://github.com/bitprim/bitprim-cs/new/master/apiSpec/new?filename=Bitprim_Block_GetTotalInputs_System_Boolean_.md&amp;value=---%0Auid%3A%20Bitprim.Block.GetTotalInputs(System.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Block.cs/#L277">View Source</a>
+    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Block.cs/#L234">View Source</a>
   </span>
   <a id="Bitprim_Block_GetTotalInputs_" data-uid="Bitprim.Block.GetTotalInputs*"></a>
   <h4 id="Bitprim_Block_GetTotalInputs_System_Boolean_" data-uid="Bitprim.Block.GetTotalInputs(System.Boolean)">GetTotalInputs(Boolean)</h4>
@@ -845,7 +889,7 @@
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
         <td><span class="parametername">withCoinbase</span></td>
-        <td><p>Iif true, consider coinbase transactions.</p>
+        <td><p>If and only if true, consider coinbase transactions.</p>
 </td>
       </tr>
     </tbody>
@@ -871,11 +915,11 @@
     <a href="https://github.com/bitprim/bitprim-cs/new/master/apiSpec/new?filename=Bitprim_Block_IsFinal_UInt64_.md&amp;value=---%0Auid%3A%20Bitprim.Block.IsFinal(UInt64)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Block.cs/#L182">View Source</a>
+    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Block.cs/#L139">View Source</a>
   </span>
   <a id="Bitprim_Block_IsFinal_" data-uid="Bitprim.Block.IsFinal*"></a>
   <h4 id="Bitprim_Block_IsFinal_UInt64_" data-uid="Bitprim.Block.IsFinal(UInt64)">IsFinal(UInt64)</h4>
-  <div class="markdown level1 summary"><p>Returns true iif every transaction in the block is final or not.</p>
+  <div class="markdown level1 summary"><p>Returns true if and only if every transaction in the block is final or not.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -919,11 +963,11 @@
     <a href="https://github.com/bitprim/bitprim-cs/new/master/apiSpec/new?filename=Bitprim_Block_IsValidCoinbaseClaim_UInt64_.md&amp;value=---%0Auid%3A%20Bitprim.Block.IsValidCoinbaseClaim(UInt64)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Block.cs/#L192">View Source</a>
+    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Block.cs/#L149">View Source</a>
   </span>
   <a id="Bitprim_Block_IsValidCoinbaseClaim_" data-uid="Bitprim.Block.IsValidCoinbaseClaim*"></a>
   <h4 id="Bitprim_Block_IsValidCoinbaseClaim_UInt64_" data-uid="Bitprim.Block.IsValidCoinbaseClaim(UInt64)">IsValidCoinbaseClaim(UInt64)</h4>
-  <div class="markdown level1 summary"><p>Given a block height, return true iif its coinbase claim is not higher than the deserved reward.</p>
+  <div class="markdown level1 summary"><p>Given a block height, return true if and only if its coinbase claim is not higher than the deserved reward.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -959,7 +1003,7 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
-        <td><p>True iif 1 if coinbase claim is not higher than the deserved reward.</p>
+        <td><p>True if and only if 1 if coinbase claim is not higher than the deserved reward.</p>
 </td>
       </tr>
     </tbody>
@@ -969,11 +1013,11 @@
     <a href="https://github.com/bitprim/bitprim-cs/new/master/apiSpec/new?filename=Bitprim_Block_IsValidCoinbaseScript_UInt64_.md&amp;value=---%0Auid%3A%20Bitprim.Block.IsValidCoinbaseScript(UInt64)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Block.cs/#L202">View Source</a>
+    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Block.cs/#L159">View Source</a>
   </span>
   <a id="Bitprim_Block_IsValidCoinbaseScript_" data-uid="Bitprim.Block.IsValidCoinbaseScript*"></a>
   <h4 id="Bitprim_Block_IsValidCoinbaseScript_UInt64_" data-uid="Bitprim.Block.IsValidCoinbaseScript(UInt64)">IsValidCoinbaseScript(UInt64)</h4>
-  <div class="markdown level1 summary"><p>Returns true iif the block's coinbase script is valid.</p>
+  <div class="markdown level1 summary"><p>Returns true if and only if the block's coinbase script is valid.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -1009,7 +1053,7 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
-        <td><p>True iif the block's coinbase script is valid.</p>
+        <td><p>True if and only if the block's coinbase script is valid.</p>
 </td>
       </tr>
     </tbody>
@@ -1019,7 +1063,7 @@
     <a href="https://github.com/bitprim/bitprim-cs/new/master/apiSpec/new?filename=Bitprim_Block_ToData_System_Boolean_.md&amp;value=---%0Auid%3A%20Bitprim.Block.ToData(System.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Block.cs/#L212">View Source</a>
+    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Block.cs/#L169">View Source</a>
   </span>
   <a id="Bitprim_Block_ToData_" data-uid="Bitprim.Block.ToData*"></a>
   <h4 id="Bitprim_Block_ToData_System_Boolean_" data-uid="Bitprim.Block.ToData(System.Boolean)">ToData(Boolean)</h4>
@@ -1043,7 +1087,7 @@
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
         <td><span class="parametername">wire</span></td>
-        <td><p>Iif true, include data size at the beginning.</p>
+        <td><p>if and only if true, include data size at the beginning.</p>
 </td>
       </tr>
     </tbody>
@@ -1064,6 +1108,13 @@
       </tr>
     </tbody>
   </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="Bitprim.IBlock.html">IBlock</a>
+  </div>
+  <div>
+      <span class="xref">IDisposable</span>
+  </div>
 </article>
           </div>
           

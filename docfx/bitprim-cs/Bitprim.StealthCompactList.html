@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class StealthCompactList
    | Bitprim Documentation Site ">
-    <meta name="generator" content="docfx 2.38.1.0">
+    <meta name="generator" content="docfx 2.39.1.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -88,114 +88,53 @@
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
-    <div class="level1"><a class="xref" href="Bitprim.NativeList-1.html">NativeList</a>&lt;<a class="xref" href="Bitprim.StealthCompact.html">StealthCompact</a>&gt;</div>
+    <div class="level1"><a class="xref" href="Bitprim.NativeReadableList-1.html">NativeReadableList</a>&lt;<a class="xref" href="Bitprim.IStealthCompact.html">IStealthCompact</a>&gt;</div>
     <div class="level2"><span class="xref">StealthCompactList</span></div>
   </div>
   <div classs="implements">
     <h5>Implements</h5>
+    <div><a class="xref" href="Bitprim.INativeList-1.html">INativeList</a>&lt;<a class="xref" href="Bitprim.IStealthCompact.html">IStealthCompact</a>&gt;</div>
+    <div><span class="xref">IEnumerable</span>&lt;<a class="xref" href="Bitprim.IStealthCompact.html">IStealthCompact</a>&gt;</div>
     <div><span class="xref">IDisposable</span></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
     <div>
-      <a class="xref" href="Bitprim.NativeList-1.html#Bitprim_NativeList_1_GetEnumerator">NativeList&lt;StealthCompact&gt;.GetEnumerator()</a>
+      <a class="xref" href="Bitprim.NativeReadableList-1.html#Bitprim_NativeReadableList_1_nativeInstance_">NativeReadableList&lt;IStealthCompact&gt;.nativeInstance_</a>
     </div>
     <div>
-      <a class="xref" href="Bitprim.NativeList-1.html#Bitprim_NativeList_1_Dispose">NativeList&lt;StealthCompact&gt;.Dispose()</a>
+      <a class="xref" href="Bitprim.NativeReadableList-1.html#Bitprim_NativeReadableList_1_GetEnumerator">NativeReadableList&lt;IStealthCompact&gt;.GetEnumerator()</a>
     </div>
     <div>
-      <a class="xref" href="Bitprim.NativeList-1.html#Bitprim_NativeList_1_Dispose_System_Boolean_">NativeList&lt;StealthCompact&gt;.Dispose(Boolean)</a>
+      <a class="xref" href="Bitprim.NativeReadableList-1.html#Bitprim_NativeReadableList_1_Dispose">NativeReadableList&lt;IStealthCompact&gt;.Dispose()</a>
     </div>
     <div>
-      <a class="xref" href="Bitprim.NativeList-1.html#Bitprim_NativeList_1_Item_System_UInt32_">NativeList&lt;StealthCompact&gt;.Item[UInt32]</a>
+      <a class="xref" href="Bitprim.NativeReadableList-1.html#Bitprim_NativeReadableList_1_Dispose_System_Boolean_">NativeReadableList&lt;IStealthCompact&gt;.Dispose(Boolean)</a>
     </div>
     <div>
-      <a class="xref" href="Bitprim.NativeList-1.html#Bitprim_NativeList_1_Count">NativeList&lt;StealthCompact&gt;.Count</a>
+      <a class="xref" href="Bitprim.NativeReadableList-1.html#Bitprim_NativeReadableList_1_Item_UInt64_">NativeReadableList&lt;IStealthCompact&gt;.Item[UInt64]</a>
     </div>
     <div>
-      <a class="xref" href="Bitprim.NativeList-1.html#Bitprim_NativeList_1_Add__0_">NativeList&lt;StealthCompact&gt;.Add(StealthCompact)</a>
+      <a class="xref" href="Bitprim.NativeReadableList-1.html#Bitprim_NativeReadableList_1_Count">NativeReadableList&lt;IStealthCompact&gt;.Count</a>
+    </div>
+    <div>
+      <a class="xref" href="Bitprim.NativeReadableList-1.html#Bitprim_NativeReadableList_1_NativeInstance">NativeReadableList&lt;IStealthCompact&gt;.NativeInstance</a>
     </div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="Bitprim.html">Bitprim</a></h6>
   <h6><strong>Assembly</strong>: bitprim-bch.dll</h6>
   <h5 id="Bitprim_StealthCompactList_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class StealthCompactList : NativeList&lt;StealthCompact&gt;, IDisposable</code></pre>
+    <pre><code class="lang-csharp hljs">public class StealthCompactList : NativeReadableList&lt;IStealthCompact&gt;, INativeList&lt;IStealthCompact&gt;, IEnumerable&lt;IStealthCompact&gt;, IDisposable</code></pre>
   </div>
   <h3 id="methods">Methods
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/bitprim/bitprim-cs/new/master/apiSpec/new?filename=Bitprim_StealthCompactList_AddElement_Bitprim_StealthCompact_.md&amp;value=---%0Auid%3A%20Bitprim.StealthCompactList.AddElement(Bitprim.StealthCompact)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/StealthCompactList.cs/#L24">View Source</a>
-  </span>
-  <a id="Bitprim_StealthCompactList_AddElement_" data-uid="Bitprim.StealthCompactList.AddElement*"></a>
-  <h4 id="Bitprim_StealthCompactList_AddElement_Bitprim_StealthCompact_" data-uid="Bitprim.StealthCompactList.AddElement(Bitprim.StealthCompact)">AddElement(StealthCompact)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected override void AddElement(StealthCompact element)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Bitprim.StealthCompact.html">StealthCompact</a></td>
-        <td><span class="parametername">element</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="overrides">Overrides</h5>
-  <div><span class="xref">Bitprim.NativeList&lt;Bitprim.StealthCompact&gt;.AddElement(Bitprim.StealthCompact)</span></div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/bitprim/bitprim-cs/new/master/apiSpec/new?filename=Bitprim_StealthCompactList_CreateNativeList.md&amp;value=---%0Auid%3A%20Bitprim.StealthCompactList.CreateNativeList%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/StealthCompactList.cs/#L8">View Source</a>
-  </span>
-  <a id="Bitprim_StealthCompactList_CreateNativeList_" data-uid="Bitprim.StealthCompactList.CreateNativeList*"></a>
-  <h4 id="Bitprim_StealthCompactList_CreateNativeList" data-uid="Bitprim.StealthCompactList.CreateNativeList">CreateNativeList()</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected override IntPtr CreateNativeList()</code></pre>
-  </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">IntPtr</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="overrides">Overrides</h5>
-  <div><span class="xref">Bitprim.NativeList&lt;Bitprim.StealthCompact&gt;.CreateNativeList()</span></div>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
     <a href="https://github.com/bitprim/bitprim-cs/new/master/apiSpec/new?filename=Bitprim_StealthCompactList_DestroyNativeList.md&amp;value=---%0Auid%3A%20Bitprim.StealthCompactList.DestroyNativeList%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/StealthCompactList.cs/#L30">View Source</a>
+    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/StealthCompactList.cs/#L18">View Source</a>
   </span>
   <a id="Bitprim_StealthCompactList_DestroyNativeList_" data-uid="Bitprim.StealthCompactList.DestroyNativeList*"></a>
   <h4 id="Bitprim_StealthCompactList_DestroyNativeList" data-uid="Bitprim.StealthCompactList.DestroyNativeList">DestroyNativeList()</h4>
@@ -206,13 +145,13 @@
     <pre><code class="lang-csharp hljs">protected override void DestroyNativeList()</code></pre>
   </div>
   <h5 class="overrides">Overrides</h5>
-  <div><span class="xref">Bitprim.NativeList&lt;Bitprim.StealthCompact&gt;.DestroyNativeList()</span></div>
+  <div><span class="xref">Bitprim.NativeReadableList&lt;Bitprim.IStealthCompact&gt;.DestroyNativeList()</span></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/bitprim/bitprim-cs/new/master/apiSpec/new?filename=Bitprim_StealthCompactList_GetCount.md&amp;value=---%0Auid%3A%20Bitprim.StealthCompactList.GetCount%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/StealthCompactList.cs/#L19">View Source</a>
+    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/StealthCompactList.cs/#L13">View Source</a>
   </span>
   <a id="Bitprim_StealthCompactList_GetCount_" data-uid="Bitprim.StealthCompactList.GetCount*"></a>
   <h4 id="Bitprim_StealthCompactList_GetCount" data-uid="Bitprim.StealthCompactList.GetCount">GetCount()</h4>
@@ -220,7 +159,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected override uint GetCount()</code></pre>
+    <pre><code class="lang-csharp hljs">protected override UInt64 GetCount()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -232,27 +171,27 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint32">UInt32</a></td>
+        <td><span class="xref">UInt64</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><span class="xref">Bitprim.NativeList&lt;Bitprim.StealthCompact&gt;.GetCount()</span></div>
+  <div><span class="xref">Bitprim.NativeReadableList&lt;Bitprim.IStealthCompact&gt;.GetCount()</span></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/bitprim/bitprim-cs/new/master/apiSpec/new?filename=Bitprim_StealthCompactList_GetNthNativeElement_System_UInt32_.md&amp;value=---%0Auid%3A%20Bitprim.StealthCompactList.GetNthNativeElement(System.UInt32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/bitprim/bitprim-cs/new/master/apiSpec/new?filename=Bitprim_StealthCompactList_GetNthNativeElement_UInt64_.md&amp;value=---%0Auid%3A%20Bitprim.StealthCompactList.GetNthNativeElement(UInt64)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/StealthCompactList.cs/#L14">View Source</a>
+    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/StealthCompactList.cs/#L8">View Source</a>
   </span>
   <a id="Bitprim_StealthCompactList_GetNthNativeElement_" data-uid="Bitprim.StealthCompactList.GetNthNativeElement*"></a>
-  <h4 id="Bitprim_StealthCompactList_GetNthNativeElement_System_UInt32_" data-uid="Bitprim.StealthCompactList.GetNthNativeElement(System.UInt32)">GetNthNativeElement(UInt32)</h4>
+  <h4 id="Bitprim_StealthCompactList_GetNthNativeElement_UInt64_" data-uid="Bitprim.StealthCompactList.GetNthNativeElement(UInt64)">GetNthNativeElement(UInt64)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected override StealthCompact GetNthNativeElement(uint n)</code></pre>
+    <pre><code class="lang-csharp hljs">protected override IStealthCompact GetNthNativeElement(UInt64 n)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -265,7 +204,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint32">UInt32</a></td>
+        <td><span class="xref">UInt64</span></td>
         <td><span class="parametername">n</span></td>
         <td></td>
       </tr>
@@ -281,14 +220,20 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="Bitprim.StealthCompact.html">StealthCompact</a></td>
+        <td><a class="xref" href="Bitprim.IStealthCompact.html">IStealthCompact</a></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><span class="xref">Bitprim.NativeList&lt;Bitprim.StealthCompact&gt;.GetNthNativeElement(System.UInt32)</span></div>
+  <div><span class="xref">Bitprim.NativeReadableList&lt;Bitprim.IStealthCompact&gt;.GetNthNativeElement(UInt64)</span></div>
   <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="Bitprim.INativeList-1.html">INativeList&lt;T&gt;</a>
+  </div>
+  <div>
+      <span class="xref">IEnumerable&lt;&gt;</span>
+  </div>
   <div>
       <span class="xref">IDisposable</span>
   </div>

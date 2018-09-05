@@ -8,7 +8,7 @@
     <title>Configuration Options | Bitprim Documentation Site </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Configuration Options | Bitprim Documentation Site ">
-    <meta name="generator" content="docfx 2.38.1.0">
+    <meta name="generator" content="docfx 2.39.1.0">
     
     <link rel="shortcut icon" href="../../../favicon.ico">
     <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
@@ -106,7 +106,11 @@
   &quot;TransactionsByAddressPageSize&quot;: 10,
   &quot;Version&quot;: &quot;170000&quot;,
   &quot;HttpClientTimeoutInSeconds&quot; : 5,
-  &quot;WebsocketForwarderClientRetryDelay&quot;: 10,
+  &quot;WebsocketsEnabled&quot;: true,
+  &quot;WebsocketsMsgBlockEnabled&quot;: true,
+  &quot;WebsocketsMsgTxEnabled&quot;: true,
+  &quot;WebsocketsMsgAddressTxEnabled&quot;: true,
+  &quot;WebsocketsForwarderClientRetryDelay&quot;: 10,
   &quot;Serilog&quot;:
   {
     &quot;Using&quot;: [&quot;Serilog.Sinks.Console&quot;, &quot;Serilog.Sinks.File&quot;],
@@ -230,7 +234,15 @@
 <em>Default value:&quot;&quot;</em></p>
 <p><strong>HttpClientTimeoutInSeconds</strong>: Defines HttpClient timeout. Used in forwarder mode.
 <em>Default value:5</em></p>
-<p><strong>WebsocketForwarderClientRetryDelay</strong>: The delay in seconds beetween retries when the websocket connection to the fullnode fails.
+<p><strong>WebsocketsEnabled</strong>: Define if the node accepts websocket requests.
+<em>Default value:true</em></p>
+<p><strong>WebsocketsMsgBlockEnabled</strong>: Define if the node sends block messages.
+<em>Default value:true</em></p>
+<p><strong>WebsocketsMsgTxEnabled</strong>: Define if the node sends tx messages.
+<em>Default value:true</em></p>
+<p><strong>WebsocketsMsgAddressTxEnabled</strong>: Define if the node sends addresstx messages.
+<em>Default value:true</em></p>
+<p><strong>WebsocketsForwarderClientRetryDelay</strong>: The delay in seconds beetween retries when the websocket connection to the fullnode fails.
 <em>Default value:10</em></p>
 <p><strong>Serilog</strong>: The Serilog configuration. For more detailed documentation, check <a href="https://github.com/serilog/serilog/wiki/Getting-Started">https://github.com/serilog/serilog/wiki/Getting-Started</a></p>
 </article>

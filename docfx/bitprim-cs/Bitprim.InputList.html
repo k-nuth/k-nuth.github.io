@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class InputList
    | Bitprim Documentation Site ">
-    <meta name="generator" content="docfx 2.38.1.0">
+    <meta name="generator" content="docfx 2.39.1.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -89,39 +89,48 @@
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
-    <div class="level1"><a class="xref" href="Bitprim.NativeList-1.html">NativeList</a>&lt;<a class="xref" href="Bitprim.Input.html">Input</a>&gt;</div>
-    <div class="level2"><span class="xref">InputList</span></div>
+    <div class="level1"><a class="xref" href="Bitprim.NativeReadableList-1.html">NativeReadableList</a>&lt;<a class="xref" href="Bitprim.Input.html">Input</a>&gt;</div>
+    <div class="level2"><a class="xref" href="Bitprim.NativeReadableWritableList-1.html">NativeReadableWritableList</a>&lt;<a class="xref" href="Bitprim.Input.html">Input</a>&gt;</div>
+    <div class="level3"><span class="xref">InputList</span></div>
   </div>
   <div classs="implements">
     <h5>Implements</h5>
+    <div><a class="xref" href="Bitprim.INativeList-1.html">INativeList</a>&lt;<a class="xref" href="Bitprim.Input.html">Input</a>&gt;</div>
+    <div><span class="xref">IEnumerable</span>&lt;<a class="xref" href="Bitprim.Input.html">Input</a>&gt;</div>
     <div><span class="xref">IDisposable</span></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
     <div>
-      <a class="xref" href="Bitprim.NativeList-1.html#Bitprim_NativeList_1_GetEnumerator">NativeList&lt;Input&gt;.GetEnumerator()</a>
+      <a class="xref" href="Bitprim.NativeReadableWritableList-1.html#Bitprim_NativeReadableWritableList_1_Add__0_">NativeReadableWritableList&lt;Input&gt;.Add(Input)</a>
     </div>
     <div>
-      <a class="xref" href="Bitprim.NativeList-1.html#Bitprim_NativeList_1_Dispose">NativeList&lt;Input&gt;.Dispose()</a>
+      <a class="xref" href="Bitprim.NativeReadableList-1.html#Bitprim_NativeReadableList_1_nativeInstance_">NativeReadableList&lt;Input&gt;.nativeInstance_</a>
     </div>
     <div>
-      <a class="xref" href="Bitprim.NativeList-1.html#Bitprim_NativeList_1_Dispose_System_Boolean_">NativeList&lt;Input&gt;.Dispose(Boolean)</a>
+      <a class="xref" href="Bitprim.NativeReadableList-1.html#Bitprim_NativeReadableList_1_GetEnumerator">NativeReadableList&lt;Input&gt;.GetEnumerator()</a>
     </div>
     <div>
-      <a class="xref" href="Bitprim.NativeList-1.html#Bitprim_NativeList_1_Item_System_UInt32_">NativeList&lt;Input&gt;.Item[UInt32]</a>
+      <a class="xref" href="Bitprim.NativeReadableList-1.html#Bitprim_NativeReadableList_1_Dispose">NativeReadableList&lt;Input&gt;.Dispose()</a>
     </div>
     <div>
-      <a class="xref" href="Bitprim.NativeList-1.html#Bitprim_NativeList_1_Count">NativeList&lt;Input&gt;.Count</a>
+      <a class="xref" href="Bitprim.NativeReadableList-1.html#Bitprim_NativeReadableList_1_Dispose_System_Boolean_">NativeReadableList&lt;Input&gt;.Dispose(Boolean)</a>
     </div>
     <div>
-      <a class="xref" href="Bitprim.NativeList-1.html#Bitprim_NativeList_1_Add__0_">NativeList&lt;Input&gt;.Add(Input)</a>
+      <a class="xref" href="Bitprim.NativeReadableList-1.html#Bitprim_NativeReadableList_1_Item_UInt64_">NativeReadableList&lt;Input&gt;.Item[UInt64]</a>
+    </div>
+    <div>
+      <a class="xref" href="Bitprim.NativeReadableList-1.html#Bitprim_NativeReadableList_1_Count">NativeReadableList&lt;Input&gt;.Count</a>
+    </div>
+    <div>
+      <a class="xref" href="Bitprim.NativeReadableList-1.html#Bitprim_NativeReadableList_1_NativeInstance">NativeReadableList&lt;Input&gt;.NativeInstance</a>
     </div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="Bitprim.html">Bitprim</a></h6>
   <h6><strong>Assembly</strong>: bitprim-bch.dll</h6>
   <h5 id="Bitprim_InputList_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class InputList : NativeList&lt;Input&gt;, IDisposable</code></pre>
+    <pre><code class="lang-csharp hljs">public class InputList : NativeReadableWritableList&lt;Input&gt;, INativeList&lt;Input&gt;, IEnumerable&lt;Input&gt;, IDisposable</code></pre>
   </div>
   <h3 id="methods">Methods
   </h3>
@@ -158,7 +167,7 @@
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><span class="xref">Bitprim.NativeList&lt;Bitprim.Input&gt;.AddElement(Bitprim.Input)</span></div>
+  <div><span class="xref">Bitprim.NativeReadableWritableList&lt;Bitprim.Input&gt;.AddElement(Bitprim.Input)</span></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/bitprim/bitprim-cs/new/master/apiSpec/new?filename=Bitprim_InputList_CreateNativeList.md&amp;value=---%0Auid%3A%20Bitprim.InputList.CreateNativeList%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
@@ -190,7 +199,7 @@
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><span class="xref">Bitprim.NativeList&lt;Bitprim.Input&gt;.CreateNativeList()</span></div>
+  <div><span class="xref">Bitprim.NativeReadableWritableList&lt;Bitprim.Input&gt;.CreateNativeList()</span></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/bitprim/bitprim-cs/new/master/apiSpec/new?filename=Bitprim_InputList_DestroyNativeList.md&amp;value=---%0Auid%3A%20Bitprim.InputList.DestroyNativeList%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
@@ -207,7 +216,7 @@
     <pre><code class="lang-csharp hljs">protected override void DestroyNativeList()</code></pre>
   </div>
   <h5 class="overrides">Overrides</h5>
-  <div><span class="xref">Bitprim.NativeList&lt;Bitprim.Input&gt;.DestroyNativeList()</span></div>
+  <div><span class="xref">Bitprim.NativeReadableList&lt;Bitprim.Input&gt;.DestroyNativeList()</span></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/bitprim/bitprim-cs/new/master/apiSpec/new?filename=Bitprim_InputList_GetCount.md&amp;value=---%0Auid%3A%20Bitprim.InputList.GetCount%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
@@ -221,7 +230,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected override uint GetCount()</code></pre>
+    <pre><code class="lang-csharp hljs">protected override UInt64 GetCount()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -233,27 +242,27 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint32">UInt32</a></td>
+        <td><span class="xref">UInt64</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><span class="xref">Bitprim.NativeList&lt;Bitprim.Input&gt;.GetCount()</span></div>
+  <div><span class="xref">Bitprim.NativeReadableList&lt;Bitprim.Input&gt;.GetCount()</span></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/bitprim/bitprim-cs/new/master/apiSpec/new?filename=Bitprim_InputList_GetNthNativeElement_System_UInt32_.md&amp;value=---%0Auid%3A%20Bitprim.InputList.GetNthNativeElement(System.UInt32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/bitprim/bitprim-cs/new/master/apiSpec/new?filename=Bitprim_InputList_GetNthNativeElement_UInt64_.md&amp;value=---%0Auid%3A%20Bitprim.InputList.GetNthNativeElement(UInt64)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/InputList.cs/#L19">View Source</a>
   </span>
   <a id="Bitprim_InputList_GetNthNativeElement_" data-uid="Bitprim.InputList.GetNthNativeElement*"></a>
-  <h4 id="Bitprim_InputList_GetNthNativeElement_System_UInt32_" data-uid="Bitprim.InputList.GetNthNativeElement(System.UInt32)">GetNthNativeElement(UInt32)</h4>
+  <h4 id="Bitprim_InputList_GetNthNativeElement_UInt64_" data-uid="Bitprim.InputList.GetNthNativeElement(UInt64)">GetNthNativeElement(UInt64)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected override Input GetNthNativeElement(uint n)</code></pre>
+    <pre><code class="lang-csharp hljs">protected override Input GetNthNativeElement(UInt64 n)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -266,7 +275,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint32">UInt32</a></td>
+        <td><span class="xref">UInt64</span></td>
         <td><span class="parametername">n</span></td>
         <td></td>
       </tr>
@@ -288,8 +297,14 @@
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><span class="xref">Bitprim.NativeList&lt;Bitprim.Input&gt;.GetNthNativeElement(System.UInt32)</span></div>
+  <div><span class="xref">Bitprim.NativeReadableList&lt;Bitprim.Input&gt;.GetNthNativeElement(UInt64)</span></div>
   <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="Bitprim.INativeList-1.html">INativeList&lt;T&gt;</a>
+  </div>
+  <div>
+      <span class="xref">IEnumerable&lt;&gt;</span>
+  </div>
   <div>
       <span class="xref">IDisposable</span>
   </div>
