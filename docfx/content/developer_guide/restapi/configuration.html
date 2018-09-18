@@ -8,7 +8,7 @@
     <title>Configuration Options | Bitprim Documentation Site </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Configuration Options | Bitprim Documentation Site ">
-    <meta name="generator" content="docfx 2.39.1.0">
+    <meta name="generator" content="docfx 2.39.2.0">
     
     <link rel="shortcut icon" href="../../../favicon.ico">
     <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
@@ -109,6 +109,7 @@
   &quot;WebsocketsEnabled&quot;: true,
   &quot;WebsocketsMsgBlockEnabled&quot;: true,
   &quot;WebsocketsMsgTxEnabled&quot;: true,
+  &quot;WebsocketsMsgTxIncludeVout&quot;: false,
   &quot;WebsocketsMsgAddressTxEnabled&quot;: true,
   &quot;WebsocketsForwarderClientRetryDelay&quot;: 10,
   &quot;Serilog&quot;:
@@ -240,6 +241,9 @@
 <em>Default value:true</em></p>
 <p><strong>WebsocketsMsgTxEnabled</strong>: Define if the node sends tx messages.
 <em>Default value:true</em></p>
+<p><strong>WebsocketsMsgTxIncludeVout</strong>: If and only if true, include transaction outputs in tx web socket message.
+If included, outputs will be represented as an array of (address, amount) pairs.
+<em>Default value:false</em></p>
 <p><strong>WebsocketsMsgAddressTxEnabled</strong>: Define if the node sends addresstx messages.
 <em>Default value:true</em></p>
 <p><strong>WebsocketsForwarderClientRetryDelay</strong>: The delay in seconds beetween retries when the websocket connection to the fullnode fails.
