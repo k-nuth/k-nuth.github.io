@@ -91,6 +91,7 @@
   &quot;ForwardUrl&quot; : &quot;http://localhost:1234&quot;,
   &quot;InitializeNode&quot; : true,
   &quot;LongResponseCacheDurationInSeconds&quot;: 86400,
+  &quot;MaxAddressesPerQuery&quot;: 10,
   &quot;MaxBlockSummarySize&quot;: 500,
   &quot;MaxCacheSize&quot;: 50000,
   &quot;MaxSocketPublishRetries&quot;: 3,
@@ -179,6 +180,13 @@
 <li>/rawblock</li>
 <li>/rawtx
 <em>Default value:86400</em></li>
+</ul>
+<p><strong>MaxAddressesPerQuery</strong>: Define the max address allowed per query. Used in the following requests:</p>
+<ul>
+<li>/addrs/{paymentAddresses}/utxo</li>
+<li>/addrs/utxo</li>
+<li>/addrs/{paymentAddresses}/txs
+<em>Default value:10</em></li>
 </ul>
 <p><strong>MaxBlockSummarySize</strong>: Defines the max limit of the /blocks method.
 <em>Default value:500</em></p>
