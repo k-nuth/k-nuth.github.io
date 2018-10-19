@@ -206,7 +206,7 @@ transaction ids involved in the address.</p>
 </div>
   <h5>Request</h5>
   <div class="codewrapper">
-    <pre><code class="lang-restApi hljs">GET /api/addr/{paymentAddress}[?noTxList&amp;from&amp;to]</code></pre>
+    <pre><code class="lang-restApi hljs">GET /api/addr/{paymentAddress}[?noTxList&amp;from&amp;to&amp;returnLegacyAddresses]</code></pre>
   </div>
   <h5>Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -230,7 +230,7 @@ transaction ids involved in the address.</p>
         <td><span class="parametername">noTxList</span></td>
         <td>integer</td>
         <td></td>
-        <td><p>If 1, include transaction id list; otherwise, do not include it.</p>
+        <td><p>If 0, include transaction id list; otherwise, do not include it.</p>
 </td>
       </tr>
       <tr>
@@ -245,6 +245,13 @@ transaction ids involved in the address.</p>
         <td>integer</td>
         <td></td>
         <td><p>Allows selecting a subrange of transactions from the full list; max value is (txCount - 1).</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">returnLegacyAddresses</span></td>
+        <td>boolean</td>
+        <td></td>
+        <td><p>If and only if true, use legacy address format in response (BCH only).</p>
 </td>
       </tr>
     </tbody>
@@ -402,7 +409,7 @@ transaction ids involved in the address.</p>
 </div>
   <h5>Request</h5>
   <div class="codewrapper">
-    <pre><code class="lang-restApi hljs">GET /api/addrs/{paymentAddresses}/utxo</code></pre>
+    <pre><code class="lang-restApi hljs">GET /api/addrs/{paymentAddresses}/utxo[?returnLegacyAddresses]</code></pre>
   </div>
   <h5>Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -420,6 +427,13 @@ transaction ids involved in the address.</p>
         <td>string</td>
         <td></td>
         <td><p>Comma separated list of addresses. For BCH, cashaddr format is accepted.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">returnLegacyAddresses</span></td>
+        <td>boolean</td>
+        <td></td>
+        <td><p>If and only if true, return addresses in legacy format. By default, use cashaddr.</p>
 </td>
       </tr>
     </tbody>
@@ -514,7 +528,7 @@ transaction ids involved in the address.</p>
 </div>
   <h5>Request</h5>
   <div class="codewrapper">
-    <pre><code class="lang-restApi hljs">GET /api/addr/{paymentAddress}/utxo</code></pre>
+    <pre><code class="lang-restApi hljs">GET /api/addr/{paymentAddress}/utxo[?legacyAddresFormat]</code></pre>
   </div>
   <h5>Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -532,6 +546,14 @@ transaction ids involved in the address.</p>
         <td>string</td>
         <td></td>
         <td><p>The address of interest. For BCH, cashaddr format is accepted.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">legacyAddresFormat</span></td>
+        <td>boolean</td>
+        <td></td>
+        <td><p>If and only if true, use legacy address format in returned object. By
+default, cash addr is used.</p>
 </td>
       </tr>
     </tbody>
@@ -571,7 +593,7 @@ transaction ids involved in the address.</p>
 </div>
   <h5>Request</h5>
   <div class="codewrapper">
-    <pre><code class="lang-restApi hljs">GET /api/block/{hash}</code></pre>
+    <pre><code class="lang-restApi hljs">GET /api/block/{hash}[?noTxList]</code></pre>
   </div>
   <h5>Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -588,7 +610,14 @@ transaction ids involved in the address.</p>
         <td><span class="parametername">*hash</span></td>
         <td>string</td>
         <td></td>
-        <td><p>32-character hex string.</p>
+        <td><p>64-character (32 bytes) hex string.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">noTxList</span></td>
+        <td>integer</td>
+        <td></td>
+        <td><p>If 0, include transaction id list; otherwise, do not include it.</p>
 </td>
       </tr>
     </tbody>
@@ -777,7 +806,7 @@ transaction ids involved in the address.</p>
         <td><span class="parametername">*hash</span></td>
         <td>string</td>
         <td></td>
-        <td><p>32-character hex string which univocally identifies the block in the blockchain.</p>
+        <td><p>64-character (32 bytes) hex string which univocally identifies the block in the blockchain.</p>
 </td>
       </tr>
     </tbody>
@@ -888,9 +917,9 @@ transaction ids involved in the address.</p>
     <tbody>
       <tr>
         <td><span class="parametername">nbBlocks</span></td>
-        <td>integer</td>
+        <td>string</td>
         <td></td>
-        <td><p>Number of blocks to consider for estimation; a higher number
+        <td><p>Comma-separed list of block numbers to use for each estimation; a higher number
 implies higher precision, but will take longer to calculate.</p>
 </td>
       </tr>
@@ -1556,7 +1585,7 @@ Use the name 'q' for this query parameter (it will be mapped to the 'method' par
         <td><span class="parametername">*hash</span></td>
         <td>string</td>
         <td></td>
-        <td><p>32-character hex string which univocally identifies the transaction in the network.</p>
+        <td><p>64-character (32 bytes) hex string which univocally identifies the transaction in the network.</p>
 </td>
       </tr>
     </tbody>
@@ -1595,7 +1624,7 @@ Use the name 'q' for this query parameter (it will be mapped to the 'method' par
 </div>
   <h5>Request</h5>
   <div class="codewrapper">
-    <pre><code class="lang-restApi hljs">GET /api/tx/{hash}[?requireConfirmed]</code></pre>
+    <pre><code class="lang-restApi hljs">GET /api/tx/{hash}[?requireConfirmed&amp;returnLegacyAddresses]</code></pre>
   </div>
   <h5>Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1612,7 +1641,7 @@ Use the name 'q' for this query parameter (it will be mapped to the 'method' par
         <td><span class="parametername">*hash</span></td>
         <td>string</td>
         <td></td>
-        <td><p>32-character hex string which univocally identifies the transaction in the network.</p>
+        <td><p>64-character (32 bytes) hex string which univocally identifies the transaction in the network.</p>
 </td>
       </tr>
       <tr>
@@ -1620,6 +1649,13 @@ Use the name 'q' for this query parameter (it will be mapped to the 'method' par
         <td>integer</td>
         <td></td>
         <td><p>1 = only confirmed transactions, otherwise include unconfirmed as well.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">returnLegacyAddresses</span></td>
+        <td>boolean</td>
+        <td></td>
+        <td><p>If and only if true, return addresses in legacy format for BCH.</p>
 </td>
       </tr>
     </tbody>
@@ -1665,7 +1701,7 @@ Use the name 'q' for this query parameter (it will be mapped to the 'method' par
 </div>
   <h5>Request</h5>
   <div class="codewrapper">
-    <pre><code class="lang-restApi hljs">GET /api/txs[?block&amp;address&amp;pageNum]</code></pre>
+    <pre><code class="lang-restApi hljs">GET /api/txs[?block&amp;address&amp;pageNum&amp;returnLegacyAddresses]</code></pre>
   </div>
   <h5>Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1682,7 +1718,7 @@ Use the name 'q' for this query parameter (it will be mapped to the 'method' par
         <td><span class="parametername">block</span></td>
         <td>string</td>
         <td></td>
-        <td><p>32-character hex string which univocally identifies a block.</p>
+        <td><p>64-character (32 bytes) hex string which univocally identifies a block.</p>
 </td>
       </tr>
       <tr>
@@ -1699,6 +1735,13 @@ transactions are included.</p>
         <td></td>
         <td><p>Results page number to select; starts in zero. Page size is configurable via
 appsettings.json and command line. By default, page size is 10 transactions. See TransactionsByAddressPageSize key.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">returnLegacyAddresses</span></td>
+        <td>boolean</td>
+        <td></td>
+        <td><p>If and only if true, return legacy addresses in BCH.</p>
 </td>
       </tr>
     </tbody>
@@ -1744,7 +1787,7 @@ appsettings.json and command line. By default, page size is 10 transactions. See
 </div>
   <h5>Request</h5>
   <div class="codewrapper">
-    <pre><code class="lang-restApi hljs">GET /api/addrs/{paymentAddresses}/txs[?from&amp;to]</code></pre>
+    <pre><code class="lang-restApi hljs">GET /api/addrs/{paymentAddresses}/txs[?from&amp;to&amp;returnLegacyAddresses]</code></pre>
   </div>
   <h5>Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1761,7 +1804,8 @@ appsettings.json and command line. By default, page size is 10 transactions. See
         <td><span class="parametername">*paymentAddresses</span></td>
         <td>string</td>
         <td></td>
-        <td><p>Comma-separated list of addresses. For BCH, cashaddr format is accepted.</p>
+        <td><p>Comma-separated list of addresses. For BCH, cashaddr format is accepted.
+The maximum amount of addresses is determined by the MaxAddressesPerQuery configuration key.</p>
 </td>
       </tr>
       <tr>
@@ -1776,6 +1820,13 @@ appsettings.json and command line. By default, page size is 10 transactions. See
         <td>integer</td>
         <td></td>
         <td><p>Results selection ending point. Default to 10.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="parametername">returnLegacyAddresses</span></td>
+        <td>boolean</td>
+        <td></td>
+        <td><p>If and only if true, return addresses in legacy format for BCH.</p>
 </td>
       </tr>
     </tbody>
