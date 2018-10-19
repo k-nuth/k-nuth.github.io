@@ -93,6 +93,15 @@ references:
   fullName.vb: Bitprim.Binary.ByteArrayToHexString(System.Byte())
   nameWithType: Binary.ByteArrayToHexString(Byte[])
   nameWithType.vb: Binary.ByteArrayToHexString(Byte())
+- uid: Bitprim.Binary.ByteArrayToHexString(System.Byte[],System.Boolean)
+  name: ByteArrayToHexString(Byte[], Boolean)
+  href: bitprim-cs/Bitprim.Binary.html#Bitprim_Binary_ByteArrayToHexString_System_Byte___System_Boolean_
+  commentId: M:Bitprim.Binary.ByteArrayToHexString(System.Byte[],System.Boolean)
+  name.vb: ByteArrayToHexString(Byte(), Boolean)
+  fullName: Bitprim.Binary.ByteArrayToHexString(System.Byte[], System.Boolean)
+  fullName.vb: Bitprim.Binary.ByteArrayToHexString(System.Byte(), System.Boolean)
+  nameWithType: Binary.ByteArrayToHexString(Byte[], Boolean)
+  nameWithType.vb: Binary.ByteArrayToHexString(Byte(), Boolean)
 - uid: Bitprim.Binary.ByteArrayToHexString*
   name: ByteArrayToHexString
   href: bitprim-cs/Bitprim.Binary.html#Bitprim_Binary_ByteArrayToHexString_
@@ -6763,6 +6772,19 @@ references:
   isSpec: "True"
   fullName: Bitprim.PaymentAddress.PaymentAddress
   nameWithType: PaymentAddress.PaymentAddress
+- uid: Bitprim.PaymentAddress.CashAddressToLegacyAddress(System.String)
+  name: CashAddressToLegacyAddress(String)
+  href: bitprim-cs/Bitprim.PaymentAddress.html#Bitprim_PaymentAddress_CashAddressToLegacyAddress_System_String_
+  commentId: M:Bitprim.PaymentAddress.CashAddressToLegacyAddress(System.String)
+  fullName: Bitprim.PaymentAddress.CashAddressToLegacyAddress(System.String)
+  nameWithType: PaymentAddress.CashAddressToLegacyAddress(String)
+- uid: Bitprim.PaymentAddress.CashAddressToLegacyAddress*
+  name: CashAddressToLegacyAddress
+  href: bitprim-cs/Bitprim.PaymentAddress.html#Bitprim_PaymentAddress_CashAddressToLegacyAddress_
+  commentId: Overload:Bitprim.PaymentAddress.CashAddressToLegacyAddress
+  isSpec: "True"
+  fullName: Bitprim.PaymentAddress.CashAddressToLegacyAddress
+  nameWithType: PaymentAddress.CashAddressToLegacyAddress
 - uid: Bitprim.PaymentAddress.Dispose
   name: Dispose()
   href: bitprim-cs/Bitprim.PaymentAddress.html#Bitprim_PaymentAddress_Dispose
@@ -6821,6 +6843,48 @@ references:
   isSpec: "True"
   fullName: Bitprim.PaymentAddress.IsValid
   nameWithType: PaymentAddress.IsValid
+- uid: Bitprim.PaymentAddress.LegacyAddressToCashAddress(System.String,System.Boolean)
+  name: LegacyAddressToCashAddress(String, Boolean)
+  href: bitprim-cs/Bitprim.PaymentAddress.html#Bitprim_PaymentAddress_LegacyAddressToCashAddress_System_String_System_Boolean_
+  commentId: M:Bitprim.PaymentAddress.LegacyAddressToCashAddress(System.String,System.Boolean)
+  fullName: Bitprim.PaymentAddress.LegacyAddressToCashAddress(System.String, System.Boolean)
+  nameWithType: PaymentAddress.LegacyAddressToCashAddress(String, Boolean)
+- uid: Bitprim.PaymentAddress.LegacyAddressToCashAddress*
+  name: LegacyAddressToCashAddress
+  href: bitprim-cs/Bitprim.PaymentAddress.html#Bitprim_PaymentAddress_LegacyAddressToCashAddress_
+  commentId: Overload:Bitprim.PaymentAddress.LegacyAddressToCashAddress
+  isSpec: "True"
+  fullName: Bitprim.PaymentAddress.LegacyAddressToCashAddress
+  nameWithType: PaymentAddress.LegacyAddressToCashAddress
+- uid: Bitprim.PaymentAddress.ToCashAddr(System.Boolean)
+  name: ToCashAddr(Boolean)
+  href: bitprim-cs/Bitprim.PaymentAddress.html#Bitprim_PaymentAddress_ToCashAddr_System_Boolean_
+  commentId: M:Bitprim.PaymentAddress.ToCashAddr(System.Boolean)
+  fullName: Bitprim.PaymentAddress.ToCashAddr(System.Boolean)
+  nameWithType: PaymentAddress.ToCashAddr(Boolean)
+- uid: Bitprim.PaymentAddress.ToCashAddr*
+  name: ToCashAddr
+  href: bitprim-cs/Bitprim.PaymentAddress.html#Bitprim_PaymentAddress_ToCashAddr_
+  commentId: Overload:Bitprim.PaymentAddress.ToCashAddr
+  isSpec: "True"
+  fullName: Bitprim.PaymentAddress.ToCashAddr
+  nameWithType: PaymentAddress.ToCashAddr
+- uid: Bitprim.PaymentAddress.TryParsePaymentAddress(System.String,Bitprim.PaymentAddress@)
+  name: TryParsePaymentAddress(String, out PaymentAddress)
+  href: bitprim-cs/Bitprim.PaymentAddress.html#Bitprim_PaymentAddress_TryParsePaymentAddress_System_String_Bitprim_PaymentAddress__
+  commentId: M:Bitprim.PaymentAddress.TryParsePaymentAddress(System.String,Bitprim.PaymentAddress@)
+  name.vb: TryParsePaymentAddress(String, ByRef PaymentAddress)
+  fullName: Bitprim.PaymentAddress.TryParsePaymentAddress(System.String, out Bitprim.PaymentAddress)
+  fullName.vb: Bitprim.PaymentAddress.TryParsePaymentAddress(System.String, ByRef Bitprim.PaymentAddress)
+  nameWithType: PaymentAddress.TryParsePaymentAddress(String, out PaymentAddress)
+  nameWithType.vb: PaymentAddress.TryParsePaymentAddress(String, ByRef PaymentAddress)
+- uid: Bitprim.PaymentAddress.TryParsePaymentAddress*
+  name: TryParsePaymentAddress
+  href: bitprim-cs/Bitprim.PaymentAddress.html#Bitprim_PaymentAddress_TryParsePaymentAddress_
+  commentId: Overload:Bitprim.PaymentAddress.TryParsePaymentAddress
+  isSpec: "True"
+  fullName: Bitprim.PaymentAddress.TryParsePaymentAddress
+  nameWithType: PaymentAddress.TryParsePaymentAddress
 - uid: Bitprim.PaymentAddress.Version
   name: Version
   href: bitprim-cs/Bitprim.PaymentAddress.html#Bitprim_PaymentAddress_Version
@@ -7738,3 +7802,72 @@ references:
 - uid: bitprim/v1/VerifyMessagePost
   name: VerifyMessagePost
   href: restapi/bitprim-api.html#bitprim_v1_VerifyMessagePost
+- uid: SharpCashAddr
+  name: SharpCashAddr
+  href: bitprim-cs/SharpCashAddr.html
+  commentId: N:SharpCashAddr
+  fullName: SharpCashAddr
+  nameWithType: SharpCashAddr
+- uid: SharpCashAddr.CashAddrConversionException
+  name: CashAddrConversionException
+  href: bitprim-cs/SharpCashAddr.CashAddrConversionException.html
+  commentId: T:SharpCashAddr.CashAddrConversionException
+  fullName: SharpCashAddr.CashAddrConversionException
+  nameWithType: CashAddrConversionException
+- uid: SharpCashAddr.CashAddrConversionException.#ctor
+  name: CashAddrConversionException()
+  href: bitprim-cs/SharpCashAddr.CashAddrConversionException.html#SharpCashAddr_CashAddrConversionException__ctor
+  commentId: M:SharpCashAddr.CashAddrConversionException.#ctor
+  fullName: SharpCashAddr.CashAddrConversionException.CashAddrConversionException()
+  nameWithType: CashAddrConversionException.CashAddrConversionException()
+- uid: SharpCashAddr.CashAddrConversionException.#ctor(String)
+  name: CashAddrConversionException(String)
+  href: bitprim-cs/SharpCashAddr.CashAddrConversionException.html#SharpCashAddr_CashAddrConversionException__ctor_String_
+  commentId: M:SharpCashAddr.CashAddrConversionException.#ctor(String)
+  fullName: SharpCashAddr.CashAddrConversionException.CashAddrConversionException(String)
+  nameWithType: CashAddrConversionException.CashAddrConversionException(String)
+- uid: SharpCashAddr.CashAddrConversionException.#ctor*
+  name: CashAddrConversionException
+  href: bitprim-cs/SharpCashAddr.CashAddrConversionException.html#SharpCashAddr_CashAddrConversionException__ctor_
+  commentId: Overload:SharpCashAddr.CashAddrConversionException.#ctor
+  isSpec: "True"
+  fullName: SharpCashAddr.CashAddrConversionException.CashAddrConversionException
+  nameWithType: CashAddrConversionException.CashAddrConversionException
+- uid: SharpCashAddr.Converter
+  name: Converter
+  href: bitprim-cs/SharpCashAddr.Converter.html
+  commentId: T:SharpCashAddr.Converter
+  fullName: SharpCashAddr.Converter
+  nameWithType: Converter
+- uid: SharpCashAddr.Converter.CashAddrToLegacyAddr(System.String,System.Boolean@,System.Boolean@)
+  name: CashAddrToLegacyAddr(String, out Boolean, out Boolean)
+  href: bitprim-cs/SharpCashAddr.Converter.html#SharpCashAddr_Converter_CashAddrToLegacyAddr_System_String_System_Boolean__System_Boolean__
+  commentId: M:SharpCashAddr.Converter.CashAddrToLegacyAddr(System.String,System.Boolean@,System.Boolean@)
+  name.vb: CashAddrToLegacyAddr(String, ByRef Boolean, ByRef Boolean)
+  fullName: SharpCashAddr.Converter.CashAddrToLegacyAddr(System.String, out System.Boolean, out System.Boolean)
+  fullName.vb: SharpCashAddr.Converter.CashAddrToLegacyAddr(System.String, ByRef System.Boolean, ByRef System.Boolean)
+  nameWithType: Converter.CashAddrToLegacyAddr(String, out Boolean, out Boolean)
+  nameWithType.vb: Converter.CashAddrToLegacyAddr(String, ByRef Boolean, ByRef Boolean)
+- uid: SharpCashAddr.Converter.CashAddrToLegacyAddr*
+  name: CashAddrToLegacyAddr
+  href: bitprim-cs/SharpCashAddr.Converter.html#SharpCashAddr_Converter_CashAddrToLegacyAddr_
+  commentId: Overload:SharpCashAddr.Converter.CashAddrToLegacyAddr
+  isSpec: "True"
+  fullName: SharpCashAddr.Converter.CashAddrToLegacyAddr
+  nameWithType: Converter.CashAddrToLegacyAddr
+- uid: SharpCashAddr.Converter.LegacyAddrToCashAddr(System.String,System.Boolean,System.Boolean@,System.Boolean@)
+  name: LegacyAddrToCashAddr(String, Boolean, out Boolean, out Boolean)
+  href: bitprim-cs/SharpCashAddr.Converter.html#SharpCashAddr_Converter_LegacyAddrToCashAddr_System_String_System_Boolean_System_Boolean__System_Boolean__
+  commentId: M:SharpCashAddr.Converter.LegacyAddrToCashAddr(System.String,System.Boolean,System.Boolean@,System.Boolean@)
+  name.vb: LegacyAddrToCashAddr(String, Boolean, ByRef Boolean, ByRef Boolean)
+  fullName: SharpCashAddr.Converter.LegacyAddrToCashAddr(System.String, System.Boolean, out System.Boolean, out System.Boolean)
+  fullName.vb: SharpCashAddr.Converter.LegacyAddrToCashAddr(System.String, System.Boolean, ByRef System.Boolean, ByRef System.Boolean)
+  nameWithType: Converter.LegacyAddrToCashAddr(String, Boolean, out Boolean, out Boolean)
+  nameWithType.vb: Converter.LegacyAddrToCashAddr(String, Boolean, ByRef Boolean, ByRef Boolean)
+- uid: SharpCashAddr.Converter.LegacyAddrToCashAddr*
+  name: LegacyAddrToCashAddr
+  href: bitprim-cs/SharpCashAddr.Converter.html#SharpCashAddr_Converter_LegacyAddrToCashAddr_
+  commentId: Overload:SharpCashAddr.Converter.LegacyAddrToCashAddr
+  isSpec: "True"
+  fullName: SharpCashAddr.Converter.LegacyAddrToCashAddr
+  nameWithType: Converter.LegacyAddrToCashAddr
