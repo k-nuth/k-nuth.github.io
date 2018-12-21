@@ -829,12 +829,15 @@ references:
   isSpec: "True"
   fullName: Bitprim.Chain.FetchTransactionPositionAsync
   nameWithType: Chain.FetchTransactionPositionAsync
-- uid: Bitprim.Chain.GetMempoolTransactions(Bitprim.PaymentAddress,System.Boolean)
-  name: GetMempoolTransactions(PaymentAddress, Boolean)
-  href: bitprim-cs/Bitprim.Chain.html#Bitprim_Chain_GetMempoolTransactions_Bitprim_PaymentAddress_System_Boolean_
-  commentId: M:Bitprim.Chain.GetMempoolTransactions(Bitprim.PaymentAddress,System.Boolean)
-  fullName: Bitprim.Chain.GetMempoolTransactions(Bitprim.PaymentAddress, System.Boolean)
-  nameWithType: Chain.GetMempoolTransactions(PaymentAddress, Boolean)
+- uid: Bitprim.Chain.GetMempoolTransactions(Bitprim.INativeList{Bitprim.PaymentAddress},System.Boolean)
+  name: GetMempoolTransactions(INativeList<PaymentAddress>, Boolean)
+  href: bitprim-cs/Bitprim.Chain.html#Bitprim_Chain_GetMempoolTransactions_Bitprim_INativeList_Bitprim_PaymentAddress__System_Boolean_
+  commentId: M:Bitprim.Chain.GetMempoolTransactions(Bitprim.INativeList{Bitprim.PaymentAddress},System.Boolean)
+  name.vb: GetMempoolTransactions(INativeList(Of PaymentAddress), Boolean)
+  fullName: Bitprim.Chain.GetMempoolTransactions(Bitprim.INativeList<Bitprim.PaymentAddress>, System.Boolean)
+  fullName.vb: Bitprim.Chain.GetMempoolTransactions(Bitprim.INativeList(Of Bitprim.PaymentAddress), System.Boolean)
+  nameWithType: Chain.GetMempoolTransactions(INativeList<PaymentAddress>, Boolean)
+  nameWithType.vb: Chain.GetMempoolTransactions(INativeList(Of PaymentAddress), Boolean)
 - uid: Bitprim.Chain.GetMempoolTransactions*
   name: GetMempoolTransactions
   href: bitprim-cs/Bitprim.Chain.html#Bitprim_Chain_GetMempoolTransactions_
@@ -3408,12 +3411,15 @@ references:
   isSpec: "True"
   fullName: Bitprim.IChain.FetchTransactionPositionAsync
   nameWithType: IChain.FetchTransactionPositionAsync
-- uid: Bitprim.IChain.GetMempoolTransactions(Bitprim.PaymentAddress,System.Boolean)
-  name: GetMempoolTransactions(PaymentAddress, Boolean)
-  href: bitprim-cs/Bitprim.IChain.html#Bitprim_IChain_GetMempoolTransactions_Bitprim_PaymentAddress_System_Boolean_
-  commentId: M:Bitprim.IChain.GetMempoolTransactions(Bitprim.PaymentAddress,System.Boolean)
-  fullName: Bitprim.IChain.GetMempoolTransactions(Bitprim.PaymentAddress, System.Boolean)
-  nameWithType: IChain.GetMempoolTransactions(PaymentAddress, Boolean)
+- uid: Bitprim.IChain.GetMempoolTransactions(Bitprim.INativeList{Bitprim.PaymentAddress},System.Boolean)
+  name: GetMempoolTransactions(INativeList<PaymentAddress>, Boolean)
+  href: bitprim-cs/Bitprim.IChain.html#Bitprim_IChain_GetMempoolTransactions_Bitprim_INativeList_Bitprim_PaymentAddress__System_Boolean_
+  commentId: M:Bitprim.IChain.GetMempoolTransactions(Bitprim.INativeList{Bitprim.PaymentAddress},System.Boolean)
+  name.vb: GetMempoolTransactions(INativeList(Of PaymentAddress), Boolean)
+  fullName: Bitprim.IChain.GetMempoolTransactions(Bitprim.INativeList<Bitprim.PaymentAddress>, System.Boolean)
+  fullName.vb: Bitprim.IChain.GetMempoolTransactions(Bitprim.INativeList(Of Bitprim.PaymentAddress), System.Boolean)
+  nameWithType: IChain.GetMempoolTransactions(INativeList<PaymentAddress>, Boolean)
+  nameWithType.vb: IChain.GetMempoolTransactions(INativeList(Of PaymentAddress), Boolean)
 - uid: Bitprim.IChain.GetMempoolTransactions*
   name: GetMempoolTransactions
   href: bitprim-cs/Bitprim.IChain.html#Bitprim_IChain_GetMempoolTransactions_
@@ -3654,103 +3660,6 @@ references:
   isSpec: "True"
   fullName: Bitprim.IHistoryCompact.ValueOrChecksum
   nameWithType: IHistoryCompact.ValueOrChecksum
-- uid: Bitprim.IMempoolTransaction
-  name: IMempoolTransaction
-  href: bitprim-cs/Bitprim.IMempoolTransaction.html
-  commentId: T:Bitprim.IMempoolTransaction
-  fullName: Bitprim.IMempoolTransaction
-  nameWithType: IMempoolTransaction
-- uid: Bitprim.IMempoolTransaction.Address
-  name: Address
-  href: bitprim-cs/Bitprim.IMempoolTransaction.html#Bitprim_IMempoolTransaction_Address
-  commentId: P:Bitprim.IMempoolTransaction.Address
-  fullName: Bitprim.IMempoolTransaction.Address
-  nameWithType: IMempoolTransaction.Address
-- uid: Bitprim.IMempoolTransaction.Address*
-  name: Address
-  href: bitprim-cs/Bitprim.IMempoolTransaction.html#Bitprim_IMempoolTransaction_Address_
-  commentId: Overload:Bitprim.IMempoolTransaction.Address
-  isSpec: "True"
-  fullName: Bitprim.IMempoolTransaction.Address
-  nameWithType: IMempoolTransaction.Address
-- uid: Bitprim.IMempoolTransaction.Hash
-  name: Hash
-  href: bitprim-cs/Bitprim.IMempoolTransaction.html#Bitprim_IMempoolTransaction_Hash
-  commentId: P:Bitprim.IMempoolTransaction.Hash
-  fullName: Bitprim.IMempoolTransaction.Hash
-  nameWithType: IMempoolTransaction.Hash
-- uid: Bitprim.IMempoolTransaction.Hash*
-  name: Hash
-  href: bitprim-cs/Bitprim.IMempoolTransaction.html#Bitprim_IMempoolTransaction_Hash_
-  commentId: Overload:Bitprim.IMempoolTransaction.Hash
-  isSpec: "True"
-  fullName: Bitprim.IMempoolTransaction.Hash
-  nameWithType: IMempoolTransaction.Hash
-- uid: Bitprim.IMempoolTransaction.Index
-  name: Index
-  href: bitprim-cs/Bitprim.IMempoolTransaction.html#Bitprim_IMempoolTransaction_Index
-  commentId: P:Bitprim.IMempoolTransaction.Index
-  fullName: Bitprim.IMempoolTransaction.Index
-  nameWithType: IMempoolTransaction.Index
-- uid: Bitprim.IMempoolTransaction.Index*
-  name: Index
-  href: bitprim-cs/Bitprim.IMempoolTransaction.html#Bitprim_IMempoolTransaction_Index_
-  commentId: Overload:Bitprim.IMempoolTransaction.Index
-  isSpec: "True"
-  fullName: Bitprim.IMempoolTransaction.Index
-  nameWithType: IMempoolTransaction.Index
-- uid: Bitprim.IMempoolTransaction.PreviousOutputHash
-  name: PreviousOutputHash
-  href: bitprim-cs/Bitprim.IMempoolTransaction.html#Bitprim_IMempoolTransaction_PreviousOutputHash
-  commentId: P:Bitprim.IMempoolTransaction.PreviousOutputHash
-  fullName: Bitprim.IMempoolTransaction.PreviousOutputHash
-  nameWithType: IMempoolTransaction.PreviousOutputHash
-- uid: Bitprim.IMempoolTransaction.PreviousOutputHash*
-  name: PreviousOutputHash
-  href: bitprim-cs/Bitprim.IMempoolTransaction.html#Bitprim_IMempoolTransaction_PreviousOutputHash_
-  commentId: Overload:Bitprim.IMempoolTransaction.PreviousOutputHash
-  isSpec: "True"
-  fullName: Bitprim.IMempoolTransaction.PreviousOutputHash
-  nameWithType: IMempoolTransaction.PreviousOutputHash
-- uid: Bitprim.IMempoolTransaction.PreviousOutputIndex
-  name: PreviousOutputIndex
-  href: bitprim-cs/Bitprim.IMempoolTransaction.html#Bitprim_IMempoolTransaction_PreviousOutputIndex
-  commentId: P:Bitprim.IMempoolTransaction.PreviousOutputIndex
-  fullName: Bitprim.IMempoolTransaction.PreviousOutputIndex
-  nameWithType: IMempoolTransaction.PreviousOutputIndex
-- uid: Bitprim.IMempoolTransaction.PreviousOutputIndex*
-  name: PreviousOutputIndex
-  href: bitprim-cs/Bitprim.IMempoolTransaction.html#Bitprim_IMempoolTransaction_PreviousOutputIndex_
-  commentId: Overload:Bitprim.IMempoolTransaction.PreviousOutputIndex
-  isSpec: "True"
-  fullName: Bitprim.IMempoolTransaction.PreviousOutputIndex
-  nameWithType: IMempoolTransaction.PreviousOutputIndex
-- uid: Bitprim.IMempoolTransaction.Satoshis
-  name: Satoshis
-  href: bitprim-cs/Bitprim.IMempoolTransaction.html#Bitprim_IMempoolTransaction_Satoshis
-  commentId: P:Bitprim.IMempoolTransaction.Satoshis
-  fullName: Bitprim.IMempoolTransaction.Satoshis
-  nameWithType: IMempoolTransaction.Satoshis
-- uid: Bitprim.IMempoolTransaction.Satoshis*
-  name: Satoshis
-  href: bitprim-cs/Bitprim.IMempoolTransaction.html#Bitprim_IMempoolTransaction_Satoshis_
-  commentId: Overload:Bitprim.IMempoolTransaction.Satoshis
-  isSpec: "True"
-  fullName: Bitprim.IMempoolTransaction.Satoshis
-  nameWithType: IMempoolTransaction.Satoshis
-- uid: Bitprim.IMempoolTransaction.Timestamp
-  name: Timestamp
-  href: bitprim-cs/Bitprim.IMempoolTransaction.html#Bitprim_IMempoolTransaction_Timestamp
-  commentId: P:Bitprim.IMempoolTransaction.Timestamp
-  fullName: Bitprim.IMempoolTransaction.Timestamp
-  nameWithType: IMempoolTransaction.Timestamp
-- uid: Bitprim.IMempoolTransaction.Timestamp*
-  name: Timestamp
-  href: bitprim-cs/Bitprim.IMempoolTransaction.html#Bitprim_IMempoolTransaction_Timestamp_
-  commentId: Overload:Bitprim.IMempoolTransaction.Timestamp
-  isSpec: "True"
-  fullName: Bitprim.IMempoolTransaction.Timestamp
-  nameWithType: IMempoolTransaction.Timestamp
 - uid: Bitprim.IMerkleBlock
   name: IMerkleBlock
   href: bitprim-cs/Bitprim.IMerkleBlock.html
@@ -4590,6 +4499,18 @@ references:
   commentId: F:Bitprim.Keoken.DelegatedState.KeokenStateDelegatedGetBalanceHandler
   fullName: Bitprim.Keoken.DelegatedState.KeokenStateDelegatedGetBalanceHandler
   nameWithType: DelegatedState.KeokenStateDelegatedGetBalanceHandler
+- uid: Bitprim.Keoken.DelegatedState.KeokenStateDelegatedRemoveUpToHandler
+  name: KeokenStateDelegatedRemoveUpToHandler
+  href: bitprim-cs/Bitprim.Keoken.DelegatedState.html#Bitprim_Keoken_DelegatedState_KeokenStateDelegatedRemoveUpToHandler
+  commentId: F:Bitprim.Keoken.DelegatedState.KeokenStateDelegatedRemoveUpToHandler
+  fullName: Bitprim.Keoken.DelegatedState.KeokenStateDelegatedRemoveUpToHandler
+  nameWithType: DelegatedState.KeokenStateDelegatedRemoveUpToHandler
+- uid: Bitprim.Keoken.DelegatedState.KeokenStateDelegatedResetHandler
+  name: KeokenStateDelegatedResetHandler
+  href: bitprim-cs/Bitprim.Keoken.DelegatedState.html#Bitprim_Keoken_DelegatedState_KeokenStateDelegatedResetHandler
+  commentId: F:Bitprim.Keoken.DelegatedState.KeokenStateDelegatedResetHandler
+  fullName: Bitprim.Keoken.DelegatedState.KeokenStateDelegatedResetHandler
+  nameWithType: DelegatedState.KeokenStateDelegatedResetHandler
 - uid: Bitprim.Keoken.DelegatedState.KeokenStateDelegatedSetInitialAssetIdHandler
   name: KeokenStateDelegatedSetInitialAssetIdHandler
   href: bitprim-cs/Bitprim.Keoken.DelegatedState.html#Bitprim_Keoken_DelegatedState_KeokenStateDelegatedSetInitialAssetIdHandler
@@ -5356,6 +5277,32 @@ references:
   isSpec: "True"
   fullName: Bitprim.Keoken.IKeokenState.InitialAssetId
   nameWithType: IKeokenState.InitialAssetId
+- uid: Bitprim.Keoken.IKeokenState.RemoveUpTo(UInt64)
+  name: RemoveUpTo(UInt64)
+  href: bitprim-cs/Bitprim.Keoken.IKeokenState.html#Bitprim_Keoken_IKeokenState_RemoveUpTo_UInt64_
+  commentId: M:Bitprim.Keoken.IKeokenState.RemoveUpTo(UInt64)
+  fullName: Bitprim.Keoken.IKeokenState.RemoveUpTo(UInt64)
+  nameWithType: IKeokenState.RemoveUpTo(UInt64)
+- uid: Bitprim.Keoken.IKeokenState.RemoveUpTo*
+  name: RemoveUpTo
+  href: bitprim-cs/Bitprim.Keoken.IKeokenState.html#Bitprim_Keoken_IKeokenState_RemoveUpTo_
+  commentId: Overload:Bitprim.Keoken.IKeokenState.RemoveUpTo
+  isSpec: "True"
+  fullName: Bitprim.Keoken.IKeokenState.RemoveUpTo
+  nameWithType: IKeokenState.RemoveUpTo
+- uid: Bitprim.Keoken.IKeokenState.Reset
+  name: Reset()
+  href: bitprim-cs/Bitprim.Keoken.IKeokenState.html#Bitprim_Keoken_IKeokenState_Reset
+  commentId: M:Bitprim.Keoken.IKeokenState.Reset
+  fullName: Bitprim.Keoken.IKeokenState.Reset()
+  nameWithType: IKeokenState.Reset()
+- uid: Bitprim.Keoken.IKeokenState.Reset*
+  name: Reset
+  href: bitprim-cs/Bitprim.Keoken.IKeokenState.html#Bitprim_Keoken_IKeokenState_Reset_
+  commentId: Overload:Bitprim.Keoken.IKeokenState.Reset
+  isSpec: "True"
+  fullName: Bitprim.Keoken.IKeokenState.Reset
+  nameWithType: IKeokenState.Reset
 - uid: Bitprim.Keoken.IKeokenState.StateAssetIdExists(UInt32)
   name: StateAssetIdExists(UInt32)
   href: bitprim-cs/Bitprim.Keoken.IKeokenState.html#Bitprim_Keoken_IKeokenState_StateAssetIdExists_UInt32_
@@ -5640,6 +5587,32 @@ references:
   isSpec: "True"
   fullName: Bitprim.Keoken.KeokenMemoryState.InitialAssetId
   nameWithType: KeokenMemoryState.InitialAssetId
+- uid: Bitprim.Keoken.KeokenMemoryState.RemoveUpTo(UInt64)
+  name: RemoveUpTo(UInt64)
+  href: bitprim-cs/Bitprim.Keoken.KeokenMemoryState.html#Bitprim_Keoken_KeokenMemoryState_RemoveUpTo_UInt64_
+  commentId: M:Bitprim.Keoken.KeokenMemoryState.RemoveUpTo(UInt64)
+  fullName: Bitprim.Keoken.KeokenMemoryState.RemoveUpTo(UInt64)
+  nameWithType: KeokenMemoryState.RemoveUpTo(UInt64)
+- uid: Bitprim.Keoken.KeokenMemoryState.RemoveUpTo*
+  name: RemoveUpTo
+  href: bitprim-cs/Bitprim.Keoken.KeokenMemoryState.html#Bitprim_Keoken_KeokenMemoryState_RemoveUpTo_
+  commentId: Overload:Bitprim.Keoken.KeokenMemoryState.RemoveUpTo
+  isSpec: "True"
+  fullName: Bitprim.Keoken.KeokenMemoryState.RemoveUpTo
+  nameWithType: KeokenMemoryState.RemoveUpTo
+- uid: Bitprim.Keoken.KeokenMemoryState.Reset
+  name: Reset()
+  href: bitprim-cs/Bitprim.Keoken.KeokenMemoryState.html#Bitprim_Keoken_KeokenMemoryState_Reset
+  commentId: M:Bitprim.Keoken.KeokenMemoryState.Reset
+  fullName: Bitprim.Keoken.KeokenMemoryState.Reset()
+  nameWithType: KeokenMemoryState.Reset()
+- uid: Bitprim.Keoken.KeokenMemoryState.Reset*
+  name: Reset
+  href: bitprim-cs/Bitprim.Keoken.KeokenMemoryState.html#Bitprim_Keoken_KeokenMemoryState_Reset_
+  commentId: Overload:Bitprim.Keoken.KeokenMemoryState.Reset
+  isSpec: "True"
+  fullName: Bitprim.Keoken.KeokenMemoryState.Reset
+  nameWithType: KeokenMemoryState.Reset
 - uid: Bitprim.Keoken.KeokenMemoryState.StateAssetIdExists(UInt32)
   name: StateAssetIdExists(UInt32)
   href: bitprim-cs/Bitprim.Keoken.KeokenMemoryState.html#Bitprim_Keoken_KeokenMemoryState_StateAssetIdExists_UInt32_
@@ -5748,174 +5721,6 @@ references:
   fullName.vb: Bitprim.ManagedReadableList(Of T).NativeInstance
   nameWithType: ManagedReadableList<T>.NativeInstance
   nameWithType.vb: ManagedReadableList(Of T).NativeInstance
-- uid: Bitprim.MempoolTransaction
-  name: MempoolTransaction
-  href: bitprim-cs/Bitprim.MempoolTransaction.html
-  commentId: T:Bitprim.MempoolTransaction
-  fullName: Bitprim.MempoolTransaction
-  nameWithType: MempoolTransaction
-- uid: Bitprim.MempoolTransaction.Address
-  name: Address
-  href: bitprim-cs/Bitprim.MempoolTransaction.html#Bitprim_MempoolTransaction_Address
-  commentId: P:Bitprim.MempoolTransaction.Address
-  fullName: Bitprim.MempoolTransaction.Address
-  nameWithType: MempoolTransaction.Address
-- uid: Bitprim.MempoolTransaction.Address*
-  name: Address
-  href: bitprim-cs/Bitprim.MempoolTransaction.html#Bitprim_MempoolTransaction_Address_
-  commentId: Overload:Bitprim.MempoolTransaction.Address
-  isSpec: "True"
-  fullName: Bitprim.MempoolTransaction.Address
-  nameWithType: MempoolTransaction.Address
-- uid: Bitprim.MempoolTransaction.Hash
-  name: Hash
-  href: bitprim-cs/Bitprim.MempoolTransaction.html#Bitprim_MempoolTransaction_Hash
-  commentId: P:Bitprim.MempoolTransaction.Hash
-  fullName: Bitprim.MempoolTransaction.Hash
-  nameWithType: MempoolTransaction.Hash
-- uid: Bitprim.MempoolTransaction.Hash*
-  name: Hash
-  href: bitprim-cs/Bitprim.MempoolTransaction.html#Bitprim_MempoolTransaction_Hash_
-  commentId: Overload:Bitprim.MempoolTransaction.Hash
-  isSpec: "True"
-  fullName: Bitprim.MempoolTransaction.Hash
-  nameWithType: MempoolTransaction.Hash
-- uid: Bitprim.MempoolTransaction.Index
-  name: Index
-  href: bitprim-cs/Bitprim.MempoolTransaction.html#Bitprim_MempoolTransaction_Index
-  commentId: P:Bitprim.MempoolTransaction.Index
-  fullName: Bitprim.MempoolTransaction.Index
-  nameWithType: MempoolTransaction.Index
-- uid: Bitprim.MempoolTransaction.Index*
-  name: Index
-  href: bitprim-cs/Bitprim.MempoolTransaction.html#Bitprim_MempoolTransaction_Index_
-  commentId: Overload:Bitprim.MempoolTransaction.Index
-  isSpec: "True"
-  fullName: Bitprim.MempoolTransaction.Index
-  nameWithType: MempoolTransaction.Index
-- uid: Bitprim.MempoolTransaction.PreviousOutputHash
-  name: PreviousOutputHash
-  href: bitprim-cs/Bitprim.MempoolTransaction.html#Bitprim_MempoolTransaction_PreviousOutputHash
-  commentId: P:Bitprim.MempoolTransaction.PreviousOutputHash
-  fullName: Bitprim.MempoolTransaction.PreviousOutputHash
-  nameWithType: MempoolTransaction.PreviousOutputHash
-- uid: Bitprim.MempoolTransaction.PreviousOutputHash*
-  name: PreviousOutputHash
-  href: bitprim-cs/Bitprim.MempoolTransaction.html#Bitprim_MempoolTransaction_PreviousOutputHash_
-  commentId: Overload:Bitprim.MempoolTransaction.PreviousOutputHash
-  isSpec: "True"
-  fullName: Bitprim.MempoolTransaction.PreviousOutputHash
-  nameWithType: MempoolTransaction.PreviousOutputHash
-- uid: Bitprim.MempoolTransaction.PreviousOutputIndex
-  name: PreviousOutputIndex
-  href: bitprim-cs/Bitprim.MempoolTransaction.html#Bitprim_MempoolTransaction_PreviousOutputIndex
-  commentId: P:Bitprim.MempoolTransaction.PreviousOutputIndex
-  fullName: Bitprim.MempoolTransaction.PreviousOutputIndex
-  nameWithType: MempoolTransaction.PreviousOutputIndex
-- uid: Bitprim.MempoolTransaction.PreviousOutputIndex*
-  name: PreviousOutputIndex
-  href: bitprim-cs/Bitprim.MempoolTransaction.html#Bitprim_MempoolTransaction_PreviousOutputIndex_
-  commentId: Overload:Bitprim.MempoolTransaction.PreviousOutputIndex
-  isSpec: "True"
-  fullName: Bitprim.MempoolTransaction.PreviousOutputIndex
-  nameWithType: MempoolTransaction.PreviousOutputIndex
-- uid: Bitprim.MempoolTransaction.Satoshis
-  name: Satoshis
-  href: bitprim-cs/Bitprim.MempoolTransaction.html#Bitprim_MempoolTransaction_Satoshis
-  commentId: P:Bitprim.MempoolTransaction.Satoshis
-  fullName: Bitprim.MempoolTransaction.Satoshis
-  nameWithType: MempoolTransaction.Satoshis
-- uid: Bitprim.MempoolTransaction.Satoshis*
-  name: Satoshis
-  href: bitprim-cs/Bitprim.MempoolTransaction.html#Bitprim_MempoolTransaction_Satoshis_
-  commentId: Overload:Bitprim.MempoolTransaction.Satoshis
-  isSpec: "True"
-  fullName: Bitprim.MempoolTransaction.Satoshis
-  nameWithType: MempoolTransaction.Satoshis
-- uid: Bitprim.MempoolTransaction.Timestamp
-  name: Timestamp
-  href: bitprim-cs/Bitprim.MempoolTransaction.html#Bitprim_MempoolTransaction_Timestamp
-  commentId: P:Bitprim.MempoolTransaction.Timestamp
-  fullName: Bitprim.MempoolTransaction.Timestamp
-  nameWithType: MempoolTransaction.Timestamp
-- uid: Bitprim.MempoolTransaction.Timestamp*
-  name: Timestamp
-  href: bitprim-cs/Bitprim.MempoolTransaction.html#Bitprim_MempoolTransaction_Timestamp_
-  commentId: Overload:Bitprim.MempoolTransaction.Timestamp
-  isSpec: "True"
-  fullName: Bitprim.MempoolTransaction.Timestamp
-  nameWithType: MempoolTransaction.Timestamp
-- uid: Bitprim.MempoolTransactionList
-  name: MempoolTransactionList
-  href: bitprim-cs/Bitprim.MempoolTransactionList.html
-  commentId: T:Bitprim.MempoolTransactionList
-  fullName: Bitprim.MempoolTransactionList
-  nameWithType: MempoolTransactionList
-- uid: Bitprim.MempoolTransactionList.AddElement(Bitprim.IMempoolTransaction)
-  name: AddElement(IMempoolTransaction)
-  href: bitprim-cs/Bitprim.MempoolTransactionList.html#Bitprim_MempoolTransactionList_AddElement_Bitprim_IMempoolTransaction_
-  commentId: M:Bitprim.MempoolTransactionList.AddElement(Bitprim.IMempoolTransaction)
-  fullName: Bitprim.MempoolTransactionList.AddElement(Bitprim.IMempoolTransaction)
-  nameWithType: MempoolTransactionList.AddElement(IMempoolTransaction)
-- uid: Bitprim.MempoolTransactionList.AddElement*
-  name: AddElement
-  href: bitprim-cs/Bitprim.MempoolTransactionList.html#Bitprim_MempoolTransactionList_AddElement_
-  commentId: Overload:Bitprim.MempoolTransactionList.AddElement
-  isSpec: "True"
-  fullName: Bitprim.MempoolTransactionList.AddElement
-  nameWithType: MempoolTransactionList.AddElement
-- uid: Bitprim.MempoolTransactionList.CreateNativeList
-  name: CreateNativeList()
-  href: bitprim-cs/Bitprim.MempoolTransactionList.html#Bitprim_MempoolTransactionList_CreateNativeList
-  commentId: M:Bitprim.MempoolTransactionList.CreateNativeList
-  fullName: Bitprim.MempoolTransactionList.CreateNativeList()
-  nameWithType: MempoolTransactionList.CreateNativeList()
-- uid: Bitprim.MempoolTransactionList.CreateNativeList*
-  name: CreateNativeList
-  href: bitprim-cs/Bitprim.MempoolTransactionList.html#Bitprim_MempoolTransactionList_CreateNativeList_
-  commentId: Overload:Bitprim.MempoolTransactionList.CreateNativeList
-  isSpec: "True"
-  fullName: Bitprim.MempoolTransactionList.CreateNativeList
-  nameWithType: MempoolTransactionList.CreateNativeList
-- uid: Bitprim.MempoolTransactionList.DestroyNativeList
-  name: DestroyNativeList()
-  href: bitprim-cs/Bitprim.MempoolTransactionList.html#Bitprim_MempoolTransactionList_DestroyNativeList
-  commentId: M:Bitprim.MempoolTransactionList.DestroyNativeList
-  fullName: Bitprim.MempoolTransactionList.DestroyNativeList()
-  nameWithType: MempoolTransactionList.DestroyNativeList()
-- uid: Bitprim.MempoolTransactionList.DestroyNativeList*
-  name: DestroyNativeList
-  href: bitprim-cs/Bitprim.MempoolTransactionList.html#Bitprim_MempoolTransactionList_DestroyNativeList_
-  commentId: Overload:Bitprim.MempoolTransactionList.DestroyNativeList
-  isSpec: "True"
-  fullName: Bitprim.MempoolTransactionList.DestroyNativeList
-  nameWithType: MempoolTransactionList.DestroyNativeList
-- uid: Bitprim.MempoolTransactionList.GetCount
-  name: GetCount()
-  href: bitprim-cs/Bitprim.MempoolTransactionList.html#Bitprim_MempoolTransactionList_GetCount
-  commentId: M:Bitprim.MempoolTransactionList.GetCount
-  fullName: Bitprim.MempoolTransactionList.GetCount()
-  nameWithType: MempoolTransactionList.GetCount()
-- uid: Bitprim.MempoolTransactionList.GetCount*
-  name: GetCount
-  href: bitprim-cs/Bitprim.MempoolTransactionList.html#Bitprim_MempoolTransactionList_GetCount_
-  commentId: Overload:Bitprim.MempoolTransactionList.GetCount
-  isSpec: "True"
-  fullName: Bitprim.MempoolTransactionList.GetCount
-  nameWithType: MempoolTransactionList.GetCount
-- uid: Bitprim.MempoolTransactionList.GetNthNativeElement(UInt64)
-  name: GetNthNativeElement(UInt64)
-  href: bitprim-cs/Bitprim.MempoolTransactionList.html#Bitprim_MempoolTransactionList_GetNthNativeElement_UInt64_
-  commentId: M:Bitprim.MempoolTransactionList.GetNthNativeElement(UInt64)
-  fullName: Bitprim.MempoolTransactionList.GetNthNativeElement(UInt64)
-  nameWithType: MempoolTransactionList.GetNthNativeElement(UInt64)
-- uid: Bitprim.MempoolTransactionList.GetNthNativeElement*
-  name: GetNthNativeElement
-  href: bitprim-cs/Bitprim.MempoolTransactionList.html#Bitprim_MempoolTransactionList_GetNthNativeElement_
-  commentId: Overload:Bitprim.MempoolTransactionList.GetNthNativeElement
-  isSpec: "True"
-  fullName: Bitprim.MempoolTransactionList.GetNthNativeElement
-  nameWithType: MempoolTransactionList.GetNthNativeElement
 - uid: Bitprim.MerkleBlock
   name: MerkleBlock
   href: bitprim-cs/Bitprim.MerkleBlock.html
@@ -6117,6 +5922,18 @@ references:
   commentId: T:Bitprim.Native.Keoken.KeokenManagerNativeDelegates.KeokenStateDelegatedGetBalanceHandler
   fullName: Bitprim.Native.Keoken.KeokenManagerNativeDelegates.KeokenStateDelegatedGetBalanceHandler
   nameWithType: KeokenManagerNativeDelegates.KeokenStateDelegatedGetBalanceHandler
+- uid: Bitprim.Native.Keoken.KeokenManagerNativeDelegates.KeokenStateDelegatedRemoveUpToHandler
+  name: KeokenManagerNativeDelegates.KeokenStateDelegatedRemoveUpToHandler
+  href: bitprim-cs/Bitprim.Native.Keoken.KeokenManagerNativeDelegates.KeokenStateDelegatedRemoveUpToHandler.html
+  commentId: T:Bitprim.Native.Keoken.KeokenManagerNativeDelegates.KeokenStateDelegatedRemoveUpToHandler
+  fullName: Bitprim.Native.Keoken.KeokenManagerNativeDelegates.KeokenStateDelegatedRemoveUpToHandler
+  nameWithType: KeokenManagerNativeDelegates.KeokenStateDelegatedRemoveUpToHandler
+- uid: Bitprim.Native.Keoken.KeokenManagerNativeDelegates.KeokenStateDelegatedResetHandler
+  name: KeokenManagerNativeDelegates.KeokenStateDelegatedResetHandler
+  href: bitprim-cs/Bitprim.Native.Keoken.KeokenManagerNativeDelegates.KeokenStateDelegatedResetHandler.html
+  commentId: T:Bitprim.Native.Keoken.KeokenManagerNativeDelegates.KeokenStateDelegatedResetHandler
+  fullName: Bitprim.Native.Keoken.KeokenManagerNativeDelegates.KeokenStateDelegatedResetHandler
+  nameWithType: KeokenManagerNativeDelegates.KeokenStateDelegatedResetHandler
 - uid: Bitprim.Native.Keoken.KeokenManagerNativeDelegates.KeokenStateDelegatedSetInitialAssetIdHandler
   name: KeokenManagerNativeDelegates.KeokenStateDelegatedSetInitialAssetIdHandler
   href: bitprim-cs/Bitprim.Native.Keoken.KeokenManagerNativeDelegates.KeokenStateDelegatedSetInitialAssetIdHandler.html
@@ -6869,22 +6686,22 @@ references:
   isSpec: "True"
   fullName: Bitprim.PaymentAddress.ToCashAddr
   nameWithType: PaymentAddress.ToCashAddr
-- uid: Bitprim.PaymentAddress.TryParsePaymentAddress(System.String,Bitprim.PaymentAddress@)
-  name: TryParsePaymentAddress(String, out PaymentAddress)
-  href: bitprim-cs/Bitprim.PaymentAddress.html#Bitprim_PaymentAddress_TryParsePaymentAddress_System_String_Bitprim_PaymentAddress__
-  commentId: M:Bitprim.PaymentAddress.TryParsePaymentAddress(System.String,Bitprim.PaymentAddress@)
-  name.vb: TryParsePaymentAddress(String, ByRef PaymentAddress)
-  fullName: Bitprim.PaymentAddress.TryParsePaymentAddress(System.String, out Bitprim.PaymentAddress)
-  fullName.vb: Bitprim.PaymentAddress.TryParsePaymentAddress(System.String, ByRef Bitprim.PaymentAddress)
-  nameWithType: PaymentAddress.TryParsePaymentAddress(String, out PaymentAddress)
-  nameWithType.vb: PaymentAddress.TryParsePaymentAddress(String, ByRef PaymentAddress)
-- uid: Bitprim.PaymentAddress.TryParsePaymentAddress*
-  name: TryParsePaymentAddress
-  href: bitprim-cs/Bitprim.PaymentAddress.html#Bitprim_PaymentAddress_TryParsePaymentAddress_
-  commentId: Overload:Bitprim.PaymentAddress.TryParsePaymentAddress
+- uid: Bitprim.PaymentAddress.TryParse(System.String,Bitprim.PaymentAddress@)
+  name: TryParse(String, out PaymentAddress)
+  href: bitprim-cs/Bitprim.PaymentAddress.html#Bitprim_PaymentAddress_TryParse_System_String_Bitprim_PaymentAddress__
+  commentId: M:Bitprim.PaymentAddress.TryParse(System.String,Bitprim.PaymentAddress@)
+  name.vb: TryParse(String, ByRef PaymentAddress)
+  fullName: Bitprim.PaymentAddress.TryParse(System.String, out Bitprim.PaymentAddress)
+  fullName.vb: Bitprim.PaymentAddress.TryParse(System.String, ByRef Bitprim.PaymentAddress)
+  nameWithType: PaymentAddress.TryParse(String, out PaymentAddress)
+  nameWithType.vb: PaymentAddress.TryParse(String, ByRef PaymentAddress)
+- uid: Bitprim.PaymentAddress.TryParse*
+  name: TryParse
+  href: bitprim-cs/Bitprim.PaymentAddress.html#Bitprim_PaymentAddress_TryParse_
+  commentId: Overload:Bitprim.PaymentAddress.TryParse
   isSpec: "True"
-  fullName: Bitprim.PaymentAddress.TryParsePaymentAddress
-  nameWithType: PaymentAddress.TryParsePaymentAddress
+  fullName: Bitprim.PaymentAddress.TryParse
+  nameWithType: PaymentAddress.TryParse
 - uid: Bitprim.PaymentAddress.Version
   name: Version
   href: bitprim-cs/Bitprim.PaymentAddress.html#Bitprim_PaymentAddress_Version
@@ -6898,6 +6715,90 @@ references:
   isSpec: "True"
   fullName: Bitprim.PaymentAddress.Version
   nameWithType: PaymentAddress.Version
+- uid: Bitprim.PaymentAddressList
+  name: PaymentAddressList
+  href: bitprim-cs/Bitprim.PaymentAddressList.html
+  commentId: T:Bitprim.PaymentAddressList
+  fullName: Bitprim.PaymentAddressList
+  nameWithType: PaymentAddressList
+- uid: Bitprim.PaymentAddressList.#ctor
+  name: PaymentAddressList()
+  href: bitprim-cs/Bitprim.PaymentAddressList.html#Bitprim_PaymentAddressList__ctor
+  commentId: M:Bitprim.PaymentAddressList.#ctor
+  fullName: Bitprim.PaymentAddressList.PaymentAddressList()
+  nameWithType: PaymentAddressList.PaymentAddressList()
+- uid: Bitprim.PaymentAddressList.#ctor*
+  name: PaymentAddressList
+  href: bitprim-cs/Bitprim.PaymentAddressList.html#Bitprim_PaymentAddressList__ctor_
+  commentId: Overload:Bitprim.PaymentAddressList.#ctor
+  isSpec: "True"
+  fullName: Bitprim.PaymentAddressList.PaymentAddressList
+  nameWithType: PaymentAddressList.PaymentAddressList
+- uid: Bitprim.PaymentAddressList.AddElement(Bitprim.PaymentAddress)
+  name: AddElement(PaymentAddress)
+  href: bitprim-cs/Bitprim.PaymentAddressList.html#Bitprim_PaymentAddressList_AddElement_Bitprim_PaymentAddress_
+  commentId: M:Bitprim.PaymentAddressList.AddElement(Bitprim.PaymentAddress)
+  fullName: Bitprim.PaymentAddressList.AddElement(Bitprim.PaymentAddress)
+  nameWithType: PaymentAddressList.AddElement(PaymentAddress)
+- uid: Bitprim.PaymentAddressList.AddElement*
+  name: AddElement
+  href: bitprim-cs/Bitprim.PaymentAddressList.html#Bitprim_PaymentAddressList_AddElement_
+  commentId: Overload:Bitprim.PaymentAddressList.AddElement
+  isSpec: "True"
+  fullName: Bitprim.PaymentAddressList.AddElement
+  nameWithType: PaymentAddressList.AddElement
+- uid: Bitprim.PaymentAddressList.CreateNativeList
+  name: CreateNativeList()
+  href: bitprim-cs/Bitprim.PaymentAddressList.html#Bitprim_PaymentAddressList_CreateNativeList
+  commentId: M:Bitprim.PaymentAddressList.CreateNativeList
+  fullName: Bitprim.PaymentAddressList.CreateNativeList()
+  nameWithType: PaymentAddressList.CreateNativeList()
+- uid: Bitprim.PaymentAddressList.CreateNativeList*
+  name: CreateNativeList
+  href: bitprim-cs/Bitprim.PaymentAddressList.html#Bitprim_PaymentAddressList_CreateNativeList_
+  commentId: Overload:Bitprim.PaymentAddressList.CreateNativeList
+  isSpec: "True"
+  fullName: Bitprim.PaymentAddressList.CreateNativeList
+  nameWithType: PaymentAddressList.CreateNativeList
+- uid: Bitprim.PaymentAddressList.DestroyNativeList
+  name: DestroyNativeList()
+  href: bitprim-cs/Bitprim.PaymentAddressList.html#Bitprim_PaymentAddressList_DestroyNativeList
+  commentId: M:Bitprim.PaymentAddressList.DestroyNativeList
+  fullName: Bitprim.PaymentAddressList.DestroyNativeList()
+  nameWithType: PaymentAddressList.DestroyNativeList()
+- uid: Bitprim.PaymentAddressList.DestroyNativeList*
+  name: DestroyNativeList
+  href: bitprim-cs/Bitprim.PaymentAddressList.html#Bitprim_PaymentAddressList_DestroyNativeList_
+  commentId: Overload:Bitprim.PaymentAddressList.DestroyNativeList
+  isSpec: "True"
+  fullName: Bitprim.PaymentAddressList.DestroyNativeList
+  nameWithType: PaymentAddressList.DestroyNativeList
+- uid: Bitprim.PaymentAddressList.GetCount
+  name: GetCount()
+  href: bitprim-cs/Bitprim.PaymentAddressList.html#Bitprim_PaymentAddressList_GetCount
+  commentId: M:Bitprim.PaymentAddressList.GetCount
+  fullName: Bitprim.PaymentAddressList.GetCount()
+  nameWithType: PaymentAddressList.GetCount()
+- uid: Bitprim.PaymentAddressList.GetCount*
+  name: GetCount
+  href: bitprim-cs/Bitprim.PaymentAddressList.html#Bitprim_PaymentAddressList_GetCount_
+  commentId: Overload:Bitprim.PaymentAddressList.GetCount
+  isSpec: "True"
+  fullName: Bitprim.PaymentAddressList.GetCount
+  nameWithType: PaymentAddressList.GetCount
+- uid: Bitprim.PaymentAddressList.GetNthNativeElement(UInt64)
+  name: GetNthNativeElement(UInt64)
+  href: bitprim-cs/Bitprim.PaymentAddressList.html#Bitprim_PaymentAddressList_GetNthNativeElement_UInt64_
+  commentId: M:Bitprim.PaymentAddressList.GetNthNativeElement(UInt64)
+  fullName: Bitprim.PaymentAddressList.GetNthNativeElement(UInt64)
+  nameWithType: PaymentAddressList.GetNthNativeElement(UInt64)
+- uid: Bitprim.PaymentAddressList.GetNthNativeElement*
+  name: GetNthNativeElement
+  href: bitprim-cs/Bitprim.PaymentAddressList.html#Bitprim_PaymentAddressList_GetNthNativeElement_
+  commentId: Overload:Bitprim.PaymentAddressList.GetNthNativeElement
+  isSpec: "True"
+  fullName: Bitprim.PaymentAddressList.GetNthNativeElement
+  nameWithType: PaymentAddressList.GetNthNativeElement
 - uid: Bitprim.Point
   name: Point
   href: bitprim-cs/Bitprim.Point.html

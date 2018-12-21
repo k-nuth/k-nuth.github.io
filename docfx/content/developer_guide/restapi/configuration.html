@@ -8,7 +8,7 @@
     <title>Configuration Options | Bitprim Documentation Site </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Configuration Options | Bitprim Documentation Site ">
-    <meta name="generator" content="docfx 2.40.0.0">
+    <meta name="generator" content="docfx 2.40.6.0">
     
     <link rel="shortcut icon" href="../../../favicon.ico">
     <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
@@ -85,6 +85,7 @@
   &quot;ApiPrefix&quot; : &quot;api&quot;,
   &quot;AcceptStaleRequests&quot; : true,
   &quot;AllowedOrigins&quot;: &quot;http://localhost:1549&quot;,
+  &quot;CacheEnabled&quot; : true,
   &quot;Connections&quot;: 8,
   &quot;DateInputFormat&quot;: &quot;yyyy-MM-dd&quot;,
   &quot;EstimateFeeDefault&quot;: &quot;0.00001000&quot;,
@@ -165,6 +166,8 @@
 <em>Default value:true</em></p>
 <p><strong>AllowedOrigins</strong>: Configure the allowed CORS origins. For multiple origins, separate them with semicolon (;).
 <em>Default value:</em>*</p>
+<p><strong>CacheEnabled</strong>: If and only if set to true, insight will use its internal cache to speed up some requests.
+<em>Default value:true</em></p>
 <p><strong>Connections</strong>: Configures the value returned in the <em>connection</em> element of the /status request.
 <em>Default value:8</em></p>
 <p><strong>DateInputFormat</strong>: Defines the date format used by /blocks and other requests that require dates.

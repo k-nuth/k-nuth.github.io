@@ -8,7 +8,7 @@
     <title>Installation Requirements | Bitprim Documentation Site </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Installation Requirements | Bitprim Documentation Site ">
-    <meta name="generator" content="docfx 2.40.0.0">
+    <meta name="generator" content="docfx 2.40.6.0">
     
     <link rel="shortcut icon" href="../../favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -95,9 +95,9 @@
 <li>Install the appropriate executable</li>
 </ol>
 <pre><code># For Bitcoin Cash
-conan install bitprim-node-exe/0.X@bitprim/stable -o currency=BCH 
+conan install bitprim-node-exe/0.X@bitprim/stable -o currency=BCH
 # ... or (BCH is the default crypto)
-conan install bitprim-node-exe/0.X@bitprim/stable 
+conan install bitprim-node-exe/0.X@bitprim/stable
 
 # For Bitcoin Legacy
 conan install bitprim-node-exe/0.X@bitprim/stable -o currency=BTC
@@ -134,14 +134,14 @@ conan install bitprim-node-exe/0.X@bitprim/stable -o currency=LTC
 <p>Bitprim is a high performance node, so we have some options and pre-built packages tuned for several platforms.
 Specifically, you can choose your computer <em>microarchitecture</em> to download a pre-build executable compiled to take advantage of the instructions available in your processor. For example:</p>
 <pre><code># For Haswell microarchitecture and Bitcoin Cash currency
-conan install bitprim-node-exe/0.X@bitprim/stable -o currency=BCH -o microarchitecture=haswell 
+conan install bitprim-node-exe/0.X@bitprim/stable -o currency=BCH -o microarchitecture=haswell
 </code></pre>
 <p>So, you can manually choose the appropriate microarchitecture, some examples are: <em>x86_64</em>, <em>haswell</em>, <em>ivybridge</em>, <em>sandybridge</em>, <em>bulldozer</em>, ...<br>
 By default, if you do not specify any, the building system will select a base microarchitecture corresponding to your <em>Instruction Set Architecture</em> (ISA). For example, for <em>Intel 80x86</em>, the x86_64 microarchitecture will be selected.</p>
 <h3 id="automatic-microarchitecture-selection">Automatic Microarchitecture selection</h3>
 <p>Our build system has the ability to automatically detect the microarchitecture of your processor. To do this, first, you have to install our <em>pip</em> package called <a href="https://pypi.python.org/pypi/cpuid">cpuid</a>. Our build system detects if this package is installed and in such case, makes use of it to detect the best possible executable for your processor.</p>
 <pre><code>pip install cpuid
-conan install bitprim-node-exe/0.X@bitprim/stable 
+conan install bitprim-node-exe/0.X@bitprim/stable
 </code></pre>
 </article>
           </div>
