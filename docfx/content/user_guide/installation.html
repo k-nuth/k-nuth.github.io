@@ -105,6 +105,41 @@ conan install bitprim-node-exe/0.X@bitprim/stable -o currency=BTC
 # For Litecoin
 conan install bitprim-node-exe/0.X@bitprim/stable -o currency=LTC
 </code></pre>
+<h3 id="database-selection">Database selection</h3>
+<p>Bitprim includes three databases modes, adapted to different uses cases.</p>
+<ul>
+<li>pruned</li>
+<li>default</li>
+<li>full</li>
+</ul>
+<p>The database mode selection is done via the <em>db</em> setting in the conan command line.</p>
+<p><code>with_rpc=True</code> could be used with the three DB modes, but the queries available depend on the selected mode.</p>
+<h4 id="pruned">Pruned</h4>
+<p>In this mode, the node only has the block headers and the UTXO. This mode is optimized for miners and nodes that only require validating new blocks and following the chain.</p>
+<p>Eg.</p>
+<pre><code>conan install bitprim-node-exe/0.X@bitprim/stable -o db=pruned
+</code></pre>
+<h4 id="default">Default</h4>
+<p>This is the default mode if you don't specify the <em>db</em> parameter in conan.
+In this mode, the node stores the full blocks and the UTXO. This is the most common case for users who wants to setup a node to serve as a peer to the network.</p>
+<p>Eg.</p>
+<pre><code>conan install bitprim-node-exe/0.X@bitprim/stable -o db=default
+
+or directly
+
+conan install bitprim-node-exe/0.X@bitprim/stable
+</code></pre>
+<h4 id="full">Full</h4>
+<p>This is the most complete mode. In this mode, the node stores the full blocks, the UTXO and maintains various indexes to speed up some queries.</p>
+<ul>
+<li>Transactions by hash</li>
+<li>Full history by address</li>
+<li>Spent outputs</li>
+</ul>
+<p>This is the best mode for an Insight API node or if you want to use RPC to query the node.</p>
+<p>Eg.</p>
+<pre><code>conan install bitprim-node-exe/0.X@bitprim/stable -o db=full
+</code></pre>
 <h2 id="building-from-source-requirements">Building from source Requirements</h2>
 <p>In case there are no pre-built binaries for your platform, it is necessary to build from source code. In such a scenario, the following requirements must be added to the previous ones:</p>
 <ul>
