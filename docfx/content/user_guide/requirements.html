@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Introduction | Bitprim Documentation Site </title>
+    <title>Requirements | Bitprim Documentation Site </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Introduction | Bitprim Documentation Site ">
+    <meta name="title" content="Requirements | Bitprim Documentation Site ">
     <meta name="generator" content="docfx 2.40.6.0">
     
     <link rel="shortcut icon" href="../../favicon.ico">
@@ -77,18 +77,58 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="introduction">Introduction</h1>
+<h1 id="requirements">Requirements</h1>
 
-<h2 id="bitprim-node">Bitprim node:</h2>
-<p>Bitprim is a multi-coin node that supports Bitcoin Cash (BCH), Bitcoin Core (BTC) and Litecoin (LTC).  In order to download each chain the node needs to be compiled with different flags.</p>
-<p>Bitprim also has an interface written in C (<a href="https://github.com/bitprim/bitprim-node-cint">bitprim-node-cint</a>) that allows the user to run the Bitprim node in any language if the wrapper is created. Actually the high level interfaces, which are complete, are the one written in C# (<a href="https://github.com/bitprim/bitprim-cs">bitprim-cs</a>) and another written in Rust (<a href="https://github.com/bitex-la/bitprim-rust">bitprim-rust</a>).</p>
-<p>The C# API was created by <a href="https://bitprim.org/">Bitprim</a> and its Insight API (<a href="https://github.com/bitprim/bitprim-insight">bitprim-insight</a>) is running on top of this interface.</p>
-<p>The Rust API was created by <a href="https://bitex.la/">Bitex</a>, a Latin American Exchange.</p>
-<p>There are also interfaces written in GO, Python, Node and Eiffel but those interfaces are very basic and need some work to fully support all the functions provided by the C interface.</p>
-<h2 id="simple-guide">Simple guide:</h2>
-<p>This guide is aimed at the end user who wants to run its own Bitprim node; it will be centered on the Bitcoin Cash network, but if the installations flags and configurations files are changed it will work with BTC or LTC.</p>
-<p>The guide will go over the requirements (hardware and software), the different node options (Node with RPC support and Insight API) and some examples on how to use each type of node.</p>
-<p>Bitprim can be run in Windows, MacOS and Linux, but this guide will be centered on the Installation and usage of the nodes in a Debian distribution.</p>
+<p><em>Hardware and software requirements.</em></p>
+<h2 id="hardware-requirements">Hardware Requirements:</h2>
+<h3 id="general">General:</h3>
+<p>Bitprim only runs in <strong>64-bit machines</strong>.</p>
+<h3 id="non-full-nodes">Non full nodes:</h3>
+<p>When running the nodes in the <strong>default or pruned mode</strong>, the node doesn't require a lot of resources. It can be run on any PC/VM with at least <strong>4Gb of RAM</strong>. The blockchain size for <strong>mainnet</strong> is around <strong>150Gb</strong> for the default mode and for the pruned mode it's around <strong>20Gb</strong>.</p>
+<h3 id="full-nodes">Full nodes:</h3>
+<p>The Bitprim database is a Memory Mapped Database so it will try to allocate the database on RAM as much as it can. When running the nodes with using the <strong>Full mode</strong> or using the <strong>Insight-API</strong> the node will create all the extra databases to store the processed information so at least <strong>64Gb of RAM</strong> is recommended and it will require <strong>644Gb</strong> of disk space.</p>
+<h2 id="software-requirements">Software Requirements:</h2>
+<p>This guide is only for Debian systems but the instructions can be adapted for any OS. The installation and usage steps were tested using an Ubuntu 18.10 docker image.</p>
+<h3 id="conan">Conan:</h3>
+<p>Bitprim uses <a href="https://conan.io/">Conan.io</a> for package management. Conan will download the binary files for your architecture if they exist in the <a href="https://bintray.com/">Bintray</a> repository. If the binary files for your configuration are not stored in the Bintray repository, Conan will download the source files and compile the binary locally.</p>
+<ul>
+<li>Install Conan:
+<ul>
+<li>The recommended way to install Conan is using python pip.</li>
+</ul>
+</li>
+</ul>
+<pre><code>apt-get update
+apt-get install -y python-pip
+pip install conan
+</code></pre>
+<p><strong>NOTE:</strong> <em>After the pip install Conan some systems can not find the Conan binary, in some Debian versions the path is refreshed after a console restart or system reboot. In order to avoid restarting the system, the Conan path can be added to the terminal settings, for example editing the ~/.bashrc file. More information <a href="https://docs.conan.io/en/latest/installation.html">here</a>.</em></p>
+<ul>
+<li>Add Bitprim's Conan remote</li>
+</ul>
+<pre><code>conan remote add bitprim https://api.bintray.com/conan/bitprim/bitprim
+</code></pre>
+<h3 id="build-tools">Build tools:</h3>
+<p>When Conan needs to compile some code in your PC/VM these tools will be needed.</p>
+<pre><code>apt-get install -y wget git curl libcurl4 cmake build-essential gcc g++
+</code></pre>
+<h2 id="insight-api-also-requires">Insight-API also requires:</h2>
+<p>Insight-API is written in C# so .NET core 2 is needed. Official instructions by Microsoft are <a href="https://dotnet.microsoft.com/download/dotnet-core/2.0">here</a>.</p>
+<ul>
+<li>Register Microsoft key and feed:</li>
+</ul>
+<pre><code>wget -q https://packages.microsoft.com/config/ubuntu/18.04/packages-microsoft-prod.deb
+dpkg -i packages-microsoft-prod.deb
+</code></pre>
+<ul>
+<li>Install the SDK:</li>
+</ul>
+<pre><code>add-apt-repository universe
+apt-get install apt-transport-https
+apt-get update
+apt-get install dotnet-sdk-2.1.202
+</code></pre>
+<p><strong>NOTE:</strong> <em>The add-apt-repository call may fail depending on your system. But if the dotnet-skd install ends with no problems it was because the add-apt-repository call was not needed.</em></p>
 </article>
           </div>
           
@@ -97,7 +137,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/bitprim/bitprim-docs/blob/master/content/user_guide/introduction.md/#L1" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/bitprim/bitprim-docs/blob/master/content/user_guide/requirements.md/#L1" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>

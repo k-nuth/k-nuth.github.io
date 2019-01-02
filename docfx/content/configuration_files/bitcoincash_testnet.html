@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Introduction | Bitprim Documentation Site </title>
+    <title>Bitcoin Cash Testnet | Bitprim Documentation Site </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Introduction | Bitprim Documentation Site ">
+    <meta name="title" content="Bitcoin Cash Testnet | Bitprim Documentation Site ">
     <meta name="generator" content="docfx 2.40.6.0">
     
     <link rel="shortcut icon" href="../../favicon.ico">
@@ -77,18 +77,78 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="introduction">Introduction</h1>
+<h1 id="bitcoin-cash-testnet">Bitcoin Cash Testnet</h1>
 
-<h2 id="bitprim-node">Bitprim node:</h2>
-<p>Bitprim is a multi-coin node that supports Bitcoin Cash (BCH), Bitcoin Core (BTC) and Litecoin (LTC).  In order to download each chain the node needs to be compiled with different flags.</p>
-<p>Bitprim also has an interface written in C (<a href="https://github.com/bitprim/bitprim-node-cint">bitprim-node-cint</a>) that allows the user to run the Bitprim node in any language if the wrapper is created. Actually the high level interfaces, which are complete, are the one written in C# (<a href="https://github.com/bitprim/bitprim-cs">bitprim-cs</a>) and another written in Rust (<a href="https://github.com/bitex-la/bitprim-rust">bitprim-rust</a>).</p>
-<p>The C# API was created by <a href="https://bitprim.org/">Bitprim</a> and its Insight API (<a href="https://github.com/bitprim/bitprim-insight">bitprim-insight</a>) is running on top of this interface.</p>
-<p>The Rust API was created by <a href="https://bitex.la/">Bitex</a>, a Latin American Exchange.</p>
-<p>There are also interfaces written in GO, Python, Node and Eiffel but those interfaces are very basic and need some work to fully support all the functions provided by the C interface.</p>
-<h2 id="simple-guide">Simple guide:</h2>
-<p>This guide is aimed at the end user who wants to run its own Bitprim node; it will be centered on the Bitcoin Cash network, but if the installations flags and configurations files are changed it will work with BTC or LTC.</p>
-<p>The guide will go over the requirements (hardware and software), the different node options (Node with RPC support and Insight API) and some examples on how to use each type of node.</p>
-<p>Bitprim can be run in Windows, MacOS and Linux, but this guide will be centered on the Installation and usage of the nodes in a Debian distribution.</p>
+<p><em>Bitcoin Cash Testnet configuration file.</em></p>
+<h2 id="configuration-file-for-tbch">Configuration file for TBCH</h2>
+<pre><code>[log]
+archive_directory = log-bch-testnet/archive
+debug_file = log-bch-testnet/debug.log
+error_file = log-bch-testnet/error.log
+rotation_size = 100000000
+minimum_free_space = 0
+verbose = true
+
+[network]
+protocol_maximum = 70013
+protocol_minimum = 31402
+identifier = 4109624820
+outbound_connections = 2
+inbound_connections = 10
+inbound_port = 18333
+channel_expiration_minutes = 1440
+hosts_file = hosts-bch-testnet.cache
+self = 0.0.0.0:0
+seed = testnet-seed.bitcoinabc.org:18333
+seed = testnet-seed-abc.bitcoinforks.org:18333
+seed = testnet-seed.bitcoinunlimited.info:18333
+seed = testnet-seed.bitprim.org:18333
+seed = testnet-seed.deadalnix.me:18333
+seed = testnet-seeder.criptolayer.net:18333
+
+[database]
+directory = database-bch-testnet
+safe_mode = true
+
+[blockchain]
+# Testnet-bch
+checkpoint = 000000000933ea01ad0ee984209779baaec3ced90fa3f408719526f8d77f4943:0
+checkpoint = 00000000009e2958c15ff9290d571bf9459e93b19765c6801ddeccadbb160a1e:100000
+checkpoint = 0000000000287bffd321963ef05feab753ebe274e1d78b2fd4e2bfe9ad3aa6f2:200000
+checkpoint = 000000000000226f7618566e70a2b5e020e29579b46743f05348427239bf41a1:300000
+checkpoint = 000000000598cbbb1e79057b79eef828c495d4fc31050e6b179c57d07d00367c:400000
+checkpoint = 000000000001a7c0aaa2630fbb2c0e476aafffc60f82177375b2aaa22209f606:500000
+checkpoint = 000000000000624f06c69d3a9fe8d25e0a9030569128d63ad1b704bbb3059a16:600000
+checkpoint = 000000000000406178b12a4dea3b27e13b3c4fe4510994fd667d7c1e6a3f4dc1:700000
+checkpoint = 0000000000209b091d6519187be7c2ee205293f25f9f503f90027e25abf8b503:800000
+checkpoint = 0000000000356f8d8924556e765b7a94aaebc6b5c8685dcfa2b1ee8b41acd89b:900000
+checkpoint = 0000000000478e259a3eda2fafbeeb0106626f946347955e99278fe6cc848414:1000000
+checkpoint = 00000000001c2fb9880485b1f3d7b0ffa9fabdfd0cf16e29b122bb6275c73db0:1100000
+checkpoint = 00000000cea4a14e323c479a611533ceb2fd71222c7d3f5d68c5e330383cd6b8:1130000
+checkpoint = 00000000f17c850672894b9a75b63a1e72830bbd5f4c8889b5c1a80e7faef138:1155875
+checkpoint = 00000000000e38fef93ed9582a7df43815d5c2ba9fd37ef70c9a0ea4a285b8f5:1155876
+checkpoint = 000000004a07aec5b53ff553c08a5279203f0368a456add3a0db0b3ee33a4b34:1160000
+checkpoint = 00000000d91bdbb5394bcf457c0f0b7a7e43eb978e2d881b6c2a4c2756abc558:1200000
+
+
+[fork]
+easy_blocks = true
+retarget = true
+bip16 = true
+bip30 = true
+bip34 = true
+bip66 = true
+bip65 = true
+bip90 = true
+
+[node]
+relay_transactions = true
+compact_blocks_high_bandwidth = true
+# RPC-CONFG
+# zmq_publisher_port = 5556
+# rpc_port = 18332
+# rpc_allow_ip = 127.0.0.1
+</code></pre>
 </article>
           </div>
           
@@ -97,7 +157,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/bitprim/bitprim-docs/blob/master/content/user_guide/introduction.md/#L1" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/bitprim/bitprim-docs/blob/master/content/configuration_files/bitcoincash_testnet.md/#L1" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>

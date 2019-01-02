@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Introduction | Bitprim Documentation Site </title>
+    <title>Litecoin Testnet | Bitprim Documentation Site </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Introduction | Bitprim Documentation Site ">
+    <meta name="title" content="Litecoin Testnet | Bitprim Documentation Site ">
     <meta name="generator" content="docfx 2.40.6.0">
     
     <link rel="shortcut icon" href="../../favicon.ico">
@@ -77,18 +77,73 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="introduction">Introduction</h1>
+<h1 id="litecoin-testnet">Litecoin Testnet</h1>
 
-<h2 id="bitprim-node">Bitprim node:</h2>
-<p>Bitprim is a multi-coin node that supports Bitcoin Cash (BCH), Bitcoin Core (BTC) and Litecoin (LTC).  In order to download each chain the node needs to be compiled with different flags.</p>
-<p>Bitprim also has an interface written in C (<a href="https://github.com/bitprim/bitprim-node-cint">bitprim-node-cint</a>) that allows the user to run the Bitprim node in any language if the wrapper is created. Actually the high level interfaces, which are complete, are the one written in C# (<a href="https://github.com/bitprim/bitprim-cs">bitprim-cs</a>) and another written in Rust (<a href="https://github.com/bitex-la/bitprim-rust">bitprim-rust</a>).</p>
-<p>The C# API was created by <a href="https://bitprim.org/">Bitprim</a> and its Insight API (<a href="https://github.com/bitprim/bitprim-insight">bitprim-insight</a>) is running on top of this interface.</p>
-<p>The Rust API was created by <a href="https://bitex.la/">Bitex</a>, a Latin American Exchange.</p>
-<p>There are also interfaces written in GO, Python, Node and Eiffel but those interfaces are very basic and need some work to fully support all the functions provided by the C interface.</p>
-<h2 id="simple-guide">Simple guide:</h2>
-<p>This guide is aimed at the end user who wants to run its own Bitprim node; it will be centered on the Bitcoin Cash network, but if the installations flags and configurations files are changed it will work with BTC or LTC.</p>
-<p>The guide will go over the requirements (hardware and software), the different node options (Node with RPC support and Insight API) and some examples on how to use each type of node.</p>
-<p>Bitprim can be run in Windows, MacOS and Linux, but this guide will be centered on the Installation and usage of the nodes in a Debian distribution.</p>
+<p><em>Litecoin Testnet configuration file.</em></p>
+<h2 id="configuration-file-for-tltc">Configuration file for TLTC</h2>
+<pre><code>[log]
+archive_directory = log-bch-mainnet/archive
+debug_file = log-bch-mainnet/debug.log
+error_file = log-bch-mainnet/error.log
+rotation_size = 10000000
+minimum_free_space = 0
+verbose = true
+
+[network]
+protocol_maximum = 70013
+protocol_minimum = 31402
+services = 9
+identifier = 3686187259
+inbound_port = 9333
+outbound_connections = 2
+inbound_connections = 10
+self = 0.0.0.0:0
+seed = dnsseed.litecointools.com:9333
+seed = seed-a.litecoin.loshan.co.uk:9333
+seed = dnsseed.litecoinpool.org:9333
+
+[database]
+directory = database-ltc-mainnet
+safe_mode = true
+
+[blockchain]
+# Mainnet-ltc
+checkpoint = 12a765e31ffd4059bada1e25190f6e98c99d9714d334efa41a195a7e7e04bfe2:0
+checkpoint = e11049dfa5858be3809f285685e12a5d6f84b936b0f8e8272b5363bf3946ce60:100000
+checkpoint = 704be274468b2bfc5787e9a5faf9d08b0da4203b45b891d6347ee128e8049abb:300000
+checkpoint = 65858117fadcff3b591ad4cbd320ecd3b0a63ffda1db9609822cf09ade790aa9:500000
+checkpoint = fd763571f6c2aa0d21e5657881010d1938740159dd232b940431e083637af595:750000
+checkpoint = 8ceae698f0a2d338e39b213eb9c253a91a270ca6451a4d9bba7bf2c9e637dfda:1000000
+checkpoint = b546d32f554513d895447a6abbabf83ea059ac85a562e66f995b2102c7d6eb14:1100000
+checkpoint = 3003cfd2f8ec96c1deb3fc09df99b820189a48a93387882edb83027b507bf7f2:1200000
+checkpoint = 2ccc411ffe88a3724884cc473b16e14e4a9f4c8674bea402e3913495a80d55fa:1300000
+checkpoint = ffc12159965e55a2b334a83d2241bc25b409c14bf77c41eacf4a445556fe71b0:1400000
+checkpoint = 4506d412fc952139b37827f2a9a1e17a39a37aa21ba15b8da7b5b2f912fd1fbd:1420000
+ 
+[fork]
+easy_blocks = false
+retarget = true
+bip16 = true
+bip30 = true
+bip34 = true
+bip66 = true
+bip65 = true
+bip90 = true
+bip68 = true
+bip112 = true
+bip113 = true
+bip141 = true
+bip143 = true
+bip147 = true
+
+[node]
+relay_transactions = true
+compact_blocks_high_bandwidth = true
+# RPC-CONFG
+# zmq_publisher_port = 5556
+# rpc_port = 9332
+# rpc_allow_ip = 127.0.0.1
+</code></pre>
 </article>
           </div>
           
@@ -97,7 +152,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/bitprim/bitprim-docs/blob/master/content/user_guide/introduction.md/#L1" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/bitprim/bitprim-docs/blob/master/content/configuration_files/litecoin_testnet.md/#L1" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>

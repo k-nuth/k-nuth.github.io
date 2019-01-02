@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Introduction | Bitprim Documentation Site </title>
+    <title>Node installation | Bitprim Documentation Site </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Introduction | Bitprim Documentation Site ">
+    <meta name="title" content="Node installation | Bitprim Documentation Site ">
     <meta name="generator" content="docfx 2.40.6.0">
     
     <link rel="shortcut icon" href="../../favicon.ico">
@@ -77,18 +77,33 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="introduction">Introduction</h1>
+<h1 id="node-installation">Node installation</h1>
 
-<h2 id="bitprim-node">Bitprim node:</h2>
-<p>Bitprim is a multi-coin node that supports Bitcoin Cash (BCH), Bitcoin Core (BTC) and Litecoin (LTC).  In order to download each chain the node needs to be compiled with different flags.</p>
-<p>Bitprim also has an interface written in C (<a href="https://github.com/bitprim/bitprim-node-cint">bitprim-node-cint</a>) that allows the user to run the Bitprim node in any language if the wrapper is created. Actually the high level interfaces, which are complete, are the one written in C# (<a href="https://github.com/bitprim/bitprim-cs">bitprim-cs</a>) and another written in Rust (<a href="https://github.com/bitex-la/bitprim-rust">bitprim-rust</a>).</p>
-<p>The C# API was created by <a href="https://bitprim.org/">Bitprim</a> and its Insight API (<a href="https://github.com/bitprim/bitprim-insight">bitprim-insight</a>) is running on top of this interface.</p>
-<p>The Rust API was created by <a href="https://bitex.la/">Bitex</a>, a Latin American Exchange.</p>
-<p>There are also interfaces written in GO, Python, Node and Eiffel but those interfaces are very basic and need some work to fully support all the functions provided by the C interface.</p>
-<h2 id="simple-guide">Simple guide:</h2>
-<p>This guide is aimed at the end user who wants to run its own Bitprim node; it will be centered on the Bitcoin Cash network, but if the installations flags and configurations files are changed it will work with BTC or LTC.</p>
-<p>The guide will go over the requirements (hardware and software), the different node options (Node with RPC support and Insight API) and some examples on how to use each type of node.</p>
-<p>Bitprim can be run in Windows, MacOS and Linux, but this guide will be centered on the Installation and usage of the nodes in a Debian distribution.</p>
+<p><em>Node with RPC support installation.</em></p>
+<p>The nodes are going to be installed using the <strong>conan install</strong> call. This will download the binary files if they are already compiled for your system or it will download the source code to compile the node locally.</p>
+<p>After calling the conan install command a <strong>bn</strong> file will be created in your current folder.</p>
+<h3 id="before-the-installation">Before the installation:</h3>
+<ul>
+<li>Make sure you follow the steps listed in the requirements section.</li>
+<li>Delete your Conan cache to avoid conflict between versions:</li>
+</ul>
+<pre><code>conan remove &quot;*&quot; -f
+</code></pre>
+<h3 id="default-mode">Default mode:</h3>
+<p>Install a node that will store all the blocks and will keep the UTXO set to validate the incoming p2p messages.</p>
+<pre><code>conan install bitprim-node-exe/0.18.0@bitprim/stable -o db=default -o currency=BCH -o with_rpc=True
+</code></pre>
+<h3 id="pruned-mode">Pruned mode:</h3>
+<p>Install a node that will only store the last 100 blocks and the UTXO set.</p>
+<pre><code>conan install bitprim-node-exe/0.18.0@bitprim/stable -o db=pruned -o currency=BCH -o with_rpc=True
+</code></pre>
+<h3 id="full-mode">Full mode:</h3>
+<p>Install a node with the complete blockchain plus the addresses and spent history databases.</p>
+<pre><code>conan install bitprim-node-exe/0.18.0@bitprim/stable -o db=full -o currency=BCH -o with_rpc=True
+</code></pre>
+<p><strong>NOTE:</strong> <em>In Bitprim's version 0.18 the database engine was changed to LMDB, this allows the node to process the blockchain queries faster and makes the database more robust than the legacy Custom Memory File Map.</em></p>
+<h3 id="common-errors">Common errors:</h3>
+<p>When executing the Conan install command an error logs: <strong>sh: 1: cmake: not found.</strong> This is because the <strong>apt-get install cmake</strong> call failed, normally because it didn't find <strong>libcurl4</strong>. To solve the problem make sure that you have <a href="https://cmake.org/">cmake</a> installed in your system.</p>
 </article>
           </div>
           
@@ -97,7 +112,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/bitprim/bitprim-docs/blob/master/content/user_guide/introduction.md/#L1" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/bitprim/bitprim-docs/blob/master/content/user_guide/node_simple_installation.md/#L1" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>

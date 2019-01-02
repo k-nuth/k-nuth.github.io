@@ -784,19 +784,6 @@ references:
   isSpec: "True"
   fullName: Bitprim.Chain.FetchSpendAsync
   nameWithType: Chain.FetchSpendAsync
-- uid: Bitprim.Chain.FetchStealthAsync(Bitprim.Binary,UInt64)
-  name: FetchStealthAsync(Binary, UInt64)
-  href: bitprim-cs/Bitprim.Chain.html#Bitprim_Chain_FetchStealthAsync_Bitprim_Binary_UInt64_
-  commentId: M:Bitprim.Chain.FetchStealthAsync(Bitprim.Binary,UInt64)
-  fullName: Bitprim.Chain.FetchStealthAsync(Bitprim.Binary, UInt64)
-  nameWithType: Chain.FetchStealthAsync(Binary, UInt64)
-- uid: Bitprim.Chain.FetchStealthAsync*
-  name: FetchStealthAsync
-  href: bitprim-cs/Bitprim.Chain.html#Bitprim_Chain_FetchStealthAsync_
-  commentId: Overload:Bitprim.Chain.FetchStealthAsync
-  isSpec: "True"
-  fullName: Bitprim.Chain.FetchStealthAsync
-  nameWithType: Chain.FetchStealthAsync
 - uid: Bitprim.Chain.FetchTransactionAsync(System.Byte[],System.Boolean)
   name: FetchTransactionAsync(Byte[], Boolean)
   href: bitprim-cs/Bitprim.Chain.html#Bitprim_Chain_FetchTransactionAsync_System_Byte___System_Boolean_
@@ -3366,19 +3353,6 @@ references:
   isSpec: "True"
   fullName: Bitprim.IChain.FetchSpendAsync
   nameWithType: IChain.FetchSpendAsync
-- uid: Bitprim.IChain.FetchStealthAsync(Bitprim.Binary,UInt64)
-  name: FetchStealthAsync(Binary, UInt64)
-  href: bitprim-cs/Bitprim.IChain.html#Bitprim_IChain_FetchStealthAsync_Bitprim_Binary_UInt64_
-  commentId: M:Bitprim.IChain.FetchStealthAsync(Bitprim.Binary,UInt64)
-  fullName: Bitprim.IChain.FetchStealthAsync(Bitprim.Binary, UInt64)
-  nameWithType: IChain.FetchStealthAsync(Binary, UInt64)
-- uid: Bitprim.IChain.FetchStealthAsync*
-  name: FetchStealthAsync
-  href: bitprim-cs/Bitprim.IChain.html#Bitprim_IChain_FetchStealthAsync_
-  commentId: Overload:Bitprim.IChain.FetchStealthAsync
-  isSpec: "True"
-  fullName: Bitprim.IChain.FetchStealthAsync
-  nameWithType: IChain.FetchStealthAsync
 - uid: Bitprim.IChain.FetchTransactionAsync(System.Byte[],System.Boolean)
   name: FetchTransactionAsync(Byte[], Boolean)
   href: bitprim-cs/Bitprim.IChain.html#Bitprim_IChain_FetchTransactionAsync_System_Byte___System_Boolean_
