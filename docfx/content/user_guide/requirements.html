@@ -88,7 +88,7 @@
 <h3 id="full-nodes">Full nodes:</h3>
 <p>The Bitprim database is a Memory Mapped Database so it will try to allocate the database on RAM as much as it can. When running the nodes with using the <strong>Full mode</strong> or using the <strong>Insight-API</strong> the node will create all the extra databases to store the processed information so at least <strong>64Gb of RAM</strong> is recommended and it will require <strong>644Gb</strong> of disk space.</p>
 <h2 id="software-requirements">Software Requirements:</h2>
-<p>This guide is only for Debian systems but the instructions can be adapted for any OS. The installation and usage steps were tested using an Ubuntu 18.10 docker image.</p>
+<p>This guide is only for Debian systems but the instructions can be adapted for any OS. The installation and usage steps were tested using an Ubuntu 18.04 docker image.</p>
 <h3 id="conan">Conan:</h3>
 <p>Bitprim uses <a href="https://conan.io/">Conan.io</a> for package management. Conan will download the binary files for your architecture if they exist in the <a href="https://bintray.com/">Bintray</a> repository. If the binary files for your configuration are not stored in the Bintray repository, Conan will download the source files and compile the binary locally.</p>
 <ul>
@@ -126,9 +126,10 @@ dpkg -i packages-microsoft-prod.deb
 <pre><code>add-apt-repository universe
 apt-get install apt-transport-https
 apt-get update
-apt-get install dotnet-sdk-2.1.202
+apt-get install dotnet-sdk-2.1
 </code></pre>
 <p><strong>NOTE:</strong> <em>The add-apt-repository call may fail depending on your system. But if the dotnet-skd install ends with no problems it was because the add-apt-repository call was not needed.</em></p>
+<p><strong>NOTE:</strong> <em>All of these commands require admin permission, if you are not root please use sudo.</em></p>
 </article>
           </div>
           
