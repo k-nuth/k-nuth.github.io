@@ -1,0 +1,222 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Tutorials | Bitprim Documentation Site </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Tutorials | Bitprim Documentation Site ">
+    <meta name="generator" content="docfx 2.40.6.0">
+    
+    <link rel="shortcut icon" href="../../../../favicon.ico">
+    <link rel="stylesheet" href="../../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../../styles/main.css">
+    <meta property="docfx:navrel" content="../../../../toc.html">
+    <meta property="docfx:tocrel" content="../../toc.html">
+    
+    <meta property="docfx:rel" content="../../../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../../../index.html">
+                <img id="logo" class="svg" src="../../../../content/assets/b.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="tutorials">Tutorials</h1>
+
+<h2 id="introduction">Introduction</h2>
+<p>As an example of what can be achieved with the bitprim-cs API, we'll show how to implement a <a href="https://memo.cash/">Memo.cash</a>
+scraper consuming the API from a C# console application.</p>
+<p>Memo.cash is a Twitter-like social network built on top of the Bitcoin Cash Network. Posts are published as transactions with OP_RETURN
+output scripts using <a href="https://memo.cash/protocol">Memo-specific prefix codes</a>.</p>
+<p>The code for this tutorial is available in <a href="https://github.com/bitprim/bitprim-cs.git">Github</a>, in the <code>bitprim.tutorials</code> folder.</p>
+<h2 id="referencing-bitprim-cs">Referencing bitprim-cs</h2>
+<p>In the sample code, in <code>bitprim.tutorials.csproj</code>, a project reference to bitprim-cs (BCH version) is used:</p>
+<pre><code>&lt;ItemGroup&gt;
+  &lt;ProjectReference Include=&quot;..\bitprim-bch\bitprim-bch.csproj&quot; /&gt;
+&lt;/ItemGroup&gt;
+</code></pre>
+<p>When the API is referenced like this, it is necessary to manually copy the underlying native dll (libbitprim-nodecint.so or .dll) to the target dir.
+We have provided a <code>.targets</code> file which performs that task. In <code>bitprim.tutorials.csproj</code>, that target is imported...</p>
+<pre><code>&lt;Import Project=&quot;..\bitprim-bch\build\Common.targets&quot; /&gt;
+</code></pre>
+<p>... and invoked after build:</p>
+<pre><code>&lt;Target Name=&quot;CopyNativeLib&quot; AfterTargets=&quot;Build&quot;&gt;
+  &lt;CallTarget Targets=&quot;GetBitprimNodeCint&quot; /&gt;
+&lt;/Target&gt;
+</code></pre>
+<p>When referencing bitprim-cs <a href="https://www.nuget.org/packages/bitprim-bch">via</a> <a href="https://www.nuget.org/packages/bitprim-btc">NuGet</a>, these steps are unnecessary, since they are injected automatically by NuGet when restoring.</p>
+<h2 id="api-basic-usage">API basic usage</h2>
+<p>Using bitprim-cs implies running a full bitprim node, so keep in mind that considerable storage space will be needed if connecting to mainnet.
+To control node execution, the <a href="https://bitprim.github.io/docfx/bitprim-cs/Bitprim.Executor.html">Executor class</a> can be used. <a href="https://bitprim.github.io/docfx/bitprim-cs/Bitprim.Executor.html#constructors">Create an instance</a>, <a href="https://bitprim.github.io/docfx/bitprim-cs/Bitprim.Executor.html#Bitprim_Executor_InitAndRunAsync">initialize it</a>, and once initialization succeeds, the
+[Chain property] (<a href="https://bitprim.github.io/docfx/bitprim-cs/Bitprim.Executor.html#Bitprim_Executor_Chain">https://bitprim.github.io/docfx/bitprim-cs/Bitprim.Executor.html#Bitprim_Executor_Chain</a>) can be used to query the blockchain.</p>
+<p>Example code:</p>
+<pre><code>using (var executor = new Executor(&quot;bcc-mainnet.cfg&quot;))
+{
+    var result = await executor.InitAndRunAsync();
+    if (result != 0)
+    {
+        throw new ApplicationException(&quot;Executor::InitAndRunAsync failed; error code: &quot; + result);
+    }
+    
+    // Query the blockchain using executor.Chain and its component classes
+
+    // Once querying is done, close gracefully
+    executor.Stop();
+}
+</code></pre>
+<p>The executor constructor requires a node configuration file; its values will depende on the coin (BCH/BTC/LTC), and the network (testnet/mainnet).
+For details on each field, see the <a href="https://github.com/libbitcoin/libbitcoin-server/wiki/Log-Settings">libbitcoin documentation</a>.
+Various sample config files for bitprim nodes are <a href="https://github.com/bitprim/bitprim-config">publicly available in Github</a>.</p>
+<h2 id="1-identifying-a-memo-transaction">1. Identifying a Memo transaction</h2>
+<p>Given a transaction hash, we want to be able to tell whether it's a Memo transaction or not. A Memo transaction uses
+OP_RETURN in at least one of its outputs, and that output's script will have the memo opcode. For example,
+transaction <code>4a69a310ce5cade43a12308101822dd9e2988f4be17c53c20785d7060688157d</code>.
+We can use the Chain class' <a href="https://bitprim.github.io/docfx/bitprim-cs/Bitprim.Chain.html#Bitprim_Chain_FetchTransactionAsync_System_Byte___System_Boolean_">FetchTransactionAsync method</a> to check its contents:</p>
+<p>If successful, the method will return an instance of the <a href="https://bitprim.github.io/docfx/bitprim-cs/Bitprim.Transaction.html">Transaction class</a>
+which will contain all the transaction information.</p>
+<p>A transaction contains <a href="https://bitprim.github.io/docfx/bitprim-cs/Bitprim.Output.html">outputs</a>, each of which has a <a href="https://bitprim.github.io/docfx/bitprim-cs/Bitprim.Script.html">Script</a> object, representing the output's script.
+If we look at the script from the second output (n=1) from the sample transaction,
+using the <a href="https://bitprim.github.io/docfx/bitprim-cs/Bitprim.Script.html#Bitprim_Script_ToString_UInt32_">ToString method</a>:
+it's an OP_RETURN operation. Furthermore, take a look at the prefix codes: <code>return [6d0c] [6d656d6f]</code>.
+By reading the content of the square brackets as hex strings, we get <code>return [m\n] [memo]</code>. The first
+string between square brackets is what identifies this as a Memo transaction, according to the <a href="https://memo.cash/protocol">Memo protocol</a>.
+Finally, if we decode the third hex string between square brackets, we get the Memo post: <code>Yesterday 150632-148590=2042 memo transactions. Number of transactionsð20%. Charts available at https://memo.cash/charts . considering whether should I stop this recording???</code></p>
+<h3 id="reading-the-n-most-recent-memo-posts">Reading the N most recent Memo posts</h3>
+<p>Now that we can tell if a transaction is Memo or not, we can use the bitprim-cs API to traverse the blockchain and scrape them.
+Suppose we want the N most recent posts. First, we need to know the current BCH blockchain height. This can be done using the
+<a href="https://bitprim.github.io/docfx/bitprim-cs/Bitprim.Chain.html#Bitprim_Chain_FetchLastHeightAsync">FetchLastHeightAsync method</a>.</p>
+<p>So, now that blockchain height is known, blocks and their transactions can be examined to search for Memo transactions. Given a block height, the block can be retrieved using the <a href="https://bitprim.github.io/docfx/bitprim-cs/Bitprim.Chain.html#Bitprim_Chain_FetchBlockByHeightAsync_UInt64_">FetchBlockByHeightAsync method</a>.</p>
+<p>Given the block, its transactions can now be navigated using the <a href="https://bitprim.github.io/docfx/bitprim-cs/Bitprim.Block.html#Bitprim_Block_GetNthTransaction_UInt64_">GetNthTransaction method</a> and the
+<a href="https://bitprim.github.io/docfx/bitprim-cs/Bitprim.Block.html#Bitprim_Block_TransactionCount">TransactionCount property</a>.</p>
+<p>For example (omitting error handling for simplicity):</p>
+<pre><code>
+// chain_ = executor.Chain, after calling executor.InitAndRunAsync() successfully.
+public async List&lt;string&gt; GetLatestPosts(int nPosts)
+{
+    UInt64 blockchainHeight = await chain_.FetchLastHeightAsync();
+    int postsFound = 0;
+    var posts = new List&lt;string&gt;();
+    while(postsFound &lt; nPosts &amp;&amp; blockchainHeight &gt; 1)
+    {
+        using(Block block = await chain_.FetchBlockByHeightAsync(blockchainHeight).BlockData)
+        {
+            for(uint iTx=0; iTx&lt;block.TransactionCount &amp;&amp; postsFound &lt; nPosts; ++iTx)
+            {
+                using(var tx = block.GetNthTransaction(iTx))
+                {
+                    if(TransactionIsMemo(tx))
+                    {
+                        posts.Add(GetPost(tx));
+                        ++postsFound;
+                    }
+                }
+            }
+        }
+        blockchainHeight--;
+    }
+    return posts;
+}
+</code></pre>
+<p>As an optimization, using these same methods, it would be possible to scrape the whole blockchain from genesis to top to retrieve all Memo posts,
+save them to an external storage and cache them to avoid scraping every time. Then, it could be possible to modify the scraping code to start from
+a specific height, so as to periodically update, or monitor incoming blocks to detect Memo posts as soon as possible (see
+<a href="https://bitprim.github.io/docfx/bitprim-cs/Bitprim.Executor.html#Bitprim_Executor_SubscribeToBlockChain_Bitprim_Executor_BlockHandler_">SubscribeToBlockChain</a>).</p>
+<h2 id="2-making-a-memo-post">2. Making a Memo post</h2>
+<p>To make a post, a transaction must be created with an OP_RETURN output script with the Memo prefix. Once the transaction is created, its hex representation can be handed to the <a href="https://bitprim.github.io/docfx/bitprim-cs/Bitprim.Transaction.html#Bitprim_Transaction__ctor_UInt32_System_String_">Transaction constructor</a>; for the transaction protocol version,
+1 is the recommended value. Once the transaction object is created, it can be handed to the
+<a href="https://bitprim.github.io/docfx/bitprim-cs/Bitprim.Chain.html#Bitprim_Chain_OrganizeTransactionAsync_Bitprim_Transaction_">OrganizeTransactionAsync method</a>. This will send the transaction to the BCH blockchain, where it should eventually become part of a mined block and permanently added to the blockchain. After a certain time, it should be visible as a new Memo transaction.</p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/bitprim/bitprim-docs/blob/master/content/developer_guide/dotnet/tutorials/tutorials.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            <span>Copyright © 2018 Bitprim</span>
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../../styles/main.js"></script>
+  </body>
+</html>

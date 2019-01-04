@@ -1,0 +1,166 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Web Socket API | Bitprim Documentation Site </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Web Socket API | Bitprim Documentation Site ">
+    <meta name="generator" content="docfx 2.40.6.0">
+    
+    <link rel="shortcut icon" href="../../../favicon.ico">
+    <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../styles/main.css">
+    <meta property="docfx:navrel" content="../../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    <meta property="docfx:rel" content="../../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../content/assets/b.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="web-socket-api">Web Socket API</h1>
+
+<p>The web socket API is served using <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebSocket">standard, pure web sockets</a>. The first step is connecting to <code>_domain_/wss</code>; once connection is established, specific messages need to be sent to the server in order to subscribe to the different events (see each event entry). To simplify event subscription, the <code>ScopedPureWebSocket</code> class can be used.</p>
+<p>The following are the events published by insight:</p>
+<p><code>tx</code>: new transaction received from network. To receive this event, after connecting to the websocket endpoint, send the <code>SubscribeToTxs</code> plain text message.</p>
+<p>Sample output:</p>
+<pre><code>{
+    &quot;eventname&quot;: 'tx',
+    &quot;txid&quot;:&quot;00c1b1acb310b87085c7deaaeba478cef5dc9519fab87a4d943ecbb39bd5b053&quot;,
+    &quot;valueOut: &quot;0.564BCH&quot;,
+    &quot;addresses&quot;: [&quot;17orHVW3pF86VQqraegS6PCjk579EasXYg&quot;, &quot;12vJYnCm5QgY4vntutTG95SkiLfXhgbiAc&quot;]
+    ...
+}
+</code></pre>
+<p>Output fields: <code>txid</code> is the transaction hash, <code>valueOut</code> is the sum of all the transaction outputs, and <code>addresses</code> contains a list of the addresses involved in the transaction, considering inputs and outputs.</p>
+<p><code>block</code>: new block received from network. After connecting to the webscoket endpoint, send the <code>SubscribeToBlocks</code> plain text message to begin receiving these notifications.</p>
+<p>Sample output:</p>
+<pre><code>{
+    &quot;eventname&quot;:&quot;block&quot;
+}
+</code></pre>
+<p><code>&lt;addresstx&gt;</code>: new transaction received on a specific address. To subscribe to a specific address, send a message with that address in legacy format in plain text.</p>
+<p>Sample output:</p>
+<pre><code>{
+    eventname: 'addresstx',
+    txid: &quot;00c1b1acb310b87085c7deaaeba478cef5dc9519fab87a4d943ecbb39bd5b053&quot;
+}
+</code></pre>
+<h2 id="example-usage">Example Usage</h2>
+<p>The following html page connects to the web socket insight API and listens for new transactions.</p>
+<pre><code>&lt;html&gt;
+    &lt;body&gt;
+        &lt;script&gt;
+            var socket = new WebSocket('http://domain.com/ws');
+            socket.onopen = function() {
+                socket.send(&quot;SubscribeToTxs&quot;); 
+            };
+            socket.onmessage = function(msg) {
+                var messageData = JSON.parse(msg.data);
+                if(messageData.eventname != undefined &amp;&amp; messageData.eventname == 'tx')
+                {
+                    console.log(&quot;Transaction received! txid: &quot; + messageData.txid);
+                }
+            };
+        &lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/bitprim/bitprim-docs/blob/master/content/developer_guide/restapi/websockets.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            <span>Copyright © 2018 Bitprim</span>
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

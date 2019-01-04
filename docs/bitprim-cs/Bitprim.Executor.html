@@ -1,0 +1,678 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class Executor
+   | Bitprim Documentation Site </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class Executor
+   | Bitprim Documentation Site ">
+    <meta name="generator" content="docfx 2.40.6.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="../content/developer_guide/toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../content/assets/b.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Bitprim.Executor">
+  
+  
+  <h1 id="Bitprim_Executor" data-uid="Bitprim.Executor" class="text-break">Class Executor
+  </h1>
+  <div class="markdown level0 summary"><p>Controls the execution of the Bitprim bitcoin node.</p>
+</div>
+  <div class="markdown level0 conceptual">
+<p>Before you can work with transactions, blocks and adresses, you need to instantiate an <em>Executor</em>.</p>
+<p>The executor needs a config file. You need to use the correct config file for the selected coin.
+You can view an example <a href="https://github.com/bitprim/bitprim-config">here</a></p>
+<blockquote>
+<p><strong>NOTE</strong>
+If you pass an empty string, the node will use the default settings.</p>
+</blockquote>
+<p>Then you need to start the executor with <a class="xref" href="Bitprim.Executor.html#Bitprim_Executor_InitAndRunAsync">InitAndRunAsync()</a></p>
+</div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
+    <div class="level1"><span class="xref">Executor</span></div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Bitprim.html">Bitprim</a></h6>
+  <h6><strong>Assembly</strong>: bitprim-bch.dll</h6>
+  <h5 id="Bitprim_Executor_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class Executor : IDisposable</code></pre>
+  </div>
+  <h5 id="Bitprim_Executor_remarks"><strong>Remarks</strong></h5>
+  <div class="markdown level0 remarks"><p><em>This</em> is the entry point to use the bitprim node</p>
+</div>
+  <h3 id="constructors">Constructors
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/bitprim/bitprim-cs/new/master/apiSpec/new?filename=Bitprim_Executor__ctor_System_String_.md&amp;value=---%0Auid%3A%20Bitprim.Executor.%23ctor(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Executor.cs/#L61">View Source</a>
+  </span>
+  <a id="Bitprim_Executor__ctor_" data-uid="Bitprim.Executor.#ctor*"></a>
+  <h4 id="Bitprim_Executor__ctor_System_String_" data-uid="Bitprim.Executor.#ctor(System.String)">Executor(String)</h4>
+  <div class="markdown level1 summary"><p>Create executor. Does not init database or start execution yet.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Executor(string configFile)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">configFile</span></td>
+        <td><p>Path to configuration file.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/bitprim/bitprim-cs/new/master/apiSpec/new?filename=Bitprim_Executor__ctor_System_String_IntPtr_IntPtr_.md&amp;value=---%0Auid%3A%20Bitprim.Executor.%23ctor(System.String%2CIntPtr%2CIntPtr)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Executor.cs/#L83">View Source</a>
+  </span>
+  <a id="Bitprim_Executor__ctor_" data-uid="Bitprim.Executor.#ctor*"></a>
+  <h4 id="Bitprim_Executor__ctor_System_String_IntPtr_IntPtr_" data-uid="Bitprim.Executor.#ctor(System.String,IntPtr,IntPtr)">Executor(String, IntPtr, IntPtr)</h4>
+  <div class="markdown level1 summary"><p>Create executor. Does not init database or start execution yet.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Executor(string configFile, IntPtr stdOut, IntPtr stdErr)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">configFile</span></td>
+        <td><p>Path to configuration file.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">IntPtr</span></td>
+        <td><span class="parametername">stdOut</span></td>
+        <td><p>Handle for redirecting standard output.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">IntPtr</span></td>
+        <td><span class="parametername">stdErr</span></td>
+        <td><p>Handle for redirecting standard output.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/bitprim/bitprim-cs/new/master/apiSpec/new?filename=Bitprim_Executor_Chain.md&amp;value=---%0Auid%3A%20Bitprim.Executor.Chain%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Executor.cs/#L114">View Source</a>
+  </span>
+  <a id="Bitprim_Executor_Chain_" data-uid="Bitprim.Executor.Chain*"></a>
+  <h4 id="Bitprim_Executor_Chain" data-uid="Bitprim.Executor.Chain">Chain</h4>
+  <div class="markdown level1 summary"><p>The node's query interface. Will be null until node starts running
+(i.e. Run or RunWait succeeded)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Chain Chain { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Bitprim.Chain.html">Chain</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/bitprim/bitprim-cs/new/master/apiSpec/new?filename=Bitprim_Executor_IsLoadConfigValid.md&amp;value=---%0Auid%3A%20Bitprim.Executor.IsLoadConfigValid%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Executor.cs/#L236">View Source</a>
+  </span>
+  <a id="Bitprim_Executor_IsLoadConfigValid_" data-uid="Bitprim.Executor.IsLoadConfigValid*"></a>
+  <h4 id="Bitprim_Executor_IsLoadConfigValid" data-uid="Bitprim.Executor.IsLoadConfigValid">IsLoadConfigValid</h4>
+  <div class="markdown level1 summary"><p>Returns true if and only if and only if the config file is valid</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsLoadConfigValid { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/bitprim/bitprim-cs/new/master/apiSpec/new?filename=Bitprim_Executor_IsStopped.md&amp;value=---%0Auid%3A%20Bitprim.Executor.IsStopped%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Executor.cs/#L231">View Source</a>
+  </span>
+  <a id="Bitprim_Executor_IsStopped_" data-uid="Bitprim.Executor.IsStopped*"></a>
+  <h4 id="Bitprim_Executor_IsStopped" data-uid="Bitprim.Executor.IsStopped">IsStopped</h4>
+  <div class="markdown level1 summary"><p>Returns true if and only if the node is stopped</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsStopped { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/bitprim/bitprim-cs/new/master/apiSpec/new?filename=Bitprim_Executor_KeokenManager.md&amp;value=---%0Auid%3A%20Bitprim.Executor.KeokenManager%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Executor.cs/#L124">View Source</a>
+  </span>
+  <a id="Bitprim_Executor_KeokenManager_" data-uid="Bitprim.Executor.KeokenManager*"></a>
+  <h4 id="Bitprim_Executor_KeokenManager" data-uid="Bitprim.Executor.KeokenManager">KeokenManager</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public KeokenManager KeokenManager { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Bitprim.Keoken.KeokenManager.html">KeokenManager</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/bitprim/bitprim-cs/new/master/apiSpec/new?filename=Bitprim_Executor_NetworkType.md&amp;value=---%0Auid%3A%20Bitprim.Executor.NetworkType%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Executor.cs/#L137">View Source</a>
+  </span>
+  <a id="Bitprim_Executor_NetworkType_" data-uid="Bitprim.Executor.NetworkType*"></a>
+  <h4 id="Bitprim_Executor_NetworkType" data-uid="Bitprim.Executor.NetworkType">NetworkType</h4>
+  <div class="markdown level1 summary"><p>The node's network. Won't be valid until node starts running
+(i.e. Run or RunWait succeeded)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public NetworkType NetworkType { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Bitprim.NetworkType.html">NetworkType</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/bitprim/bitprim-cs/new/master/apiSpec/new?filename=Bitprim_Executor_UseTestnetRules.md&amp;value=---%0Auid%3A%20Bitprim.Executor.UseTestnetRules%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Executor.cs/#L102">View Source</a>
+  </span>
+  <a id="Bitprim_Executor_UseTestnetRules_" data-uid="Bitprim.Executor.UseTestnetRules*"></a>
+  <h4 id="Bitprim_Executor_UseTestnetRules" data-uid="Bitprim.Executor.UseTestnetRules">UseTestnetRules</h4>
+  <div class="markdown level1 summary"><p>Returns true iif the current network is a testnet.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool UseTestnetRules { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/bitprim/bitprim-cs/new/master/apiSpec/new?filename=Bitprim_Executor_Dispose.md&amp;value=---%0Auid%3A%20Bitprim.Executor.Dispose%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Executor.cs/#L93">View Source</a>
+  </span>
+  <a id="Bitprim_Executor_Dispose_" data-uid="Bitprim.Executor.Dispose*"></a>
+  <h4 id="Bitprim_Executor_Dispose" data-uid="Bitprim.Executor.Dispose">Dispose()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/bitprim/bitprim-cs/new/master/apiSpec/new?filename=Bitprim_Executor_Dispose_System_Boolean_.md&amp;value=---%0Auid%3A%20Bitprim.Executor.Dispose(System.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Executor.cs/#L266">View Source</a>
+  </span>
+  <a id="Bitprim_Executor_Dispose_" data-uid="Bitprim.Executor.Dispose*"></a>
+  <h4 id="Bitprim_Executor_Dispose_System_Boolean_" data-uid="Bitprim.Executor.Dispose(System.Boolean)">Dispose(Boolean)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void Dispose(bool disposing)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><span class="parametername">disposing</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/bitprim/bitprim-cs/new/master/apiSpec/new?filename=Bitprim_Executor_Finalize.md&amp;value=---%0Auid%3A%20Bitprim.Executor.Finalize%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Executor.cs/#L88">View Source</a>
+  </span>
+  <a id="Bitprim_Executor_Finalize_" data-uid="Bitprim.Executor.Finalize*"></a>
+  <h4 id="Bitprim_Executor_Finalize" data-uid="Bitprim.Executor.Finalize">Finalize()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void Finalize()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/bitprim/bitprim-cs/new/master/apiSpec/new?filename=Bitprim_Executor_InitAndRunAsync.md&amp;value=---%0Auid%3A%20Bitprim.Executor.InitAndRunAsync%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Executor.cs/#L193">View Source</a>
+  </span>
+  <a id="Bitprim_Executor_InitAndRunAsync_" data-uid="Bitprim.Executor.InitAndRunAsync*"></a>
+  <h4 id="Bitprim_Executor_InitAndRunAsync" data-uid="Bitprim.Executor.InitAndRunAsync">InitAndRunAsync()</h4>
+  <div class="markdown level1 summary"><p>Initialize if necessary and starts running the node; blockchain starts synchronizing (downloading).
+The call returns right away, and the handler is invoked
+when the node actually starts running.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;int&gt; InitAndRunAsync()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a>&gt;</td>
+        <td><p>Error code (0 = success)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/bitprim/bitprim-cs/new/master/apiSpec/new?filename=Bitprim_Executor_InitChain.md&amp;value=---%0Auid%3A%20Bitprim.Executor.InitChain%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Executor.cs/#L149">View Source</a>
+  </span>
+  <a id="Bitprim_Executor_InitChain_" data-uid="Bitprim.Executor.InitChain*"></a>
+  <h4 id="Bitprim_Executor_InitChain" data-uid="Bitprim.Executor.InitChain">InitChain()</h4>
+  <div class="markdown level1 summary"><p>Initialize the local dabatase structure.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool InitChain()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p>True iif local chain init succeeded</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/bitprim/bitprim-cs/new/master/apiSpec/new?filename=Bitprim_Executor_RunAsync.md&amp;value=---%0Auid%3A%20Bitprim.Executor.RunAsync%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Executor.cs/#L161">View Source</a>
+  </span>
+  <a id="Bitprim_Executor_RunAsync_" data-uid="Bitprim.Executor.RunAsync*"></a>
+  <h4 id="Bitprim_Executor_RunAsync" data-uid="Bitprim.Executor.RunAsync">RunAsync()</h4>
+  <div class="markdown level1 summary"><p>Starts running the node; blockchain starts synchronizing (downloading).
+The call returns right away, and the handler is invoked
+when the node actually starts running.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;int&gt; RunAsync()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a>&gt;</td>
+        <td><p>Error code (0 = success)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/bitprim/bitprim-cs/new/master/apiSpec/new?filename=Bitprim_Executor_Stop.md&amp;value=---%0Auid%3A%20Bitprim.Executor.Stop%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Executor.cs/#L223">View Source</a>
+  </span>
+  <a id="Bitprim_Executor_Stop_" data-uid="Bitprim.Executor.Stop*"></a>
+  <h4 id="Bitprim_Executor_Stop" data-uid="Bitprim.Executor.Stop">Stop()</h4>
+  <div class="markdown level1 summary"><p>Stops the node; that includes all activies, such as synchronization and networking.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Stop()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/bitprim/bitprim-cs/new/master/apiSpec/new?filename=Bitprim_Executor_SubscribeToBlockChain_Bitprim_Executor_BlockHandler_.md&amp;value=---%0Auid%3A%20Bitprim.Executor.SubscribeToBlockChain(Bitprim.Executor.BlockHandler)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Executor.cs/#L248">View Source</a>
+  </span>
+  <a id="Bitprim_Executor_SubscribeToBlockChain_" data-uid="Bitprim.Executor.SubscribeToBlockChain*"></a>
+  <h4 id="Bitprim_Executor_SubscribeToBlockChain_Bitprim_Executor_BlockHandler_" data-uid="Bitprim.Executor.SubscribeToBlockChain(Bitprim.Executor.BlockHandler)">SubscribeToBlockChain(Executor.BlockHandler)</h4>
+  <div class="markdown level1 summary"><p>Be notified (called back) when the local copy of the blockchain is reorganized.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SubscribeToBlockChain(Executor.BlockHandler handler)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Bitprim.Executor.BlockHandler.html">Executor.BlockHandler</a></td>
+        <td><span class="parametername">handler</span></td>
+        <td><p>Callback which will be called when blocks are added or removed.
+The callback returns 3 parameters:</p>
+<ul>
+<li>Height (UInt64): The chain height at which reorganization takes place</li>
+<li>Incoming (Blocklist): Incoming blocks (added to the blockchain).</li>
+<li>Outgoing (Blocklist): Outgoing blocks (removed from the blockchain).</li>
+</ul>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/bitprim/bitprim-cs/new/master/apiSpec/new?filename=Bitprim_Executor_SubscribeToTransaction_Bitprim_Executor_TransactionHandler_.md&amp;value=---%0Auid%3A%20Bitprim.Executor.SubscribeToTransaction(Bitprim.Executor.TransactionHandler)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Executor.cs/#L259">View Source</a>
+  </span>
+  <a id="Bitprim_Executor_SubscribeToTransaction_" data-uid="Bitprim.Executor.SubscribeToTransaction*"></a>
+  <h4 id="Bitprim_Executor_SubscribeToTransaction_Bitprim_Executor_TransactionHandler_" data-uid="Bitprim.Executor.SubscribeToTransaction(Bitprim.Executor.TransactionHandler)">SubscribeToTransaction(Executor.TransactionHandler)</h4>
+  <div class="markdown level1 summary"><p>Be notified (called back) when the local copy of the blockchain is updated at the transaction level.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SubscribeToTransaction(Executor.TransactionHandler handler)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Bitprim.Executor.TransactionHandler.html">Executor.TransactionHandler</a></td>
+        <td><span class="parametername">handler</span></td>
+        <td><p>Callback which will be called when a transaction is added.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/bitprim/bitprim-docs/blob/master/specs/Executor.md/#L2" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/bitprim/bitprim-cs/blob/master/bitprim/idiomatic/Executor.cs/#L14" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            <span>Copyright © 2018 Bitprim</span>
+            
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>
