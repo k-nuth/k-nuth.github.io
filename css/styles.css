@@ -7,8 +7,21 @@
     
 }
 
+@font-face {
+    font-family: 'FiraCode';
+    /* src: url(../fuentes/FiraCode-Regular.ttf); */
+    /* src: url(../fuentes/FiraCode-Medium.ttf); */
+    src: url(../fuentes/FiraCode-Light.ttf);
+    /* src: url(../fuentes/FiraCode-Regular.ttf);
+    src: url(../fuentes/FiraCode-Regular.ttf);
+    src: url(../fuentes/FiraCode-Regular.ttf);
+    src: url(../fuentes/FiraCode-Regular.ttf); */
+
+}
+
 body{
-    background: #F95700;
+    /* background: #F95700; */
+    background: #f6f6f6;
     padding-top: 20px;  
     padding-bottom: 20px;
 }
@@ -19,13 +32,42 @@ body{
     margin-top: 100px;
     text-align: center;
     margin: auto;
-    font-style: oblique;
+    font-family: 'FiraCode';
+    /* font-style: oblique; */
     font-size: 12px;
+    margin-bottom: 50px;
 }
 
+
+.container{
+    width: 80%;
+    max-width: 1400px;
+    margin-top: 100px;
+    text-align: center;
+    margin: auto;
+    /* font-family: 'FiraCode'; */
+    /* font-style: oblique; */
+    font-size: 100px;
+    color: #04066d;
+}
+
+a {
+    /* font-family: 'FiraCode';
+    margin-top: 100px;
+    font-size: 30px; */
+    /* color:black; */
+    /* color: red; */
+    color: #04066d;
+}
+
+
 .content-logo{
-    width: 260px;
-    height: 100px;
+    /* width: 400px;
+    height: 400px; */
+
+    width: 368px;
+    height: 224px;
+
     margin: 10px auto;
     display: block;
     margin-left: auto;
@@ -42,10 +84,20 @@ body{
     margin-top: 10px;
 }
 
-.content-cabecera p{
+/* .content-cabecera p{
     margin-top: 10px;
-    color:white;
+    color:black;
+} */
+
+p {
+    font-family: 'FiraCode';
+    margin-top: 100px;
+    font-size: 30px;
+    /* color:black; */
+    /* color: red; */
+    color: #04066d;
 }
+
 
 /*Content general*/
 
@@ -70,14 +122,13 @@ main{
 
 .content-general h1{
     color: #000D71;
-    font-family:url(fuentes/radikal_bold.ttf);
-    
-    
+    /* font-family:url(fuentes/radikal_bold.ttf); */
+    font-family: 'FiraCode';
 }
 /*Content Blockdozer*/
 
 .content-general h1{
-    font color:#000D71;
+    font-color:#000D71;
     font-size: 15px;
  
 }
