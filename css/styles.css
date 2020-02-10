@@ -19,6 +19,12 @@
 
 }
 
+@font-face {
+    font-family: 'FiraCodeMed';
+    src: url(../fuentes/FiraCode-Medium.ttf);
+}
+
+
 body{
     /* background: #F95700; */
     background: #f6f6f6;
@@ -35,14 +41,14 @@ body{
     font-family: 'FiraCode';
     /* font-style: oblique; */
     font-size: 12px;
-    margin-bottom: 50px;
+    margin-bottom: 100px;
 }
 
 
 .container{
     width: 80%;
     max-width: 1400px;
-    margin-top: 100px;
+    /* margin-top: 120px; */
     text-align: center;
     margin: auto;
     /* font-family: 'FiraCode'; */
@@ -65,9 +71,13 @@ a {
     /* width: 400px;
     height: 400px; */
 
-    width: 368px;
-    height: 224px;
+    /* width: 368px;
+    height: 224px; */
 
+    width: 276px;
+    height: 168px;
+
+    
     margin: 10px auto;
     display: block;
     margin-left: auto;
@@ -89,14 +99,35 @@ a {
     color:black;
 } */
 
-p {
+
+.slogan {
     font-family: 'FiraCode';
-    margin-top: 100px;
+    margin-top: 50px;
     font-size: 30px;
     /* color:black; */
     /* color: red; */
     color: #04066d;
 }
+
+.address-legend {
+    font-family: 'FiraCode';
+    margin-top: 100px;
+    font-size: 18px;
+    color: #04066d;
+}
+
+.address {
+    font-family: 'FiraCodeMed';
+    font-size: 18px;
+    color: #04066d;
+}
+
+/* p {
+    font-family: 'FiraCode';
+    margin-top: 50px;
+    font-size: 30px;
+    color: #04066d;
+} */
 
 
 /*Content general*/
