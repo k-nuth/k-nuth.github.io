@@ -7,7 +7,9 @@
     <title>Knuth | Multi-Crypto Full Node</title>
 
     <link rel="stylesheet" href="./css/style.css">
-    <link rel="icon" href="./img/logo.svg">
+
+    <link rel="icon" href="./img/logo-dark.ico" id="light-scheme-icon">
+    <link rel="icon" href="./img/logo-light.ico" id="dark-scheme-icon">
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -33,8 +35,8 @@
     <!-- SwiperJs -->
     <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css">
     <script src="https://unpkg.com/swiper/js/swiper.min.js"></script>
-
 </head>
+
 <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="nav-bar">
@@ -86,7 +88,7 @@
                 <p><b>1. Install and configure the Knuth build helper:</b></p>
                 <div class="container text-left cmd">
                     <p class="cmd-g pt-3">$ pip install kthbuild --user --upgrade</p>
-                    <p class="cmd-g pb-3">$ conan remote add kth https://api.bintray.com/conan/k-nuth/kth</p>
+                    <p class="cmd-g pb-3">$ conan config install https://github.com/k-nuth/ci-utils/raw/master/conan/config.zip</p>
                 </div>
                 <p class="pt-4"><b>2. Install the appropriate node executable:</b></p>
                 <div class="container text-left cmd">
@@ -285,58 +287,58 @@
 
 <!-- Smooth Scrolling -->
 <script>
-    $(document).ready(function(){
-        $("a").on('click', function(event) {
-        if (this.hash !== "") {
-            event.preventDefault();
-            var hash = this.hash;
+$(document).ready(function(){
+    $("a").on('click', function(event) {
+    if (this.hash !== "") {
+        event.preventDefault();
+        var hash = this.hash;
 
-            $('html, body').animate({
-            scrollTop: $(hash).offset().top
-            }, 800, function(){
-            window.location.hash = hash;
-            });
-        }
+        $('html, body').animate({
+        scrollTop: $(hash).offset().top
+        }, 800, function(){
+        window.location.hash = hash;
         });
+    }
     });
+});
 </script>
 
 <!-- Navbar change color on scroll -->
 <script>
-    $(window).scroll(function(){
-        if(window.matchMedia("(max-width: 992px)").matches){
-            $('nav').toggleClass('scrolled', $(this).scrollTop() > 270); 
-        } else{
-            $('nav').toggleClass('scrolled', $(this).scrollTop() > 350); 
-        }
-        
-    }); 
+$(window).scroll(function(){
+    if(window.matchMedia("(max-width: 992px)").matches){
+        $('nav').toggleClass('scrolled', $(this).scrollTop() > 270); 
+    } else{
+        $('nav').toggleClass('scrolled', $(this).scrollTop() > 350); 
+    }
+    
+}); 
 </script>
 
 <!-- Scroll to top when arrow up clicked BEGIN -->
 <script>
-    $(window).scroll(function() {
-        var height = $(window).scrollTop();
-        if (height > 100) {
-            $('#back2Top').fadeIn();
-        } else {
-            $('#back2Top').fadeOut();
-        }
+$(window).scroll(function() {
+    var height = $(window).scrollTop();
+    if (height > 100) {
+        $('#back2Top').fadeIn();
+    } else {
+        $('#back2Top').fadeOut();
+    }
+});
+$(document).ready(function() {
+    $("#back2Top").click(function(event) {
+        event.preventDefault();
+        $("html, body").animate({ scrollTop: 0 }, "slow");
+        return false;
     });
-    $(document).ready(function() {
-        $("#back2Top").click(function(event) {
-            event.preventDefault();
-            $("html, body").animate({ scrollTop: 0 }, "slow");
-            return false;
-        });
 
-    });
+});
 </script>
 <!-- Scroll to top when arrow up clicked END -->
 
 <!-- Copy to clipboard -->
 <script>
-    new ClipboardJS('#copy-btn');
+new ClipboardJS('#copy-btn');
 </script>
 
 <script>
@@ -344,5 +346,36 @@ function copied() {
     var x = document.getElementById("snackbar");
     x.className = "show";
     setTimeout(function(){ x.className = x.className.replace("show", ""); }, 1000);
+}
+</script>
+
+<!-- Favicon Dark/Light -->
+<script>
+function setupIcons() {
+  const lightSchemeIcon = document.querySelector('link#light-scheme-icon');
+  const darkSchemeIcon = document.querySelector('link#dark-scheme-icon');
+  
+  function setLight() {
+    document.head.append(lightSchemeIcon);
+    darkSchemeIcon.remove();
   }
+
+  function setDark() {
+    lightSchemeIcon.remove();
+    document.head.append(darkSchemeIcon);
+  }
+
+  const matcher = window.matchMedia('(prefers-color-scheme:dark)');
+  function onUpdate() {
+    if (matcher.matches) { 
+      setDark();
+    } else {
+      setLight();
+    }
+  }
+  matcher.addListener(onUpdate);
+  onUpdate();
+}
+
+setupIcons();
 </script>
