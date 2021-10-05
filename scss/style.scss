@@ -219,7 +219,7 @@ header {
   }
 }
 
-#features {
+#features-info {
   font-family: "Cairo", sans-serif;
 
   .info-container {
@@ -239,8 +239,6 @@ header {
 
   .feature-container {
     background-color: #f2f2f2;
-    // padding: 25px;
-    // margin-top: 20px;
 
     h3 {
       font-size: 24px;
@@ -269,11 +267,9 @@ header {
   }
 }
 
-#team {
-  background-color: #f2f2f2;
-  margin-top: 60px;
+// libraries section
+#features {
   font-family: "Cairo", sans-serif;
-  text-align: center;
 
   .info-container {
     max-width: 800px;
@@ -288,58 +284,74 @@ header {
       font-size: 20px;
       color: #4d4d4d;
     }
-  }
 
-  .person-container {
-    padding-bottom: 50px;
-    h4 {
-      padding-top: 20px;
-      font-size: 20px;
-      font-weight: 600;
-    }
+    .icons-container {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-column-gap: 20px;
 
-    p {
-      font-size: 17px;
-    }
+      @media only screen and (min-width: 768px) {
+        grid-template-columns: repeat(4, 1fr);
+      }
+      @media only screen and (min-width: 992px) {
+        grid-template-columns: repeat(8, 1fr);
+      }
 
-    img {
-      transition: ease-in 0.2s;
-      filter: grayscale(1);
-      -webkit-filter: grayscale(1);
-      border-radius: 50%;
-      width: 100px;
-    }
+      > a {
+        border: none;
+        outline: none;
+        background-color: transparent;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
-    a {
-      color: #05181f;
+        > img {
+          width: 50%;
+          margin: 10px auto;
+          display: block;
+          transition: transform 0.3s;
 
-      &:hover {
-        text-decoration: none;
-        img {
-          -webkit-box-shadow: 0px 0px 66px -7px rgba(0, 0, 0, 0.75);
-          -moz-box-shadow: 0px 0px 66px -7px rgba(0, 0, 0, 0.75);
-          box-shadow: 0px 0px 66px -7px rgba(0, 0, 0, 0.75);
+          @media only screen and (min-width: 992px) {
+            width: 100%;
+            margin: 0px;
+          }
+        }
+
+        @media (hover: hover) {
+          &:hover {
+            img {
+              transform: scale(1.2);
+            }
+          }
         }
       }
     }
+  }
 
-    @media only screen and (max-width: 767.9px) {
-      text-align: center;
+  .modal-body {
+    .github-link {
+      margin-top: 40px;
+      font-size: 18px;
+      width: fit-content;
+      a {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        color: #4d4d4d;
+
+        img {
+          width: 22px;
+          height: 22px;
+          margin-right: 7px;
+        }
+
+        &:hover {
+          color: #05181f;
+        }
+      }
     }
-  }
-
-  a:focus,
-  a:active {
-    outline: 0;
-    border: none;
-  }
-
-  button:focus {
-    outline: none;
-  }
-
-  .modal {
-    top: 10%;
   }
 }
 
