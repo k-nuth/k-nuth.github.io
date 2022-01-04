@@ -159,12 +159,14 @@
               $ conan config install
               https://github.com/k-nuth/ci-utils/raw/master/conan/config.zip
             </p>
+            <p class="cmd-p pt-3"># Just for Linux</p>
+            <p class="cmd-g pt-3">$ conan profile update settings.compiler.libcxx=libstdc++11 default</p>
           </div>
           <p class="pt-4"><b>2. Install the node executable:</b></p>
           <div class="container text-left cmd">
             <!-- <p class="cmd-p pt-3"># For Bitcoin Cash (default)</p> -->
             <p class="cmd-g py-3">
-              $ conan install kth/0.X@kth/stable -o currency=BCH --update
+              $ conan install kth/0.X@kth/stable --update
             </p>
             <!-- <p class="cmd-p pt-3"># For Bitcoin</p>
           <p class="pt-4"><b>2. Install the appropriate node executable:</b></p>
