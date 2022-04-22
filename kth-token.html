@@ -10,7 +10,7 @@
     <title>Knuth | KTH Token</title>
 
     <link rel="stylesheet" href="./css/style.css" />
-    <link rel="icon" href="./img/logo.svg" />
+    <link rel="icon" href="./img/logo-white.svg" />
 
     <!-- Bootstrap -->
     <link
@@ -67,6 +67,7 @@
   <body>
     <header>
       <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="nav-bar">
+        <img class="navbar-logo" src="./img/logo-white.svg" alt="Knuth" />
         <button
           class="navbar-toggler collapsed ml-auto"
           type="button"
@@ -81,13 +82,13 @@
           <span class="icon-bar bottom-bar"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav ml-auto">
+          <ul class="navbar-nav d-flex justify-content-between w-50 mx-lg-auto">
             <li
               class="nav-item"
               data-toggle="collapse"
               data-target=".navbar-collapse.show"
             >
-              <a class="nav-link" href="./index.html">Get Knuth</a>
+              <a class="nav-link" href="http://kth.cash/#download">Get Knuth</a>
             </li>
             <li
               class="nav-item"
@@ -120,7 +121,7 @@
           </ul>
         </div>
       </nav>
-      <img class="head-logo" src="./img/logo.svg" alt="Knuth" />
+      <img class="head-logo" src="./img/logo-white.svg" alt="Knuth" />
     </header>
 
     <div id="token-info" class="container">
@@ -392,10 +393,10 @@
       </p>
       <p>Let's see"</p>
       <p>
-        Bitcoin Cash has an ambitious mission. However, it also has the
-        support of the best community in crypto. And the community is a very
-        important part of any crypto currency. It lives and thrives in symbiosis
-        with the technology that the developers provide.
+        Bitcoin Cash has an ambitious mission. However, it also has the support
+        of the best community in crypto. And the community is a very important
+        part of any crypto currency. It lives and thrives in symbiosis with the
+        technology that the developers provide.
       </p>
       <p>
         The Bitcoin Cash community is not exclusively driven by the desire to
@@ -403,10 +404,10 @@
         world a better place and to improve the lives of all people. SmartBCH is
         the next step in achieving this mission. And tokens such as KTH allow
         the community to directly support its developers. Supporting Bitcoin
-        Cash has always been the right choice from a moral perspective.
-        SmartBCH will help making it the right choice from a financial
-        perspective as well. Not just the right decision for the individual -
-        but for the whole world.
+        Cash has always been the right choice from a moral perspective. SmartBCH
+        will help making it the right choice from a financial perspective as
+        well. Not just the right decision for the individual - but for the whole
+        world.
       </p>
       <h2>Knuth Bitcoin Cash development team</h2>
       <p>
@@ -502,11 +503,7 @@
 <!-- Navbar change color on scroll -->
 <script>
   $(window).scroll(function () {
-    if (window.matchMedia("(max-width: 992px)").matches) {
-      $("nav").toggleClass("scrolled", $(this).scrollTop() > 270);
-    } else {
-      $("nav").toggleClass("scrolled", $(this).scrollTop() > 350);
-    }
+    $("nav").toggleClass("scrolled", $(this).scrollTop() > 0);
   });
 </script>
 

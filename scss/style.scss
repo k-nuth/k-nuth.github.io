@@ -12,18 +12,30 @@ h2 {
   font-size: 30px;
 }
 
+.navbar-logo {
+  display: none;
+}
+
 .scrolled {
-  background-image: url(../img/hero.svg);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background: transparent linear-gradient(180deg, #99389d 0%, #76277a 100%);
+  box-shadow: 0px 3px 6px #00000073;
   padding-top: 0 !important;
-  -webkit-box-shadow: 0px 4px 23px -5px rgba(0, 0, 0, 0.55);
-  -moz-box-shadow: 0px 4px 23px -5px rgba(0, 0, 0, 0.55);
-  box-shadow: 0px 4px 23px -5px rgba(0, 0, 0, 0.55);
+  position: relative;
 
   @media only screen and (max-width: 991.9px) {
     background-position: left;
+  }
+
+  .navbar-logo {
+    display: block;
+    height: 30px;
+    margin-bottom: -8px;
+    position: absolute;
+    left: 16px;
+    top: 8px;
+    @media only screen and (min-width: 992px) {
+      top: 14px;
+    }
   }
 }
 
@@ -60,7 +72,7 @@ nav {
 
 header {
   position: relative;
-  background-image: url(../img/hero.svg);
+  background-image: url(../img/hero.png);
   background-size: cover;
   height: 400px;
   background-position: center;
@@ -85,7 +97,7 @@ header {
     }
 
     a {
-      color: #05181f !important;
+      color: #ffffff !important;
       font-weight: 600;
       font-family: "Cairo", sans-serif;
 
@@ -105,19 +117,19 @@ header {
     &:focus {
       outline: none;
     }
+
+    > span {
+      background-color: white;
+    }
   }
 
   .head-logo {
     position: absolute;
+    inset: 0;
+    margin: auto;
+    height: 100px;
     @media only screen and (min-width: 992px) {
-      height: 180px;
-      bottom: 100px;
-      left: 250px;
-    }
-    @media only screen and (max-width: 991.9px) {
-      height: 120px;
-      top: 100px;
-      left: 40px;
+      height: 200px;
     }
   }
 
