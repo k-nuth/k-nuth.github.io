@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="High performance Bitcoin development platform"
+    />
+    <title>Knuth | Labs</title>
+
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="icon" href="./img/logo-white.svg" />
+
+    <!-- Bootstrap -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Cairo font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Ubuntu Mono font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Fontawesome icons -->
+    <script
+      src="https://kit.fontawesome.com/086597c03d.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Jquery -->
+    <script src="./js/jquery.js"></script>
+
+    <!-- ClipboardJs -->
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+
+    <!-- SwiperJs -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css" />
+    <script src="https://unpkg.com/swiper/js/swiper.min.js"></script>
+  </head>
+
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="nav-bar">
+        <img class="navbar-logo" src="./img/logo-white.svg" alt="Knuth" />
+        <button
+          class="navbar-toggler collapsed ml-auto"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="icon-bar top-bar"></span>
+          <span class="icon-bar middle-bar"></span>
+          <span class="icon-bar bottom-bar"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav d-flex justify-content-between w-50 mx-lg-auto">
+            <li
+              class="nav-item"
+              data-toggle="collapse"
+              data-target=".navbar-collapse.show"
+            >
+              <a class="nav-link" href="http://kth.cash/#download">Get Knuth</a>
+            </li>
+            <li
+              class="nav-item"
+              data-toggle="collapse"
+              data-target=".navbar-collapse.show"
+            >
+              <a class="nav-link" href="http://kth.cash/#features">Features</a>
+            </li>
+            <!-- <li
+              class="nav-item"
+              data-toggle="collapse"
+              data-target=".navbar-collapse.show"
+            >
+              <a class="nav-link" href="./kth-token.html">KTH Token</a>
+            </li> -->
+            <li
+              class="nav-item"
+              data-toggle="collapse"
+              data-target=".navbar-collapse.show"
+            >
+              <a class="nav-link" href="./labs.html">Labs</a>
+            </li>
+            <li
+              class="nav-item"
+              data-toggle="collapse"
+              data-target=".navbar-collapse.show"
+            >
+              <a class="nav-link" href="https://fund.kth.cash">Funding</a>
+            </li>
+            <li
+              class="nav-item"
+              data-toggle="collapse"
+              data-target=".navbar-collapse.show"
+            >
+              <a class="nav-link" href="http://kth.cash/#contact">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <img class="head-logo" src="./img/logo-white.svg" alt="Knuth" />
+    </header>
+
+    <div id="token-info" class="container">
+      <h1 class="text-center">
+        Knuth Labs
+      </h1>
+      <p>At Knuth, we are passionate about innovation. We believe that research and development (R&D) are crucial to continue driving the P2P electronic cash revolution and keep us at the forefront of Bitcoin Cash technology.</p>
+
+      <p>Knuth Labs embodies our unwavering commitment to research and development. Here, we plan to explore new approaches and technologies that seek to improve the efficiency and scalability of Bitcoin Cash.</p>
+
+      <p>One of our most exciting research projects we plan to undertake is investigating new data structures for storing Bitcoin Cash's UTXO Set more efficiently, in terms of both space and parallel processing. We believe that this work has the potential to revolutionize the industry, as we assist development teams to harness the latest in high-performance data structures.</p>
+
+      <p>In the future, Knuth Labs will also delve into the creation of specialized hardware devices for storing the UTXO Set. Our aim is to push the node's performance even further, allowing it to process millions of transactions in parallel - a crucial advancement for the global adoption of Bitcoin Cash.</p>
+
+      <p>Knuth isn't just the ideal place to experiment with these ideas, but also a safe space for it. By not being the reference node used by miners, we can take on fewer risks as we experiment and allow our code to mature before taking these innovations to <a href="https://bitcoincashnode.org/" target="_blank">BCHN - Bitcoin Cash Node</a>.</p>
+
+      <p>Amidst an ever-changing landscape, Knuth has shown its ability to survive and thrive. We're one of the four remaining Bitcoin Cash node implementations, and among them, we're the most active Bitcoin Cash infrastructure project. This steady and dedicated activity sets Knuth apart in a context where other projects have fallen by the wayside.</p>
+
+      <p>Our research isn't confined to the UTXO Set. We're also exploring a variety of other areas to improve the efficiency, security, and usability of Bitcoin Cash. Our R&D team is constantly on the hunt for new ideas and approaches to boost Bitcoin Cash.</p>
+
+      <p>At Knuth Labs, we commit to sharing our findings with the Bitcoin Cash community and collaborating with other development teams to put our ideas into practice. We believe this collaborative approach is key to securing the future of Bitcoin Cash as the world's premier peer-to-peer electronic cash system.</p>
+
+      <p>At Knuth Labs, we're building the future of Bitcoin Cash. We invite you to join us on this exciting journey.</p>
+    </div>
+
+    <section id="contact">
+      <div class="contact-container">
+        <a target="_blank" href="https://github.com/k-nuth/kth"
+          ><img
+            class="social-icon first"
+            src="./img/icons/github.svg"
+            alt="Github"
+        /></a>
+        <a target="_blank" rel="nofollow" href="https://k-nuth.slack.com/"
+          ><img class="social-icon" src="./img/icons/slack.svg" alt="Slack"
+        /></a>
+        <a target="_blank" rel="nofollow" href="https://twitter.com/KnuthNode"
+          ><img class="social-icon" src="./img/icons/twitter.svg" alt="Twitter"
+        /></a>
+        <a target="_blank" href="https://t.me/knuth_cash"
+          ><img
+            class="social-icon"
+            src="./img/icons/telegram.svg"
+            alt="Telegram"
+        /></a>
+        <a target="_blank" href="mailto:info@kth.cash"
+          ><img class="social-icon" src="./img/icons/mail.svg" alt="Mail"
+        /></a>
+      </div>
+    </section>
+    <!-- contact -->
+    <a id="back2Top" title="Back to top" href="#">&#10148;</a>
+    <footer class="text-center py-3">
+      <small
+        >Copyright © 2019-
+        <script>
+          document.write(new Date().getFullYear());
+        </script>
+        , Knuth</small
+      >
+    </footer>
+  </body>
+</html>
+
+<!-- Navbar change color on scroll -->
+<script>
+  $(window).scroll(function () {
+    $("nav").toggleClass("scrolled", $(this).scrollTop() > 0);
+  });
+</script>
+
+<!-- Scroll to top when arrow up clicked BEGIN -->
+<script>
+  $(window).scroll(function () {
+    var height = $(window).scrollTop();
+    if (height > 100) {
+      $("#back2Top").fadeIn();
+    } else {
+      $("#back2Top").fadeOut();
+    }
+  });
+  $(document).ready(function () {
+    $("#back2Top").click(function (event) {
+      event.preventDefault();
+      $("html, body").animate({ scrollTop: 0 }, "slow");
+      return false;
+    });
+  });
+</script>
+<!-- Scroll to top when arrow up clicked END -->
