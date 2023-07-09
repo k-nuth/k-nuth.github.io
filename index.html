@@ -165,42 +165,22 @@
             <p class="cmd-g pt-3">$ pip install "conan>=2.0" --user --upgrade</p>
             <p class="cmd-g pt-3">$ pip install kthbuild --user --upgrade</p>
             <p class="cmd-g pb-3">
+              $ conan remote add kth https://packages.kth.cash/api
+            </p>
+            <p class="cmd-g pb-3">
               $ conan config install
               https://github.com/k-nuth/ci-utils/raw/master/conan/config2023.zip
             </p>
           </div>
           <p class="pt-4"><b>2. Install the node executable:</b></p>
           <div class="container text-left cmd">
-            <!-- <p class="cmd-p pt-3"># For Bitcoin Cash (default)</p> -->
             <p class="cmd-g py-3">
-              $ conan install --requires=kth/0.32.0 --update --deploy=direct_deploy
-            </p>
-
-            <!-- <p class="cmd-p pt-3"># For Bitcoin</p>
-          <p class="pt-4"><b>2. Install the appropriate node executable:</b></p>
-          <div class="container text-left cmd">
-            <p class="cmd-p pt-3"># For Bitcoin Cash (default)</p>
-            <p class="cmd-g pb-4">
-              $ conan install kth/0.X@kth/stable -o currency=BCH --update
-            </p>
-            <p class="cmd-p pt-3"># For Bitcoin</p>
-            <p class="cmd-g pb-4">
-              $ conan install kth/0.X@kth/stable -o currency=BTC --update
-            </p>
-            <p class="cmd-p pt-3"># For Litecoin</p>
-            <p class="cmd-g pb-3">
-              $ conan install kth/0.X@kth/stable -o currency=LTC --update
-            </p>
-            <p class="cmd-p pt-3 pb-3">
-              # (0.X is an alias for our latest uploaded package)
-            </p> -->
+              $ conan install --requires=kth/0.36.0 --update --deployer=direct_deploy
             </p>
           </div>
 
           <p class="pt-4"><b>3. Run the node:</b></p>
           <div class="container text-left cmd">
-            <p class="cmd-p pt-3"># Initialize the database</p>
-            <p class="cmd-g pb-4">$ ./kth/bin/kth -i</p>
             <p class="cmd-p pt-3"># Run the node</p>
             <p class="cmd-g pb-3">$ ./kth/bin/kth</p>
           </div>
