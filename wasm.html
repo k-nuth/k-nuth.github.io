@@ -97,7 +97,7 @@
 			return new Promise(resolve => setTimeout(resolve, ms));
 		}
 
-		const { loadWasm, Kth, PaymentAddress } = __KTH_MODULE__;
+		const { loadLib, Kth, PaymentAddress } = __KTH_MODULE__;
 		window.Kth = Kth;
 		window.PaymentAddress = PaymentAddress;
 
@@ -112,7 +112,7 @@
 		animateLoadingDots();
 
 
-		loadWasm('kth.wasm', 'kth.js').then(delay(2000)).then(async function() {
+		loadLib('kth.wasm', 'kth.js').then(delay(2000)).then(async function() {
 			console.log('Kth loaded');
 			console.log(Kth.getLibconfig());
 
