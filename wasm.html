@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-  <title>Knuth Address Converter</title>
+  	<title>Knuth Address Converter</title>
 	<link rel="icon" type="image/x-icon" href="./img/logo-white.svg" />
 
 	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;500&display=swap" rel="stylesheet">
+  	<link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;500&display=swap" rel="stylesheet">
 
 	<style>
 
@@ -20,7 +20,7 @@
 			color: #009900;
         }
 		h1 {
-			color: #800080; /* Color púrpura neón */
+			color: #800080;
 		}
 		#inputBox {
 			margin-bottom: 20px;
@@ -33,7 +33,7 @@
 			border-radius: 10px;
 			font-family: 'Source Code Pro', monospace;
 			transition: border-color 0.3s, color 0.3s;
-			outline: none; /* Eliminar el resaltado al enfocar */
+			outline: none;
 		}
 		#inputBox:hover {
 			border-color: #0f0;
@@ -51,13 +51,12 @@
 			color: #009900;
 			border: 2px solid #009900;
 			border-radius: 10px;
-			transition: border-color 0.3s;
-			transition: color 0.3s;
+			transition: border-color 0.3s, color 0.3s;
 			font-family: 'Source Code Pro', monospace;
 		}
 		#convertButton:hover {
 			border-color: #0f0;
-			color: #0f0
+			color: #0f0;
 		}
         .label {
             margin-top: 20px;
@@ -75,6 +74,21 @@
 			display: none;
 			font-family: 'Source Code Pro', monospace;
 		}
+		#libraryInfo {
+			margin-top: 30px;
+			width: 80%;
+			height: 200px;
+			background-color: black;
+			color: #009900;
+			border: 2px solid #009900;
+			border-radius: 10px;
+			padding: 10px;
+			font-size: 14px;
+			font-family: 'Source Code Pro', monospace;
+			overflow-y: scroll;
+			white-space: pre-wrap;
+			resize: none;
+		}
     </style>
 </head>
 <body>
@@ -89,6 +103,8 @@
     <div class="label" id="cashAddressLabel" style="display: none;">Cash Address: <span id="cashAddress"></span></div>
     <div class="label" id="legacyAddressLabel" style="display: none;">Legacy Address: <span id="legacyAddress"></span></div>
     <div class="label" id="cashTokensLabel" style="display: none;">Cash Tokens: <span id="cashTokens"></span></div>
+
+	<textarea id="libraryInfo" readonly></textarea>
 
 	<script type="text/javascript" src="kth.js"></script>
 	<script type="text/javascript">
@@ -111,10 +127,24 @@
 		}
 		animateLoadingDots();
 
-
 		loadLib('kth.wasm', 'kth.js').then(delay(2000)).then(async function() {
 			console.log('Kth loaded');
 			console.log(Kth.getLibconfig());
+
+			const config = Kth.getLibconfig();
+			const libraryInfo = `
+C-API Version: ${config.version}
+Architecture: ${config.architecture}
+OS Name: ${config.osName}
+Compiler: ${config.compilerName}
+Compiler Version: ${config.compilerVersion}
+Optimization Level: ${config.optimizationLevel}
+Emscripten Version: ${config.emscriptenVersion}
+C-API Build Timestamp: ${new Date(config.capiBuildTimestamp).toISOString()}
+WASM Build Timestamp: ${new Date(config.wasmBuildTimestamp).toISOString()}
+			`.trim();
+
+			document.getElementById('libraryInfo').textContent = libraryInfo;
 
 			document.getElementById('inputBox').disabled = false;
 			document.getElementById('convertButton').disabled = false;
@@ -139,7 +169,7 @@
 			}
 
 			const addr = PaymentAddress.fromString(inputAddress);
-			if  ( ! addr) {
+			if ( ! addr) {
 				document.getElementById('errorMessage').textContent = 'Invalid address';
 				document.getElementById('errorMessage').style.display = 'block';
 				return;
@@ -152,7 +182,6 @@
 			document.getElementById('cashAddressLabel').style.display = 'block';
 			document.getElementById('legacyAddressLabel').style.display = 'block';
 			document.getElementById('cashTokensLabel').style.display = 'block';
-
 		});
 
 	</script>
