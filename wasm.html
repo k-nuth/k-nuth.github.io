@@ -133,13 +133,17 @@
 
 		loadLib('kth.wasm', 'kth.js').then(delay(2000)).then(async function() {
 			console.log('Kth loaded');
-			console.log(Kth.getLibconfig());
 
 			const config = Kth.getLibconfig();
+			console.log(config);
+			console.log(config.wasmBuildTimestamp);
+			console.log(config.capiBuildTimestamp);
+			console.log(config.cppapiBuildTimestamp);
+			console.log(new Date(config.wasmBuildTimestamp).toISOString());
 			const libraryInfo = `
-WASM Lib Version:      ${config.wasmLibraryVersion} ${new Date(config.wasmBuildTimestamp).toISOString()}
-C-API Version:         ${config.capiVersion} ${new Date(config.capiBuildTimestamp).toISOString()}
-C++ API Version:       ${config.cppapiVersion} ${new Date(config.cppapiBuildTimestamp).toISOString()}
+WASM Lib Version:      ${config.wasmLibraryVersion}
+C-API Version:         ${config.capiVersion}
+C++ API Version:       ${config.cppapiVersion}
 Architecture:          ${config.architecture} ${config.endianness} pointer size ${config.typeSizesPointer}
 OS Name:               ${config.osName}
 Compiler:              ${config.compilerName}
