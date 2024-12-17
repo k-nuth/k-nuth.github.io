@@ -142,15 +142,17 @@
 			console.log(new Date(config.wasmBuildTimestamp).toISOString());
 			console.log(new Date(config.capiBuildTimestamp).toISOString());
 			console.log(new Date(config.cppapiBuildTimestamp).toISOString());
+
+			// versions: pad 8 chars with spaces
 			const libraryInfo = `
-WASM Lib Version:      ${config.wasmLibraryVersion} ${new Date(config.wasmBuildTimestamp).toISOString()}
-C-API Version:         ${config.capiVersion} ${new Date(config.capiBuildTimestamp).toISOString()}
-C++ API Version:       ${config.cppapiVersion} ${new Date(config.cppapiBuildTimestamp).toISOString()}
-Architecture:          ${config.architecture} - ${config.endianness.toLowerCase()} - pointer size: ${config.typeSizesPointer} bytes
-OS Name:               ${config.osName}
-Compiler:              ${config.compilerName}
-Compiler Version:      ${config.compilerVersion}
-Emscripten Version:    ${config.emscriptenVersion}
+WASM Lib version:   ${config.wasmLibraryVersion.padEnd(8, ' ')} ${new Date(config.wasmBuildTimestamp).toISOString()}
+C Lib version:      ${config.capiVersion.padEnd(8, ' ')} ${new Date(config.capiBuildTimestamp).toISOString()}
+C++ Lib version:    ${config.cppapiVersion.padEnd(8, ' ')} ${new Date(config.cppapiBuildTimestamp).toISOString()}
+Architecture:       ${config.architecture} - ${config.endianness.toLowerCase()} - pointer size: ${config.typeSizesPointer} bytes
+OS Name:            ${config.osName}
+Compiler:           ${config.compilerName}
+Compiler version:   ${config.compilerVersion}
+Emscripten version: ${config.emscriptenVersion}
 			`.trim();
 
 			document.getElementById('libraryInfo').textContent = libraryInfo;
