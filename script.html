@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knuth Script Analyzer</title>
+    <link rel="icon" type="image/x-icon" href="./img/logo-white.svg" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Source Code Pro', monospace;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            color: #009900;
+        }
+
+        h1 {
+            color: #800080;
+            margin-top: 20px;
+        }
+
+        /* #inputBox {
+            margin: 20px 0;
+            padding: 12px;
+            font-size: 18px;
+            width: 40%;
+            background-color: black;
+            color: #009900;
+            border: 2px solid #009900;
+            border-radius: 10px;
+            transition: border-color 0.3s, color 0.3s;
+            outline: none;
+        } */
+
+		#inputBox {
+			margin: 20px 0;
+			padding: 12px;
+			font-size: 16px;
+			width: 60%;
+			height: 200px;
+			background-color: black;
+			color: #009900;
+			border: 2px solid #009900;
+			border-radius: 10px;
+			transition: border-color 0.3s, color 0.3s;
+			outline: none;
+			font-family: 'Source Code Pro', monospace;
+			resize: vertical;
+		}
+
+		#inputBox:hover, #inputBox:focus {
+			border-color: #0f0;
+			color: #0f0;
+		}
+
+		.result {
+			margin: 10px 0;
+			font-size: 14px;
+			padding: 5px;
+			color: #00ff00;
+			display: none;
+			font-family: 'Source Code Pro', monospace;
+			text-align: left;
+		}
+
+
+        #inputBox:hover, #inputBox:focus {
+            border-color: #0f0;
+            color: #0f0;
+        }
+
+        #analyzeButton {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: black;
+            color: #009900;
+            border: 2px solid #009900;
+            border-radius: 10px;
+            transition: border-color 0.3s, color 0.3s;
+        }
+
+        #analyzeButton:hover {
+            border-color: #0f0;
+            color: #0f0;
+        }
+/*
+        .result {
+            margin: 20px 0;
+            font-size: 16px;
+            padding: 10px;
+            border: 2px solid #009900;
+            border-radius: 10px;
+            display: none;
+        } */
+
+        #errorMessage {
+            color: red;
+            display: none;
+        }
+
+        #libraryInfoContainer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: black;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        #libraryInfo {
+            width: 100%;
+            height: 150px;
+            background-color: black;
+            color: #00ff00;
+            border: none;
+            font-family: 'Source Code Pro', monospace;
+            resize: none;
+            outline: none;
+            font-size: 14px;
+            line-height: 1.5;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <h1>Knuth Script Analyzer</h1>
+
+    <div id="loadingMessage">Loading Knuth<span id="loadingDots"></span></div>
+
+    <!-- <input type="text" id="inputBox" placeholder="Enter script in hex"> -->
+	<textarea id="inputBox" placeholder="Enter script in hex"></textarea>
+
+    <button id="analyzeButton">Analyze</button>
+
+    <div id="errorMessage">Invalid script format. Please try again.</div>
+    <div class="result" id="scriptDetails"></div>
+    <div class="result" id="operations"></div>
+    <div class="result" id="scriptType"></div>
+
+    <div id="libraryInfoContainer">
+        <textarea id="libraryInfo" readonly></textarea>
+    </div>
+
+    <script type="text/javascript" src="kth.js"></script>
+    <script type="text/javascript">
+        function delay(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        const { loadLib, Kth, Script, hexStrToBytes } = __KTH_MODULE__;
+        window.Kth = Kth;
+        window.Script = Script;
+
+        function animateLoadingDots() {
+            let dots = document.getElementById('loadingDots');
+            let count = 0;
+            setInterval(() => {
+                dots.textContent = '.'.repeat(count % 4);
+                count++;
+            }, 500);
+        }
+        animateLoadingDots();
+
+        loadLib('kth.wasm', 'kth.js').then(delay(2000)).then(async function() {
+            document.getElementById('loadingMessage').style.display = 'none';
+            document.getElementById('inputBox').disabled = false;
+            document.getElementById('analyzeButton').disabled = false;
+
+            const config = Kth.getLibconfig();
+            const libraryInfo = `
+WASM Lib version:   ${config.wasmLibraryVersion.padEnd(8, ' ')} ${new Date(config.wasmBuildTimestamp).toISOString()}
+C Lib version:      ${config.capiVersion.padEnd(8, ' ')} ${new Date(config.capiBuildTimestamp).toISOString()}
+C++ Lib version:    ${config.cppapiVersion.padEnd(8, ' ')} ${new Date(config.cppapiBuildTimestamp).toISOString()}
+Architecture:       ${config.architecture} - ${config.endianness.toLowerCase()} - pointer size: ${config.typeSizesPointer} bytes
+OS Name:            ${config.osName}
+Compiler:           ${config.compilerName}
+Compiler version:   ${config.compilerVersion}
+Emscripten version: ${config.emscriptenVersion}
+            `.trim();
+
+            document.getElementById('libraryInfo').textContent = libraryInfo;
+        });
+
+		document.getElementById('inputBox').placeholder = `Enter script in hex (e.g., 76a91489abcdefabbaabbaabbaabbaabbaabbaabbaabba88ac)`;
+
+        document.getElementById('analyzeButton').addEventListener('click', function() {
+            const scriptHex = document.getElementById('inputBox').value;
+            if (!scriptHex) {
+                document.getElementById('errorMessage').style.display = 'block';
+                return;
+            }
+
+            const script = Script.fromData(hexStrToBytes(scriptHex), false);
+            if (!script) {
+                document.getElementById('errorMessage').style.display = 'block';
+                return;
+            }
+
+            document.getElementById('errorMessage').style.display = 'none';
+            document.getElementById('scriptDetails').style.display = 'block';
+            document.getElementById('scriptDetails').textContent = `Script Details: ${script.toString()}`;
+
+            document.getElementById('operations').style.display = 'block';
+            document.getElementById('operations').textContent = `Operations: ${script.operations.map(op => op.toString()).join(', ')}`;
+
+            document.getElementById('scriptType').style.display = 'block';
+            document.getElementById('scriptType').textContent = `Script Type: ${script.type}`;
+        });
+    </script>
+</body>
+</html>

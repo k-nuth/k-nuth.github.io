@@ -1,0 +1,20 @@
+<footer>
+    <div id="libraryInfoContainer">
+        <textarea id="libraryInfo" readonly></textarea>
+    </div>
+</footer>
+<script>
+    function loadLibraryInfo(config) {
+        const libraryInfo = `
+WASM Lib version:   ${config.wasmLibraryVersion.padEnd(8, ' ')} ${new Date(config.wasmBuildTimestamp).toISOString()}
+C Lib version:      ${config.capiVersion.padEnd(8, ' ')} ${new Date(config.capiBuildTimestamp).toISOString()}
+C++ Lib version:    ${config.cppapiVersion.padEnd(8, ' ')} ${new Date(config.cppapiBuildTimestamp).toISOString()}
+Architecture:       ${config.architecture} - ${config.endianness.toLowerCase()} - pointer size: ${config.typeSizesPointer} bytes
+OS Name:            ${config.osName}
+Compiler:           ${config.compilerName}
+Compiler version:   ${config.compilerVersion}
+Emscripten version: ${config.emscriptenVersion}
+        `.trim();
+        document.getElementById('libraryInfo').textContent = libraryInfo;
+    }
+</script>
