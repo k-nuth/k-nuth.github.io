@@ -73,5 +73,5 @@ echo ""
 print_step "Run"
 echo ""
 
-print_step "  ./kth/bin/kth"
-exec ./kth/bin/kth
+print_step "  $(find . -name kth -type f -executable | head -1)"
+exec $(find . -name kth -type f -executable | head -1)
