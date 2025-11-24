@@ -41,9 +41,7 @@ echo ""
 
 # Copy source files to build directory
 print_step "Copying source files"
-cp "$SCRIPT_DIR/example.c" "$BUILD_DIR/"
-cp "$SCRIPT_DIR/CMakeLists.txt" "$BUILD_DIR/"
-cp "$SCRIPT_DIR/conanfile.txt" "$BUILD_DIR/"
+cp "$SCRIPT_DIR"/*.* "$BUILD_DIR/" 2>/dev/null || true
 print_success "Source files copied"
 echo ""
 
@@ -75,7 +73,7 @@ echo ""
 # PROJECT SETUP (files already copied)
 # =============================================================================
 print_step "Project Setup"
-echo "  Files: conanfile.txt, CMakeLists.txt, example.c"
+echo "  Files copied to build directory"
 print_success "Project files ready"
 echo ""
 

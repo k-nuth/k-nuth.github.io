@@ -51,7 +51,7 @@ echo ""
 # PROJECT SETUP (files already exist in /workspace/)
 # =============================================================================
 print_step "Project Setup"
-echo "  Files: conanfile.txt, CMakeLists.txt, example.c"
+echo "  Files in /workspace/"
 print_success "Project files ready"
 echo ""
 

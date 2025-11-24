@@ -1,0 +1,11 @@
+<div><span class="text-purple-300">cmake_minimum_required</span>(<span class="text-orange-300">VERSION</span> <span class="text-cyan-300">3.23</span>)</div>
+<div><span class="text-purple-300">project</span>(<span class="text-cyan-300">example</span> <span class="text-orange-300">C CXX</span>)</div>
+<div>&nbsp;</div>
+<div><span class="text-purple-300">set</span>(<span class="text-orange-300">CMAKE_C_STANDARD</span> <span class="text-cyan-300">11</span>)</div>
+<div><span class="text-purple-300">set</span>(<span class="text-orange-300">CMAKE_C_STANDARD_REQUIRED</span> <span class="text-orange-300">ON</span>)</div>
+<div>&nbsp;</div>
+<div><span class="text-purple-300">find_package</span>(<span class="text-cyan-300">kth</span> <span class="text-orange-300">REQUIRED</span>)</div>
+<div>&nbsp;</div>
+<div><span class="text-purple-300">add_executable</span>(<span class="text-yellow-300">${PROJECT_NAME}</span> example.c)</div>
+<div><span class="text-purple-300">set_target_properties</span>(<span class="text-yellow-300">${PROJECT_NAME}</span> <span class="text-orange-300">PROPERTIES LINKER_LANGUAGE</span> <span class="text-cyan-300">CXX</span>)</div>
+<div><span class="text-purple-300">target_link_libraries</span>(<span class="text-yellow-300">${PROJECT_NAME}</span> <span class="text-orange-300">PRIVATE</span> kth::c-api)</div>
