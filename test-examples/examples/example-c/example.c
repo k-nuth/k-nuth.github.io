@@ -93,42 +93,43 @@ int main(int argc, char* argv[]) {
     // Get chain interface
     kth_chain_t chain = kth_node_get_chain(node);
 
-    // Get current blockchain height
-    uint64_t current_height;
-    res = kth_chain_sync_last_height(chain, &current_height);
-
-    if (res != kth_ec_success) {
-        printf("ERROR: Could not get current height: %d\n", res);
-        kth_node_destruct(node);
-        return 1;
-    }
-
-    printf("Current blockchain height: %llu\n\n", (unsigned long long)current_height);
-
-    // Fetch a historic block from the Satoshi era
-    // Block 170 contains the first person-to-person Bitcoin transaction
+    // Target block: First person-to-person Bitcoin transaction
     // (Satoshi Nakamoto to Hal Finney on January 12, 2009)
     kth_size_t target_height = 170;
+
+    // Wait for blockchain to sync to target height
+    printf("Waiting for blockchain to sync to block %llu...\n", (unsigned long long)target_height);
+    printf("(Press Ctrl-C to stop)\n\n");
+
+    uint64_t current_height = 0;
+    while (keep_running && current_height < target_height) {
+        res = kth_chain_sync_last_height(chain, &current_height);
+        if (res == kth_ec_success) {
+            printf("\r🔄 Syncing blockchain... Current height: %llu / %llu",
+                   (unsigned long long)current_height, (unsigned long long)target_height);
+            fflush(stdout);
+        }
+        sleep(2);
+    }
+
+    if (!keep_running) {
+        printf("\n\nShutdown requested during sync.\n");
+        kth_node_destruct(node);
+        return 0;
+    }
+
+    printf("\n\n✓ Blockchain synced to height %llu\n\n", (unsigned long long)current_height);
+
+    // Fetch the historic block
     printf("Fetching historic block at height %llu...\n", (unsigned long long)target_height);
-    printf("(First person-to-person transaction: Satoshi to Hal Finney)\n");
+    printf("(First person-to-person transaction: Satoshi to Hal Finney)\n\n");
     kth_chain_async_block_by_height(chain, NULL, target_height, block_handler);
 
     // Keep running until Ctrl-C
-    printf("\nNode is running. Press Ctrl-C to stop.\n");
-    printf("Waiting for signal...\n\n");
+    printf("Node is running. Press Ctrl-C to stop.\n\n");
 
     while (keep_running) {
-        printf("[DEBUG] Before sleep, keep_running=%d\n", keep_running);
-        fflush(stdout);
         sleep(10);
-        printf("[DEBUG] After sleep, keep_running=%d\n", keep_running);
-
-        // Check current height
-        uint64_t current;
-        if (kth_chain_sync_last_height(chain, &current) == kth_ec_success) {
-            printf("[DEBUG] Current blockchain height: %llu\n", (unsigned long long)current);
-        }
-        fflush(stdout);
     }
 
     // Cleanup
