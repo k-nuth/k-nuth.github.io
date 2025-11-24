@@ -7,16 +7,8 @@ echo "Knuth Executable Node - Docker Test"
 echo "=========================================="
 echo ""
 
-# Load version from config.json (in /workspace/config.json in Docker)
-CONFIG_FILE="/workspace/config.json"
-if [ -f "$CONFIG_FILE" ]; then
-    KTH_VERSION=$(node -p "require('$CONFIG_FILE').kthVersion")
-else
-    # Fallback if running locally
-    SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-    CONFIG_FILE="$SCRIPT_DIR/../config.json"
-    KTH_VERSION=$(node -p "require('$CONFIG_FILE').kthVersion")
-fi
+# KTH_VERSION is set by Docker ENV or defaults to latest
+KTH_VERSION=${KTH_VERSION:-0.73.0}
 echo "Using Knuth version: $KTH_VERSION"
 echo ""
 
