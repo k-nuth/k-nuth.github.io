@@ -926,19 +926,30 @@
                     <div><span class="text-purple-300">#include</span> <span class="text-orange-300">&lt;kth/capi.h&gt;</span></div>
                     <div>&nbsp;</div>
                     <div><span class="text-purple-300">volatile int</span> keep_running = <span class="text-cyan-300">1</span>;</div>
-                    <div><span class="text-purple-300">void</span> <span class="text-yellow-300">handle_signal</span>(<span class="text-purple-300">int</span> sig) { keep_running = <span class="text-cyan-300">0</span>; }</div>
+                    <div><span class="text-purple-300">volatile int</span> block_received = <span class="text-cyan-300">0</span>;</div>
+                    <div>&nbsp;</div>
+                    <div><span class="text-purple-300">void</span> <span class="text-yellow-300">handle_signal</span>(<span class="text-purple-300">int</span> sig) {</div>
+                    <div>&nbsp;&nbsp;keep_running = <span class="text-cyan-300">0</span>;</div>
+                    <div>&nbsp;&nbsp;<span class="text-yellow-300">printf</span>(<span class="text-green-300">"\nInterrupted by signal\n"</span>);</div>
+                    <div>}</div>
                     <div>&nbsp;</div>
                     <div><span class="text-purple-300">void</span> <span class="text-yellow-300">print_block</span>(kth_chain_t c, <span class="text-purple-300">void</span>* ctx, kth_error_code_t err, kth_block_t block, kth_size_t h) {</div>
-                    <div>&nbsp;&nbsp;<span class="text-purple-300">if</span> (err != kth_ec_success) <span class="text-purple-300">return</span>;</div>
+                    <div>&nbsp;&nbsp;<span class="text-purple-300">if</span> (err != kth_ec_success) {</div>
+                    <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">printf</span>(<span class="text-green-300">"Error fetching block: %d\n"</span>, err);</div>
+                    <div>&nbsp;&nbsp;&nbsp;&nbsp;block_received = <span class="text-cyan-300">1</span>;</div>
+                    <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-purple-300">return</span>;</div>
+                    <div>&nbsp;&nbsp;}</div>
                     <div>&nbsp;&nbsp;kth_hash_t hash = <span class="text-yellow-300">kth_chain_block_hash</span>(block);</div>
                     <div>&nbsp;&nbsp;<span class="text-yellow-300">printf</span>(<span class="text-green-300">"Block %llu: "</span>, (<span class="text-purple-300">unsigned long long</span>)h);</div>
                     <div>&nbsp;&nbsp;<span class="text-purple-300">for</span> (<span class="text-purple-300">int</span> i = <span class="text-cyan-300">31</span>; i &gt;= <span class="text-cyan-300">0</span>; --i) <span class="text-yellow-300">printf</span>(<span class="text-green-300">"%02x"</span>, hash.hash[i]);</div>
                     <div>&nbsp;&nbsp;<span class="text-yellow-300">printf</span>(<span class="text-green-300">"\n"</span>);</div>
                     <div>&nbsp;&nbsp;<span class="text-yellow-300">kth_chain_block_destruct</span>(block);</div>
+                    <div>&nbsp;&nbsp;block_received = <span class="text-cyan-300">1</span>;</div>
                     <div>}</div>
                     <div>&nbsp;</div>
                     <div><span class="text-purple-300">int</span> <span class="text-yellow-300">main</span>() {</div>
                     <div>&nbsp;&nbsp;<span class="text-yellow-300">signal</span>(SIGINT, handle_signal);</div>
+                    <div>&nbsp;&nbsp;<span class="text-yellow-300">signal</span>(SIGTERM, handle_signal);</div>
                     <div>&nbsp;</div>
                     <div>&nbsp;&nbsp;kth_settings cfg = <span class="text-yellow-300">kth_config_settings_default</span>(kth_network_mainnet);</div>
                     <div>&nbsp;&nbsp;kth_node_t node = <span class="text-yellow-300">kth_node_construct</span>(&amp;cfg, <span class="text-cyan-300">0</span>);</div>
@@ -946,24 +957,35 @@
                     <div>&nbsp;</div>
                     <div>&nbsp;&nbsp;kth_chain_t chain = <span class="text-yellow-300">kth_node_get_chain</span>(node);</div>
                     <div>&nbsp;&nbsp;<span class="text-purple-300">uint64_t</span> h = <span class="text-cyan-300">0</span>;</div>
+                    <div>&nbsp;&nbsp;<span class="text-yellow-300">kth_chain_sync_last_height</span>(chain, &amp;h);</div>
                     <div>&nbsp;</div>
                     <div>&nbsp;&nbsp;<span class="text-gray-400">// Wait for sync to block 170</span></div>
                     <div>&nbsp;&nbsp;<span class="text-purple-300">while</span> (keep_running &amp;&amp; h &lt; <span class="text-cyan-300">170</span>) {</div>
-                    <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">kth_chain_sync_last_height</span>(chain, &amp;h);</div>
                     <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">printf</span>(<span class="text-green-300">"\r🔄 Syncing... %llu/170"</span>, h);</div>
                     <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">fflush</span>(stdout);</div>
                     <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">sleep</span>(<span class="text-cyan-300">1</span>);</div>
+                    <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">kth_chain_sync_last_height</span>(chain, &amp;h);</div>
                     <div>&nbsp;&nbsp;}</div>
                     <div>&nbsp;</div>
-                    <div>&nbsp;&nbsp;<span class="text-yellow-300">printf</span>(<span class="text-green-300">"\n"</span>);</div>
+                    <div>&nbsp;&nbsp;<span class="text-purple-300">if</span> (!keep_running) {</div>
+                    <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">kth_node_destruct</span>(node);</div>
+                    <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-purple-300">return</span> <span class="text-cyan-300">0</span>;</div>
+                    <div>&nbsp;&nbsp;}</div>
+                    <div>&nbsp;</div>
+                    <div>&nbsp;&nbsp;<span class="text-yellow-300">printf</span>(<span class="text-green-300">"\n✓ Synced to block %llu\n"</span>, h);</div>
+                    <div>&nbsp;&nbsp;<span class="text-yellow-300">printf</span>(<span class="text-green-300">"Fetching block 170...\n"</span>);</div>
                     <div>&nbsp;&nbsp;<span class="text-yellow-300">kth_chain_async_block_by_height</span>(chain, <span class="text-purple-300">NULL</span>, <span class="text-cyan-300">170</span>, print_block);</div>
-                    <div>&nbsp;&nbsp;<span class="text-purple-300">while</span> (keep_running) <span class="text-yellow-300">sleep</span>(<span class="text-cyan-300">1</span>);</div>
+                    <div>&nbsp;</div>
+                    <div>&nbsp;&nbsp;<span class="text-gray-400">// Wait for block to be received or interrupted</span></div>
+                    <div>&nbsp;&nbsp;<span class="text-purple-300">while</span> (keep_running &amp;&amp; !block_received) {</div>
+                    <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">sleep</span>(<span class="text-cyan-300">1</span>);</div>
+                    <div>&nbsp;&nbsp;}</div>
                     <div>&nbsp;</div>
                     <div>&nbsp;&nbsp;<span class="text-yellow-300">kth_node_destruct</span>(node);</div>
                     <div>&nbsp;&nbsp;<span class="text-purple-300">return</span> <span class="text-cyan-300">0</span>;</div>
                     <div>}</div>
                                         </div>
-                                        <button class="copy-btn absolute top-2 right-2 p-1.5 bg-gray-800 hover:bg-primary rounded transition-all opacity-0 group-hover:opacity-100" data-clipboard-text='#include <signal.h>&#10;#include <stdio.h>&#10;#include <unistd.h>&#10;#include <kth/capi.h>&#10; &#10;volatile int keep_running = 1;&#10;void handle_signal(int sig) { keep_running = 0; }&#10; &#10;void print_block(kth_chain_t c, void* ctx, kth_error_code_t err, kth_block_t block, kth_size_t h) {&#10;  if (err != kth_ec_success) return;&#10;  kth_hash_t hash = kth_chain_block_hash(block);&#10;  printf("Block %llu: ", (unsigned long long)h);&#10;  for (int i = 31; i >= 0; --i) printf("%02x", hash.hash[i]);&#10;  printf("\n");&#10;  kth_chain_block_destruct(block);&#10;}&#10; &#10;int main() {&#10;  signal(SIGINT, handle_signal);&#10; &#10;  kth_settings cfg = kth_config_settings_default(kth_network_mainnet);&#10;  kth_node_t node = kth_node_construct(&amp;cfg, 0);&#10;  if (!node || kth_node_init_run_sync(node, kth_start_modules_all) != kth_ec_success) return 1;&#10; &#10;  kth_chain_t chain = kth_node_get_chain(node);&#10;  uint64_t h = 0;&#10; &#10;  // Wait for sync to block 170&#10;  while (keep_running &amp;&amp; h < 170) {&#10;    kth_chain_sync_last_height(chain, &amp;h);&#10;    printf("\r🔄 Syncing... %llu/170", h);&#10;    fflush(stdout);&#10;    sleep(1);&#10;  }&#10; &#10;  printf("\n");&#10;  kth_chain_async_block_by_height(chain, NULL, 170, print_block);&#10;  while (keep_running) sleep(1);&#10; &#10;  kth_node_destruct(node);&#10;  return 0;&#10;}'>
+                                        <button class="copy-btn absolute top-2 right-2 p-1.5 bg-gray-800 hover:bg-primary rounded transition-all opacity-0 group-hover:opacity-100" data-clipboard-text='#include <signal.h>&#10;#include <stdio.h>&#10;#include <unistd.h>&#10;#include <kth/capi.h>&#10; &#10;volatile int keep_running = 1;&#10;volatile int block_received = 0;&#10; &#10;void handle_signal(int sig) {&#10;  keep_running = 0;&#10;  printf("\nInterrupted by signal\n");&#10;}&#10; &#10;void print_block(kth_chain_t c, void* ctx, kth_error_code_t err, kth_block_t block, kth_size_t h) {&#10;  if (err != kth_ec_success) {&#10;    printf("Error fetching block: %d\n", err);&#10;    block_received = 1;&#10;    return;&#10;  }&#10;  kth_hash_t hash = kth_chain_block_hash(block);&#10;  printf("Block %llu: ", (unsigned long long)h);&#10;  for (int i = 31; i >= 0; --i) printf("%02x", hash.hash[i]);&#10;  printf("\n");&#10;  kth_chain_block_destruct(block);&#10;  block_received = 1;&#10;}&#10; &#10;int main() {&#10;  signal(SIGINT, handle_signal);&#10;  signal(SIGTERM, handle_signal);&#10; &#10;  kth_settings cfg = kth_config_settings_default(kth_network_mainnet);&#10;  kth_node_t node = kth_node_construct(&amp;cfg, 0);&#10;  if (!node || kth_node_init_run_sync(node, kth_start_modules_all) != kth_ec_success) return 1;&#10; &#10;  kth_chain_t chain = kth_node_get_chain(node);&#10;  uint64_t h = 0;&#10;  kth_chain_sync_last_height(chain, &amp;h);&#10; &#10;  // Wait for sync to block 170&#10;  while (keep_running &amp;&amp; h < 170) {&#10;    printf("\r🔄 Syncing... %llu/170", h);&#10;    fflush(stdout);&#10;    sleep(1);&#10;    kth_chain_sync_last_height(chain, &amp;h);&#10;  }&#10; &#10;  if (!keep_running) {&#10;    kth_node_destruct(node);&#10;    return 0;&#10;  }&#10; &#10;  printf("\n✓ Synced to block %llu\n", h);&#10;  printf("Fetching block 170...\n");&#10;  kth_chain_async_block_by_height(chain, NULL, 170, print_block);&#10; &#10;  // Wait for block to be received or interrupted&#10;  while (keep_running &amp;&amp; !block_received) {&#10;    sleep(1);&#10;  }&#10; &#10;  kth_node_destruct(node);&#10;  return 0;&#10;}'>
                                           <svg class="w-4 h-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
                                           </svg>
