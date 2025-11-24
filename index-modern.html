@@ -845,7 +845,7 @@
                   <div class="bg-gray-900 rounded-lg p-3 font-mono text-sm overflow-x-auto text-gray-300">
                     <div><span class="text-green-400">$ </span><span class="text-cyan-300">pip install kthbuild</span> <span class="text-purple-300">--user --upgrade</span></div>
                     <div><span class="text-green-400">$ </span><span class="text-cyan-300">conan config install</span> <span class="text-blue-300">https://github.com/k-nuth/ci-utils/raw/master/conan/config2023.zip</span></div>
-                    <div><span class="text-green-400">$ </span><span class="text-cyan-300">conan install</span> <span class="text-purple-300">--requires=</span><span class="text-orange-300">kth/0.73.0</span> <span class="text-purple-300">--update</span></div>
+                    <div><span class="text-green-400">$ </span><span class="text-cyan-300">conan install</span> <span class="text-purple-300">--requires=</span><span class="text-orange-300">kth/<span id="kth-version-c-example">0.73.0</span></span> <span class="text-purple-300">--update</span></div>
                   </div>
                 </div>
                 <div>
@@ -1477,14 +1477,20 @@
             versionElement.textContent = version;
           }
 
+          // Update C example version
+          const cExampleVersion = document.getElementById('kth-version-c-example');
+          if (cExampleVersion) {
+            cExampleVersion.textContent = version;
+          }
+
           // Update copy button with new version
           const copyBtn = document.getElementById('copy-install-btn');
           if (copyBtn) {
             copyBtn.setAttribute('data-clipboard-text', `conan install --requires=kth/${version} --update --deployer=direct_deploy`);
           }
         } catch (error) {
-          console.log('Using default version 0.46.0');
-          // Keep default version 0.46.0 if fetch fails
+          console.log('Using default version 0.73.0');
+          // Keep default version 0.73.0 if fetch fails
         }
       }
 
