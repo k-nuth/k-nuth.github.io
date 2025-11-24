@@ -20,12 +20,12 @@ void handle_signal(int sig) {
 
 void block_handler(kth_chain_t chain, void* ctx, kth_error_code_t error, kth_block_t block, kth_size_t height) {
     if (error != kth_ec_success) {
-        printf("Error fetching block at height %zu: %d\n", height, error);
+        printf("Error fetching block at height %llu: %d\n", (unsigned long long)height, error);
         return;
     }
 
     printf("\n========================================\n");
-    printf("Successfully fetched block at height: %zu\n", height);
+    printf("Successfully fetched block at height: %llu\n", (unsigned long long)height);
 
     // Get block hash
     kth_hash_t hash = kth_chain_block_hash(block);
@@ -38,7 +38,7 @@ void block_handler(kth_chain_t chain, void* ctx, kth_error_code_t error, kth_blo
     // Get number of transactions
     kth_transaction_list_t tx_list = kth_chain_block_transactions(block);
     kth_size_t tx_count = kth_chain_transaction_list_count(tx_list);
-    printf("Number of transactions: %zu\n", tx_count);
+    printf("Number of transactions: %llu\n", (unsigned long long)tx_count);
     kth_chain_transaction_list_destruct(tx_list);
 
     printf("========================================\n\n");
@@ -108,7 +108,7 @@ int main(int argc, char* argv[]) {
     // Block 170 contains the first person-to-person Bitcoin transaction
     // (Satoshi Nakamoto to Hal Finney on January 12, 2009)
     kth_size_t target_height = 170;
-    printf("Fetching historic block at height %zu...\n", target_height);
+    printf("Fetching historic block at height %llu...\n", (unsigned long long)target_height);
     printf("(First person-to-person transaction: Satoshi to Hal Finney)\n");
     kth_chain_async_block_by_height(chain, NULL, target_height, block_handler);
 
