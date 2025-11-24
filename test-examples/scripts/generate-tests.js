@@ -207,6 +207,10 @@ echo ""
 print_step "Build"
 echo ""
 
+# Clean CMake cache to avoid conflicts with other projects
+print_step "  Cleaning CMake cache"
+rm -rf build/CMakeCache.txt build/CMakeFiles build/build
+
 ${buildCommands.map(cmd => `print_step "  ${cmd}"\n${cmd}`).join('\n\n')}
 
 print_success "Build completed"

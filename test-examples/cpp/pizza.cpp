@@ -3,6 +3,7 @@
 #include <print>
 #include <thread>
 #include <kth/node.hpp>
+#include <kth/node/executor/executor.hpp>
  
 using namespace kth;
  
@@ -21,12 +22,12 @@ int main() {
   std::signal(SIGTERM, handle_signal);
  
   node::configuration config{domain::config::network::mainnet};
-  node::full_node node{config};
+  node::executor exec{config, false};
  
-  std::print("Starting node...\n");
+  std::println("Initializing and starting node...");
  
   bool started = false;
-  node.start([&](code const& ec) {
+  exec.init_run("", node::start_modules::all, [&](code const& ec) {
     if (ec) {
       std::println("Error starting node: {}", ec.message());
       return;
@@ -41,28 +42,27 @@ int main() {
  
   if (!started) return 1;
  
-  auto& chain = node.chain();
+  auto& chain = exec.node().chain();
  
   // Wait for sync to pizza_block
-  while (keep_running) {
-    size_t h;
-    if (!chain.get_last_height(h)) break;
- 
-    if (h >= pizza_block) break;
- 
-    std::print("\r🔄 Syncing... {}/{}", h, pizza_block);
+  size_t current_height = 0;
+  while (keep_running && current_height < pizza_block) {
+    chain.fetch_last_height([&](code const& ec, size_t h) {
+      if (!ec) current_height = h;
+    });
+    std::print("\r🔄 Syncing... {}/{}", current_height, pizza_block);
     std::this_thread::sleep_for(std::chrono::seconds(1));
   }
  
   if (!keep_running) {
-    node.stop();
+    exec.close();
     return 0;
   }
  
   std::println("\n✓ Synced to block {}", pizza_block);
   std::println("Fetching block {} (Bitcoin Pizza Day)...", pizza_block);
  
-  chain.fetch_block(pizza_block, [](code const& ec, blockchain::block_const_ptr block, size_t h) {
+  chain.fetch_block(pizza_block, [&](code const& ec, block_const_ptr block, size_t h) {
     if (ec) {
       std::println("Error fetching block: {}", ec.message());
       block_received = true;
@@ -83,6 +83,6 @@ int main() {
     std::this_thread::sleep_for(std::chrono::seconds(1));
   }
  
-  node.stop();
+  exec.close();
   return 0;
 }

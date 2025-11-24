@@ -83,6 +83,10 @@ echo ""
 print_step "Build"
 echo ""
 
+# Clean CMake cache to avoid conflicts with other projects
+print_step "  Cleaning CMake cache"
+rm -rf build/CMakeCache.txt build/CMakeFiles build/build
+
 print_step "  conan install . --build=missing -s compiler.cppstd=23"
 conan install . --build=missing -s compiler.cppstd=23
 

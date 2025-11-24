@@ -3,6 +3,7 @@
 <div><span class="text-purple-300">#include</span> <span class="text-orange-300">&lt;print&gt;</span></div>
 <div><span class="text-purple-300">#include</span> <span class="text-orange-300">&lt;thread&gt;</span></div>
 <div><span class="text-purple-300">#include</span> <span class="text-orange-300">&lt;kth/node.hpp&gt;</span></div>
+<div><span class="text-purple-300">#include</span> <span class="text-orange-300">&lt;kth/node/executor/executor.hpp&gt;</span></div>
 <div>&nbsp;</div>
 <div><span class="text-purple-300">using namespace</span> kth;</div>
 <div>&nbsp;</div>
@@ -21,12 +22,12 @@
 <div>&nbsp;&nbsp;<span class="text-purple-300">std</span>::<span class="text-yellow-300">signal</span>(SIGTERM, handle_signal);</div>
 <div>&nbsp;</div>
 <div>&nbsp;&nbsp;<span class="text-purple-300">node::configuration</span> config{<span class="text-purple-300">domain::config::network::mainnet</span>};</div>
-<div>&nbsp;&nbsp;<span class="text-purple-300">node::full_node</span> node{config};</div>
+<div>&nbsp;&nbsp;<span class="text-purple-300">node::executor</span> exec{config, <span class="text-cyan-300">false</span>};</div>
 <div>&nbsp;</div>
-<div>&nbsp;&nbsp;<span class="text-purple-300">std</span>::<span class="text-yellow-300">print</span>(<span class="text-green-300">"Starting node...\n"</span>);</div>
+<div>&nbsp;&nbsp;<span class="text-purple-300">std</span>::<span class="text-yellow-300">println</span>(<span class="text-green-300">"Initializing and starting node..."</span>);</div>
 <div>&nbsp;</div>
 <div>&nbsp;&nbsp;<span class="text-purple-300">bool</span> started = <span class="text-cyan-300">false</span>;</div>
-<div>&nbsp;&nbsp;node.<span class="text-yellow-300">start</span>([&amp;](code <span class="text-purple-300">const</span>&amp; ec) {</div>
+<div>&nbsp;&nbsp;exec.<span class="text-yellow-300">init_run</span>(<span class="text-green-300">""</span>, <span class="text-purple-300">node::start_modules::all</span>, [&amp;](<span class="text-purple-300">code</span> <span class="text-purple-300">const</span>&amp; ec) {</div>
 <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-purple-300">if</span> (ec) {</div>
 <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-purple-300">std</span>::<span class="text-yellow-300">println</span>(<span class="text-green-300">"Error starting node: {}"</span>, ec.<span class="text-yellow-300">message</span>());</div>
 <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-purple-300">return</span>;</div>
@@ -41,28 +42,27 @@
 <div>&nbsp;</div>
 <div>&nbsp;&nbsp;<span class="text-purple-300">if</span> (!started) <span class="text-purple-300">return</span> <span class="text-cyan-300">1</span>;</div>
 <div>&nbsp;</div>
-<div>&nbsp;&nbsp;<span class="text-purple-300">auto</span>&amp; chain = node.<span class="text-yellow-300">chain</span>();</div>
+<div>&nbsp;&nbsp;<span class="text-purple-300">auto</span>&amp; chain = exec.<span class="text-yellow-300">node</span>().<span class="text-yellow-300">chain</span>();</div>
 <div>&nbsp;</div>
 <div>&nbsp;&nbsp;<span class="text-gray-400">// Wait for sync to pizza_block</span></div>
-<div>&nbsp;&nbsp;<span class="text-purple-300">while</span> (keep_running) {</div>
-<div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-purple-300">size_t</span> h;</div>
-<div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-purple-300">if</span> (!chain.<span class="text-yellow-300">get_last_height</span>(h)) <span class="text-purple-300">break</span>;</div>
-<div>&nbsp;</div>
-<div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-purple-300">if</span> (h &gt;= <span class="text-cyan-300">pizza_block</span>) <span class="text-purple-300">break</span>;</div>
-<div>&nbsp;</div>
-<div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-purple-300">std</span>::<span class="text-yellow-300">print</span>(<span class="text-green-300">"\r🔄 Syncing... {}/{}"</span>, h, <span class="text-cyan-300">pizza_block</span>);</div>
+<div>&nbsp;&nbsp;<span class="text-purple-300">size_t</span> current_height = <span class="text-cyan-300">0</span>;</div>
+<div>&nbsp;&nbsp;<span class="text-purple-300">while</span> (keep_running &amp;&amp; current_height &lt; <span class="text-cyan-300">pizza_block</span>) {</div>
+<div>&nbsp;&nbsp;&nbsp;&nbsp;chain.<span class="text-yellow-300">fetch_last_height</span>([&amp;](<span class="text-purple-300">code</span> <span class="text-purple-300">const</span>&amp; ec, <span class="text-purple-300">size_t</span> h) {</div>
+<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-purple-300">if</span> (!ec) current_height = h;</div>
+<div>&nbsp;&nbsp;&nbsp;&nbsp;});</div>
+<div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-purple-300">std</span>::<span class="text-yellow-300">print</span>(<span class="text-green-300">"\r🔄 Syncing... {}/{}"</span>, current_height, <span class="text-cyan-300">pizza_block</span>);</div>
 <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-purple-300">std::this_thread</span>::<span class="text-yellow-300">sleep_for</span>(<span class="text-purple-300">std::chrono</span>::<span class="text-yellow-300">seconds</span>(<span class="text-cyan-300">1</span>));</div>
 <div>&nbsp;&nbsp;}</div>
 <div>&nbsp;</div>
 <div>&nbsp;&nbsp;<span class="text-purple-300">if</span> (!keep_running) {</div>
-<div>&nbsp;&nbsp;&nbsp;&nbsp;node.<span class="text-yellow-300">stop</span>();</div>
+<div>&nbsp;&nbsp;&nbsp;&nbsp;exec.<span class="text-yellow-300">close</span>();</div>
 <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-purple-300">return</span> <span class="text-cyan-300">0</span>;</div>
 <div>&nbsp;&nbsp;}</div>
 <div>&nbsp;</div>
 <div>&nbsp;&nbsp;<span class="text-purple-300">std</span>::<span class="text-yellow-300">println</span>(<span class="text-green-300">"\n✓ Synced to block {}"</span>, <span class="text-cyan-300">pizza_block</span>);</div>
 <div>&nbsp;&nbsp;<span class="text-purple-300">std</span>::<span class="text-yellow-300">println</span>(<span class="text-green-300">"Fetching block {} (Bitcoin Pizza Day)..."</span>, <span class="text-cyan-300">pizza_block</span>);</div>
 <div>&nbsp;</div>
-<div>&nbsp;&nbsp;chain.<span class="text-yellow-300">fetch_block</span>(<span class="text-cyan-300">pizza_block</span>, [](code <span class="text-purple-300">const</span>&amp; ec, <span class="text-purple-300">blockchain::block_const_ptr</span> block, <span class="text-purple-300">size_t</span> h) {</div>
+<div>&nbsp;&nbsp;chain.<span class="text-yellow-300">fetch_block</span>(<span class="text-cyan-300">pizza_block</span>, [&amp;](<span class="text-purple-300">code</span> <span class="text-purple-300">const</span>&amp; ec, <span class="text-purple-300">block_const_ptr</span> block, <span class="text-purple-300">size_t</span> h) {</div>
 <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-purple-300">if</span> (ec) {</div>
 <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-purple-300">std</span>::<span class="text-yellow-300">println</span>(<span class="text-green-300">"Error fetching block: {}"</span>, ec.<span class="text-yellow-300">message</span>());</div>
 <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;block_received = <span class="text-cyan-300">true</span>;</div>
@@ -83,6 +83,6 @@
 <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-purple-300">std::this_thread</span>::<span class="text-yellow-300">sleep_for</span>(<span class="text-purple-300">std::chrono</span>::<span class="text-yellow-300">seconds</span>(<span class="text-cyan-300">1</span>));</div>
 <div>&nbsp;&nbsp;}</div>
 <div>&nbsp;</div>
-<div>&nbsp;&nbsp;node.<span class="text-yellow-300">stop</span>();</div>
+<div>&nbsp;&nbsp;exec.<span class="text-yellow-300">close</span>();</div>
 <div>&nbsp;&nbsp;<span class="text-purple-300">return</span> <span class="text-cyan-300">0</span>;</div>
 <div>}</div>
