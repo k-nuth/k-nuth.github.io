@@ -997,6 +997,16 @@
                   <span>Executable Node</span>
                 </h4>
 
+                <!-- Prerequisites -->
+                <div class="mb-6">
+                  <p class="text-base font-semibold text-gray-700 dark:text-gray-300 mb-2">Prerequisites:</p>
+                  <ul class="text-base text-gray-600 dark:text-gray-400 list-disc list-inside">
+                    <li>Python 3 with pip</li>
+                    <li>GCC or compatible C++ compiler with C++23 support</li>
+                    <li>CMake</li>
+                  </ul>
+                </div>
+
                 <!-- Step 1: Setup -->
                 <div class="mb-8">
                   <h5 class="text-md font-bold text-gray-900 dark:text-white mb-4 font-mono flex items-center gap-2">
@@ -1004,53 +1014,7 @@
                     Install and configure the Knuth build helper
                   </h5>
 
-                  <!-- Command 1.1 -->
-                  <div class="relative group mb-2">
-                    <div class="bg-gray-900 dark:bg-black rounded-lg p-3 font-mono text-base overflow-x-auto text-gray-300">
-                      <div><span class="text-green-400 select-none">$ </span><span class="text-cyan-300">pip install conan</span><span class="text-purple-300"> --user --upgrade</span></div>
-                    </div>
-                    <button class="copy-btn absolute top-2 right-2 p-1.5 bg-gray-800 hover:bg-primary rounded transition-all opacity-0 group-hover:opacity-100" data-clipboard-text="pip install conan --user --upgrade">
-                      <svg class="w-4 h-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                      </svg>
-                    </button>
-                  </div>
-
-                  <!-- Command 1.2 -->
-                  <div class="relative group mb-2">
-                    <div class="bg-gray-900 dark:bg-black rounded-lg p-3 font-mono text-base overflow-x-auto text-gray-300">
-                      <div><span class="text-green-400 select-none">$ </span><span class="text-cyan-300">pip install kthbuild</span><span class="text-purple-300"> --user --upgrade</span></div>
-                    </div>
-                    <button class="copy-btn absolute top-2 right-2 p-1.5 bg-gray-800 hover:bg-primary rounded transition-all opacity-0 group-hover:opacity-100" data-clipboard-text="pip install kthbuild --user --upgrade">
-                      <svg class="w-4 h-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                      </svg>
-                    </button>
-                  </div>
-
-                  <!-- Command 1.3 -->
-                  <div class="relative group mb-2">
-                    <div class="bg-gray-900 dark:bg-black rounded-lg p-3 font-mono text-base overflow-x-auto text-gray-300">
-                      <div><span class="text-green-400 select-none">$ </span><span class="text-cyan-300">conan remote add kth </span><span class="text-blue-300">https://packages.kth.cash/api</span></div>
-                    </div>
-                    <button class="copy-btn absolute top-2 right-2 p-1.5 bg-gray-800 hover:bg-primary rounded transition-all opacity-0 group-hover:opacity-100" data-clipboard-text="conan remote add kth https://packages.kth.cash/api">
-                      <svg class="w-4 h-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                      </svg>
-                    </button>
-                  </div>
-
-                  <!-- Command 1.4 -->
-                  <div class="relative group">
-                    <div class="bg-gray-900 dark:bg-black rounded-lg p-3 font-mono text-base overflow-x-auto text-gray-300">
-                      <div class="whitespace-pre-wrap"><span class="text-green-400 select-none">$ </span><span class="text-cyan-300">conan config install </span><span class="text-blue-300">https://github.com/k-nuth/ci-utils/raw/master/conan/config2023.zip</span></div>
-                    </div>
-                    <button class="copy-btn absolute top-2 right-2 p-1.5 bg-gray-800 hover:bg-primary rounded transition-all opacity-0 group-hover:opacity-100" data-clipboard-text="conan config install https://github.com/k-nuth/ci-utils/raw/master/conan/config2023.zip">
-                      <svg class="w-4 h-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                      </svg>
-                    </button>
-                  </div>
+                  <!-- SNIPPET:executable-tooling-setup -->
                 </div>
 
                 <!-- Step 2: Install -->
@@ -1060,16 +1024,7 @@
                     Install the node executable
                   </h5>
 
-                  <div class="relative group">
-                    <div class="bg-gray-900 dark:bg-black rounded-lg p-3 font-mono text-base overflow-x-auto text-gray-300">
-                      <div><span class="text-green-400 select-none">$ </span><span class="text-cyan-300">conan install </span><span class="text-purple-300">--requires=</span><span class="text-orange-300">kth/0.46.0</span><span class="text-purple-300"> --update --deployer=direct_deploy</span></div>
-                    </div>
-                    <button class="copy-btn absolute top-2 right-2 p-1.5 bg-gray-800 hover:bg-primary rounded transition-all opacity-0 group-hover:opacity-100" data-clipboard-text="conan install --requires=kth/0.46.0 --update --deployer=direct_deploy">
-                      <svg class="w-4 h-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                      </svg>
-                    </button>
-                  </div>
+                  <!-- SNIPPET:executable-install -->
                 </div>
 
                 <!-- Step 3: Run -->
@@ -1079,16 +1034,7 @@
                     Run the node
                   </h5>
 
-                  <div class="relative group">
-                    <div class="bg-gray-900 dark:bg-black rounded-lg p-3 font-mono text-base overflow-x-auto text-gray-300">
-                      <div><span class="text-green-400 select-none">$ </span><span class="text-cyan-300">./kth/bin/kth</span></div>
-                    </div>
-                    <button class="copy-btn absolute top-2 right-2 p-1.5 bg-gray-800 hover:bg-primary rounded transition-all opacity-0 group-hover:opacity-100" data-clipboard-text="./kth/bin/kth">
-                      <svg class="w-4 h-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                      </svg>
-                    </button>
-                  </div>
+                  <!-- SNIPPET:executable-run -->
                 </div>
               </div>
           </div>

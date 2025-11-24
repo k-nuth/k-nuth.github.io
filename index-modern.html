@@ -913,7 +913,7 @@
                     <div>&nbsp;&nbsp;<span class="text-purple-300">std</span>::<span class="text-yellow-300">println</span>(<span class="text-green-300">"Initializing and starting node..."</span>);</div>
                     <div>&nbsp;</div>
                     <div>&nbsp;&nbsp;<span class="text-purple-300">bool</span> started = <span class="text-cyan-300">false</span>;</div>
-                    <div>&nbsp;&nbsp;exec.<span class="text-yellow-300">init_run</span>(<span class="text-green-300">""</span>, <span class="text-purple-300">node::start_modules::just_chain</span>, [&amp;](<span class="text-purple-300">code</span> <span class="text-purple-300">const</span>&amp; ec) {</div>
+                    <div>&nbsp;&nbsp;exec.<span class="text-yellow-300">init_run</span>(<span class="text-green-300">""</span>, <span class="text-purple-300">node::start_modules::all</span>, [&amp;](<span class="text-purple-300">code</span> <span class="text-purple-300">const</span>&amp; ec) {</div>
                     <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-purple-300">if</span> (ec) {</div>
                     <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-purple-300">std</span>::<span class="text-yellow-300">println</span>(<span class="text-green-300">"Error starting node: {}"</span>, ec.<span class="text-yellow-300">message</span>());</div>
                     <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-purple-300">return</span>;</div>
@@ -969,11 +969,11 @@
                     <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-purple-300">std::this_thread</span>::<span class="text-yellow-300">sleep_for</span>(<span class="text-purple-300">std::chrono</span>::<span class="text-yellow-300">seconds</span>(<span class="text-cyan-300">1</span>));</div>
                     <div>&nbsp;&nbsp;}</div>
                     <div>&nbsp;</div>
-                    <div>&nbsp;&nbsp;node.<span class="text-yellow-300">stop</span>();</div>
+                    <div>&nbsp;&nbsp;exec.<span class="text-yellow-300">close</span>();</div>
                     <div>&nbsp;&nbsp;<span class="text-purple-300">return</span> <span class="text-cyan-300">0</span>;</div>
                     <div>}</div>
                                         </div>
-                                        <button class="copy-btn absolute top-2 right-2 p-1.5 bg-gray-800 hover:bg-primary rounded transition-all opacity-0 group-hover:opacity-100" data-clipboard-text="#include <atomic>&#10;#include <csignal>&#10;#include <print>&#10;#include <thread>&#10;#include <kth/node.hpp>&#10;#include <kth/node/executor/executor.hpp>&#10; &#10;using namespace kth;&#10; &#10;constexpr uint64_t pizza_block = 57043; // Bitcoin Pizza Day (May 22, 2010)&#10; &#10;std::atomic<bool> keep_running{true};&#10;std::atomic<bool> block_received{false};&#10; &#10;void handle_signal(int sig) {&#10;  keep_running = false;&#10;  std::println(&quot;\nInterrupted by signal&quot;);&#10;}&#10; &#10;int main() {&#10;  std::signal(SIGINT, handle_signal);&#10;  std::signal(SIGTERM, handle_signal);&#10; &#10;  node::configuration config{domain::config::network::mainnet};&#10;  node::executor exec{config, false};&#10; &#10;  std::println(&quot;Initializing and starting node...&quot;);&#10; &#10;  bool started = false;&#10;  exec.init_run(&quot;&quot;, node::start_modules::just_chain, [&amp;](code const&amp; ec) {&#10;    if (ec) {&#10;      std::println(&quot;Error starting node: {}&quot;, ec.message());&#10;      return;&#10;    }&#10;    started = true;&#10;    std::println(&quot;✓ Node running&quot;);&#10;  });&#10; &#10;  while (!started &amp;&amp; keep_running) {&#10;    std::this_thread::sleep_for(std::chrono::milliseconds(100));&#10;  }&#10; &#10;  if (!started) return 1;&#10; &#10;  auto&amp; chain = exec.node().chain();&#10; &#10;  // Wait for sync to pizza_block&#10;  size_t current_height = 0;&#10;  while (keep_running &amp;&amp; current_height < pizza_block) {&#10;    chain.fetch_last_height([&amp;](code const&amp; ec, size_t h) {&#10;      if (!ec) current_height = h;&#10;    });&#10;    std::print(&quot;\r🔄 Syncing... {}/{}&quot;, current_height, pizza_block);&#10;    std::this_thread::sleep_for(std::chrono::seconds(1));&#10;  }&#10; &#10;  if (!keep_running) {&#10;    exec.close();&#10;    return 0;&#10;  }&#10; &#10;  std::println(&quot;\n✓ Synced to block {}&quot;, pizza_block);&#10;  std::println(&quot;Fetching block {} (Bitcoin Pizza Day)...&quot;, pizza_block);&#10; &#10;  chain.fetch_block(pizza_block, [&amp;](code const&amp; ec, block_const_ptr block, size_t h) {&#10;    if (ec) {&#10;      std::println(&quot;Error fetching block: {}&quot;, ec.message());&#10;      block_received = true;&#10;      return;&#10;    }&#10; &#10;    auto hash = block->hash();&#10;    std::print(&quot;Block {}: &quot;, h);&#10;    for (int i = hash.size() - 1; i >= 0; --i) {&#10;      std::print(&quot;{:02x}&quot;, (int)hash[i]);&#10;    }&#10;    std::println(&quot;&quot;);&#10;    block_received = true;&#10;  });&#10; &#10;  // Wait for block to be received or interrupted&#10;  while (keep_running &amp;&amp; !block_received) {&#10;    std::this_thread::sleep_for(std::chrono::seconds(1));&#10;  }&#10; &#10;  node.stop();&#10;  return 0;&#10;}">
+                                        <button class="copy-btn absolute top-2 right-2 p-1.5 bg-gray-800 hover:bg-primary rounded transition-all opacity-0 group-hover:opacity-100" data-clipboard-text="#include <atomic>&#10;#include <csignal>&#10;#include <print>&#10;#include <thread>&#10;#include <kth/node.hpp>&#10;#include <kth/node/executor/executor.hpp>&#10; &#10;using namespace kth;&#10; &#10;constexpr uint64_t pizza_block = 57043; // Bitcoin Pizza Day (May 22, 2010)&#10; &#10;std::atomic<bool> keep_running{true};&#10;std::atomic<bool> block_received{false};&#10; &#10;void handle_signal(int sig) {&#10;  keep_running = false;&#10;  std::println(&quot;\nInterrupted by signal&quot;);&#10;}&#10; &#10;int main() {&#10;  std::signal(SIGINT, handle_signal);&#10;  std::signal(SIGTERM, handle_signal);&#10; &#10;  node::configuration config{domain::config::network::mainnet};&#10;  node::executor exec{config, false};&#10; &#10;  std::println(&quot;Initializing and starting node...&quot;);&#10; &#10;  bool started = false;&#10;  exec.init_run(&quot;&quot;, node::start_modules::all, [&amp;](code const&amp; ec) {&#10;    if (ec) {&#10;      std::println(&quot;Error starting node: {}&quot;, ec.message());&#10;      return;&#10;    }&#10;    started = true;&#10;    std::println(&quot;✓ Node running&quot;);&#10;  });&#10; &#10;  while (!started &amp;&amp; keep_running) {&#10;    std::this_thread::sleep_for(std::chrono::milliseconds(100));&#10;  }&#10; &#10;  if (!started) return 1;&#10; &#10;  auto&amp; chain = exec.node().chain();&#10; &#10;  // Wait for sync to pizza_block&#10;  size_t current_height = 0;&#10;  while (keep_running &amp;&amp; current_height < pizza_block) {&#10;    chain.fetch_last_height([&amp;](code const&amp; ec, size_t h) {&#10;      if (!ec) current_height = h;&#10;    });&#10;    std::print(&quot;\r🔄 Syncing... {}/{}&quot;, current_height, pizza_block);&#10;    std::this_thread::sleep_for(std::chrono::seconds(1));&#10;  }&#10; &#10;  if (!keep_running) {&#10;    exec.close();&#10;    return 0;&#10;  }&#10; &#10;  std::println(&quot;\n✓ Synced to block {}&quot;, pizza_block);&#10;  std::println(&quot;Fetching block {} (Bitcoin Pizza Day)...&quot;, pizza_block);&#10; &#10;  chain.fetch_block(pizza_block, [&amp;](code const&amp; ec, block_const_ptr block, size_t h) {&#10;    if (ec) {&#10;      std::println(&quot;Error fetching block: {}&quot;, ec.message());&#10;      block_received = true;&#10;      return;&#10;    }&#10; &#10;    auto hash = block->hash();&#10;    std::print(&quot;Block {}: &quot;, h);&#10;    for (int i = hash.size() - 1; i >= 0; --i) {&#10;      std::print(&quot;{:02x}&quot;, (int)hash[i]);&#10;    }&#10;    std::println(&quot;&quot;);&#10;    block_received = true;&#10;  });&#10; &#10;  // Wait for block to be received or interrupted&#10;  while (keep_running &amp;&amp; !block_received) {&#10;    std::this_thread::sleep_for(std::chrono::seconds(1));&#10;  }&#10; &#10;  exec.close();&#10;  return 0;&#10;}">
                                           <svg class="w-4 h-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
                                           </svg>
@@ -1283,6 +1283,16 @@
                   <span>Executable Node</span>
                 </h4>
 
+                <!-- Prerequisites -->
+                <div class="mb-6">
+                  <p class="text-base font-semibold text-gray-700 dark:text-gray-300 mb-2">Prerequisites:</p>
+                  <ul class="text-base text-gray-600 dark:text-gray-400 list-disc list-inside">
+                    <li>Python 3 with pip</li>
+                    <li>GCC or compatible C++ compiler with C++23 support</li>
+                    <li>CMake</li>
+                  </ul>
+                </div>
+
                 <!-- Step 1: Setup -->
                 <div class="mb-8">
                   <h5 class="text-md font-bold text-gray-900 dark:text-white mb-4 font-mono flex items-center gap-2">
@@ -1290,53 +1300,17 @@
                     Install and configure the Knuth build helper
                   </h5>
 
-                  <!-- Command 1.1 -->
-                  <div class="relative group mb-2">
-                    <div class="bg-gray-900 dark:bg-black rounded-lg p-3 font-mono text-base overflow-x-auto text-gray-300">
-                      <div><span class="text-green-400 select-none">$ </span><span class="text-cyan-300">pip install conan</span><span class="text-purple-300"> --user --upgrade</span></div>
-                    </div>
-                    <button class="copy-btn absolute top-2 right-2 p-1.5 bg-gray-800 hover:bg-primary rounded transition-all opacity-0 group-hover:opacity-100" data-clipboard-text="pip install conan --user --upgrade">
-                      <svg class="w-4 h-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                      </svg>
-                    </button>
-                  </div>
-
-                  <!-- Command 1.2 -->
-                  <div class="relative group mb-2">
-                    <div class="bg-gray-900 dark:bg-black rounded-lg p-3 font-mono text-base overflow-x-auto text-gray-300">
-                      <div><span class="text-green-400 select-none">$ </span><span class="text-cyan-300">pip install kthbuild</span><span class="text-purple-300"> --user --upgrade</span></div>
-                    </div>
-                    <button class="copy-btn absolute top-2 right-2 p-1.5 bg-gray-800 hover:bg-primary rounded transition-all opacity-0 group-hover:opacity-100" data-clipboard-text="pip install kthbuild --user --upgrade">
-                      <svg class="w-4 h-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                      </svg>
-                    </button>
-                  </div>
-
-                  <!-- Command 1.3 -->
-                  <div class="relative group mb-2">
-                    <div class="bg-gray-900 dark:bg-black rounded-lg p-3 font-mono text-base overflow-x-auto text-gray-300">
-                      <div><span class="text-green-400 select-none">$ </span><span class="text-cyan-300">conan remote add kth </span><span class="text-blue-300">https://packages.kth.cash/api</span></div>
-                    </div>
-                    <button class="copy-btn absolute top-2 right-2 p-1.5 bg-gray-800 hover:bg-primary rounded transition-all opacity-0 group-hover:opacity-100" data-clipboard-text="conan remote add kth https://packages.kth.cash/api">
-                      <svg class="w-4 h-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                      </svg>
-                    </button>
-                  </div>
-
-                  <!-- Command 1.4 -->
-                  <div class="relative group">
-                    <div class="bg-gray-900 dark:bg-black rounded-lg p-3 font-mono text-base overflow-x-auto text-gray-300">
-                      <div class="whitespace-pre-wrap"><span class="text-green-400 select-none">$ </span><span class="text-cyan-300">conan config install </span><span class="text-blue-300">https://github.com/k-nuth/ci-utils/raw/master/conan/config2023.zip</span></div>
-                    </div>
-                    <button class="copy-btn absolute top-2 right-2 p-1.5 bg-gray-800 hover:bg-primary rounded transition-all opacity-0 group-hover:opacity-100" data-clipboard-text="conan config install https://github.com/k-nuth/ci-utils/raw/master/conan/config2023.zip">
-                      <svg class="w-4 h-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                      </svg>
-                    </button>
-                  </div>
+                                      <div class="bg-gray-900 rounded-lg p-3 font-mono text-base overflow-x-auto text-gray-300">
+                    <div><span class="text-green-400">$ </span><span class="text-cyan-300">pip3 install kthbuild conan --user</span></div>
+                    <div><span class="text-green-400">$ </span><span class="text-cyan-300">conan profile detect --force</span></div>
+                    <div><span class="text-green-400">$ </span><span class="text-cyan-300">conan remote add kth https://packages.kth.cash/api</span></div>
+                    <div><span class="text-green-400">$ </span><span class="text-cyan-300">conan config install https://github.com/k-nuth/ci-utils/raw/master/conan/config2023.zip</span></div>
+                                        </div>
+                                        <button class="copy-btn absolute top-2 right-2 p-1.5 bg-gray-800 hover:bg-primary rounded transition-all opacity-0 group-hover:opacity-100" data-clipboard-text="pip3 install kthbuild conan --user&#10;conan profile detect --force&#10;conan remote add kth https://packages.kth.cash/api&#10;conan config install https://github.com/k-nuth/ci-utils/raw/master/conan/config2023.zip">
+                                          <svg class="w-4 h-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                                          </svg>
+                                        </button>
                 </div>
 
                 <!-- Step 2: Install -->
@@ -1346,16 +1320,14 @@
                     Install the node executable
                   </h5>
 
-                  <div class="relative group">
-                    <div class="bg-gray-900 dark:bg-black rounded-lg p-3 font-mono text-base overflow-x-auto text-gray-300">
-                      <div><span class="text-green-400 select-none">$ </span><span class="text-cyan-300">conan install </span><span class="text-purple-300">--requires=</span><span class="text-orange-300">kth/0.46.0</span><span class="text-purple-300"> --update --deployer=direct_deploy</span></div>
-                    </div>
-                    <button class="copy-btn absolute top-2 right-2 p-1.5 bg-gray-800 hover:bg-primary rounded transition-all opacity-0 group-hover:opacity-100" data-clipboard-text="conan install --requires=kth/0.46.0 --update --deployer=direct_deploy">
-                      <svg class="w-4 h-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                      </svg>
-                    </button>
-                  </div>
+                                      <div class="bg-gray-900 rounded-lg p-3 font-mono text-base overflow-x-auto text-gray-300">
+                    <div><span class="text-green-400">$ </span><span class="text-cyan-300">conan install --requires=kth/KTH_VERSION --update --deployer=direct_deploy</span></div>
+                                        </div>
+                                        <button class="copy-btn absolute top-2 right-2 p-1.5 bg-gray-800 hover:bg-primary rounded transition-all opacity-0 group-hover:opacity-100" data-clipboard-text="conan install --requires=kth/KTH_VERSION --update --deployer=direct_deploy">
+                                          <svg class="w-4 h-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                                          </svg>
+                                        </button>
                 </div>
 
                 <!-- Step 3: Run -->
@@ -1365,16 +1337,14 @@
                     Run the node
                   </h5>
 
-                  <div class="relative group">
-                    <div class="bg-gray-900 dark:bg-black rounded-lg p-3 font-mono text-base overflow-x-auto text-gray-300">
-                      <div><span class="text-green-400 select-none">$ </span><span class="text-cyan-300">./kth/bin/kth</span></div>
-                    </div>
-                    <button class="copy-btn absolute top-2 right-2 p-1.5 bg-gray-800 hover:bg-primary rounded transition-all opacity-0 group-hover:opacity-100" data-clipboard-text="./kth/bin/kth">
-                      <svg class="w-4 h-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                      </svg>
-                    </button>
-                  </div>
+                                      <div class="bg-gray-900 rounded-lg p-3 font-mono text-base overflow-x-auto text-gray-300">
+                    <div><span class="text-green-400">$ </span><span class="text-cyan-300">./kth/bin/kth</span></div>
+                                        </div>
+                                        <button class="copy-btn absolute top-2 right-2 p-1.5 bg-gray-800 hover:bg-primary rounded transition-all opacity-0 group-hover:opacity-100" data-clipboard-text="./kth/bin/kth">
+                                          <svg class="w-4 h-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                                          </svg>
+                                        </button>
                 </div>
               </div>
           </div>
