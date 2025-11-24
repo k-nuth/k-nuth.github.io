@@ -85,8 +85,8 @@ echo ""
 print_step "Build"
 echo ""
 
-print_step "  conan install . --build=missing"
-conan install . --build=missing
+print_step "  conan install . --build=missing -s compiler.cppstd=23"
+conan install . --build=missing -s compiler.cppstd=23
 
 print_step "  cmake --preset conan-release"
 cmake --preset conan-release
