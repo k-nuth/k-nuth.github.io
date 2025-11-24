@@ -2,7 +2,7 @@
 
 All code is written **once** in HTML snippets and automatically generated into:
 - Website HTML (with syntax highlighting and copy buttons)
-- Project source files (example.c, conanfile.txt, CMakeLists.txt, etc.)
+- Project source files (pizza.c, conanfile.txt, CMakeLists.txt, etc.)
 - Test scripts (test-docker.sh, test-local.sh)
 
 ## Directory Structure
@@ -19,11 +19,11 @@ test-examples/
 │   │   ├── tooling-setup.html
 │   │   ├── conanfile.html
 │   │   ├── cmake.html
-│   │   ├── example.html
+│   │   ├── pizza.html
 │   │   ├── build.html
 │   │   └── run.html
 │   ├── Dockerfile              # Manually maintained
-│   ├── example.c               # GENERATED from snippets/example.html
+│   ├── pizza.c                 # GENERATED from snippets/pizza.html
 │   ├── conanfile.txt           # GENERATED from snippets/conanfile.html
 │   ├── CMakeLists.txt          # GENERATED from snippets/cmake.html
 │   ├── test-docker.sh          # GENERATED
@@ -60,7 +60,7 @@ node scripts/generate-all.js c       # Just C
 
 **Or run generators individually:**
 ```bash
-node scripts/generate-project-files.js c    # example.c, conanfile.txt, etc.
+node scripts/generate-project-files.js c    # pizza.c, conanfile.txt, etc.
 node scripts/generate-tests.js c            # test-*.sh
 node scripts/embed-snippets.js c            # index-modern.html
 ```
@@ -78,7 +78,7 @@ From snippets, we generate:
 
 | Snippet File | Generates | Description |
 |-------------|-----------|-------------|
-| `example.html` | `example.{c,cpp,cs,py,js}` | Source code file |
+| `pizza.html` | `pizza.{c,cpp,cs,py,js}` | Source code file |
 | `conanfile.html` | `conanfile.txt` | Conan dependencies |
 | `cmake.html` | `CMakeLists.txt` | CMake config |
 | `tooling-setup.html` | Part of test scripts | Setup commands |
@@ -92,7 +92,7 @@ From snippets, we generate:
 - Reads `{lang}/snippets/*.html`
 - Removes HTML tags and styling
 - Writes plain text to project files
-- Maps: `example.html` → `example.c`, `conanfile.html` → `conanfile.txt`, etc.
+- Maps: `pizza.html` → `pizza.c`, `conanfile.html` → `conanfile.txt`, etc.
 
 ### 2. generate-tests.js
 - Reads `tooling-setup.html`, `build.html`, `run.html`
@@ -127,7 +127,7 @@ Create these files in `python/snippets/`:
   <div><span class="text-green-400">$ </span><span class="text-cyan-300">pip install</span> <span class="text-orange-300">kth</span></div>
   ```
 
-- **example.html** - Python code with syntax highlighting
+- **pizza.html** - Python code with syntax highlighting
   ```html
   <div><span class="text-purple-300">import</span> <span class="text-blue-300">kth</span></div>
   <div><span class="text-purple-300">import</span> <span class="text-blue-300">asyncio</span></div>

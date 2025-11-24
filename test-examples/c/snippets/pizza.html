@@ -31,15 +31,18 @@
 <div>&nbsp;</div>
 <div>&nbsp;&nbsp;kth_settings cfg = <span class="text-yellow-300">kth_config_settings_default</span>(kth_network_mainnet);</div>
 <div>&nbsp;&nbsp;kth_node_t node = <span class="text-yellow-300">kth_node_construct</span>(&amp;cfg, <span class="text-cyan-300">0</span>);</div>
+<div>&nbsp;</div>
+<div>&nbsp;&nbsp;<span class="text-yellow-300">printf</span>(<span class="text-green-300">"Starting node...\\n"</span>);</div>
 <div>&nbsp;&nbsp;<span class="text-purple-300">if</span> (!node || <span class="text-yellow-300">kth_node_init_run_sync</span>(node, kth_start_modules_all) != kth_ec_success) <span class="text-purple-300">return</span> <span class="text-cyan-300">1</span>;</div>
+<div>&nbsp;&nbsp;<span class="text-yellow-300">printf</span>(<span class="text-green-300">"✓ Node running\\n"</span>);</div>
 <div>&nbsp;</div>
 <div>&nbsp;&nbsp;kth_chain_t chain = <span class="text-yellow-300">kth_node_get_chain</span>(node);</div>
 <div>&nbsp;&nbsp;<span class="text-purple-300">uint64_t</span> h = <span class="text-cyan-300">0</span>;</div>
 <div>&nbsp;&nbsp;<span class="text-yellow-300">kth_chain_sync_last_height</span>(chain, &amp;h);</div>
 <div>&nbsp;</div>
-<div>&nbsp;&nbsp;<span class="text-gray-400">// Wait for sync to block 170</span></div>
-<div>&nbsp;&nbsp;<span class="text-purple-300">while</span> (keep_running &amp;&amp; h &lt; <span class="text-cyan-300">170</span>) {</div>
-<div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">printf</span>(<span class="text-green-300">"\r🔄 Syncing... %llu/170"</span>, h);</div>
+<div>&nbsp;&nbsp;<span class="text-gray-400">// Wait for sync to block 57043 (Bitcoin Pizza Day)</span></div>
+<div>&nbsp;&nbsp;<span class="text-purple-300">while</span> (keep_running &amp;&amp; h &lt; <span class="text-cyan-300">57043</span>) {</div>
+<div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">printf</span>(<span class="text-green-300">"\r🔄 Syncing... %llu/57043"</span>, h);</div>
 <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">fflush</span>(stdout);</div>
 <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">sleep</span>(<span class="text-cyan-300">1</span>);</div>
 <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">kth_chain_sync_last_height</span>(chain, &amp;h);</div>
@@ -51,8 +54,8 @@
 <div>&nbsp;&nbsp;}</div>
 <div>&nbsp;</div>
 <div>&nbsp;&nbsp;<span class="text-yellow-300">printf</span>(<span class="text-green-300">"\n✓ Synced to block %llu\n"</span>, h);</div>
-<div>&nbsp;&nbsp;<span class="text-yellow-300">printf</span>(<span class="text-green-300">"Fetching block 170...\n"</span>);</div>
-<div>&nbsp;&nbsp;<span class="text-yellow-300">kth_chain_async_block_by_height</span>(chain, <span class="text-purple-300">NULL</span>, <span class="text-cyan-300">170</span>, print_block);</div>
+<div>&nbsp;&nbsp;<span class="text-yellow-300">printf</span>(<span class="text-green-300">"Fetching block 57043 (Bitcoin Pizza Day)...\n"</span>);</div>
+<div>&nbsp;&nbsp;<span class="text-yellow-300">kth_chain_async_block_by_height</span>(chain, <span class="text-purple-300">NULL</span>, <span class="text-cyan-300">57043</span>, print_block);</div>
 <div>&nbsp;</div>
 <div>&nbsp;&nbsp;<span class="text-gray-400">// Wait for block to be received or interrupted</span></div>
 <div>&nbsp;&nbsp;<span class="text-purple-300">while</span> (keep_running &amp;&amp; !block_received) {</div>

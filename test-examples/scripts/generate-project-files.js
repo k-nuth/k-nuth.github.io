@@ -35,7 +35,7 @@ function extractPlainText(html) {
  * Can be overridden per language if needed
  */
 const FILE_MAPPINGS = {
-  'example': { suffix: '', extension: null }, // Will use language-specific extension
+  'pizza': { suffix: '', extension: null }, // Will use language-specific extension
   'conanfile': { suffix: '', extension: 'txt', name: 'conanfile.txt' },
   'cmake': { suffix: '', extension: '', name: 'CMakeLists.txt' }
 };

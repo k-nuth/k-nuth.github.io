@@ -875,9 +875,9 @@
 
                 <!-- Code Example -->
                 <div class="mb-4">
-                  <p class="text-base font-semibold text-gray-700 dark:text-gray-300 mb-2">Code (<code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">example.c</code>):</p>
+                  <p class="text-base font-semibold text-gray-700 dark:text-gray-300 mb-2">Code (<code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">pizza.c</code>):</p>
                   <div class="relative group">
-                    <!-- SNIPPET:c-example -->
+                    <!-- SNIPPET:c-pizza -->
                   </div>
                 </div>
 

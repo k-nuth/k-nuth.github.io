@@ -23,7 +23,7 @@ RUN apt-get update && apt-get install -y \
 WORKDIR /workspace
 
 # Copy all example files
-COPY example.c CMakeLists.txt conanfile.txt test-docker.sh ./
+COPY pizza.c CMakeLists.txt conanfile.txt test-docker.sh ./
 
 # Make test script executable
 RUN chmod +x test-docker.sh

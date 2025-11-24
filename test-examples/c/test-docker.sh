@@ -79,8 +79,8 @@ echo ""
 print_step "Run"
 echo ""
 
-print_step "  ./build/Release/example"
-./build/Release/example
+print_step "  ./build/Release/pizza"
+./build/Release/pizza
 
 echo ""
 echo "=========================================="

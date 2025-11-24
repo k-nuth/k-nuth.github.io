@@ -31,15 +31,18 @@ int main() {
  
   kth_settings cfg = kth_config_settings_default(kth_network_mainnet);
   kth_node_t node = kth_node_construct(&cfg, 0);
+ 
+  printf("Starting node...\\n");
   if (!node || kth_node_init_run_sync(node, kth_start_modules_all) != kth_ec_success) return 1;
+  printf("✓ Node running\\n");
  
   kth_chain_t chain = kth_node_get_chain(node);
   uint64_t h = 0;
   kth_chain_sync_last_height(chain, &h);
  
-  // Wait for sync to block 170
-  while (keep_running && h < 170) {
-    printf("\r🔄 Syncing... %llu/170", h);
+  // Wait for sync to block 57043 (Bitcoin Pizza Day)
+  while (keep_running && h < 57043) {
+    printf("\r🔄 Syncing... %llu/57043", h);
     fflush(stdout);
     sleep(1);
     kth_chain_sync_last_height(chain, &h);
@@ -51,8 +54,8 @@ int main() {
   }
  
   printf("\n✓ Synced to block %llu\n", h);
-  printf("Fetching block 170...\n");
-  kth_chain_async_block_by_height(chain, NULL, 170, print_block);
+  printf("Fetching block 57043 (Bitcoin Pizza Day)...\n");
+  kth_chain_async_block_by_height(chain, NULL, 57043, print_block);
  
   // Wait for block to be received or interrupted
   while (keep_running && !block_received) {

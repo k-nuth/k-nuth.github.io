@@ -17,7 +17,7 @@ node scripts/generate-all.js c
 - `snippets/*.html` - All code snippets with syntax highlighting
 
 **Generated (do not edit):**
-- `example.c` - From `snippets/example.html`
+- `pizza.c` - From `snippets/pizza.html`
 - `conanfile.txt` - From `snippets/conanfile.html`
 - `CMakeLists.txt` - From `snippets/cmake.html`
 - `test-docker.sh` - From multiple snippets
