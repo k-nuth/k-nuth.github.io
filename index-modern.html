@@ -937,8 +937,7 @@ target_link_libraries(example PRIVATE kth::c-api)">
                       <div><span class="text-purple-300">volatile int</span> keep_running = <span class="text-cyan-300">1</span>;</div>
                       <div><span class="text-purple-300">void</span> <span class="text-yellow-300">handle_signal</span>(<span class="text-purple-300">int</span> sig) { keep_running = <span class="text-cyan-300">0</span>; }</div>
                       <div>&nbsp;</div>
-                      <div><span class="text-purple-300">void</span> <span class="text-yellow-300">print_block</span>(kth_chain_t c, <span class="text-purple-300">void</span>* ctx, kth_error_code_t err,</div>
-                      <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;kth_block_t block, kth_size_t h) {</div>
+                      <div><span class="text-purple-300">void</span> <span class="text-yellow-300">print_block</span>(kth_chain_t c, <span class="text-purple-300">void</span>* ctx, kth_error_code_t err, kth_block_t block, kth_size_t h) {</div>
                       <div>&nbsp;&nbsp;<span class="text-purple-300">if</span> (err != kth_ec_success) <span class="text-purple-300">return</span>;</div>
                       <div>&nbsp;&nbsp;kth_hash_t hash = <span class="text-yellow-300">kth_chain_block_hash</span>(block);</div>
                       <div>&nbsp;&nbsp;<span class="text-yellow-300">printf</span>(<span class="text-green-300">"Block %llu: "</span>, (<span class="text-purple-300">unsigned long long</span>)h);</div>
@@ -952,8 +951,7 @@ target_link_libraries(example PRIVATE kth::c-api)">
                       <div>&nbsp;</div>
                       <div>&nbsp;&nbsp;kth_settings cfg = <span class="text-yellow-300">kth_config_settings_default</span>(kth_network_mainnet);</div>
                       <div>&nbsp;&nbsp;kth_node_t node = <span class="text-yellow-300">kth_node_construct</span>(&amp;cfg, <span class="text-cyan-300">1</span>);</div>
-                      <div>&nbsp;&nbsp;<span class="text-purple-300">if</span> (!node || <span class="text-yellow-300">kth_node_init_run_sync</span>(node, kth_start_modules_all)</div>
-                      <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;!= kth_ec_success) <span class="text-purple-300">return</span> <span class="text-cyan-300">1</span>;</div>
+                      <div>&nbsp;&nbsp;<span class="text-purple-300">if</span> (!node || <span class="text-yellow-300">kth_node_init_run_sync</span>(node, kth_start_modules_all) != kth_ec_success) <span class="text-purple-300">return</span> <span class="text-cyan-300">1</span>;</div>
                       <div>&nbsp;</div>
                       <div>&nbsp;&nbsp;kth_chain_t chain = <span class="text-yellow-300">kth_node_get_chain</span>(node);</div>
                       <div>&nbsp;&nbsp;<span class="text-purple-300">uint64_t</span> h = <span class="text-cyan-300">0</span>;</div>
@@ -982,8 +980,7 @@ target_link_libraries(example PRIVATE kth::c-api)">
 volatile int keep_running = 1;
 void handle_signal(int sig) { keep_running = 0; }
 
-void print_block(kth_chain_t c, void* ctx, kth_error_code_t err,
-               kth_block_t block, kth_size_t h) {
+void print_block(kth_chain_t c, void* ctx, kth_error_code_t err, kth_block_t block, kth_size_t h) {
   if (err != kth_ec_success) return;
   kth_hash_t hash = kth_chain_block_hash(block);
   printf("Block %llu: ", (unsigned long long)h);
@@ -997,8 +994,7 @@ int main() {
 
   kth_settings cfg = kth_config_settings_default(kth_network_mainnet);
   kth_node_t node = kth_node_construct(&cfg, 1);
-  if (!node || kth_node_init_run_sync(node, kth_start_modules_all)
-      != kth_ec_success) return 1;
+  if (!node || kth_node_init_run_sync(node, kth_start_modules_all) != kth_ec_success) return 1;
 
   kth_chain_t chain = kth_node_get_chain(node);
   uint64_t h = 0;
