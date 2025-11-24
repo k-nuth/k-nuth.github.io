@@ -511,8 +511,13 @@ void block_handler(kth_chain_t chain, void* ctx,
     for (int i = 31; i >= 0; --i) {
         printf("%02x", hash.hash[i]);
     }
-    printf("\nTransactions: %zu\n",
-           kth_chain_block_transaction_count(block));
+    printf("\n");
+
+    kth_transaction_list_t txs =
+        kth_chain_block_transactions(block);
+    printf("Transactions: %zu\n",
+           kth_chain_transaction_list_count(txs));
+    kth_chain_transaction_list_destruct(txs);
     kth_chain_block_destruct(block);
 }
 

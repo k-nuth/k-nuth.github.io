@@ -36,8 +36,10 @@ void block_handler(kth_chain_t chain, void* ctx, kth_error_code_t error, kth_blo
     printf("\n");
 
     // Get number of transactions
-    kth_size_t tx_count = kth_chain_block_transaction_count(block);
+    kth_transaction_list_t tx_list = kth_chain_block_transactions(block);
+    kth_size_t tx_count = kth_chain_transaction_list_count(tx_list);
     printf("Number of transactions: %zu\n", tx_count);
+    kth_chain_transaction_list_destruct(tx_list);
 
     printf("========================================\n\n");
 
