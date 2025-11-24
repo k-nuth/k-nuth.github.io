@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 
 #include <kth/capi.h>
 
@@ -114,12 +115,7 @@ int main(int argc, char* argv[]) {
     printf("Waiting for signal...\n\n");
 
     while (keep_running) {
-        // Sleep for 1 second and check again
-        #ifdef _WIN32
-            Sleep(1000);
-        #else
-            sleep(1);
-        #endif
+        sleep(1);
     }
 
     // Cleanup
