@@ -2,6 +2,12 @@
 
 set -e  # Exit on error
 
+# Parse arguments
+CLEAN=false
+if [[ "$1" == "-c" ]] || [[ "$1" == "--clean" ]]; then
+    CLEAN=true
+fi
+
 echo "=========================================="
 echo "Knuth C API Local Test"
 echo "=========================================="
@@ -27,10 +33,16 @@ BUILD_ROOT="$SCRIPT_DIR/build-local"
 BUILD_DIR="$BUILD_ROOT/example-c"
 
 # Clean and create build directory
-print_step "Setting up isolated build directory"
-rm -rf "$BUILD_ROOT"
-mkdir -p "$BUILD_DIR"
-print_success "Build directory ready: $BUILD_DIR"
+if [ "$CLEAN" = true ]; then
+    print_step "Cleaning and setting up isolated build directory"
+    rm -rf "$BUILD_ROOT"
+    mkdir -p "$BUILD_DIR"
+    print_success "Build directory cleaned: $BUILD_DIR"
+else
+    print_step "Setting up isolated build directory (keeping existing files)"
+    mkdir -p "$BUILD_DIR"
+    print_success "Build directory ready: $BUILD_DIR"
+fi
 
 # Copy source files to build directory
 print_step "Copying source files"
