@@ -1,3 +1,8 @@
 .DS_Store
 test-examples/local-test/
 test-examples/build-local/
+test-examples/c/build/
+test-examples/cpp/build/
+test-examples/csharp/build/
+test-examples/javascript/build/
+test-examples/executable/build/

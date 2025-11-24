@@ -1,181 +1,110 @@
-# Knuth Installation Testing Environment
+# Knuth Examples - Testing Framework
 
-This directory contains Docker-based testing infrastructure to verify that all installation instructions shown on the Knuth website work correctly.
+Este directorio contiene ejemplos de uso de Knuth en diferentes lenguajes, cada uno en su propia carpeta autocontenida.
 
-## Overview
-
-The testing environment uses Docker to create a clean Ubuntu 24.04 environment (with GCC 13+ for C++23 support) and follows the exact installation steps documented on the website.
-
-Currently testing: **C API** (other languages will be added later)
-
-**Note:** Ubuntu 24.04 is required because Knuth requires C++23, which needs GCC 13 or higher.
-
-## Structure
+## Estructura
 
 ```
 test-examples/
-├── Dockerfile          # Docker image definition (Ubuntu 24.04 with GCC 13+)
-├── run-tests.sh        # Main script to build Docker and run tests
-├── test-c-only.sh      # Script that tests C API installation (runs inside Docker)
-├── test-local.sh       # Script for local testing (uses local Conan cache)
-├── compile-example.sh  # Legacy: Direct gcc compilation (deprecated)
-├── compile-cmake.sh    # Recommended: CMake + Conan build
-├── examples/           # Example code
-│   ├── example.c       # C example that tests Knuth C API
-│   ├── conanfile.txt   # Conan dependencies declaration
-│   └── CMakeLists.txt  # CMake build definition
-└── README.md           # This file
+├── c/                      # Ejemplo en C
+│   ├── example.c           # Código fuente
+│   ├── CMakeLists.txt      # Configuración CMake
+│   ├── conanfile.txt       # Dependencias Conan
+│   ├── Dockerfile          # Pre-requisitos del sistema
+│   ├── test-docker.sh      # Script para Docker
+│   ├── test-local.sh       # Script para ejecución local
+│   ├── .gitignore          # Ignora build/
+│   └── README.md           # Documentación específica
+│
+├── cpp/                    # (Futuro) Ejemplo en C++
+├── csharp/                 # (Futuro) Ejemplo en C#
+├── javascript/             # (Futuro) Ejemplo en JavaScript
+└── executable/             # (Futuro) Nodo ejecutable
 ```
 
-## Prerequisites
+## Principio de Diseño
 
-**For Docker testing:**
-- Docker installed and running
-- Internet connection (for downloading packages)
+**Cada lenguaje es completamente autocontenido y ejecuta exactamente los pasos de la web.**
 
-**For local testing:**
-- Conan installed (`pip3 install conan --user --upgrade`)
-- CMake 3.15+ installed
-- C compiler with C++23 support (GCC 13+ or Clang 16+)
-- Internet connection (for downloading packages)
+### Ventajas de esta estructura:
 
-## Usage
+1. **Autocontenida**: Cada carpeta tiene todo lo necesario para ejecutar el ejemplo
+2. **Sin duplicación**: No hay scripts compartidos que puedan romperse
+3. **Fácil de mantener**: Cambios en un lenguaje no afectan a otros
+4. **Verificación**: Los scripts garantizan que lo que está en la web realmente funciona
 
-### Local Testing (Recommended for Development)
+### Diferencias permitidas:
 
-Each example is in its own directory with its own `conanfile.txt` and `CMakeLists.txt`.
+Los scripts de Docker y local **solo** pueden diferir en:
+- Instalación de pre-requisitos del sistema (Python, pip, GCC, CMake, etc.)
+- Manejo de rutas (Docker usa `/workspace`, local usa subdirectorios)
 
-**Compile and run the C API example:**
+Todo lo demás debe ser **idéntico** a la web:
+- Tooling Setup (instalación y configuración de Conan)
+- Project Setup (archivos de configuración)
+- Build (comandos de compilación)
+- Run (ejecución del ejemplo)
 
+## Uso
+
+### Para Desarrolladores
+
+Cada carpeta de lenguaje contiene su propio README con instrucciones específicas.
+
+Ejemplo para C:
 ```bash
-./compile-c.sh
-./examples/example-c/build/build/Release/example
+cd c/
+
+# Docker
+docker build -t knuth-c-example .
+docker run --rm knuth-c-example ./test-docker.sh
+
+# Local
+./test-local.sh --clean
 ```
 
-**Compile and run the C++ API example:**
+### Para CI/CD
 
+Puedes ejecutar todos los tests en Docker:
 ```bash
-./compile-cpp.sh
-./examples/example-cpp/build/build/Release/example-cpp
+for lang in c cpp csharp javascript executable; do
+  if [ -d "$lang" ]; then
+    cd "$lang"
+    docker build -t "knuth-$lang-example" .
+    docker run --rm "knuth-$lang-example" ./test-docker.sh
+    cd ..
+  fi
+done
 ```
 
-Each example uses:
-- `conanfile.txt` to declare the Knuth dependency
-- `CMakeLists.txt` to define the build
-- Conan generators (CMakeDeps + CMakeToolchain) to handle all linking automatically
+## Agregar un Nuevo Lenguaje
 
-**This is the recommended approach** - Conan and CMake handle all transitive dependencies automatically.
+1. Crear directorio: `mkdir newlang/`
+2. Copiar archivos del ejemplo
+3. Crear `Dockerfile` con pre-requisitos del sistema
+4. Crear `test-docker.sh` siguiendo el template de C
+5. Crear `test-local.sh` siguiendo el template de C
+6. Crear `README.md` explicando el ejemplo
+7. Crear `.gitignore` para ignorar `build/`
 
-**Optional:** To experiment with Conan deployers and see how dependencies are laid out:
-```bash
-./test-local.sh  # Installs with direct_deploy to local-test/kth-local/
-```
+## Archivos Obsoletos
 
-### Run Docker Tests
+Los siguientes archivos en la raíz son obsoletos y se pueden eliminar:
+- `compile-*.sh` (obsoletos)
+- `test-all.sh` (obsoleto)
+- `run-tests.sh` (obsoleto)
+- `test-c-only.sh` (reemplazado por `c/test-docker.sh`)
+- `test-local.sh` (reemplazado por `c/test-local.sh`)
+- `examples/` (contenido movido a carpetas individuales)
+- `build-local/` (cada lenguaje tiene su propio build/)
+- `Dockerfile` (cada lenguaje tiene su propio Dockerfile)
 
-To run all installation tests in Docker:
+## Verificación
 
-```bash
-./run-tests.sh
-```
+Para verificar que un ejemplo funciona correctamente:
 
-This will:
-1. Build a Docker image with Ubuntu 24.04 (GCC 13+)
-2. Verify GCC version supports C++23
-3. Install all prerequisites (Python, pip, Conan, kthbuild)
-4. Configure Conan with Knuth repositories and C++23 profile
-5. Install the kth/0.72.0 package
-6. Report results
+1. **Web**: Copia los pasos de la página web
+2. **Docker**: Ejecuta `./test-docker.sh` en la carpeta del lenguaje
+3. **Local**: Ejecuta `./test-local.sh` en la carpeta del lenguaje
 
-### Manual Exploration
-
-If you want to manually explore the environment and test specific commands:
-
-```bash
-# Build the image
-docker build -t knuth-test .
-
-# Run interactively
-docker run -it knuth-test /bin/bash
-
-# Inside the container, you can run:
-/workspace/test-all.sh          # Run all tests
-# Or manually test specific installations
-```
-
-### After Tests Complete
-
-If tests pass, you can re-enter the container to inspect or continue testing:
-
-```bash
-docker start -i knuth-test-container
-```
-
-### Cleanup
-
-**Local test cleanup:**
-```bash
-rm -rf test-examples/local-test/
-```
-
-**Docker cleanup:**
-```bash
-docker rm knuth-test-container
-docker rmi knuth-test
-```
-
-## What's Tested
-
-### C API Installation (Current)
-- ✅ Verification of GCC 13+ (C++23 support)
-- ✅ Installation of Python and pip
-- ✅ Installation of Conan package manager
-- ✅ Installation of kthbuild helper
-- ✅ Configuration of Conan with Knuth remote repository
-- ✅ Installation of Conan config from GitHub
-- ✅ Configuration of Conan profile for C++23 (compiler.cppstd=23)
-- ✅ Installation of kth/0.72.0 package via Conan
-- ✅ Verification of package installation
-
-### Future Tests
-- C++ API (node package)
-- Python API (kth package)
-- JavaScript/TypeScript API
-- C# API
-- WebAssembly
-
-## Troubleshooting
-
-### Docker not found
-Make sure Docker is installed and running:
-```bash
-docker --version
-```
-
-### Permission denied
-Make sure scripts are executable:
-```bash
-chmod +x run-tests.sh test-all.sh
-```
-
-### Tests fail
-Check the output for specific error messages. Common issues:
-- Network connectivity problems
-- Package repository issues
-- Insufficient disk space
-
-## Adding New Tests
-
-To add tests for additional languages:
-
-1. Create a new test script (e.g., `test-cpp.sh`, `test-python.sh`)
-2. Update the Dockerfile to copy the new script
-3. Update `run-tests.sh` to use the new script
-4. Add example code in `examples/` directory if needed
-
-## Notes
-
-- The tests verify package installation and basic API availability
-- Full node execution is not tested (requires blockchain sync)
-- Tests are designed to match exactly what's shown on the website
-- Tests run on Ubuntu 22.04 LTS (commonly used in production)
+Si todos funcionan, significa que la documentación web está correcta y actualizada.

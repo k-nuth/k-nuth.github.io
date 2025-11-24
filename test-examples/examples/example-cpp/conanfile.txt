@@ -1,9 +1,0 @@
-[requires]
-kth/0.73.0
-
-[generators]
-CMakeDeps
-CMakeToolchain
-
-[layout]
-cmake_layout

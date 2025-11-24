@@ -109,7 +109,7 @@ int main(int argc, char* argv[]) {
                    (unsigned long long)current_height, (unsigned long long)target_height);
             fflush(stdout);
         }
-        sleep(2);
+        sleep(1);
     }
 
     if (!keep_running) {
@@ -129,7 +129,7 @@ int main(int argc, char* argv[]) {
     printf("Node is running. Press Ctrl-C to stop.\n\n");
 
     while (keep_running) {
-        sleep(10);
+        sleep(1);
     }
 
     // Cleanup
