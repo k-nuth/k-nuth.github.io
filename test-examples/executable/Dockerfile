@@ -32,4 +32,5 @@ COPY test-docker.sh ./
 # Make test script executable
 RUN chmod +x test-docker.sh
 
-CMD ["/bin/bash"]
+# Run the test script
+CMD ["./test-docker.sh"]
