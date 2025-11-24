@@ -62,6 +62,9 @@ pip3 install kthbuild conan --user
 print_step "  conan profile detect --force"
 conan profile detect --force
 
+print_step "  conan profile update settings.compiler.cppstd=23 default"
+conan profile update settings.compiler.cppstd=23 default
+
 print_step "  conan remote add kth https://packages.kth.cash/api"
 conan remote add kth https://packages.kth.cash/api 2>/dev/null || echo "  (remote already exists)"
 

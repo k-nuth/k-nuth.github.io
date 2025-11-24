@@ -859,11 +859,13 @@
                     <div class="bg-gray-900 rounded-lg p-3 font-mono text-base overflow-x-auto text-gray-300">
                       <div><span class="text-green-400">$ </span><span class="text-cyan-300">pip3 install</span> <span class="text-orange-300">kthbuild conan</span> <span class="text-purple-300">--user</span></div>
                       <div><span class="text-green-400">$ </span><span class="text-cyan-300">conan profile detect</span> <span class="text-purple-300">--force</span></div>
+                      <div><span class="text-green-400">$ </span><span class="text-cyan-300">conan profile update</span> <span class="text-orange-300">settings.compiler.cppstd=23</span> <span class="text-purple-300">default</span></div>
                       <div><span class="text-green-400">$ </span><span class="text-cyan-300">conan remote add</span> <span class="text-orange-300">kth</span> <span class="text-blue-300">https://packages.kth.cash/api</span></div>
                       <div><span class="text-green-400">$ </span><span class="text-cyan-300">conan config install</span> <span class="text-blue-300">https://github.com/k-nuth/ci-utils/raw/master/conan/config2023.zip</span></div>
                     </div>
                     <button class="copy-btn absolute top-2 right-2 p-1.5 bg-gray-800 hover:bg-primary rounded transition-all opacity-0 group-hover:opacity-100" data-clipboard-text="pip3 install kthbuild conan --user
 conan profile detect --force
+conan profile update settings.compiler.cppstd=23 default
 conan remote add kth https://packages.kth.cash/api
 conan config install https://github.com/k-nuth/ci-utils/raw/master/conan/config2023.zip">
                       <svg class="w-4 h-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
