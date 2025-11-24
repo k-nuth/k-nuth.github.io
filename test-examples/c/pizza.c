@@ -3,6 +3,8 @@
 #include <unistd.h>
 #include <kth/capi.h>
  
+#define PIZZA_BLOCK 57043 // Bitcoin Pizza Day (May 22, 2010)
+ 
 volatile int keep_running = 1;
 volatile int block_received = 0;
  
@@ -41,9 +43,9 @@ int main() {
   uint64_t h = 0;
   kth_chain_sync_last_height(chain, &h);
  
-  // Wait for sync to block 57043 (Bitcoin Pizza Day)
-  while (keep_running && h < 57043) {
-    printf("\r🔄 Syncing... %llu/57043", h);
+  // Wait for sync to PIZZA_BLOCK
+  while (keep_running && h < PIZZA_BLOCK) {
+    printf("\r🔄 Syncing... %llu/%llu", h, (uint64_t)PIZZA_BLOCK);
     fflush(stdout);
     sleep(1);
     kth_chain_sync_last_height(chain, &h);
@@ -55,8 +57,8 @@ int main() {
   }
  
   printf("\n✓ Synced to block %llu\n", h);
-  printf("Fetching block 57043 (Bitcoin Pizza Day)...\n");
-  kth_chain_async_block_by_height(chain, NULL, 57043, print_block);
+  printf("Fetching block %llu (Bitcoin Pizza Day)...\n", (uint64_t)PIZZA_BLOCK);
+  kth_chain_async_block_by_height(chain, NULL, PIZZA_BLOCK, print_block);
  
   // Wait for block to be received or interrupted
   while (keep_running && !block_received) {

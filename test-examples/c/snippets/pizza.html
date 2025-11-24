@@ -3,6 +3,8 @@
 <div><span class="text-purple-300">#include</span> <span class="text-orange-300">&lt;unistd.h&gt;</span></div>
 <div><span class="text-purple-300">#include</span> <span class="text-orange-300">&lt;kth/capi.h&gt;</span></div>
 <div>&nbsp;</div>
+<div><span class="text-purple-300">#define</span> <span class="text-cyan-300">PIZZA_BLOCK</span> <span class="text-cyan-300">57043</span> <span class="text-gray-400">// Bitcoin Pizza Day (May 22, 2010)</span></div>
+<div>&nbsp;</div>
 <div><span class="text-purple-300">volatile int</span> keep_running = <span class="text-cyan-300">1</span>;</div>
 <div><span class="text-purple-300">volatile int</span> block_received = <span class="text-cyan-300">0</span>;</div>
 <div>&nbsp;</div>
@@ -41,9 +43,9 @@
 <div>&nbsp;&nbsp;<span class="text-purple-300">uint64_t</span> h = <span class="text-cyan-300">0</span>;</div>
 <div>&nbsp;&nbsp;<span class="text-yellow-300">kth_chain_sync_last_height</span>(chain, &amp;h);</div>
 <div>&nbsp;</div>
-<div>&nbsp;&nbsp;<span class="text-gray-400">// Wait for sync to block 57043 (Bitcoin Pizza Day)</span></div>
-<div>&nbsp;&nbsp;<span class="text-purple-300">while</span> (keep_running &amp;&amp; h &lt; <span class="text-cyan-300">57043</span>) {</div>
-<div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">printf</span>(<span class="text-green-300">"\r🔄 Syncing... %llu/57043"</span>, h);</div>
+<div>&nbsp;&nbsp;<span class="text-gray-400">// Wait for sync to PIZZA_BLOCK</span></div>
+<div>&nbsp;&nbsp;<span class="text-purple-300">while</span> (keep_running &amp;&amp; h &lt; <span class="text-cyan-300">PIZZA_BLOCK</span>) {</div>
+<div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">printf</span>(<span class="text-green-300">"\r🔄 Syncing... %llu/%llu"</span>, h, (<span class="text-purple-300">uint64_t</span>)<span class="text-cyan-300">PIZZA_BLOCK</span>);</div>
 <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">fflush</span>(stdout);</div>
 <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">sleep</span>(<span class="text-cyan-300">1</span>);</div>
 <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">kth_chain_sync_last_height</span>(chain, &amp;h);</div>
@@ -55,8 +57,8 @@
 <div>&nbsp;&nbsp;}</div>
 <div>&nbsp;</div>
 <div>&nbsp;&nbsp;<span class="text-yellow-300">printf</span>(<span class="text-green-300">"\n✓ Synced to block %llu\n"</span>, h);</div>
-<div>&nbsp;&nbsp;<span class="text-yellow-300">printf</span>(<span class="text-green-300">"Fetching block 57043 (Bitcoin Pizza Day)...\n"</span>);</div>
-<div>&nbsp;&nbsp;<span class="text-yellow-300">kth_chain_async_block_by_height</span>(chain, <span class="text-purple-300">NULL</span>, <span class="text-cyan-300">57043</span>, print_block);</div>
+<div>&nbsp;&nbsp;<span class="text-yellow-300">printf</span>(<span class="text-green-300">"Fetching block %llu (Bitcoin Pizza Day)...\n"</span>, (<span class="text-purple-300">uint64_t</span>)<span class="text-cyan-300">PIZZA_BLOCK</span>);</div>
+<div>&nbsp;&nbsp;<span class="text-yellow-300">kth_chain_async_block_by_height</span>(chain, <span class="text-purple-300">NULL</span>, <span class="text-cyan-300">PIZZA_BLOCK</span>, print_block);</div>
 <div>&nbsp;</div>
 <div>&nbsp;&nbsp;<span class="text-gray-400">// Wait for block to be received or interrupted</span></div>
 <div>&nbsp;&nbsp;<span class="text-purple-300">while</span> (keep_running &amp;&amp; !block_received) {</div>
