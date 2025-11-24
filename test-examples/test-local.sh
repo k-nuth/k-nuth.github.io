@@ -3,15 +3,14 @@
 set -e  # Exit on error
 
 echo "=========================================="
-echo "Knuth Local Installation Test"
+echo "Knuth C API Local Test"
 echo "=========================================="
 echo ""
 
 # Colors for output
 GREEN='\033[0;32m'
-RED='\033[0;31m'
 YELLOW='\033[1;33m'
-NC='\033[0m' # No Color
+NC='\033[0m'
 
 print_step() {
     echo -e "${YELLOW}>>> $1${NC}"
@@ -21,95 +20,43 @@ print_success() {
     echo -e "${GREEN}✓ $1${NC}"
 }
 
-print_error() {
-    echo -e "${RED}✗ $1${NC}"
-}
-
 # Get script directory
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-TEST_DIR="$SCRIPT_DIR/local-test"
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+EXAMPLE_SRC="$SCRIPT_DIR/examples/example-c"
+BUILD_ROOT="$SCRIPT_DIR/build-local"
+BUILD_DIR="$BUILD_ROOT/example-c"
 
-# Create test directory
-print_step "Creating test directory"
-mkdir -p "$TEST_DIR"
-cd "$TEST_DIR"
-print_success "Test directory: $TEST_DIR"
+# Clean and create build directory
+print_step "Setting up isolated build directory"
+rm -rf "$BUILD_ROOT"
+mkdir -p "$BUILD_DIR"
+print_success "Build directory ready: $BUILD_DIR"
 
-# Check if Conan is installed
-print_step "Checking Conan installation"
-if ! command -v conan &> /dev/null; then
-    print_error "Conan is not installed"
-    echo "Please install Conan first:"
-    echo "  pip3 install conan --user --upgrade"
-    exit 1
-fi
+# Copy source files to build directory
+print_step "Copying source files"
+cp "$EXAMPLE_SRC/example.c" "$BUILD_DIR/"
+cp "$EXAMPLE_SRC/CMakeLists.txt" "$BUILD_DIR/"
+cp "$EXAMPLE_SRC/conanfile.txt" "$BUILD_DIR/"
+print_success "Source files copied"
 
-conan --version
-print_success "Conan is installed"
+# Build in isolated directory
+cd "$BUILD_DIR"
 
-# Check Conan profile
-print_step "Checking Conan profile"
-if ! conan profile show --profile default &> /dev/null; then
-    echo "Creating default profile..."
-    # conan profile detect
-fi
+print_step "Installing dependencies with Conan"
+conan install . --build=missing
 
-# Show profile
-echo "Current profile:"
-conan profile show --profile default
+print_step "Building with CMake"
+cmake --preset conan-release
+cmake --build --preset conan-release
 
-# Check if C++23 is configured
-PROFILE_PATH="$HOME/.conan2/profiles/default"
-if grep -q "compiler.cppstd=23" "$PROFILE_PATH"; then
-    print_success "C++23 already configured"
-else
-    echo "Current cppstd: $(grep compiler.cppstd $PROFILE_PATH)"
-    print_error "C++23 not configured in profile"
-    echo ""
-    echo "To fix this, run:"
-    echo "  sed -i.bak 's/compiler.cppstd=gnu17/compiler.cppstd=23/' $PROFILE_PATH"
-    echo ""
-    read -p "Do you want to update it now? (y/n) " -n 1 -r
-    echo
-    if [[ $REPLY =~ ^[Yy]$ ]]; then
-        sed -i.bak 's/compiler.cppstd=gnu17/compiler.cppstd=23/' "$PROFILE_PATH"
-        print_success "Profile updated to C++23"
-    else
-        print_error "Exiting - C++23 is required for Knuth"
-        exit 1
-    fi
-fi
+print_success "Build completed"
 
-# Install Knuth with deployer
-print_step "Installing Knuth package with deployer"
-echo "This will download and deploy Knuth to: $TEST_DIR/kth-local"
+# Run example
+print_step "Running C example"
 echo ""
-
-conan install --requires=kth/0.72.0 --update --build=missing --deployer=direct_deploy --deployer-folder=kth-local
-
-print_success "Knuth package installed and deployed"
-
-# Show deployed structure
-echo ""
-print_step "Deployed files structure:"
-ls -la kth-local/
-
-echo ""
-echo "Contents of kth-local/direct_deploy/:"
-ls -la kth-local/direct_deploy/
+./build/Release/example
 
 echo ""
 echo "=========================================="
-print_success "Local installation completed!"
+print_success "Test completed!"
 echo "=========================================="
-echo ""
-
-echo "Next steps:"
-echo "1. Examine the structure in: $TEST_DIR/kth-local"
-echo "2. Find headers and libraries"
-echo "3. Create compilation script for example.c"
-echo ""
-echo "To explore:"
-echo "  cd $TEST_DIR"
-echo "  find kth-local -name '*.h' | head -20"
-echo "  find kth-local -name '*.a' -o -name '*.so' | head -20"
