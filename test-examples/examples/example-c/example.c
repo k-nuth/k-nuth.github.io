@@ -80,7 +80,7 @@ int main(int argc, char* argv[]) {
 
     printf("Initializing and starting node...\n");
     printf("(This may take a while on first run)\n");
-    kth_error_code_t res = kth_node_init_run_sync(node, kth_start_modules_just_chain);
+    kth_error_code_t res = kth_node_init_run_sync(node, kth_start_modules_all);
 
     if (res != kth_ec_success) {
         printf("ERROR: Failed to initialize node: %d\n", res);
