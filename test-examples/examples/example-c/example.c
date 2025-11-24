@@ -60,17 +60,18 @@ int main(int argc, char* argv[]) {
     printf("Configuring node...\n");
     kth_settings settings = kth_config_settings_default(kth_network_mainnet);
 
-    // Use pruned mode for faster sync and less disk space
-    settings.database.db_mode = kth_db_mode_pruned;
+    // Use normal mode to keep all blocks
+    settings.database.db_mode = kth_db_mode_normal;
     settings.database.directory = "blockchain";
 
     printf("  Network: Bitcoin Cash Mainnet\n");
-    printf("  Database mode: Pruned\n");
+    printf("  Database mode: Normal\n");
     printf("  Database directory: %s\n\n", settings.database.directory);
 
     // Construct and initialize node
     printf("Constructing node...\n");
-    kth_node_t node = kth_node_construct(&settings, 1);  // stdout enabled
+    // kth_node_t node = kth_node_construct(&settings, 1);  // stdout enabled
+    kth_node_t node = kth_node_construct(&settings, 0);  // stdout disabled
 
     if (node == NULL) {
         printf("ERROR: Failed to construct node\n");
