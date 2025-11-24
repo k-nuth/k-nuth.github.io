@@ -835,16 +835,25 @@
                 <div class="mb-4">
                   <p class="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Prerequisites:</p>
                   <ul class="text-sm text-gray-600 dark:text-gray-400 list-disc list-inside">
-                    <li>Python with pip</li>
+                    <li>Python 3 with pip</li>
                     <li>GCC or compatible C compiler</li>
-                    <li>Conan package manager</li>
+                    <li>CMake</li>
                   </ul>
                 </div>
                 <div class="mb-4">
                   <p class="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Installation:</p>
                   <div class="bg-gray-900 rounded-lg p-3 font-mono text-sm overflow-x-auto text-gray-300">
-                    <div><span class="text-green-400">$ </span><span class="text-cyan-300">pip install kthbuild</span> <span class="text-purple-300">--user --upgrade</span></div>
+                    <div><span class="text-gray-400"># Install dependencies</span></div>
+                    <div><span class="text-green-400">$ </span><span class="text-cyan-300">pip3 install</span> <span class="text-purple-300">--upgrade pip --user</span></div>
+                    <div><span class="text-green-400">$ </span><span class="text-cyan-300">pip3 install</span> <span class="text-orange-300">kthbuild</span> <span class="text-purple-300">--user --upgrade</span></div>
+                    <div><span class="text-green-400">$ </span><span class="text-cyan-300">pip3 install</span> <span class="text-orange-300">conan</span> <span class="text-purple-300">--user --upgrade</span></div>
+                    <div></div>
+                    <div><span class="text-gray-400"># Configure Conan</span></div>
+                    <div><span class="text-green-400">$ </span><span class="text-cyan-300">conan profile detect</span> <span class="text-purple-300">--force</span></div>
+                    <div><span class="text-green-400">$ </span><span class="text-cyan-300">conan remote add</span> <span class="text-orange-300">kth</span> <span class="text-blue-300">https://packages.kth.cash/api</span></div>
                     <div><span class="text-green-400">$ </span><span class="text-cyan-300">conan config install</span> <span class="text-blue-300">https://github.com/k-nuth/ci-utils/raw/master/conan/config2023.zip</span></div>
+                    <div></div>
+                    <div><span class="text-gray-400"># Install Knuth library</span></div>
                     <div><span class="text-green-400">$ </span><span class="text-cyan-300">conan install</span> <span class="text-purple-300">--requires=</span><span class="text-orange-300">kth/<span id="kth-version-c-example">0.73.0</span></span> <span class="text-purple-300">--update</span></div>
                   </div>
                 </div>
