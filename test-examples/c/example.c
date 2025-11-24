@@ -19,7 +19,7 @@ int main() {
   signal(SIGINT, handle_signal);
  
   kth_settings cfg = kth_config_settings_default(kth_network_mainnet);
-  kth_node_t node = kth_node_construct(&cfg, 1);
+  kth_node_t node = kth_node_construct(&cfg, 0);
   if (!node || kth_node_init_run_sync(node, kth_start_modules_all) != kth_ec_success) return 1;
  
   kth_chain_t chain = kth_node_get_chain(node);
