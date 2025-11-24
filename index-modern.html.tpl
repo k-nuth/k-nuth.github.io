@@ -806,32 +806,59 @@
                   <img src="./images/libraries/cpp.svg" alt="C++" class="w-6 h-6" />
                   <span>C++</span>
                 </h4>
+
+                <!-- Prerequisites -->
                 <div class="mb-4">
                   <p class="text-base font-semibold text-gray-700 dark:text-gray-300 mb-2">Prerequisites:</p>
                   <ul class="text-base text-gray-600 dark:text-gray-400 list-disc list-inside">
-                    <li>Python with pip</li>
-                    <li>Conan package manager</li>
+                    <li>Python 3 with pip</li>
+                    <li>GCC or compatible C++ compiler with C++20 support</li>
+                    <li>CMake</li>
                   </ul>
                 </div>
+
+                <!-- Tooling Setup -->
                 <div class="mb-4">
-                  <p class="text-base font-semibold text-gray-700 dark:text-gray-300 mb-2">Installation:</p>
-                  <div class="bg-gray-900 rounded-lg p-3 font-mono text-base overflow-x-auto text-gray-300">
-                    <div><span class="text-green-400">$ </span><span class="text-cyan-300">pip install kthbuild</span> <span class="text-purple-300">--user --upgrade</span></div>
-                    <div><span class="text-green-400">$ </span><span class="text-cyan-300">conan config install</span> <span class="text-blue-300">https://github.com/k-nuth/ci-utils/raw/master/conan/config2023.zip</span></div>
-                    <div><span class="text-green-400">$ </span><span class="text-cyan-300">conan install</span> <span class="text-purple-300">--requires=</span><span class="text-orange-300">node/0.58.0</span> <span class="text-purple-300">--update</span></div>
+                  <p class="text-base font-semibold text-gray-700 dark:text-gray-300 mb-2">Tooling Setup:</p>
+                  <div class="relative group">
+                    <!-- SNIPPET:cpp-tooling-setup -->
                   </div>
                 </div>
-                <div>
-                  <p class="text-base font-semibold text-gray-700 dark:text-gray-300 mb-2">Example:</p>
-                  <div class="bg-gray-900 rounded-lg p-3 font-mono text-base overflow-x-auto text-gray-300">
-                    <div><span class="text-purple-300">#include</span> <span class="text-orange-300">&lt;kth/node.hpp&gt;</span></div>
-                    <div></div>
-                    <div><span class="text-blue-300">node::configuration</span> <span class="text-orange-300">config</span>;</div>
-                    <div><span class="text-orange-300">config</span>.<span class="text-yellow-300">network</span>.<span class="text-yellow-300">net</span> = <span class="text-blue-300">domain::config::network::mainnet</span>;</div>
-                    <div><span class="text-blue-300">node::full_node</span> <span class="text-orange-300">node</span>(<span class="text-orange-300">config</span>);</div>
-                    <div><span class="text-orange-300">node</span>.<span class="text-yellow-300">start</span>([](std::error_code <span class="text-blue-300">const&</span> ec) {</div>
-                    <div>  std::cout << <span class="text-green-300">"Node started"</span> << std::endl;</div>
-                    <div>});</div>
+
+                <!-- Project Setup -->
+                <div class="mb-4">
+                  <p class="text-base font-semibold text-gray-700 dark:text-gray-300 mb-2">Project Setup:</p>
+                  <p class="text-base text-gray-600 dark:text-gray-400 mb-2">Create <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">conanfile.txt</code>:</p>
+                  <div class="relative group mb-3">
+                    <!-- SNIPPET:cpp-conanfile -->
+                  </div>
+                  <p class="text-base text-gray-600 dark:text-gray-400 mb-2">Create <code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">CMakeLists.txt</code>:</p>
+                  <div class="relative group">
+                    <!-- SNIPPET:cpp-cmake -->
+                  </div>
+                </div>
+
+                <!-- Code Example -->
+                <div class="mb-4">
+                  <p class="text-base font-semibold text-gray-700 dark:text-gray-300 mb-2">Code (<code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">pizza.cpp</code>):</p>
+                  <div class="relative group">
+                    <!-- SNIPPET:cpp-pizza -->
+                  </div>
+                </div>
+
+                <!-- Build -->
+                <div class="mb-4">
+                  <p class="text-base font-semibold text-gray-700 dark:text-gray-300 mb-2">Build:</p>
+                  <div class="relative group">
+                    <!-- SNIPPET:cpp-build -->
+                  </div>
+                </div>
+
+                <!-- Run -->
+                <div class="mb-4">
+                  <p class="text-base font-semibold text-gray-700 dark:text-gray-300 mb-2">Run:</p>
+                  <div class="relative group">
+                    <!-- SNIPPET:cpp-run -->
                   </div>
                 </div>
               </div>
