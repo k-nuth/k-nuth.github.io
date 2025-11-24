@@ -7,6 +7,10 @@ const path = require('path');
 const TEST_EXAMPLES_DIR = path.join(__dirname, '..');
 const INDEX_HTML_TPL = path.join(__dirname, '../../index-modern.html.tpl');
 const INDEX_HTML = path.join(__dirname, '../../index-modern.html');
+const CONFIG_PATH = path.join(TEST_EXAMPLES_DIR, 'config.json');
+
+// Load configuration
+const config = JSON.parse(fs.readFileSync(CONFIG_PATH, 'utf8'));
 
 /**
  * Extract plain text from HTML snippet

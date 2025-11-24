@@ -1466,32 +1466,66 @@
 
       // Fetch latest Knuth version from GitHub
       async function fetchLatestVersion() {
+        let version = '0.73.0'; // Default version
+
         try {
           const response = await fetch('https://api.github.com/repos/k-nuth/kth-mono/releases/latest');
           const data = await response.json();
-          const version = data.tag_name.replace('v', ''); // Remove 'v' prefix if exists
-
-          // Update version display
-          const versionElement = document.getElementById('kth-version');
-          if (versionElement) {
-            versionElement.textContent = version;
-          }
-
-          // Update C conanfile version
-          const cConanfileVersion = document.getElementById('kth-version-c-conanfile');
-          if (cConanfileVersion) {
-            cConanfileVersion.textContent = version;
-          }
-
-          // Update copy button with new version
-          const copyBtn = document.getElementById('copy-install-btn');
-          if (copyBtn) {
-            copyBtn.setAttribute('data-clipboard-text', `conan install --requires=kth/${version} --update --deployer=direct_deploy`);
-          }
+          version = data.tag_name.replace('v', ''); // Remove 'v' prefix if exists
         } catch (error) {
           console.log('Using default version 0.73.0');
-          // Keep default version 0.73.0 if fetch fails
         }
+
+        // Replace all KTH_VERSION placeholders in the page
+        replaceKthVersionPlaceholders(version);
+      }
+
+      // Replace all KTH_VERSION placeholders with actual version
+      function replaceKthVersionPlaceholders(version) {
+        // Update specific elements by ID
+        const versionElement = document.getElementById('kth-version');
+        if (versionElement) {
+          versionElement.textContent = version;
+        }
+
+        const cConanfileVersion = document.getElementById('kth-version-c-conanfile');
+        if (cConanfileVersion) {
+          cConanfileVersion.textContent = version;
+        }
+
+        // Update copy button with new version
+        const copyBtn = document.getElementById('copy-install-btn');
+        if (copyBtn) {
+          copyBtn.setAttribute('data-clipboard-text', `conan install --requires=kth/${version} --update --deployer=direct_deploy`);
+        }
+
+        // Replace all text nodes containing KTH_VERSION
+        const walker = document.createTreeWalker(
+          document.body,
+          NodeFilter.SHOW_TEXT,
+          null,
+          false
+        );
+
+        const nodesToReplace = [];
+        let node;
+        while (node = walker.nextNode()) {
+          if (node.nodeValue && node.nodeValue.includes('KTH_VERSION')) {
+            nodesToReplace.push(node);
+          }
+        }
+
+        nodesToReplace.forEach(node => {
+          node.nodeValue = node.nodeValue.replace(/KTH_VERSION/g, version);
+        });
+
+        // Update all data-clipboard-text attributes containing KTH_VERSION
+        document.querySelectorAll('[data-clipboard-text]').forEach(btn => {
+          const text = btn.getAttribute('data-clipboard-text');
+          if (text && text.includes('KTH_VERSION')) {
+            btn.setAttribute('data-clipboard-text', text.replace(/KTH_VERSION/g, version));
+          }
+        });
       }
 
       // Fetch version on page load

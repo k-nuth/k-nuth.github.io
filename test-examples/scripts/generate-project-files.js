@@ -5,6 +5,10 @@ const path = require('path');
 
 // Paths
 const TEST_EXAMPLES_DIR = path.join(__dirname, '..');
+const CONFIG_PATH = path.join(TEST_EXAMPLES_DIR, 'config.json');
+
+// Load configuration
+const config = JSON.parse(fs.readFileSync(CONFIG_PATH, 'utf8'));
 
 /**
  * Extract plain text from HTML snippet
@@ -27,7 +31,12 @@ function extractPlainText(html) {
     lines.pop();
   }
 
-  return lines.join('\n');
+  let text = lines.join('\n');
+
+  // Replace placeholders with config values
+  text = text.replace(/KTH_VERSION/g, config.kthVersion);
+
+  return text;
 }
 
 /**
