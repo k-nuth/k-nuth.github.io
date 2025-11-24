@@ -874,7 +874,7 @@
                   <p class="text-base font-semibold text-gray-700 dark:text-gray-300 mb-2">Prerequisites:</p>
                   <ul class="text-base text-gray-600 dark:text-gray-400 list-disc list-inside">
                     <li>Python 3 with pip</li>
-                    <li>GCC or compatible C compiler</li>
+                    <li>GCC or compatible C compiler with C11 support</li>
                     <li>CMake</li>
                   </ul>
                 </div>
