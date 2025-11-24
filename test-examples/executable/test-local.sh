@@ -99,8 +99,8 @@ echo ""
 print_step "Run"
 echo ""
 
-print_step "  ./direct_deploy/kth/bin/kth"
-./direct_deploy/kth/bin/kth
+print_step "  ./direct_deploy/kth/bin/kth --init_run"
+./direct_deploy/kth/bin/kth --init_run
 
 echo ""
 echo "=========================================="

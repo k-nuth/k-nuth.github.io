@@ -128,7 +128,7 @@ print_step "Run"
 echo ""
 
 print_step "  ${runCommand}"
-exec ${runCommand}
+${lang === 'executable' ? runCommand : `exec ${runCommand}`}
 `;
 }
 
