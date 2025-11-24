@@ -39,7 +39,7 @@ void block_handler(kth_chain_t chain, void* ctx, kth_error_code_t error, kth_blo
     kth_transaction_list_t tx_list = kth_chain_block_transactions(block);
     kth_size_t tx_count = kth_chain_transaction_list_count(tx_list);
     printf("Number of transactions: %llu\n", (unsigned long long)tx_count);
-    kth_chain_transaction_list_destruct(tx_list);
+    // Note: Don't destruct tx_list - it's owned by the block
 
     printf("========================================\n\n");
 

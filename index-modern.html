@@ -878,7 +878,7 @@
                     <div>  kth_transaction_list_t txs = <span class="text-yellow-300">kth_chain_block_transactions</span>(block);</div>
                     <div>  <span class="text-yellow-300">printf</span>(<span class="text-green-300">"Transactions: %llu\n"</span>,</div>
                     <div>         (<span class="text-purple-300">unsigned long long</span>)<span class="text-yellow-300">kth_chain_transaction_list_count</span>(txs));</div>
-                    <div>  <span class="text-yellow-300">kth_chain_transaction_list_destruct</span>(txs);</div>
+                    <div>  <span class="text-gray-400">// Note: Don't destruct txs - it's owned by the block</span></div>
                     <div>  <span class="text-yellow-300">kth_chain_block_destruct</span>(block);</div>
                     <div>}</div>
                     <div></div>
