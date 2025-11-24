@@ -850,69 +850,50 @@
                 </div>
                 <div>
                   <p class="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Example: Fetch historic block 170 (Satoshi to Hal Finney)</p>
-                  <div class="bg-gray-900 rounded-lg p-3 font-mono text-xs overflow-x-auto text-gray-300 leading-relaxed">
-                    <div><span class="text-purple-300">#include</span> <span class="text-orange-300">&lt;signal.h&gt;</span></div>
-                    <div><span class="text-purple-300">#include</span> <span class="text-orange-300">&lt;stdio.h&gt;</span></div>
-                    <div><span class="text-purple-300">#include</span> <span class="text-orange-300">&lt;unistd.h&gt;</span></div>
-                    <div><span class="text-purple-300">#include</span> <span class="text-orange-300">&lt;kth/capi.h&gt;</span></div>
-                    <div></div>
-                    <div><span class="text-purple-300">static volatile int</span> keep_running = <span class="text-cyan-300">1</span>;</div>
-                    <div></div>
-                    <div><span class="text-purple-300">void</span> <span class="text-yellow-300">handle_signal</span>(<span class="text-purple-300">int</span> sig) {</div>
-                    <div>&nbsp;&nbsp;keep_running = <span class="text-cyan-300">0</span>;</div>
-                    <div>}</div>
-                    <div></div>
-                    <div><span class="text-purple-300">void</span> <span class="text-yellow-300">block_handler</span>(kth_chain_t chain, <span class="text-purple-300">void</span>* ctx, kth_error_code_t error,</div>
-                    <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;kth_block_t block, kth_size_t height) {</div>
-                    <div>&nbsp;&nbsp;<span class="text-purple-300">if</span> (error != kth_ec_success) <span class="text-purple-300">return</span>;</div>
-                    <div></div>
-                    <div>&nbsp;&nbsp;<span class="text-yellow-300">printf</span>(<span class="text-green-300">"Block at height: %llu\n"</span>, (<span class="text-purple-300">unsigned long long</span>)height);</div>
-                    <div>&nbsp;&nbsp;kth_hash_t hash = <span class="text-yellow-300">kth_chain_block_hash</span>(block);</div>
-                    <div>&nbsp;&nbsp;<span class="text-yellow-300">printf</span>(<span class="text-green-300">"Hash: "</span>);</div>
-                    <div>&nbsp;&nbsp;<span class="text-purple-300">for</span> (<span class="text-purple-300">int</span> i = <span class="text-cyan-300">31</span>; i >= <span class="text-cyan-300">0</span>; --i) {</div>
-                    <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">printf</span>(<span class="text-green-300">"%02x"</span>, hash.hash[i]);</div>
-                    <div>&nbsp;&nbsp;}</div>
-                    <div>&nbsp;&nbsp;<span class="text-yellow-300">printf</span>(<span class="text-green-300">"\n"</span>);</div>
-                    <div></div>
-                    <div>&nbsp;&nbsp;kth_transaction_list_t txs = <span class="text-yellow-300">kth_chain_block_transactions</span>(block);</div>
-                    <div>&nbsp;&nbsp;<span class="text-yellow-300">printf</span>(<span class="text-green-300">"Transactions: %llu\n"</span>,</div>
-                    <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="text-purple-300">unsigned long long</span>)<span class="text-yellow-300">kth_chain_transaction_list_count</span>(txs));</div>
-                    <div>&nbsp;&nbsp;<span class="text-yellow-300">kth_chain_block_destruct</span>(block);</div>
-                    <div>}</div>
-                    <div></div>
-                    <div><span class="text-purple-300">int</span> <span class="text-yellow-300">main</span>() {</div>
-                    <div>&nbsp;&nbsp;<span class="text-yellow-300">signal</span>(SIGINT, handle_signal);</div>
-                    <div></div>
-                    <div>&nbsp;&nbsp;kth_settings settings = <span class="text-yellow-300">kth_config_settings_default</span>(kth_network_mainnet);</div>
-                    <div>&nbsp;&nbsp;kth_node_t node = <span class="text-yellow-300">kth_node_construct</span>(&amp;settings, <span class="text-cyan-300">1</span>);</div>
-                    <div>&nbsp;&nbsp;<span class="text-purple-300">if</span> (!node) <span class="text-purple-300">return</span> <span class="text-cyan-300">1</span>;</div>
-                    <div></div>
-                    <div>&nbsp;&nbsp;<span class="text-purple-300">if</span> (<span class="text-yellow-300">kth_node_init_run_sync</span>(node, kth_start_modules_all) != kth_ec_success) {</div>
-                    <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">kth_node_destruct</span>(node);</div>
-                    <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-purple-300">return</span> <span class="text-cyan-300">1</span>;</div>
-                    <div>&nbsp;&nbsp;}</div>
-                    <div></div>
-                    <div>&nbsp;&nbsp;kth_chain_t chain = <span class="text-yellow-300">kth_node_get_chain</span>(node);</div>
-                    <div>&nbsp;&nbsp;kth_size_t target_height = <span class="text-cyan-300">170</span>;</div>
-                    <div></div>
-                    <div>&nbsp;&nbsp;<span class="text-gray-400">// Wait for blockchain to sync</span></div>
-                    <div>&nbsp;&nbsp;<span class="text-purple-300">uint64_t</span> current_height = <span class="text-cyan-300">0</span>;</div>
-                    <div>&nbsp;&nbsp;<span class="text-purple-300">while</span> (keep_running && current_height &lt; target_height) {</div>
-                    <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">kth_chain_sync_last_height</span>(chain, &amp;current_height);</div>
-                    <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">printf</span>(<span class="text-green-300">"\r🔄 Syncing... %llu / %llu"</span>, current_height, target_height);</div>
-                    <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">fflush</span>(stdout);</div>
-                    <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">sleep</span>(<span class="text-cyan-300">2</span>);</div>
-                    <div>&nbsp;&nbsp;}</div>
-                    <div></div>
-                    <div>&nbsp;&nbsp;<span class="text-gray-400">// Fetch historic block (Satoshi to Hal Finney)</span></div>
-                    <div>&nbsp;&nbsp;<span class="text-yellow-300">kth_chain_async_block_by_height</span>(chain, <span class="text-purple-300">NULL</span>, target_height, block_handler);</div>
-                    <div></div>
-                    <div>&nbsp;&nbsp;<span class="text-purple-300">while</span> (keep_running) <span class="text-yellow-300">sleep</span>(<span class="text-cyan-300">10</span>);</div>
-                    <div></div>
-                    <div>&nbsp;&nbsp;<span class="text-yellow-300">kth_node_destruct</span>(node);</div>
-                    <div>&nbsp;&nbsp;<span class="text-purple-300">return</span> <span class="text-cyan-300">0</span>;</div>
-                    <div>}</div>
-                  </div>
+                  <pre class="bg-gray-900 rounded-lg p-4 font-mono text-sm overflow-x-auto text-gray-300"><code><span class="text-purple-300">#include</span> <span class="text-orange-300">&lt;signal.h&gt;</span>
+<span class="text-purple-300">#include</span> <span class="text-orange-300">&lt;stdio.h&gt;</span>
+<span class="text-purple-300">#include</span> <span class="text-orange-300">&lt;unistd.h&gt;</span>
+<span class="text-purple-300">#include</span> <span class="text-orange-300">&lt;kth/capi.h&gt;</span>
+
+<span class="text-purple-300">volatile int</span> keep_running = <span class="text-cyan-300">1</span>;
+<span class="text-purple-300">void</span> <span class="text-yellow-300">handle_signal</span>(<span class="text-purple-300">int</span> sig) { keep_running = <span class="text-cyan-300">0</span>; }
+
+<span class="text-purple-300">void</span> <span class="text-yellow-300">print_block</span>(kth_chain_t c, <span class="text-purple-300">void</span>* ctx, kth_error_code_t err,
+               kth_block_t block, kth_size_t h) {
+  <span class="text-purple-300">if</span> (err != kth_ec_success) <span class="text-purple-300">return</span>;
+  kth_hash_t hash = <span class="text-yellow-300">kth_chain_block_hash</span>(block);
+  <span class="text-yellow-300">printf</span>(<span class="text-green-300">"Block %llu: "</span>, (<span class="text-purple-300">unsigned long long</span>)h);
+  <span class="text-purple-300">for</span> (<span class="text-purple-300">int</span> i = <span class="text-cyan-300">31</span>; i >= <span class="text-cyan-300">0</span>; --i) <span class="text-yellow-300">printf</span>(<span class="text-green-300">"%02x"</span>, hash.hash[i]);
+  <span class="text-yellow-300">printf</span>(<span class="text-green-300">"\n"</span>);
+  <span class="text-yellow-300">kth_chain_block_destruct</span>(block);
+}
+
+<span class="text-purple-300">int</span> <span class="text-yellow-300">main</span>() {
+  <span class="text-yellow-300">signal</span>(SIGINT, handle_signal);
+
+  kth_settings cfg = <span class="text-yellow-300">kth_config_settings_default</span>(kth_network_mainnet);
+  kth_node_t node = <span class="text-yellow-300">kth_node_construct</span>(&amp;cfg, <span class="text-cyan-300">1</span>);
+  <span class="text-purple-300">if</span> (!node || <span class="text-yellow-300">kth_node_init_run_sync</span>(node, kth_start_modules_all)
+      != kth_ec_success) <span class="text-purple-300">return</span> <span class="text-cyan-300">1</span>;
+
+  kth_chain_t chain = <span class="text-yellow-300">kth_node_get_chain</span>(node);
+  <span class="text-purple-300">uint64_t</span> h = <span class="text-cyan-300">0</span>;
+
+  <span class="text-gray-400">// Wait for sync to block 170</span>
+  <span class="text-purple-300">while</span> (keep_running && h &lt; <span class="text-cyan-300">170</span>) {
+    <span class="text-yellow-300">kth_chain_sync_last_height</span>(chain, &amp;h);
+    <span class="text-yellow-300">printf</span>(<span class="text-green-300">"\r🔄 Syncing... %llu/170"</span>, h);
+    <span class="text-yellow-300">fflush</span>(stdout);
+    <span class="text-yellow-300">sleep</span>(<span class="text-cyan-300">2</span>);
+  }
+
+  <span class="text-yellow-300">printf</span>(<span class="text-green-300">"\n"</span>);
+  <span class="text-yellow-300">kth_chain_async_block_by_height</span>(chain, <span class="text-purple-300">NULL</span>, <span class="text-cyan-300">170</span>, print_block);
+  <span class="text-purple-300">while</span> (keep_running) <span class="text-yellow-300">sleep</span>(<span class="text-cyan-300">10</span>);
+
+  <span class="text-yellow-300">kth_node_destruct</span>(node);
+  <span class="text-purple-300">return</span> <span class="text-cyan-300">0</span>;
+}</code></pre>
                 </div>
               </div>
 
