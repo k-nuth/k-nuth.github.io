@@ -1,71 +1,88 @@
-#include <signal.h>
-#include <stdatomic.h>
-#include <stdio.h>
-#include <unistd.h>
-#include <kth/capi.h>
+#include <atomic>
+#include <csignal>
+#include <print>
+#include <thread>
+#include <kth/node.hpp>
  
-#define PIZZA_BLOCK 57043 // Bitcoin Pizza Day (May 22, 2010)
+using namespace kth;
  
-atomic_int keep_running = 1;
-atomic_int block_received = 0;
+constexpr uint64_t pizza_block = 57043; // Bitcoin Pizza Day (May 22, 2010)
+ 
+std::atomic<bool> keep_running{true};
+std::atomic<bool> block_received{false};
  
 void handle_signal(int sig) {
-  keep_running = 0;
-  printf("\nInterrupted by signal\n");
-}
- 
-void print_block(kth_chain_t c, void* ctx, kth_error_code_t err, kth_block_t block, kth_size_t h) {
-  if (err != kth_ec_success) {
-    printf("Error fetching block: %d\n", err);
-    block_received = 1;
-    return;
-  }
-  kth_hash_t hash = kth_chain_block_hash(block);
-  printf("Block %llu: ", (unsigned long long)h);
-  for (int i = 31; i >= 0; --i) printf("%02x", hash.hash[i]);
-  printf("\n");
-  kth_chain_block_destruct(block);
-  block_received = 1;
+  keep_running = false;
+  std::println("\nInterrupted by signal");
 }
  
 int main() {
-  signal(SIGINT, handle_signal);
-  signal(SIGTERM, handle_signal);
+  std::signal(SIGINT, handle_signal);
+  std::signal(SIGTERM, handle_signal);
  
-  kth_settings cfg = kth_config_settings_default(kth_network_mainnet);
-  kth_node_t node = kth_node_construct(&cfg, 0);
+  node::configuration config{domain::config::network::mainnet};
+  node::full_node node{config};
  
-  printf("Starting node...\n");
-  fflush(stdout);
-  if (!node || kth_node_init_run_sync(node, kth_start_modules_all) != kth_ec_success) return 1;
-  printf("✓ Node running\n");
+  std::print("Starting node...\n");
  
-  kth_chain_t chain = kth_node_get_chain(node);
-  uint64_t h = 0;
-  kth_chain_sync_last_height(chain, &h);
+  bool started = false;
+  node.start([&](code const& ec) {
+    if (ec) {
+      std::println("Error starting node: {}", ec.message());
+      return;
+    }
+    started = true;
+    std::println("✓ Node running");
+  });
  
-  // Wait for sync to PIZZA_BLOCK
-  while (keep_running && h < PIZZA_BLOCK) {
-    printf("\r🔄 Syncing... %llu/%llu", h, (uint64_t)PIZZA_BLOCK);
-    fflush(stdout);
-    sleep(1);
-    kth_chain_sync_last_height(chain, &h);
+  while (!started && keep_running) {
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+  }
+ 
+  if (!started) return 1;
+ 
+  auto& chain = node.chain();
+ 
+  // Wait for sync to pizza_block
+  while (keep_running) {
+    size_t h;
+    if (!chain.get_last_height(h)) break;
+ 
+    if (h >= pizza_block) break;
+ 
+    std::print("\r🔄 Syncing... {}/{}", h, pizza_block);
+    std::this_thread::sleep_for(std::chrono::seconds(1));
   }
  
   if (!keep_running) {
-    kth_node_destruct(node);
+    node.stop();
     return 0;
   }
  
-  printf("\n✓ Synced to block %llu\n", h);
-  printf("Fetching block %llu (Bitcoin Pizza Day)...\n", (uint64_t)PIZZA_BLOCK);
-  kth_chain_async_block_by_height(chain, NULL, PIZZA_BLOCK, print_block);
+  std::println("\n✓ Synced to block {}", pizza_block);
+  std::println("Fetching block {} (Bitcoin Pizza Day)...", pizza_block);
+ 
+  chain.fetch_block(pizza_block, [](code const& ec, blockchain::block_const_ptr block, size_t h) {
+    if (ec) {
+      std::println("Error fetching block: {}", ec.message());
+      block_received = true;
+      return;
+    }
+ 
+    auto hash = block->hash();
+    std::print("Block {}: ", h);
+    for (int i = hash.size() - 1; i >= 0; --i) {
+      std::print("{:02x}", (int)hash[i]);
+    }
+    std::println("");
+    block_received = true;
+  });
  
   // Wait for block to be received or interrupted
   while (keep_running && !block_received) {
-    sleep(1);
+    std::this_thread::sleep_for(std::chrono::seconds(1));
   }
  
-  kth_node_destruct(node);
+  node.stop();
   return 0;
 }

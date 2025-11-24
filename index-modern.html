@@ -869,9 +869,9 @@
                     <div><span class="text-purple-300">find_package</span>(<span class="text-cyan-300">kth</span> <span class="text-orange-300">REQUIRED</span>)</div>
                     <div>&nbsp;</div>
                     <div><span class="text-purple-300">add_executable</span>(<span class="text-yellow-300">${PROJECT_NAME}</span> pizza.cpp)</div>
-                    <div><span class="text-purple-300">target_link_libraries</span>(<span class="text-yellow-300">${PROJECT_NAME}</span> <span class="text-orange-300">PRIVATE</span> kth::kth)</div>
+                    <div><span class="text-purple-300">target_link_libraries</span>(<span class="text-yellow-300">${PROJECT_NAME}</span> <span class="text-orange-300">PRIVATE</span> kth::node)</div>
                                         </div>
-                                        <button class="copy-btn absolute top-2 right-2 p-1.5 bg-gray-800 hover:bg-primary rounded transition-all opacity-0 group-hover:opacity-100" data-clipboard-text="cmake_minimum_required(VERSION 3.23)&#10;project(pizza CXX)&#10; &#10;set(CMAKE_CXX_STANDARD 23)&#10;set(CMAKE_CXX_STANDARD_REQUIRED ON)&#10; &#10;find_package(kth REQUIRED)&#10; &#10;add_executable(${PROJECT_NAME} pizza.cpp)&#10;target_link_libraries(${PROJECT_NAME} PRIVATE kth::kth)">
+                                        <button class="copy-btn absolute top-2 right-2 p-1.5 bg-gray-800 hover:bg-primary rounded transition-all opacity-0 group-hover:opacity-100" data-clipboard-text="cmake_minimum_required(VERSION 3.23)&#10;project(pizza CXX)&#10; &#10;set(CMAKE_CXX_STANDARD 23)&#10;set(CMAKE_CXX_STANDARD_REQUIRED ON)&#10; &#10;find_package(kth REQUIRED)&#10; &#10;add_executable(${PROJECT_NAME} pizza.cpp)&#10;target_link_libraries(${PROJECT_NAME} PRIVATE kth::node)">
                                           <svg class="w-4 h-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
                                           </svg>
@@ -884,79 +884,96 @@
                   <p class="text-base font-semibold text-gray-700 dark:text-gray-300 mb-2">Code (<code class="bg-gray-200 dark:bg-gray-700 px-1 rounded">pizza.cpp</code>):</p>
                   <div class="relative group">
                                         <div class="bg-gray-900 rounded-lg p-3 font-mono text-base overflow-x-auto text-gray-300">
-                    <div><span class="text-purple-300">#include</span> <span class="text-orange-300">&lt;signal.h&gt;</span></div>
-                    <div><span class="text-purple-300">#include</span> <span class="text-orange-300">&lt;stdatomic.h&gt;</span></div>
-                    <div><span class="text-purple-300">#include</span> <span class="text-orange-300">&lt;stdio.h&gt;</span></div>
-                    <div><span class="text-purple-300">#include</span> <span class="text-orange-300">&lt;unistd.h&gt;</span></div>
-                    <div><span class="text-purple-300">#include</span> <span class="text-orange-300">&lt;kth/capi.h&gt;</span></div>
+                    <div><span class="text-purple-300">#include</span> <span class="text-orange-300">&lt;atomic&gt;</span></div>
+                    <div><span class="text-purple-300">#include</span> <span class="text-orange-300">&lt;csignal&gt;</span></div>
+                    <div><span class="text-purple-300">#include</span> <span class="text-orange-300">&lt;print&gt;</span></div>
+                    <div><span class="text-purple-300">#include</span> <span class="text-orange-300">&lt;thread&gt;</span></div>
+                    <div><span class="text-purple-300">#include</span> <span class="text-orange-300">&lt;kth/node.hpp&gt;</span></div>
                     <div>&nbsp;</div>
-                    <div><span class="text-purple-300">#define</span> <span class="text-cyan-300">PIZZA_BLOCK</span> <span class="text-cyan-300">57043</span> <span class="text-gray-400">// Bitcoin Pizza Day (May 22, 2010)</span></div>
+                    <div><span class="text-purple-300">using namespace</span> kth;</div>
                     <div>&nbsp;</div>
-                    <div><span class="text-purple-300">atomic_int</span> keep_running = <span class="text-cyan-300">1</span>;</div>
-                    <div><span class="text-purple-300">atomic_int</span> block_received = <span class="text-cyan-300">0</span>;</div>
+                    <div><span class="text-purple-300">constexpr</span> <span class="text-purple-300">uint64_t</span> <span class="text-cyan-300">pizza_block</span> = <span class="text-cyan-300">57043</span>; <span class="text-gray-400">// Bitcoin Pizza Day (May 22, 2010)</span></div>
+                    <div>&nbsp;</div>
+                    <div><span class="text-purple-300">std::atomic&lt;bool&gt;</span> keep_running{<span class="text-cyan-300">true</span>};</div>
+                    <div><span class="text-purple-300">std::atomic&lt;bool&gt;</span> block_received{<span class="text-cyan-300">false</span>};</div>
                     <div>&nbsp;</div>
                     <div><span class="text-purple-300">void</span> <span class="text-yellow-300">handle_signal</span>(<span class="text-purple-300">int</span> sig) {</div>
-                    <div>&nbsp;&nbsp;keep_running = <span class="text-cyan-300">0</span>;</div>
-                    <div>&nbsp;&nbsp;<span class="text-yellow-300">printf</span>(<span class="text-green-300">"\nInterrupted by signal\n"</span>);</div>
-                    <div>}</div>
-                    <div>&nbsp;</div>
-                    <div><span class="text-purple-300">void</span> <span class="text-yellow-300">print_block</span>(kth_chain_t c, <span class="text-purple-300">void</span>* ctx, kth_error_code_t err, kth_block_t block, kth_size_t h) {</div>
-                    <div>&nbsp;&nbsp;<span class="text-purple-300">if</span> (err != kth_ec_success) {</div>
-                    <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">printf</span>(<span class="text-green-300">"Error fetching block: %d\n"</span>, err);</div>
-                    <div>&nbsp;&nbsp;&nbsp;&nbsp;block_received = <span class="text-cyan-300">1</span>;</div>
-                    <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-purple-300">return</span>;</div>
-                    <div>&nbsp;&nbsp;}</div>
-                    <div>&nbsp;&nbsp;kth_hash_t hash = <span class="text-yellow-300">kth_chain_block_hash</span>(block);</div>
-                    <div>&nbsp;&nbsp;<span class="text-yellow-300">printf</span>(<span class="text-green-300">"Block %llu: "</span>, (<span class="text-purple-300">unsigned long long</span>)h);</div>
-                    <div>&nbsp;&nbsp;<span class="text-purple-300">for</span> (<span class="text-purple-300">int</span> i = <span class="text-cyan-300">31</span>; i &gt;= <span class="text-cyan-300">0</span>; --i) <span class="text-yellow-300">printf</span>(<span class="text-green-300">"%02x"</span>, hash.hash[i]);</div>
-                    <div>&nbsp;&nbsp;<span class="text-yellow-300">printf</span>(<span class="text-green-300">"\n"</span>);</div>
-                    <div>&nbsp;&nbsp;<span class="text-yellow-300">kth_chain_block_destruct</span>(block);</div>
-                    <div>&nbsp;&nbsp;block_received = <span class="text-cyan-300">1</span>;</div>
+                    <div>&nbsp;&nbsp;keep_running = <span class="text-cyan-300">false</span>;</div>
+                    <div>&nbsp;&nbsp;<span class="text-purple-300">std</span>::<span class="text-yellow-300">println</span>(<span class="text-green-300">"\nInterrupted by signal"</span>);</div>
                     <div>}</div>
                     <div>&nbsp;</div>
                     <div><span class="text-purple-300">int</span> <span class="text-yellow-300">main</span>() {</div>
-                    <div>&nbsp;&nbsp;<span class="text-yellow-300">signal</span>(SIGINT, handle_signal);</div>
-                    <div>&nbsp;&nbsp;<span class="text-yellow-300">signal</span>(SIGTERM, handle_signal);</div>
+                    <div>&nbsp;&nbsp;<span class="text-purple-300">std</span>::<span class="text-yellow-300">signal</span>(SIGINT, handle_signal);</div>
+                    <div>&nbsp;&nbsp;<span class="text-purple-300">std</span>::<span class="text-yellow-300">signal</span>(SIGTERM, handle_signal);</div>
                     <div>&nbsp;</div>
-                    <div>&nbsp;&nbsp;kth_settings cfg = <span class="text-yellow-300">kth_config_settings_default</span>(kth_network_mainnet);</div>
-                    <div>&nbsp;&nbsp;kth_node_t node = <span class="text-yellow-300">kth_node_construct</span>(&amp;cfg, <span class="text-cyan-300">0</span>);</div>
+                    <div>&nbsp;&nbsp;<span class="text-purple-300">node::configuration</span> config{<span class="text-purple-300">domain::config::network::mainnet</span>};</div>
+                    <div>&nbsp;&nbsp;<span class="text-purple-300">node::full_node</span> node{config};</div>
                     <div>&nbsp;</div>
-                    <div>&nbsp;&nbsp;<span class="text-yellow-300">printf</span>(<span class="text-green-300">"Starting node...\n"</span>);</div>
-                    <div>&nbsp;&nbsp;<span class="text-yellow-300">fflush</span>(stdout);</div>
-                    <div>&nbsp;&nbsp;<span class="text-purple-300">if</span> (!node || <span class="text-yellow-300">kth_node_init_run_sync</span>(node, kth_start_modules_all) != kth_ec_success) <span class="text-purple-300">return</span> <span class="text-cyan-300">1</span>;</div>
-                    <div>&nbsp;&nbsp;<span class="text-yellow-300">printf</span>(<span class="text-green-300">"✓ Node running\n"</span>);</div>
+                    <div>&nbsp;&nbsp;<span class="text-purple-300">std</span>::<span class="text-yellow-300">print</span>(<span class="text-green-300">"Starting node...\n"</span>);</div>
                     <div>&nbsp;</div>
-                    <div>&nbsp;&nbsp;kth_chain_t chain = <span class="text-yellow-300">kth_node_get_chain</span>(node);</div>
-                    <div>&nbsp;&nbsp;<span class="text-purple-300">uint64_t</span> h = <span class="text-cyan-300">0</span>;</div>
-                    <div>&nbsp;&nbsp;<span class="text-yellow-300">kth_chain_sync_last_height</span>(chain, &amp;h);</div>
+                    <div>&nbsp;&nbsp;<span class="text-purple-300">bool</span> started = <span class="text-cyan-300">false</span>;</div>
+                    <div>&nbsp;&nbsp;node.<span class="text-yellow-300">start</span>([&amp;](code <span class="text-purple-300">const</span>&amp; ec) {</div>
+                    <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-purple-300">if</span> (ec) {</div>
+                    <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-purple-300">std</span>::<span class="text-yellow-300">println</span>(<span class="text-green-300">"Error starting node: {}"</span>, ec.<span class="text-yellow-300">message</span>());</div>
+                    <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-purple-300">return</span>;</div>
+                    <div>&nbsp;&nbsp;&nbsp;&nbsp;}</div>
+                    <div>&nbsp;&nbsp;&nbsp;&nbsp;started = <span class="text-cyan-300">true</span>;</div>
+                    <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-purple-300">std</span>::<span class="text-yellow-300">println</span>(<span class="text-green-300">"✓ Node running"</span>);</div>
+                    <div>&nbsp;&nbsp;});</div>
                     <div>&nbsp;</div>
-                    <div>&nbsp;&nbsp;<span class="text-gray-400">// Wait for sync to PIZZA_BLOCK</span></div>
-                    <div>&nbsp;&nbsp;<span class="text-purple-300">while</span> (keep_running &amp;&amp; h &lt; <span class="text-cyan-300">PIZZA_BLOCK</span>) {</div>
-                    <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">printf</span>(<span class="text-green-300">"\r🔄 Syncing... %llu/%llu"</span>, h, (<span class="text-purple-300">uint64_t</span>)<span class="text-cyan-300">PIZZA_BLOCK</span>);</div>
-                    <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">fflush</span>(stdout);</div>
-                    <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">sleep</span>(<span class="text-cyan-300">1</span>);</div>
-                    <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">kth_chain_sync_last_height</span>(chain, &amp;h);</div>
+                    <div>&nbsp;&nbsp;<span class="text-purple-300">while</span> (!started &amp;&amp; keep_running) {</div>
+                    <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-purple-300">std::this_thread</span>::<span class="text-yellow-300">sleep_for</span>(<span class="text-purple-300">std::chrono</span>::<span class="text-yellow-300">milliseconds</span>(<span class="text-cyan-300">100</span>));</div>
+                    <div>&nbsp;&nbsp;}</div>
+                    <div>&nbsp;</div>
+                    <div>&nbsp;&nbsp;<span class="text-purple-300">if</span> (!started) <span class="text-purple-300">return</span> <span class="text-cyan-300">1</span>;</div>
+                    <div>&nbsp;</div>
+                    <div>&nbsp;&nbsp;<span class="text-purple-300">auto</span>&amp; chain = node.<span class="text-yellow-300">chain</span>();</div>
+                    <div>&nbsp;</div>
+                    <div>&nbsp;&nbsp;<span class="text-gray-400">// Wait for sync to pizza_block</span></div>
+                    <div>&nbsp;&nbsp;<span class="text-purple-300">while</span> (keep_running) {</div>
+                    <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-purple-300">size_t</span> h;</div>
+                    <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-purple-300">if</span> (!chain.<span class="text-yellow-300">get_last_height</span>(h)) <span class="text-purple-300">break</span>;</div>
+                    <div>&nbsp;</div>
+                    <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-purple-300">if</span> (h &gt;= <span class="text-cyan-300">pizza_block</span>) <span class="text-purple-300">break</span>;</div>
+                    <div>&nbsp;</div>
+                    <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-purple-300">std</span>::<span class="text-yellow-300">print</span>(<span class="text-green-300">"\r🔄 Syncing... {}/{}"</span>, h, <span class="text-cyan-300">pizza_block</span>);</div>
+                    <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-purple-300">std::this_thread</span>::<span class="text-yellow-300">sleep_for</span>(<span class="text-purple-300">std::chrono</span>::<span class="text-yellow-300">seconds</span>(<span class="text-cyan-300">1</span>));</div>
                     <div>&nbsp;&nbsp;}</div>
                     <div>&nbsp;</div>
                     <div>&nbsp;&nbsp;<span class="text-purple-300">if</span> (!keep_running) {</div>
-                    <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">kth_node_destruct</span>(node);</div>
+                    <div>&nbsp;&nbsp;&nbsp;&nbsp;node.<span class="text-yellow-300">stop</span>();</div>
                     <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-purple-300">return</span> <span class="text-cyan-300">0</span>;</div>
                     <div>&nbsp;&nbsp;}</div>
                     <div>&nbsp;</div>
-                    <div>&nbsp;&nbsp;<span class="text-yellow-300">printf</span>(<span class="text-green-300">"\n✓ Synced to block %llu\n"</span>, h);</div>
-                    <div>&nbsp;&nbsp;<span class="text-yellow-300">printf</span>(<span class="text-green-300">"Fetching block %llu (Bitcoin Pizza Day)...\n"</span>, (<span class="text-purple-300">uint64_t</span>)<span class="text-cyan-300">PIZZA_BLOCK</span>);</div>
-                    <div>&nbsp;&nbsp;<span class="text-yellow-300">kth_chain_async_block_by_height</span>(chain, <span class="text-purple-300">NULL</span>, <span class="text-cyan-300">PIZZA_BLOCK</span>, print_block);</div>
+                    <div>&nbsp;&nbsp;<span class="text-purple-300">std</span>::<span class="text-yellow-300">println</span>(<span class="text-green-300">"\n✓ Synced to block {}"</span>, <span class="text-cyan-300">pizza_block</span>);</div>
+                    <div>&nbsp;&nbsp;<span class="text-purple-300">std</span>::<span class="text-yellow-300">println</span>(<span class="text-green-300">"Fetching block {} (Bitcoin Pizza Day)..."</span>, <span class="text-cyan-300">pizza_block</span>);</div>
+                    <div>&nbsp;</div>
+                    <div>&nbsp;&nbsp;chain.<span class="text-yellow-300">fetch_block</span>(<span class="text-cyan-300">pizza_block</span>, [](code <span class="text-purple-300">const</span>&amp; ec, <span class="text-purple-300">blockchain::block_const_ptr</span> block, <span class="text-purple-300">size_t</span> h) {</div>
+                    <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-purple-300">if</span> (ec) {</div>
+                    <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-purple-300">std</span>::<span class="text-yellow-300">println</span>(<span class="text-green-300">"Error fetching block: {}"</span>, ec.<span class="text-yellow-300">message</span>());</div>
+                    <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;block_received = <span class="text-cyan-300">true</span>;</div>
+                    <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-purple-300">return</span>;</div>
+                    <div>&nbsp;&nbsp;&nbsp;&nbsp;}</div>
+                    <div>&nbsp;</div>
+                    <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-purple-300">auto</span> hash = block-&gt;<span class="text-yellow-300">hash</span>();</div>
+                    <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-purple-300">std</span>::<span class="text-yellow-300">print</span>(<span class="text-green-300">"Block {}: "</span>, h);</div>
+                    <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-purple-300">for</span> (<span class="text-purple-300">int</span> i = hash.<span class="text-yellow-300">size</span>() - <span class="text-cyan-300">1</span>; i &gt;= <span class="text-cyan-300">0</span>; --i) {</div>
+                    <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-purple-300">std</span>::<span class="text-yellow-300">print</span>(<span class="text-green-300">"{:02x}"</span>, (<span class="text-purple-300">int</span>)hash[i]);</div>
+                    <div>&nbsp;&nbsp;&nbsp;&nbsp;}</div>
+                    <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-purple-300">std</span>::<span class="text-yellow-300">println</span>(<span class="text-green-300">""</span>);</div>
+                    <div>&nbsp;&nbsp;&nbsp;&nbsp;block_received = <span class="text-cyan-300">true</span>;</div>
+                    <div>&nbsp;&nbsp;});</div>
                     <div>&nbsp;</div>
                     <div>&nbsp;&nbsp;<span class="text-gray-400">// Wait for block to be received or interrupted</span></div>
                     <div>&nbsp;&nbsp;<span class="text-purple-300">while</span> (keep_running &amp;&amp; !block_received) {</div>
-                    <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">sleep</span>(<span class="text-cyan-300">1</span>);</div>
+                    <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-purple-300">std::this_thread</span>::<span class="text-yellow-300">sleep_for</span>(<span class="text-purple-300">std::chrono</span>::<span class="text-yellow-300">seconds</span>(<span class="text-cyan-300">1</span>));</div>
                     <div>&nbsp;&nbsp;}</div>
                     <div>&nbsp;</div>
-                    <div>&nbsp;&nbsp;<span class="text-yellow-300">kth_node_destruct</span>(node);</div>
+                    <div>&nbsp;&nbsp;node.<span class="text-yellow-300">stop</span>();</div>
                     <div>&nbsp;&nbsp;<span class="text-purple-300">return</span> <span class="text-cyan-300">0</span>;</div>
                     <div>}</div>
                                         </div>
-                                        <button class="copy-btn absolute top-2 right-2 p-1.5 bg-gray-800 hover:bg-primary rounded transition-all opacity-0 group-hover:opacity-100" data-clipboard-text="#include <signal.h>&#10;#include <stdatomic.h>&#10;#include <stdio.h>&#10;#include <unistd.h>&#10;#include <kth/capi.h>&#10; &#10;#define PIZZA_BLOCK 57043 // Bitcoin Pizza Day (May 22, 2010)&#10; &#10;atomic_int keep_running = 1;&#10;atomic_int block_received = 0;&#10; &#10;void handle_signal(int sig) {&#10;  keep_running = 0;&#10;  printf(&quot;\nInterrupted by signal\n&quot;);&#10;}&#10; &#10;void print_block(kth_chain_t c, void* ctx, kth_error_code_t err, kth_block_t block, kth_size_t h) {&#10;  if (err != kth_ec_success) {&#10;    printf(&quot;Error fetching block: %d\n&quot;, err);&#10;    block_received = 1;&#10;    return;&#10;  }&#10;  kth_hash_t hash = kth_chain_block_hash(block);&#10;  printf(&quot;Block %llu: &quot;, (unsigned long long)h);&#10;  for (int i = 31; i >= 0; --i) printf(&quot;%02x&quot;, hash.hash[i]);&#10;  printf(&quot;\n&quot;);&#10;  kth_chain_block_destruct(block);&#10;  block_received = 1;&#10;}&#10; &#10;int main() {&#10;  signal(SIGINT, handle_signal);&#10;  signal(SIGTERM, handle_signal);&#10; &#10;  kth_settings cfg = kth_config_settings_default(kth_network_mainnet);&#10;  kth_node_t node = kth_node_construct(&amp;cfg, 0);&#10; &#10;  printf(&quot;Starting node...\n&quot;);&#10;  fflush(stdout);&#10;  if (!node || kth_node_init_run_sync(node, kth_start_modules_all) != kth_ec_success) return 1;&#10;  printf(&quot;✓ Node running\n&quot;);&#10; &#10;  kth_chain_t chain = kth_node_get_chain(node);&#10;  uint64_t h = 0;&#10;  kth_chain_sync_last_height(chain, &amp;h);&#10; &#10;  // Wait for sync to PIZZA_BLOCK&#10;  while (keep_running &amp;&amp; h < PIZZA_BLOCK) {&#10;    printf(&quot;\r🔄 Syncing... %llu/%llu&quot;, h, (uint64_t)PIZZA_BLOCK);&#10;    fflush(stdout);&#10;    sleep(1);&#10;    kth_chain_sync_last_height(chain, &amp;h);&#10;  }&#10; &#10;  if (!keep_running) {&#10;    kth_node_destruct(node);&#10;    return 0;&#10;  }&#10; &#10;  printf(&quot;\n✓ Synced to block %llu\n&quot;, h);&#10;  printf(&quot;Fetching block %llu (Bitcoin Pizza Day)...\n&quot;, (uint64_t)PIZZA_BLOCK);&#10;  kth_chain_async_block_by_height(chain, NULL, PIZZA_BLOCK, print_block);&#10; &#10;  // Wait for block to be received or interrupted&#10;  while (keep_running &amp;&amp; !block_received) {&#10;    sleep(1);&#10;  }&#10; &#10;  kth_node_destruct(node);&#10;  return 0;&#10;}">
+                                        <button class="copy-btn absolute top-2 right-2 p-1.5 bg-gray-800 hover:bg-primary rounded transition-all opacity-0 group-hover:opacity-100" data-clipboard-text="#include <atomic>&#10;#include <csignal>&#10;#include <print>&#10;#include <thread>&#10;#include <kth/node.hpp>&#10; &#10;using namespace kth;&#10; &#10;constexpr uint64_t pizza_block = 57043; // Bitcoin Pizza Day (May 22, 2010)&#10; &#10;std::atomic<bool> keep_running{true};&#10;std::atomic<bool> block_received{false};&#10; &#10;void handle_signal(int sig) {&#10;  keep_running = false;&#10;  std::println(&quot;\nInterrupted by signal&quot;);&#10;}&#10; &#10;int main() {&#10;  std::signal(SIGINT, handle_signal);&#10;  std::signal(SIGTERM, handle_signal);&#10; &#10;  node::configuration config{domain::config::network::mainnet};&#10;  node::full_node node{config};&#10; &#10;  std::print(&quot;Starting node...\n&quot;);&#10; &#10;  bool started = false;&#10;  node.start([&amp;](code const&amp; ec) {&#10;    if (ec) {&#10;      std::println(&quot;Error starting node: {}&quot;, ec.message());&#10;      return;&#10;    }&#10;    started = true;&#10;    std::println(&quot;✓ Node running&quot;);&#10;  });&#10; &#10;  while (!started &amp;&amp; keep_running) {&#10;    std::this_thread::sleep_for(std::chrono::milliseconds(100));&#10;  }&#10; &#10;  if (!started) return 1;&#10; &#10;  auto&amp; chain = node.chain();&#10; &#10;  // Wait for sync to pizza_block&#10;  while (keep_running) {&#10;    size_t h;&#10;    if (!chain.get_last_height(h)) break;&#10; &#10;    if (h >= pizza_block) break;&#10; &#10;    std::print(&quot;\r🔄 Syncing... {}/{}&quot;, h, pizza_block);&#10;    std::this_thread::sleep_for(std::chrono::seconds(1));&#10;  }&#10; &#10;  if (!keep_running) {&#10;    node.stop();&#10;    return 0;&#10;  }&#10; &#10;  std::println(&quot;\n✓ Synced to block {}&quot;, pizza_block);&#10;  std::println(&quot;Fetching block {} (Bitcoin Pizza Day)...&quot;, pizza_block);&#10; &#10;  chain.fetch_block(pizza_block, [](code const&amp; ec, blockchain::block_const_ptr block, size_t h) {&#10;    if (ec) {&#10;      std::println(&quot;Error fetching block: {}&quot;, ec.message());&#10;      block_received = true;&#10;      return;&#10;    }&#10; &#10;    auto hash = block->hash();&#10;    std::print(&quot;Block {}: &quot;, h);&#10;    for (int i = hash.size() - 1; i >= 0; --i) {&#10;      std::print(&quot;{:02x}&quot;, (int)hash[i]);&#10;    }&#10;    std::println(&quot;&quot;);&#10;    block_received = true;&#10;  });&#10; &#10;  // Wait for block to be received or interrupted&#10;  while (keep_running &amp;&amp; !block_received) {&#10;    std::this_thread::sleep_for(std::chrono::seconds(1));&#10;  }&#10; &#10;  node.stop();&#10;  return 0;&#10;}">
                                           <svg class="w-4 h-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
                                           </svg>

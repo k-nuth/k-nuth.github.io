@@ -7,4 +7,4 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(kth REQUIRED)
  
 add_executable(${PROJECT_NAME} pizza.cpp)
-target_link_libraries(${PROJECT_NAME} PRIVATE kth::kth)
+target_link_libraries(${PROJECT_NAME} PRIVATE kth::node)
