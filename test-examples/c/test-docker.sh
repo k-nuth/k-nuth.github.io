@@ -80,9 +80,4 @@ print_step "Run"
 echo ""
 
 print_step "  ./build/Release/pizza"
-./build/Release/pizza
-
-echo ""
-echo "=========================================="
-print_success "Example completed successfully!"
-echo "=========================================="
+exec ./build/Release/pizza

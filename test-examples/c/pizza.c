@@ -1,12 +1,13 @@
 #include <signal.h>
+#include <stdatomic.h>
 #include <stdio.h>
 #include <unistd.h>
 #include <kth/capi.h>
  
 #define PIZZA_BLOCK 57043 // Bitcoin Pizza Day (May 22, 2010)
  
-volatile int keep_running = 1;
-volatile int block_received = 0;
+atomic_int keep_running = 1;
+atomic_int block_received = 0;
  
 void handle_signal(int sig) {
   keep_running = 0;

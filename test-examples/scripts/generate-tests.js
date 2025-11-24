@@ -118,12 +118,7 @@ print_step "Run"
 echo ""
 
 print_step "  ${runCommand}"
-${runCommand}
-
-echo ""
-echo "=========================================="
-print_success "Example completed successfully!"
-echo "=========================================="
+exec ${runCommand}
 `;
 }
 
