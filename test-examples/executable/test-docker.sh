@@ -7,6 +7,19 @@ echo "Knuth Executable Node - Docker Test"
 echo "=========================================="
 echo ""
 
+# Load version from config.json (in /workspace/config.json in Docker)
+CONFIG_FILE="/workspace/config.json"
+if [ -f "$CONFIG_FILE" ]; then
+    KTH_VERSION=$(node -p "require('$CONFIG_FILE').kthVersion")
+else
+    # Fallback if running locally
+    SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+    CONFIG_FILE="$SCRIPT_DIR/../config.json"
+    KTH_VERSION=$(node -p "require('$CONFIG_FILE').kthVersion")
+fi
+echo "Using Knuth version: $KTH_VERSION"
+echo ""
+
 # Colors for output
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
@@ -53,8 +66,8 @@ echo ""
 print_step "Install"
 echo ""
 
-print_step "  conan install --requires=kth/KTH_VERSION --update --deployer=direct_deploy"
-conan install --requires=kth/0.46.0 --update --deployer=direct_deploy
+print_step "  conan install --requires=kth/$KTH_VERSION --update --deployer=direct_deploy -s compiler.cppstd=23"
+conan install --requires=kth/$KTH_VERSION --update --deployer=direct_deploy -s compiler.cppstd=23
 
 print_success "Install completed"
 echo ""

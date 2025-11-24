@@ -13,6 +13,13 @@ echo "Knuth Executable Node - Local Test"
 echo "=========================================="
 echo ""
 
+# Get script directory and load version
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+CONFIG_FILE="$SCRIPT_DIR/../config.json"
+KTH_VERSION=$(node -p "require('$CONFIG_FILE').kthVersion")
+echo "Using Knuth version: $KTH_VERSION"
+echo ""
+
 # Colors for output
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
@@ -26,11 +33,8 @@ print_success() {
     echo -e "${GREEN}✓ $1${NC}"
 }
 
-# Get script directory
-SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-BUILD_DIR="$SCRIPT_DIR/build"
-
 # Setup build directory
+BUILD_DIR="$SCRIPT_DIR/build"
 if [ "$CLEAN" = true ]; then
     print_step "Cleaning build directory"
     rm -rf "$BUILD_DIR"
@@ -69,8 +73,8 @@ echo ""
 print_step "Install"
 echo ""
 
-print_step "  conan install --requires=kth/KTH_VERSION --update --deployer=direct_deploy"
-conan install --requires=kth/0.46.0 --update --deployer=direct_deploy
+print_step "  conan install --requires=kth/$KTH_VERSION --update --deployer=direct_deploy -s compiler.cppstd=23"
+conan install --requires=kth/$KTH_VERSION --update --deployer=direct_deploy -s compiler.cppstd=23
 
 print_success "Install completed"
 echo ""
