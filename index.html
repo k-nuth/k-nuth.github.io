@@ -12,28 +12,32 @@
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="icon" href="./img/logo-white.svg" />
 
-    <!-- Bootstrap -->
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-      crossorigin="anonymous"
-    />
-    <script
-      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-      crossorigin="anonymous"
-    ></script>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              primary: {
+                DEFAULT: '#99389d',
+                dark: '#76277a'
+              },
+              dark: {
+                DEFAULT: '#0e1419',
+                lighter: '#1a1f26',
+                text: '#4d4d4d'
+              }
+            },
+            fontFamily: {
+              'cairo': ['"Cairo"', 'sans-serif'],
+              'mono': ['"Ubuntu Mono"', 'monospace']
+            }
+          }
+        }
+      }
+    </script>
 
     <!-- Cairo font -->
     <link
@@ -53,9 +57,6 @@
       crossorigin="anonymous"
     ></script>
 
-    <!-- Jquery -->
-    <script src="./js/jquery.js"></script>
-
     <!-- ClipboardJs -->
     <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
 
@@ -64,125 +65,144 @@
     <script src="https://unpkg.com/swiper/js/swiper.min.js"></script>
   </head>
 
-  <body>
-    <header>
-      <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="nav-bar">
-        <img class="navbar-logo" src="./img/logo-white.svg" alt="Knuth" />
-        <button
-          class="navbar-toggler collapsed ml-auto"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="icon-bar top-bar"></span>
-          <span class="icon-bar middle-bar"></span>
-          <span class="icon-bar bottom-bar"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav d-flex justify-content-between w-50 mx-lg-auto">
-            <li
-              class="nav-item"
-              data-toggle="collapse"
-              data-target=".navbar-collapse.show"
-            >
-              <a class="nav-link" href="./index.html/#download">Get Knuth</a>
-            </li>
-            <li
-              class="nav-item"
-              data-toggle="collapse"
-              data-target=".navbar-collapse.show"
-            >
-              <a class="nav-link" href="./index.html/#features">Features</a>
-            </li>
-            <!-- <li
-              class="nav-item"
-              data-toggle="collapse"
-              data-target=".navbar-collapse.show"
-            >
-              <a class="nav-link" href="./kth-token.html">KTH Token</a>
-            </li> -->
-            <li
-              class="nav-item"
-              data-toggle="collapse"
-              data-target=".navbar-collapse.show"
-            >
-              <a class="nav-link" href="./labs.html">Labs</a>
-            </li>
-            <li
-              class="nav-item"
-              data-toggle="collapse"
-              data-target=".navbar-collapse.show"
-            >
-              <a class="nav-link" href="https://fund.kth.cash">Funding</a>
-            </li>
-            <li
-              class="nav-item"
-              data-toggle="collapse"
-              data-target=".navbar-collapse.show"
-            >
-              <a class="nav-link" href="./index.html/#contact">Contact</a>
-            </li>
-          </ul>
+  <body class="font-cairo">
+    <!-- Modern Navigation Bar -->
+    <nav id="nav-bar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+          <!-- Logo (visible when scrolled) -->
+          <div class="flex-shrink-0">
+            <img id="navbar-logo" class="h-8 opacity-0 transition-opacity duration-300" src="./img/logo-white.svg" alt="Knuth" />
+          </div>
+
+          <!-- Desktop Navigation -->
+          <div class="hidden lg:flex lg:items-center lg:space-x-8">
+            <a href="./index.html/#download" class="text-white font-semibold hover:text-gray-200 transition-all duration-200 hover:scale-105">Get Knuth</a>
+            <a href="./index.html/#features" class="text-white font-semibold hover:text-gray-200 transition-all duration-200 hover:scale-105">Features</a>
+            <a href="./labs.html" class="text-white font-semibold hover:text-gray-200 transition-all duration-200 hover:scale-105">Labs</a>
+            <a href="https://fund.kth.cash" class="text-white font-semibold hover:text-gray-200 transition-all duration-200 hover:scale-105">Funding</a>
+            <a href="./index.html/#contact" class="text-white font-semibold hover:text-gray-200 transition-all duration-200 hover:scale-105">Contact</a>
+          </div>
+
+          <!-- Mobile menu button -->
+          <div class="lg:hidden">
+            <button id="mobile-menu-button" type="button" class="text-white hover:text-gray-200 focus:outline-none" aria-label="Toggle menu">
+              <svg id="menu-icon-open" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+              <svg id="menu-icon-close" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
         </div>
-      </nav>
-      <img class="head-logo" src="./img/logo-white.svg" alt="Knuth" />
+      </div>
+
+      <!-- Mobile Navigation -->
+      <div id="mobile-menu" class="hidden lg:hidden bg-gradient-to-r from-primary to-primary-dark">
+        <div class="px-4 pt-2 pb-4 space-y-2">
+          <a href="./index.html/#download" class="block text-white font-semibold py-2 hover:bg-white/10 rounded transition-colors">Get Knuth</a>
+          <a href="./index.html/#features" class="block text-white font-semibold py-2 hover:bg-white/10 rounded transition-colors">Features</a>
+          <a href="./labs.html" class="block text-white font-semibold py-2 hover:bg-white/10 rounded transition-colors">Labs</a>
+          <a href="https://fund.kth.cash" class="block text-white font-semibold py-2 hover:bg-white/10 rounded transition-colors">Funding</a>
+          <a href="./index.html/#contact" class="block text-white font-semibold py-2 hover:bg-white/10 rounded transition-colors">Contact</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Header -->
+    <header class="relative bg-cover bg-center h-96 lg:h-[500px]" style="background-image: url(./img/hero.png);">
+      <div class="absolute inset-0 flex items-center justify-center">
+        <img class="h-24 lg:h-48 animate-fade-in" src="./img/logo-white.svg" alt="Knuth" />
+      </div>
     </header>
-    <div id="info" class="container">
-      <div class="info-container">
-        <p>
+    <!-- Info Section -->
+    <div id="info" class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 mb-16">
+      <div class="prose prose-lg max-w-none">
+        <p class="text-xl text-gray-700 leading-relaxed mb-6">
           Knuth is a high performance implementation of the Bitcoin protocol
           focused on users requiring extra capacity and resilience. It is a full
           node software client, but also a development platform. It is designed
           for:
         </p>
-        <ul>
-          <li>Miners and mining pools running competitive operations.</li>
-          <li>Exchanges in need of dependable full indexation.</li>
-          <li>
-            Companies and businesses with the intention of building
-            applications.
+        <ul class="space-y-3 text-lg text-gray-700">
+          <li class="flex items-start">
+            <svg class="h-6 w-6 text-primary mr-3 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+            </svg>
+            <span>Miners and mining pools running competitive operations.</span>
           </li>
-          <li>Developers who want to take their projects to new levels.</li>
-          <li>
-            Newcomers taking their first steps in the blockchain ecosystem.
+          <li class="flex items-start">
+            <svg class="h-6 w-6 text-primary mr-3 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+            </svg>
+            <span>Exchanges in need of dependable full indexation.</span>
+          </li>
+          <li class="flex items-start">
+            <svg class="h-6 w-6 text-primary mr-3 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+            </svg>
+            <span>Companies and businesses with the intention of building applications.</span>
+          </li>
+          <li class="flex items-start">
+            <svg class="h-6 w-6 text-primary mr-3 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+            </svg>
+            <span>Developers who want to take their projects to new levels.</span>
+          </li>
+          <li class="flex items-start">
+            <svg class="h-6 w-6 text-primary mr-3 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+            </svg>
+            <span>Newcomers taking their first steps in the blockchain ecosystem.</span>
           </li>
         </ul>
       </div>
     </div>
-    <section id="download">
-      <div class="info-container text-center">
-        <h2 class="pt-4">Getting Started</h2>
-        <div class="mx-3 mx-lg-0">
-          <p class="pb-4">
-            Install and run Knuth is very easy, you must follow these
-            instructions.
+    <!-- Getting Started Section -->
+    <section id="download" class="bg-gray-50 py-16">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl font-bold text-gray-900 mb-4">Getting Started</h2>
+          <p class="text-xl text-gray-600">
+            Install and run Knuth is very easy, you must follow these instructions.
           </p>
-          <p><b>1. Install and configure the Knuth build helper:</b></p>
-          <div class="container text-left cmd">
-            <p class="cmd-g pt-3">$ pip install "conan>=2.0" --user --upgrade</p>
-            <p class="cmd-g pt-3">$ pip install kthbuild --user --upgrade</p>
-            <p class="cmd-g pb-3">
-              $ conan remote add kth https://packages.kth.cash/api
-            </p>
-            <p class="cmd-g pb-3">
-              $ conan config install
-              https://github.com/k-nuth/ci-utils/raw/master/conan/config2023.zip
-            </p>
-          </div>
-          <p class="pt-4"><b>2. Install the node executable:</b></p>
-          <div class="container text-left cmd">
-            <p class="cmd-g py-3">
-              $ conan install --requires=kth/0.46.0 --update --deployer=direct_deploy
-            </p>
-          </div>
+        </div>
 
-          <p class="pt-4"><b>3. Run the node:</b></p>
-          <div class="container text-left cmd">
-            <p class="cmd-p pt-3"># Run the node</p>
-            <p class="cmd-g pb-3">$ ./kth/bin/kth</p>
+        <!-- Step 1 -->
+        <div class="mb-10">
+          <h3 class="text-2xl font-semibold text-gray-900 mb-4">
+            <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-primary text-white mr-3">1</span>
+            Install and configure the Knuth build helper
+          </h3>
+          <div class="bg-dark rounded-xl p-6 font-mono text-sm overflow-x-auto shadow-lg">
+            <div class="text-yellow-400 mb-2">$ pip install "conan>=2.0" --user --upgrade</div>
+            <div class="text-yellow-400 mb-2">$ pip install kthbuild --user --upgrade</div>
+            <div class="text-yellow-400 mb-2">$ conan remote add kth https://packages.kth.cash/api</div>
+            <div class="text-yellow-400">$ conan config install https://github.com/k-nuth/ci-utils/raw/master/conan/config2023.zip</div>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="mb-10">
+          <h3 class="text-2xl font-semibold text-gray-900 mb-4">
+            <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-primary text-white mr-3">2</span>
+            Install the node executable
+          </h3>
+          <div class="bg-dark rounded-xl p-6 font-mono text-sm overflow-x-auto shadow-lg">
+            <div class="text-yellow-400">$ conan install --requires=kth/0.46.0 --update --deployer=direct_deploy</div>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="mb-10">
+          <h3 class="text-2xl font-semibold text-gray-900 mb-4">
+            <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-primary text-white mr-3">3</span>
+            Run the node
+          </h3>
+          <div class="bg-dark rounded-xl p-6 font-mono text-sm overflow-x-auto shadow-lg">
+            <div class="text-purple-400 mb-2"># Run the node</div>
+            <div class="text-yellow-400">$ ./kth/bin/kth</div>
           </div>
         </div>
       </div>
