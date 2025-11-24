@@ -32,9 +32,10 @@
 <div>&nbsp;&nbsp;kth_settings cfg = <span class="text-yellow-300">kth_config_settings_default</span>(kth_network_mainnet);</div>
 <div>&nbsp;&nbsp;kth_node_t node = <span class="text-yellow-300">kth_node_construct</span>(&amp;cfg, <span class="text-cyan-300">0</span>);</div>
 <div>&nbsp;</div>
-<div>&nbsp;&nbsp;<span class="text-yellow-300">printf</span>(<span class="text-green-300">"Starting node...\\n"</span>);</div>
+<div>&nbsp;&nbsp;<span class="text-yellow-300">printf</span>(<span class="text-green-300">"Starting node...\n"</span>);</div>
+<div>&nbsp;&nbsp;<span class="text-yellow-300">fflush</span>(stdout);</div>
 <div>&nbsp;&nbsp;<span class="text-purple-300">if</span> (!node || <span class="text-yellow-300">kth_node_init_run_sync</span>(node, kth_start_modules_all) != kth_ec_success) <span class="text-purple-300">return</span> <span class="text-cyan-300">1</span>;</div>
-<div>&nbsp;&nbsp;<span class="text-yellow-300">printf</span>(<span class="text-green-300">"✓ Node running\\n"</span>);</div>
+<div>&nbsp;&nbsp;<span class="text-yellow-300">printf</span>(<span class="text-green-300">"✓ Node running\n"</span>);</div>
 <div>&nbsp;</div>
 <div>&nbsp;&nbsp;kth_chain_t chain = <span class="text-yellow-300">kth_node_get_chain</span>(node);</div>
 <div>&nbsp;&nbsp;<span class="text-purple-300">uint64_t</span> h = <span class="text-cyan-300">0</span>;</div>
