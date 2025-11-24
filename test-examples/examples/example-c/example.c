@@ -117,7 +117,11 @@ int main(int argc, char* argv[]) {
     printf("Waiting for signal...\n\n");
 
     while (keep_running) {
-        sleep(1);
+        printf("[DEBUG] Before sleep, keep_running=%d\n", keep_running);
+        fflush(stdout);
+        sleep(10);
+        printf("[DEBUG] After sleep, keep_running=%d\n", keep_running);
+        fflush(stdout);
     }
 
     // Cleanup
