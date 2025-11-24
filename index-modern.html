@@ -571,6 +571,68 @@
                 </div>
               </div>
             </a>
+
+            <!-- C API Example -->
+            <div class="mt-6 bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg">
+              <h4 class="text-lg font-bold text-gray-900 dark:text-white mb-3">Quick Example</h4>
+              <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">Fetch a historic block from the Bitcoin Cash blockchain:</p>
+              <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto text-sm font-mono"><code>#include &lt;signal.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;kth/capi.h&gt;
+
+static volatile int keep_running = 1;
+
+void handle_signal(int sig) {
+    keep_running = 0;
+}
+
+void block_handler(kth_chain_t chain, void* ctx,
+                   kth_error_code_t error,
+                   kth_block_t block, kth_size_t height) {
+    if (error != kth_ec_success) return;
+
+    printf("Block at height: %llu\n", (unsigned long long)height);
+    kth_hash_t hash = kth_chain_block_hash(block);
+    printf("Hash: ");
+    for (int i = 31; i >= 0; --i) {
+        printf("%02x", hash.hash[i]);
+    }
+    printf("\n");
+
+    kth_transaction_list_t txs = kth_chain_block_transactions(block);
+    printf("Transactions: %llu\n",
+           (unsigned long long)kth_chain_transaction_list_count(txs));
+    kth_chain_transaction_list_destruct(txs);
+    kth_chain_block_destruct(block);
+}
+
+int main() {
+    signal(SIGINT, handle_signal);
+
+    kth_settings settings =
+        kth_config_settings_default(kth_network_mainnet);
+
+    kth_node_t node = kth_node_construct(&amp;settings, 1);
+    if (!node) return 1;
+
+    if (kth_node_init_run_sync(node,
+        kth_start_modules_all) != kth_ec_success) {
+        kth_node_destruct(node);
+        return 1;
+    }
+
+    kth_chain_t chain = kth_node_get_chain(node);
+
+    // Fetch historic block 170 (Satoshi to Hal Finney)
+    kth_chain_async_block_by_height(chain, NULL, 170, block_handler);
+
+    while (keep_running) sleep(1);
+
+    kth_node_destruct(node);
+    return 0;
+}</code></pre>
+            </div>
           </div>
 
           <!-- Arrows Down -->
