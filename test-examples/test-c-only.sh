@@ -113,25 +113,24 @@ echo ""
 print_success "System information collected"
 echo ""
 
-# Step 6: Diagnostic - Check what binaries are available
-print_step "Step 6: Conan Binary Diagnostics"
+# Step 6: Build and run example
+print_step "Step 6: Building C example"
 cd /workspace/examples/example-c
 
-echo ""
-echo "=== 0. Checking configured remotes ==="
-conan remote list
-echo ""
+echo "Installing dependencies with Conan..."
+conan install . --build=missing
 
-echo "=== 1. Listing all available kth/0.73.0 binaries in remote ==="
-conan list "kth/0.73.0:*" -r=kth
-echo ""
+echo "Building with CMake..."
+cmake --preset conan-release
+cmake --build --preset conan-release
 
-echo "=== 2. Explaining missing binaries ==="
-conan graph explain .
-echo ""
+print_success "Build completed"
 
-print_success "Diagnostics completed"
+# Step 7: Run the example
+print_step "Step 7: Running C example"
+./build/Release/example
+
 echo ""
 echo "=========================================="
-echo "Review the output above to understand why binaries are missing"
+print_success "C API test completed successfully!"
 echo "=========================================="
