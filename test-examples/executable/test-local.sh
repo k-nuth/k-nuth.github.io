@@ -99,8 +99,8 @@ echo ""
 print_step "Run"
 echo ""
 
-print_step "  $(find . -name kth -type f -executable | head -1)"
-$(find . -name kth -type f -executable | head -1)
+print_step "  ./direct_deploy/kth/bin/kth"
+./direct_deploy/kth/bin/kth
 
 echo ""
 echo "=========================================="
