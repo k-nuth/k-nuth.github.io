@@ -12,9 +12,11 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 # Install system prerequisites (matches HTML Prerequisites section)
 RUN apt-get update && apt-get install -y \
+    cmake \
     python3 \
     python3-pip \
-    cmake \
+    python3-dev \
+    pkg-config \
     && rm -rf /var/lib/apt/lists/*
 
 # Create working directory

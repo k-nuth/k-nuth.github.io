@@ -26,9 +26,9 @@ print_success() {
 print_step "Tooling Setup"
 echo ""
 
-# Update pip first (Docker only - not in HTML as it's a prerequisite)
+# Update pip first (Docker prerequisite - installs to user directory to avoid system conflicts)
 print_step "  Updating pip (prerequisite)"
-pip3 install --upgrade pip --break-system-packages
+pip3 install --upgrade pip --user --break-system-packages
 export PATH="$PATH:$HOME/.local/bin"
 
 # Steps from HTML
