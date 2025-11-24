@@ -121,6 +121,12 @@ int main(int argc, char* argv[]) {
         fflush(stdout);
         sleep(10);
         printf("[DEBUG] After sleep, keep_running=%d\n", keep_running);
+
+        // Check current height
+        uint64_t current;
+        if (kth_chain_sync_last_height(chain, &current) == kth_ec_success) {
+            printf("[DEBUG] Current blockchain height: %llu\n", (unsigned long long)current);
+        }
         fflush(stdout);
     }
 
