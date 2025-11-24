@@ -9,15 +9,8 @@ if [[ "$1" == "-c" ]] || [[ "$1" == "--clean" ]]; then
 fi
 
 echo "=========================================="
-echo "Knuth Executable Node - Local Test"
+echo "Knuth EXECUTABLE API Example - Local"
 echo "=========================================="
-echo ""
-
-# Get script directory and load version
-SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-CONFIG_FILE="$SCRIPT_DIR/../config.json"
-KTH_VERSION=$(node -p "require('$CONFIG_FILE').kthVersion")
-echo "Using Knuth version: $KTH_VERSION"
 echo ""
 
 # Colors for output
@@ -33,8 +26,11 @@ print_success() {
     echo -e "${GREEN}✓ $1${NC}"
 }
 
-# Setup build directory
+# Get script directory
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 BUILD_DIR="$SCRIPT_DIR/build"
+
+# Setup build directory
 if [ "$CLEAN" = true ]; then
     print_step "Cleaning build directory"
     rm -rf "$BUILD_DIR"
@@ -43,11 +39,17 @@ mkdir -p "$BUILD_DIR"
 print_success "Build directory ready: $BUILD_DIR"
 echo ""
 
+# Copy source files to build directory
+print_step "Copying source files"
+cp "$SCRIPT_DIR"/*.* "$BUILD_DIR/" 2>/dev/null || true
+print_success "Source files copied"
+echo ""
+
 # Change to build directory
 cd "$BUILD_DIR"
 
 # =============================================================================
-# TOOLING SETUP
+# TOOLING SETUP (same as HTML)
 # =============================================================================
 print_step "Tooling Setup"
 echo ""
@@ -68,27 +70,39 @@ print_success "Tooling setup completed"
 echo ""
 
 # =============================================================================
-# INSTALL
+# PROJECT SETUP (files already copied)
 # =============================================================================
-print_step "Install"
-echo ""
-
-print_step "  conan install --requires=kth/$KTH_VERSION --update --deployer=direct_deploy -s compiler.cppstd=23"
-conan install --requires=kth/$KTH_VERSION --update --deployer=direct_deploy -s compiler.cppstd=23
-
-print_success "Install completed"
+print_step "Project Setup"
+echo "  Files copied to build directory"
+print_success "Project files ready"
 echo ""
 
 # =============================================================================
-# RUN (with timeout)
+# BUILD (same as HTML)
 # =============================================================================
-print_step "Run (will stop after 30 seconds)"
+print_step "Build"
+echo ""
+
+# Clean CMake cache to avoid conflicts with other projects
+print_step "  Cleaning CMake cache"
+rm -rf build/CMakeCache.txt build/CMakeFiles build/build
+
+print_step "  conan install --requires=kth/0.73.0 --build=missing --update --deployer=direct_deploy -s compiler.cppstd=23"
+conan install --requires=kth/0.73.0 --build=missing --update --deployer=direct_deploy -s compiler.cppstd=23
+
+print_success "Build completed"
+echo ""
+
+# =============================================================================
+# RUN (same as HTML)
+# =============================================================================
+print_step "Run"
 echo ""
 
 print_step "  ./kth/bin/kth"
-timeout 30 ./kth/bin/kth || true
+./kth/bin/kth
 
 echo ""
 echo "=========================================="
-print_success "Test completed successfully!"
+print_success "Example completed successfully!"
 echo "=========================================="

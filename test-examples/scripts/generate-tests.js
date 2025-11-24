@@ -5,6 +5,10 @@ const path = require('path');
 
 // Paths
 const TEST_EXAMPLES_DIR = path.join(__dirname, '..');
+const CONFIG_PATH = path.join(TEST_EXAMPLES_DIR, 'config.json');
+
+// Load configuration
+const config = JSON.parse(fs.readFileSync(CONFIG_PATH, 'utf8'));
 
 /**
  * Extract plain text from HTML snippet
@@ -28,16 +32,22 @@ function extractPlainText(html) {
     lines.pop();
   }
 
-  return lines.join('\n');
+  let result = lines.join('\n');
+
+  // Replace KTH_VERSION placeholder with actual version
+  result = result.replace(/KTH_VERSION/g, config.kthVersion);
+
+  return result;
 }
 
 /**
  * Read and extract commands from a snippet file
+ * Returns empty array if snippet doesn't exist (for optional snippets)
  */
 function getCommands(snippetsDir, snippetName) {
   const snippetPath = path.join(snippetsDir, `${snippetName}.html`);
   if (!fs.existsSync(snippetPath)) {
-    throw new Error(`Snippet not found: ${snippetName}.html`);
+    return [];
   }
   const html = fs.readFileSync(snippetPath, 'utf8');
   return extractPlainText(html).split('\n').filter(line => line.trim());
