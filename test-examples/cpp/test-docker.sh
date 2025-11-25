@@ -80,4 +80,4 @@ print_step "Run"
 echo ""
 
 print_step "  ./build/Release/pizza"
-exec ./build/Release/pizza
+./build/Release/pizza

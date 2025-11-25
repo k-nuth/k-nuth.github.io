@@ -59,7 +59,8 @@ function getCommands(snippetsDir, snippetName) {
 function generateDockerTest(lang, snippetsDir) {
   const toolingCommands = getCommands(snippetsDir, 'tooling-setup');
   const buildCommands = getCommands(snippetsDir, 'build');
-  const runCommand = getCommands(snippetsDir, 'run')[0];
+  const runCommands = getCommands(snippetsDir, 'run');
+  const runCommand = runCommands[0]; // Keep for compatibility
 
   const langUpper = lang.toUpperCase();
 
@@ -127,8 +128,7 @@ echo ""
 print_step "Run"
 echo ""
 
-print_step "  ${runCommand}"
-${lang === 'executable' ? runCommand : `exec ${runCommand}`}
+${runCommands.map(cmd => `print_step "  ${cmd}"\n${cmd}`).join('\n\n')}
 `;
 }
 
@@ -138,7 +138,8 @@ ${lang === 'executable' ? runCommand : `exec ${runCommand}`}
 function generateLocalTest(lang, snippetsDir) {
   const toolingCommands = getCommands(snippetsDir, 'tooling-setup');
   const buildCommands = getCommands(snippetsDir, 'build');
-  const runCommand = getCommands(snippetsDir, 'run')[0];
+  const runCommands = getCommands(snippetsDir, 'run');
+  const runCommand = runCommands[0]; // Keep for compatibility
 
   const langUpper = lang.toUpperCase();
 
@@ -232,8 +233,7 @@ echo ""
 print_step "Run"
 echo ""
 
-print_step "  ${runCommand}"
-${runCommand}
+${runCommands.map(cmd => `print_step "  ${cmd}"\n${cmd}`).join('\n\n')}
 
 echo ""
 echo "=========================================="

@@ -99,6 +99,12 @@ echo ""
 print_step "Run"
 echo ""
 
+print_step "  ./direct_deploy/kth/bin/kth --help"
+./direct_deploy/kth/bin/kth --help
+
+print_step "  ./direct_deploy/kth/bin/kth --version"
+./direct_deploy/kth/bin/kth --version
+
 print_step "  ./direct_deploy/kth/bin/kth --init_run"
 ./direct_deploy/kth/bin/kth --init_run
 
