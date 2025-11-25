@@ -1449,11 +1449,11 @@
           console.log('Using default version 0.73.0');
         }
 
-        // Replace all KTH_VERSION placeholders in the page
+        // Replace all KNUTH_PKG_VERSION placeholders in the page
         replaceKthVersionPlaceholders(version);
       }
 
-      // Replace all KTH_VERSION placeholders with actual version
+      // Replace all KNUTH_PKG_VERSION placeholders with actual version
       function replaceKthVersionPlaceholders(version) {
         // Update specific elements by ID
         const versionElement = document.getElementById('kth-version');
@@ -1472,7 +1472,7 @@
           copyBtn.setAttribute('data-clipboard-text', `conan install --requires=kth/${version} --update --deployer=direct_deploy`);
         }
 
-        // Replace all text nodes containing KTH_VERSION
+        // Replace all text nodes containing KNUTH_PKG_VERSION
         const walker = document.createTreeWalker(
           document.body,
           NodeFilter.SHOW_TEXT,
@@ -1483,20 +1483,20 @@
         const nodesToReplace = [];
         let node;
         while (node = walker.nextNode()) {
-          if (node.nodeValue && node.nodeValue.includes('KTH_VERSION')) {
+          if (node.nodeValue && node.nodeValue.includes('KNUTH_PKG_VERSION')) {
             nodesToReplace.push(node);
           }
         }
 
         nodesToReplace.forEach(node => {
-          node.nodeValue = node.nodeValue.replace(/KTH_VERSION/g, version);
+          node.nodeValue = node.nodeValue.replace(/KNUTH_PKG_VERSION/g, version);
         });
 
-        // Update all data-clipboard-text attributes containing KTH_VERSION
+        // Update all data-clipboard-text attributes containing KNUTH_PKG_VERSION
         document.querySelectorAll('[data-clipboard-text]').forEach(btn => {
           const text = btn.getAttribute('data-clipboard-text');
-          if (text && text.includes('KTH_VERSION')) {
-            btn.setAttribute('data-clipboard-text', text.replace(/KTH_VERSION/g, version));
+          if (text && text.includes('KNUTH_PKG_VERSION')) {
+            btn.setAttribute('data-clipboard-text', text.replace(/KNUTH_PKG_VERSION/g, version));
           }
         });
       }

@@ -34,7 +34,7 @@ function extractPlainText(html) {
   let text = lines.join('\n');
 
   // Replace placeholders with config values
-  text = text.replace(/KTH_VERSION/g, config.kthVersion);
+  text = text.replace(/KNUTH_PKG_VERSION/g, config.kthVersion);
 
   return text;
 }

@@ -34,8 +34,8 @@ function extractPlainText(html) {
 
   let result = lines.join('\n');
 
-  // Replace KTH_VERSION placeholder with actual version
-  result = result.replace(/KTH_VERSION/g, config.kthVersion);
+  // Replace KNUTH_PKG_VERSION placeholder with actual version
+  result = result.replace(/KNUTH_PKG_VERSION/g, config.kthVersion);
 
   return result;
 }

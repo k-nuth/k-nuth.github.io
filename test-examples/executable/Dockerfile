@@ -8,8 +8,8 @@ FROM --platform=linux/amd64 gcc:15
 # - This causes Conan to build from source (slow) and some packages fail on ARM
 
 # Build argument for Knuth version
-ARG KTH_VERSION=0.73.0
-ENV KTH_VERSION=${KTH_VERSION}
+ARG KNUTH_PKG_VERSION=0.73.0
+ENV KNUTH_PKG_VERSION=${KNUTH_PKG_VERSION}
 
 # Avoid interactive prompts during build
 ENV DEBIAN_FRONTEND=noninteractive
