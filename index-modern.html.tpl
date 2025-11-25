@@ -239,9 +239,11 @@
         <div class="flex justify-end items-center h-16">
           <!-- Desktop Navigation -->
           <div class="hidden lg:flex lg:items-center lg:space-x-8">
-            <a href="#download" class="text-white font-semibold hover:text-gray-200 transition-all duration-200 hover:scale-105">Get Knuth</a>
-            <a href="#features" class="text-white font-semibold hover:text-gray-200 transition-all duration-200 hover:scale-105">Libraries</a>
+            <a href="#info" class="text-white font-semibold hover:text-gray-200 transition-all duration-200 hover:scale-105">About</a>
+            <a href="#architecture" class="text-white font-semibold hover:text-gray-200 transition-all duration-200 hover:scale-105">Architecture</a>
+            <a href="#download" class="text-white font-semibold hover:text-gray-200 transition-all duration-200 hover:scale-105">Getting Started</a>
             <a href="#features-info" class="text-white font-semibold hover:text-gray-200 transition-all duration-200 hover:scale-105">Features</a>
+            <a href="#wasm-demo" class="text-white font-semibold hover:text-gray-200 transition-all duration-200 hover:scale-105">Live Demo</a>
             <a href="https://fund.kth.cash" class="text-white font-semibold hover:text-gray-200 transition-all duration-200 hover:scale-105">Funding</a>
             <a href="#contact" class="text-white font-semibold hover:text-gray-200 transition-all duration-200 hover:scale-105">Contact</a>
 
@@ -282,9 +284,11 @@
       <!-- Mobile Navigation -->
       <div id="mobile-menu-initial" class="hidden lg:hidden bg-gradient-to-r from-primary to-primary-dark">
         <div class="px-4 pt-2 pb-4 space-y-2">
-          <a href="#download" class="block text-white font-semibold py-2 px-3 hover:bg-white/10 rounded transition-colors mobile-menu-link">Get Knuth</a>
-          <a href="#features" class="block text-white font-semibold py-2 px-3 hover:bg-white/10 rounded transition-colors mobile-menu-link">Libraries</a>
+          <a href="#info" class="block text-white font-semibold py-2 px-3 hover:bg-white/10 rounded transition-colors mobile-menu-link">About</a>
+          <a href="#architecture" class="block text-white font-semibold py-2 px-3 hover:bg-white/10 rounded transition-colors mobile-menu-link">Architecture</a>
+          <a href="#download" class="block text-white font-semibold py-2 px-3 hover:bg-white/10 rounded transition-colors mobile-menu-link">Getting Started</a>
           <a href="#features-info" class="block text-white font-semibold py-2 px-3 hover:bg-white/10 rounded transition-colors mobile-menu-link">Features</a>
+          <a href="#wasm-demo" class="block text-white font-semibold py-2 px-3 hover:bg-white/10 rounded transition-colors mobile-menu-link">Live Demo</a>
           <a href="https://fund.kth.cash" class="block text-white font-semibold py-2 px-3 hover:bg-white/10 rounded transition-colors mobile-menu-link">Funding</a>
           <a href="#contact" class="block text-white font-semibold py-2 px-3 hover:bg-white/10 rounded transition-colors mobile-menu-link">Contact</a>
         </div>
@@ -302,9 +306,11 @@
 
           <!-- Desktop Navigation -->
           <div class="hidden lg:flex lg:items-center lg:space-x-8">
-            <a href="#download" class="text-white font-semibold hover:text-gray-200 transition-all duration-200 hover:scale-105">Get Knuth</a>
-            <a href="#features" class="text-white font-semibold hover:text-gray-200 transition-all duration-200 hover:scale-105">Libraries</a>
+            <a href="#info" class="text-white font-semibold hover:text-gray-200 transition-all duration-200 hover:scale-105">About</a>
+            <a href="#architecture" class="text-white font-semibold hover:text-gray-200 transition-all duration-200 hover:scale-105">Architecture</a>
+            <a href="#download" class="text-white font-semibold hover:text-gray-200 transition-all duration-200 hover:scale-105">Getting Started</a>
             <a href="#features-info" class="text-white font-semibold hover:text-gray-200 transition-all duration-200 hover:scale-105">Features</a>
+            <a href="#wasm-demo" class="text-white font-semibold hover:text-gray-200 transition-all duration-200 hover:scale-105">Live Demo</a>
             <a href="https://fund.kth.cash" class="text-white font-semibold hover:text-gray-200 transition-all duration-200 hover:scale-105">Funding</a>
             <a href="#contact" class="text-white font-semibold hover:text-gray-200 transition-all duration-200 hover:scale-105">Contact</a>
 
@@ -708,63 +714,21 @@
               </div>
 
               <div id="content-a-python" class="library-content-a hidden bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-2xl p-6 border-2 border-blue-200 dark:border-blue-800">
-                <h4 class="text-lg font-bold text-gray-900 dark:text-white mb-4">🐍 Python</h4>
-                <div class="mb-4">
-                  <p class="text-base font-semibold text-gray-700 dark:text-gray-300 mb-2">Prerequisites:</p>
-                  <ul class="text-base text-gray-600 dark:text-gray-400 list-disc list-inside">
-                    <li>Python with pip</li>
-                  </ul>
-                </div>
-                <div class="mb-4">
-                  <p class="text-base font-semibold text-gray-700 dark:text-gray-300 mb-2">Installation:</p>
-                  <div class="bg-gray-900 rounded-lg p-3 font-mono text-base overflow-x-auto text-gray-300">
-                    <div><span class="text-green-400">$ </span><span class="text-cyan-300">pip install</span> <span class="text-orange-300">kth</span></div>
-                  </div>
-                </div>
-                <div>
-                  <p class="text-base font-semibold text-gray-700 dark:text-gray-300 mb-2">Example:</p>
-                  <div class="bg-gray-900 rounded-lg p-3 font-mono text-base overflow-x-auto text-gray-300">
-                    <div><span class="text-purple-300">import</span> <span class="text-blue-300">kth</span></div>
-                    <div><span class="text-purple-300">import</span> <span class="text-blue-300">asyncio</span></div>
-                    <div></div>
-                    <div><span class="text-purple-300">async def</span> <span class="text-yellow-300">main</span>():</div>
-                    <div>  <span class="text-blue-300">config</span> = kth.config.<span class="text-yellow-300">getDefault</span>(kth.config.Network.mainnet)</div>
-                    <div>  <span class="text-purple-300">with</span> kth.node.<span class="text-yellow-300">Node</span>(<span class="text-blue-300">config</span>, <span class="text-purple-300">True</span>) <span class="text-purple-300">as</span> <span class="text-blue-300">node</span>:</div>
-                    <div>    <span class="text-purple-300">await</span> node.<span class="text-yellow-300">launch</span>(kth.primitives.StartModules.all)</div>
-                    <div>    (_, <span class="text-blue-300">height</span>) = <span class="text-purple-300">await</span> node.chain.<span class="text-yellow-300">getLastHeight</span>()</div>
-                    <div>    <span class="text-yellow-300">print</span>(<span class="text-green-300">f"Height: {</span><span class="text-blue-300">height</span><span class="text-green-300">}"</span>)</div>
-                    <div></div>
-                    <div>asyncio.<span class="text-yellow-300">run</span>(<span class="text-yellow-300">main</span>())</div>
-                  </div>
+                <h4 class="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+                  <img src="./images/libraries/python.svg" alt="Python" class="w-6 h-6" />
+                  <span>Python</span>
+                </h4>
+                <div class="text-center py-12">
+                  <p class="text-2xl font-bold text-gray-600 dark:text-gray-400">Coming Soon</p>
                 </div>
               </div>
               <div id="content-a-typescript" class="library-content-a hidden bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-2xl p-6 border-2 border-blue-200 dark:border-blue-800">
-                <h4 class="text-lg font-bold text-gray-900 dark:text-white mb-4">📘 TypeScript</h4>
-                <div class="mb-4">
-                  <p class="text-base font-semibold text-gray-700 dark:text-gray-300 mb-2">Prerequisites:</p>
-                  <ul class="text-base text-gray-600 dark:text-gray-400 list-disc list-inside">
-                    <li>Node.js with npm or yarn</li>
-                    <li>TypeScript compiler</li>
-                  </ul>
-                </div>
-                <div class="mb-4">
-                  <p class="text-base font-semibold text-gray-700 dark:text-gray-300 mb-2">Installation:</p>
-                  <div class="bg-gray-900 rounded-lg p-3 font-mono text-base overflow-x-auto text-gray-300">
-                    <div><span class="text-green-400">$ </span><span class="text-cyan-300">npm install</span> <span class="text-orange-300">@knuth/bch</span></div>
-                  </div>
-                </div>
-                <div>
-                  <p class="text-base font-semibold text-gray-700 dark:text-gray-300 mb-2">Example:</p>
-                  <div class="bg-gray-900 rounded-lg p-3 font-mono text-base overflow-x-auto text-gray-300">
-                    <div><span class="text-purple-300">import</span> <span class="text-purple-300">*</span> <span class="text-purple-300">as</span> <span class="text-blue-300">kth</span> <span class="text-purple-300">from</span> <span class="text-green-300">"@knuth/bch"</span>;</div>
-                    <div></div>
-                    <div><span class="text-purple-300">const</span> <span class="text-blue-300">config</span> = kth.settings.<span class="text-yellow-300">getDefault</span>(kth.network.mainnet);</div>
-                    <div><span class="text-purple-300">const</span> <span class="text-blue-300">node</span> = <span class="text-purple-300">new</span> kth.node.<span class="text-yellow-300">Node</span>(<span class="text-blue-300">config</span>, <span class="text-purple-300">false</span>);</div>
-                    <div><span class="text-purple-300">await</span> node.<span class="text-yellow-300">launch</span>(kth.startModules.all);</div>
-                    <div></div>
-                    <div><span class="text-purple-300">const</span> [_, <span class="text-blue-300">height</span>] = <span class="text-purple-300">await</span> node.chain.<span class="text-yellow-300">getLastHeight</span>();</div>
-                    <div>console.<span class="text-yellow-300">log</span>(<span class="text-green-300">`Height: ${</span><span class="text-blue-300">height</span><span class="text-green-300">}`</span>);</div>
-                  </div>
+                <h4 class="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+                  <img src="./images/libraries/typescript.svg" alt="TypeScript" class="w-6 h-6" />
+                  <span>TypeScript</span>
+                </h4>
+                <div class="text-center py-12">
+                  <p class="text-2xl font-bold text-gray-600 dark:text-gray-400">Coming Soon</p>
                 </div>
               </div>
 
@@ -773,31 +737,8 @@
                   <img src="./images/libraries/csharp.svg" alt="C#" class="w-6 h-6" />
                   <span>C#</span>
                 </h4>
-                <div class="mb-4">
-                  <p class="text-base font-semibold text-gray-700 dark:text-gray-300 mb-2">Prerequisites:</p>
-                  <ul class="text-base text-gray-600 dark:text-gray-400 list-disc list-inside">
-                    <li>.NET 8 framework</li>
-                    <li>Python PIP package-management system</li>
-                  </ul>
-                </div>
-                <div class="mb-4">
-                  <p class="text-base font-semibold text-gray-700 dark:text-gray-300 mb-2">Installation:</p>
-                  <div class="bg-gray-900 rounded-lg p-3 font-mono text-base overflow-x-auto text-gray-300">
-                    <div><span class="text-green-400">$ </span><span class="text-cyan-300">dotnet add package</span> <span class="text-orange-300">kth-bch</span></div>
-                  </div>
-                </div>
-                <div>
-                  <p class="text-base font-semibold text-gray-700 dark:text-gray-300 mb-2">Example:</p>
-                  <div class="bg-gray-900 rounded-lg p-3 font-mono text-base overflow-x-auto text-gray-300">
-                    <div><span class="text-purple-300">using</span> <span class="text-blue-300">Knuth</span>;</div>
-                    <div></div>
-                    <div><span class="text-purple-300">var</span> <span class="text-blue-300">config</span> = Knuth.Config.Settings.<span class="text-yellow-300">GetDefault</span>(NetworkType.Mainnet);</div>
-                    <div><span class="text-purple-300">using</span> (<span class="text-purple-300">var</span> <span class="text-blue-300">node</span> = <span class="text-purple-300">new</span> Knuth.<span class="text-yellow-300">Node</span>(<span class="text-blue-300">config</span>)) {</div>
-                    <div>  <span class="text-purple-300">await</span> node.<span class="text-yellow-300">LaunchAsync</span>();</div>
-                    <div>  <span class="text-purple-300">var</span> <span class="text-blue-300">height</span> = <span class="text-purple-300">await</span> node.Chain.<span class="text-yellow-300">GetLastHeightAsync</span>();</div>
-                    <div>  Console.<span class="text-yellow-300">WriteLine</span>(<span class="text-green-300">$"Current height: {</span><span class="text-blue-300">height.Result</span><span class="text-green-300">}"</span>);</div>
-                    <div>}</div>
-                  </div>
+                <div class="text-center py-12">
+                  <p class="text-2xl font-bold text-gray-600 dark:text-gray-400">Coming Soon</p>
                 </div>
               </div>
 
@@ -930,62 +871,34 @@
                   <img src="./images/libraries/javascript.svg" alt="JavaScript" class="w-6 h-6" />
                   <span>JavaScript</span>
                 </h4>
-                <div class="mb-4">
-                  <p class="text-base font-semibold text-gray-700 dark:text-gray-300 mb-2">Prerequisites:</p>
-                  <ul class="text-base text-gray-600 dark:text-gray-400 list-disc list-inside">
-                    <li>Node.js with npm or yarn</li>
-                  </ul>
-                </div>
-                <div class="mb-4">
-                  <p class="text-base font-semibold text-gray-700 dark:text-gray-300 mb-2">Installation:</p>
-                  <div class="bg-gray-900 rounded-lg p-3 font-mono text-base overflow-x-auto text-gray-300">
-                    <div><span class="text-green-400">$ </span><span class="text-cyan-300">npm install</span> <span class="text-orange-300">@knuth/bch</span></div>
-                  </div>
-                </div>
-                <div>
-                  <p class="text-base font-semibold text-gray-700 dark:text-gray-300 mb-2">Example:</p>
-                  <div class="bg-gray-900 rounded-lg p-3 font-mono text-base overflow-x-auto text-gray-300">
-                    <div><span class="text-purple-300">const</span> <span class="text-blue-300">kth</span> = <span class="text-yellow-300">require</span>(<span class="text-green-300">"@knuth/bch"</span>);</div>
-                    <div></div>
-                    <div><span class="text-purple-300">const</span> <span class="text-blue-300">config</span> = kth.settings.<span class="text-yellow-300">getDefault</span>(kth.network.mainnet);</div>
-                    <div><span class="text-purple-300">const</span> <span class="text-blue-300">node</span> = <span class="text-purple-300">new</span> kth.node.<span class="text-yellow-300">Node</span>(<span class="text-blue-300">config</span>, <span class="text-purple-300">false</span>);</div>
-                    <div><span class="text-purple-300">await</span> node.<span class="text-yellow-300">launch</span>(kth.startModules.all);</div>
-                    <div></div>
-                    <div><span class="text-purple-300">const</span> [_, <span class="text-blue-300">height</span>] = <span class="text-purple-300">await</span> node.chain.<span class="text-yellow-300">getLastHeight</span>();</div>
-                    <div>console.<span class="text-yellow-300">log</span>(<span class="text-green-300">\`Height: \${</span><span class="text-blue-300">height</span><span class="text-green-300">}\`</span>);</div>
-                  </div>
+                <div class="text-center py-12">
+                  <p class="text-2xl font-bold text-gray-600 dark:text-gray-400">Coming Soon</p>
                 </div>
               </div>
 
               <div id="content-a-wasm" class="library-content-a hidden bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-2xl p-6 border-2 border-blue-200 dark:border-blue-800">
-                <h4 class="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+                <h4 class="text-lg font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-2">
                   <img src="./images/libraries/wasm.svg" alt="WASM" class="w-6 h-6" />
                   <span>WebAssembly</span>
                 </h4>
-                <div class="mb-4">
+
+                <!-- Prerequisites -->
+                <div class="mb-6">
                   <p class="text-base font-semibold text-gray-700 dark:text-gray-300 mb-2">Prerequisites:</p>
                   <ul class="text-base text-gray-600 dark:text-gray-400 list-disc list-inside">
                     <li>Modern browser with WebAssembly support</li>
                   </ul>
                 </div>
-                <div class="mb-4">
-                  <p class="text-base font-semibold text-gray-700 dark:text-gray-300 mb-2">Installation:</p>
-                  <div class="bg-gray-900 rounded-lg p-3 font-mono text-base overflow-x-auto text-gray-300">
-                    <div><span class="text-green-400">$ </span><span class="text-cyan-300">npm install</span> <span class="text-orange-300">@knuth/js-wasm</span></div>
-                  </div>
-                </div>
-                <div>
-                  <p class="text-base font-semibold text-gray-700 dark:text-gray-300 mb-2">Example:</p>
-                  <div class="bg-gray-900 rounded-lg p-3 font-mono text-base overflow-x-auto text-gray-300">
-                    <div><span class="text-purple-300">const</span> { loadLib, PaymentAddress } = __KTH_MODULE__;</div>
-                    <div></div>
-                    <div><span class="text-purple-300">await</span> <span class="text-yellow-300">loadLib</span>(<span class="text-green-300">'kth.wasm'</span>, <span class="text-green-300">'kth.js'</span>);</div>
-                    <div></div>
-                    <div><span class="text-purple-300">const</span> <span class="text-blue-300">addr</span> = PaymentAddress.<span class="text-yellow-300">fromString</span>(</div>
-                    <div>  <span class="text-green-300">"bitcoincash:qz2qt6q9yf5e0ruzsk8l5v6mln03swvxpg6ez3j4jd"</span></div>
-                    <div>);</div>
-                    <div>console.<span class="text-yellow-300">log</span>(addr.<span class="text-yellow-300">encodedCashAddr</span>());</div>
-                  </div>
+
+                <!-- Link to Try it in Your Browser -->
+                <div class="text-center py-8">
+                  <p class="text-lg text-gray-700 dark:text-gray-300 mb-4">Try our interactive WebAssembly examples in your browser!</p>
+                  <a href="#wasm-demo" class="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd" />
+                    </svg>
+                    <span>Try it in Your Browser</span>
+                  </a>
                 </div>
               </div>
 
@@ -2094,6 +2007,12 @@ console.log(\`Debug Mode: \${config.debugMode}\`);`
       window.loadExample = function(exampleId) {
         const example = examples[exampleId];
         if (!example) return;
+
+        // Clear console output
+        const outputDiv = document.getElementById('demo-output');
+        if (outputDiv) {
+          outputDiv.innerHTML = '';
+        }
 
         // Update code
         if (codeEditor) {
