@@ -27,7 +27,7 @@ python -m SimpleHTTPServer 8000
 
 **Abrir en el navegador:**
 ```
-http://localhost:8000/index-modern.html
+http://localhost:8000/index.html
 ```
 
 ---
@@ -48,7 +48,7 @@ npx serve -l 8000
 
 **Abrir en el navegador:**
 ```
-http://localhost:8000/index-modern.html
+http://localhost:8000/index.html
 ```
 
 ---
@@ -64,7 +64,7 @@ php -S localhost:8000
 
 **Abrir en el navegador:**
 ```
-http://localhost:8000/index-modern.html
+http://localhost:8000/index.html
 ```
 
 ---
@@ -73,7 +73,7 @@ http://localhost:8000/index-modern.html
 
 1. Instala la extensión "Live Server" en VS Code
 2. Abre el proyecto en VS Code
-3. Click derecho en `index-modern.html`
+3. Click derecho en `index.html`
 4. Selecciona "Open with Live Server"
 
 Automáticamente se abrirá en tu navegador con recarga en vivo.
@@ -83,7 +83,7 @@ Automáticamente se abrirá en tu navegador con recarga en vivo.
 ## 🎨 Comparar versiones
 
 - **Versión original:** `http://localhost:8000/index.html`
-- **Versión modernizada:** `http://localhost:8000/index-modern.html`
+- **Versión modernizada:** `http://localhost:8000/index.html`
 
 ---
 
@@ -134,13 +134,13 @@ Si quieres reemplazar la versión original con la modernizada:
 cp index.html index-original-backup.html
 
 # Reemplazar con la versión moderna
-cp index-modern.html index.html
+cp index.html index.html
 ```
 
 Luego puedes hacer commit de los cambios:
 
 ```bash
-git add index.html index-modern.html
+git add index.html index.html
 git commit -m "Modernizar diseño con Tailwind CSS"
 git push origin master
 ```

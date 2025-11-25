@@ -126,7 +126,7 @@ Esto hace que el cambio entre modos sea suave y profesional.
 
 2. **Abre el navegador:**
    ```
-   http://localhost:8000/index-modern.html
+   http://localhost:8000/index.html
    ```
 
 3. **Verás el modo oscuro por defecto**
@@ -174,7 +174,7 @@ border-gray-800 dark:border-gray-700
 ## 💡 Tips
 
 ### Personalizar Colores
-Si quieres cambiar los colores del modo oscuro, edita el config de Tailwind en `index-modern.html`:
+Si quieres cambiar los colores del modo oscuro, edita el config de Tailwind en `index.html`:
 
 ```javascript
 tailwind.config = {

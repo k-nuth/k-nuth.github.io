@@ -5,8 +5,8 @@ const path = require('path');
 
 // Paths
 const TEST_EXAMPLES_DIR = path.join(__dirname, '..');
-const INDEX_HTML_TPL = path.join(__dirname, '../../index-modern.html.tpl');
-const INDEX_HTML = path.join(__dirname, '../../index-modern.html');
+const INDEX_HTML_TPL = path.join(__dirname, '../../index.html.tpl');
+const INDEX_HTML = path.join(__dirname, '../../index.html');
 const CONFIG_PATH = path.join(TEST_EXAMPLES_DIR, 'config.json');
 
 // Load configuration
@@ -128,7 +128,7 @@ function processLanguage(lang, indexHtml) {
 const args = process.argv.slice(2);
 const targetLang = args[0]; // Optional: specific language to process
 
-console.log('Embedding snippets into index-modern.html...');
+console.log('Embedding snippets into index.html...');
 
 // Read index.html.tpl
 let indexHtml = fs.readFileSync(INDEX_HTML_TPL, 'utf8');

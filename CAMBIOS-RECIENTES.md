@@ -120,7 +120,7 @@ GitHub | X | Telegram | Email
 
 2. **Abrir navegador:**
    ```
-   http://localhost:8000/index-modern.html
+   http://localhost:8000/index.html
    ```
 
 3. **Verificar:**
@@ -134,7 +134,7 @@ GitHub | X | Telegram | Email
 ## 📁 Archivos Modificados
 
 ```
-✅ index-modern.html           - Actualizado con nuevos cambios
+✅ index.html           - Actualizado con nuevos cambios
 ✅ img/icons/x-twitter.svg     - Nuevo logo de X creado
 ✅ CAMBIOS-RECIENTES.md        - Este archivo
 ```

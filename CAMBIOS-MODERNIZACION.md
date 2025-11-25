@@ -172,7 +172,7 @@ Para activarlo en el futuro, solo necesitas:
 
 ```
 k-nuth.github.io/
-├── index-modern.html          ← Nueva versión modernizada
+├── index.html          ← Nueva versión modernizada
 ├── SERVER-LOCAL.md            ← Instrucciones para servidor local
 ├── start-server.sh            ← Script para iniciar servidor
 └── CAMBIOS-MODERNIZACION.md  ← Este archivo (resumen)
@@ -192,7 +192,7 @@ k-nuth.github.io/
 python3 -m http.server 8000
 ```
 
-Luego abre: `http://localhost:8000/index-modern.html`
+Luego abre: `http://localhost:8000/index.html`
 
 ---
 
@@ -235,6 +235,6 @@ El sitio ahora tiene:
 
 ---
 
-**Próximos pasos:** Prueba el sitio localmente y si te gusta, puedes reemplazar `index.html` con `index-modern.html` y hacer push a GitHub Pages.
+**Próximos pasos:** Prueba el sitio localmente y si te gusta, puedes reemplazar `index.html` con `index.html` y hacer push a GitHub Pages.
 
 ¡Disfruta tu sitio modernizado! 🚀✨
