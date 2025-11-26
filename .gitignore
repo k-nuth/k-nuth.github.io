@@ -6,3 +6,7 @@ test-examples/cpp/build/
 test-examples/csharp/build/
 test-examples/javascript/build/
 test-examples/executable/build/
+
+# Flipstarter directories (keep local only)
+flipstarter-backend/
+flipstarter-frontend/
