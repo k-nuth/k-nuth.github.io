@@ -181,7 +181,10 @@ footer { background:#100f15!important; border-top:1px solid #292331; color:#8f86
 .api-roadmap { margin-top:20px; text-align:center; font-size:14px; line-height:1.7; color:var(--muted); }
 .api-roadmap strong { color:var(--accent); font-weight:500; }
 
-#demo-output .matrix-rain { position:absolute; inset:0; width:100%; height:100%; pointer-events:none; opacity:0; transition:opacity .3s; z-index:0; }
-#demo-output .matrix-rain.active { opacity:.22; }
-#demo-output .matrix-content { position:relative; z-index:1; }
-@media(prefers-reduced-motion:reduce) { #demo-output .matrix-rain { display:none; } }
+#demo-output .matrix-content { position:relative; }
+.output-character { display:inline-block; white-space:pre; animation:output-character-drop .5s cubic-bezier(.2,.7,.25,1) both; }
+@keyframes output-character-drop {
+  from { transform:translateY(-100px); opacity:0; filter:blur(4px); text-shadow:0 0 8px rgba(180,153,250,.6); }
+  to { transform:translateY(0); opacity:1; filter:blur(0); text-shadow:none; }
+}
+@media(prefers-reduced-motion:reduce) { .output-character { animation:none; } }

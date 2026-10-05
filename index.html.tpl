@@ -106,7 +106,7 @@
     <!-- ClipboardJs -->
     <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
 
-    <link rel="stylesheet" href="./css/site.css?v=20261005-matrix" />
+    <link rel="stylesheet" href="./css/site.css?v=20261005-character-drop" />
   </head>
 
   <body class="font-cairo antialiased transition-colors duration-300 m-0 p-0">
@@ -1635,49 +1635,42 @@ console.log(address.encodedCashTokens());</code></pre></div>
           });
       }
 
-      // Brief lilac Matrix rain behind the readable output.
-      let matrixRainFrame = 0;
-      function animateOutputRain() {
-        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-        cancelAnimationFrame(matrixRainFrame);
-        const output = document.getElementById('demo-output');
-        let canvas = output.querySelector('.matrix-rain');
-        if (!canvas) {
-          canvas = document.createElement('canvas');
-          canvas.className = 'matrix-rain';
-          canvas.setAttribute('aria-hidden', 'true');
-          output.prepend(canvas);
+      // The output characters fall into their final positions in random order.
+      function createCharacterDropRandom(line, text) {
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !text) {
+          line.textContent = text;
+          return;
         }
-        const ctx = canvas.getContext('2d');
-        if (!ctx) return;
-        canvas.width = output.clientWidth;
-        canvas.height = output.clientHeight;
-        const size = 16;
-        const drops = Array.from({length: Math.ceil(canvas.width / size)}, () => -Math.random() * 12);
-        const chars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
-        const started = performance.now();
-        let lastDraw = 0;
-        canvas.classList.add('active');
-        function draw(now) {
-          if (!canvas.isConnected || now - started > 1800) {
-            canvas.classList.remove('active');
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            return;
-          }
-          if (now - lastDraw >= 45) {
-            ctx.fillStyle = 'rgba(18, 16, 25, 0.16)';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = '#b499fa';
-            ctx.font = size + 'px monospace';
-            drops.forEach((drop, i) => {
-              ctx.fillText(chars[Math.floor(Math.random() * chars.length)], i * size, drop * size);
-              drops[i] = drop * size > canvas.height && Math.random() > 0.96 ? 0 : drop + 1;
-            });
-            lastDraw = now;
-          }
-          matrixRainFrame = requestAnimationFrame(draw);
+        const characters = Array.from(text);
+        const order = characters.map((_, index) => index);
+        for (let i = order.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [order[i], order[j]] = [order[j], order[i]];
         }
-        matrixRainFrame = requestAnimationFrame(draw);
+        const delays = [];
+        const stagger = Math.min(25, 2000 / characters.length);
+        order.forEach((index, rank) => { delays[index] = rank * stagger; });
+        const fragment = document.createDocumentFragment();
+        let lastCharacter;
+        let lastFinish = -1;
+        characters.forEach((character, index) => {
+          const span = document.createElement('span');
+          span.className = 'output-character';
+          span.textContent = character;
+          const duration = 400 + Math.random() * 200;
+          span.style.animationDelay = delays[index] + 'ms';
+          span.style.animationDuration = duration + 'ms';
+          if (delays[index] + duration > lastFinish) {
+            lastFinish = delays[index] + duration;
+            lastCharacter = span;
+          }
+          fragment.appendChild(span);
+        });
+        line.appendChild(fragment);
+        // Restore plain selectable text after the animation completes.
+        lastCharacter.addEventListener('animationend', () => {
+          line.textContent = text;
+        }, {once: true});
       }
 
       // Add output to demo output window
@@ -1696,8 +1689,7 @@ console.log(address.encodedCashTokens());</code></pre></div>
         line.className = type === 'error' ? 'text-red-400 output-line' : 'output-line';
         contentDiv.appendChild(line);
 
-        line.textContent = text;
-        animateOutputRain();
+        createCharacterDropRandom(line, text);
 
         outputDiv.scrollTop = outputDiv.scrollHeight;
 
@@ -1916,8 +1908,6 @@ console.log(\`Debug Mode: \${config.debugMode}\`);`
           outputDiv.appendChild(contentDiv);
         }
 
-        cancelAnimationFrame(matrixRainFrame);
-        outputDiv.querySelector('.matrix-rain')?.remove();
         contentDiv.innerHTML = '<div class="text-gray-500 italic">// Output will appear here...</div>';
       });
 
