@@ -123,6 +123,7 @@
             <a href="#home" class="text-white font-semibold hover:text-gray-200 transition-all duration-200 hover:scale-105">Overview</a>
             <a href="#architecture" class="nav-architecture">Architecture</a>
             <a href="#wasm-demo" class="text-white font-semibold hover:text-gray-200 transition-all duration-200 hover:scale-105">Live Demo</a>
+            <a href="#performance" class="text-white font-semibold hover:text-gray-200 transition-all duration-200 hover:scale-105">Performance</a>
             <a href="https://fund.kth.cash" class="text-white font-semibold hover:text-gray-200 transition-all duration-200 hover:scale-105">Funding</a>
 
             <a href="#download" class="nav-start">Get started <span aria-hidden="true">↗</span></a>
@@ -176,6 +177,7 @@
             <a href="#home" class="text-white font-semibold hover:text-gray-200 transition-all duration-200 hover:scale-105">Overview</a>
             <a href="#architecture" class="nav-architecture">Architecture</a>
             <a href="#wasm-demo" class="text-white font-semibold hover:text-gray-200 transition-all duration-200 hover:scale-105">Live Demo</a>
+            <a href="#performance" class="text-white font-semibold hover:text-gray-200 transition-all duration-200 hover:scale-105">Performance</a>
             <a href="https://fund.kth.cash" class="text-white font-semibold hover:text-gray-200 transition-all duration-200 hover:scale-105">Funding</a>
 
             <a href="#download" class="nav-start">Get started <span aria-hidden="true">↗</span></a>
@@ -254,6 +256,7 @@
             </svg>
             Live Demo
           </a>
+          <a href="#performance" class="mobile-menu-link flex items-center px-4 py-3 text-gray-700 dark:text-gray-200 font-semibold rounded-xl">Performance</a>
           <a href="https://fund.kth.cash" class="mobile-menu-link flex items-center gap-3 px-4 py-3 text-gray-700 dark:text-gray-200 font-semibold rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
             <svg class="w-5 h-5 text-primary dark:text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -295,24 +298,7 @@ console.log(address.encodedCashTokens());</code></pre></div>
     </header>
 
 
-    <section id="performance" class="sync-section" aria-labelledby="sync-title">
-      <div class="page-width sync-layout">
-        <div class="sync-story">
-          <p class="eyebrow">FULL MAINNET SYNC</p>
-          <h2 id="sync-title">Full history.<br /><span>Under one hour.</span></h2>
-          <p>Knuth syncs Bitcoin Cash mainnet from genesis to tip by downloading and processing the complete block history. No fast sync or UTXO commitments.</p>
-          <p class="sync-conditions">On a home computer with a fast <strong>1 Gbps internet connection.</strong></p>
-        </div>
-        <div class="sync-engine">
-          <div class="sync-metric"><strong>&lt; 1 <span>hour</span></strong><span>GENESIS → MAINNET TIP</span></div>
-          <div class="sync-engine-description">
-            <h3>Powered by UTXO-Z.</h3>
-            <p>Knuth integrates UTXO-Z, a purpose-built database for Bitcoin Cash's unspent transaction outputs. Its cache-efficient storage and optimized UTXO lookups help remove a key bottleneck in block processing.</p>
-            <a href="https://github.com/utxo-z/utxo-z" target="_blank" rel="noopener noreferrer">Explore UTXO-Z <span aria-hidden="true">↗</span></a>
-          </div>
-        </div>
-      </div>
-    </section>
+
 
     <!-- Wallet product announcement retained but hidden; product is not planned. -->
     <section id="wallet-announcement" hidden class="relative py-16 bg-gradient-to-br from-purple-50 via-white to-pink-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors duration-300 overflow-hidden">
@@ -457,6 +443,25 @@ console.log(address.encodedCashTokens());</code></pre></div>
                 <p class="text-xs text-gray-600 dark:text-gray-400">Please wait</p>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="performance" class="sync-section" aria-labelledby="sync-title">
+      <div class="page-width sync-layout">
+        <div class="sync-story">
+          <p class="eyebrow">FULL MAINNET SYNC</p>
+          <h2 id="sync-title">Full history.<br /><span>Under one hour.</span></h2>
+          <p>Knuth syncs Bitcoin Cash mainnet from genesis to tip by downloading and processing the complete block history. No fast sync or UTXO commitments.</p>
+          <p class="sync-conditions">On a home computer with a fast <strong>1 Gbps internet connection.</strong></p>
+        </div>
+        <div class="sync-engine">
+          <div class="sync-metric"><strong>&lt; 1 <span>hour</span></strong><span>GENESIS → MAINNET TIP</span></div>
+          <div class="sync-engine-description">
+            <h3>Powered by UTXO-Z.</h3>
+            <p>Knuth integrates UTXO-Z, a purpose-built database for Bitcoin Cash's unspent transaction outputs. Its cache-efficient storage and optimized UTXO lookups help remove a key bottleneck in block processing.</p>
+            <a href="https://github.com/utxo-z/utxo-z" target="_blank" rel="noopener noreferrer">Explore UTXO-Z <span aria-hidden="true">↗</span></a>
           </div>
         </div>
       </div>
