@@ -106,7 +106,7 @@
     <!-- ClipboardJs -->
     <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
 
-    <link rel="stylesheet" href="./css/site.css?v=20261005-character-drop" />
+    <link rel="stylesheet" href="./css/site.css?v=20261005-utxoz" />
   </head>
 
   <body class="font-cairo antialiased transition-colors duration-300 m-0 p-0">
@@ -293,6 +293,26 @@ console.log(address.encodedCashTokens());</code></pre></div>
       </div>
       <div class="hero-meta page-width"><span>ONE CORE. EVERY ENVIRONMENT.</span><div><span>C++23</span><span>C</span><span>JavaScript</span><span>TypeScript</span><span>Python</span><span>C#</span><span>WebAssembly</span><span class="language-planned">Rust <small>PLANNED</small></span></div></div>
     </header>
+
+
+    <section id="performance" class="sync-section" aria-labelledby="sync-title">
+      <div class="page-width sync-layout">
+        <div class="sync-story">
+          <p class="eyebrow">FULL MAINNET SYNC</p>
+          <h2 id="sync-title">Full history.<br /><span>Under one hour.</span></h2>
+          <p>Knuth syncs Bitcoin Cash mainnet from genesis to tip by downloading and processing the complete block history. No fast sync or UTXO commitments.</p>
+          <p class="sync-conditions">On a home computer with a fast <strong>1 Gbps internet connection.</strong></p>
+        </div>
+        <div class="sync-engine">
+          <div class="sync-metric"><strong>&lt; 1 <span>hour</span></strong><span>GENESIS → MAINNET TIP</span></div>
+          <div class="sync-engine-description">
+            <h3>Powered by UTXO-Z.</h3>
+            <p>Knuth integrates UTXO-Z, a purpose-built database for Bitcoin Cash's unspent transaction outputs. Its cache-efficient storage and optimized UTXO lookups help remove a key bottleneck in block processing.</p>
+            <a href="https://github.com/utxo-z/utxo-z" target="_blank" rel="noopener noreferrer">Explore UTXO-Z <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- Wallet product announcement retained but hidden; product is not planned. -->
     <section id="wallet-announcement" hidden class="relative py-16 bg-gradient-to-br from-purple-50 via-white to-pink-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors duration-300 overflow-hidden">
@@ -1473,7 +1493,7 @@ console.log(address.encodedCashTokens());</code></pre></div>
               </div>
             </div>
             <p class="text-gray-600 dark:text-gray-300 leading-relaxed text-sm">
-              Three database modes: <strong>normal</strong>, <strong>pruned</strong>, and <strong>full-indexed</strong> for specialized use cases.
+              UTXO-Z powers the UTXO set. Choose <strong>normal</strong>, <strong>pruned</strong>, or <strong>full-indexed</strong> storage for your use case.
             </p>
           </div>
 

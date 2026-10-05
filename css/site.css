@@ -188,3 +188,20 @@ footer { background:#100f15!important; border-top:1px solid #292331; color:#8f86
   to { transform:translateY(0); opacity:1; filter:blur(0); text-shadow:none; }
 }
 @media(prefers-reduced-motion:reduce) { .output-character { animation:none; } }
+
+.sync-section { padding:64px 0; border-top:1px solid var(--line); background:var(--surface-alt); scroll-margin-top:84px; }
+.sync-layout { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; }
+.sync-story h2 { font:500 clamp(32px,4vw,48px)/1.12 'Space Grotesk',sans-serif; letter-spacing:-.04em; color:var(--ink); margin:16px 0 22px; }
+.sync-story h2 span { color:var(--accent); }
+.sync-story>p:not(.eyebrow) { max-width:530px; color:var(--muted); font-size:15px; line-height:1.8; }
+.sync-story .sync-conditions { margin-top:16px; font-size:13px; }
+.sync-conditions strong { font-weight:500; color:var(--ink); }
+.sync-metric { padding-bottom:24px; border-bottom:1px solid var(--line); }
+.sync-metric>strong { display:block; font:500 clamp(52px,6vw,76px)/1.1 'Space Grotesk',sans-serif; letter-spacing:-.05em; color:var(--accent); }
+.sync-metric strong span { font-size:.55em; letter-spacing:-.03em; }
+.sync-metric>span { display:block; margin-top:12px; font:10px 'Ubuntu Mono',monospace; letter-spacing:.12em; color:var(--muted); }
+.sync-engine-description h3 { font:500 22px 'Space Grotesk',sans-serif; color:var(--ink); margin:24px 0 12px; }
+.sync-engine-description p { color:var(--muted); font-size:14px; line-height:1.8; }
+.sync-engine-description a { display:inline-block; margin-top:18px; color:var(--accent); font-size:13px; }
+.sync-engine-description a:hover { text-decoration:underline; text-underline-offset:4px; }
+@media(max-width:767px) { .sync-section { padding:44px 0; } .sync-layout { grid-template-columns:1fr; gap:32px; } .sync-story h2 { font-size:36px; } }
