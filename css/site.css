@@ -180,3 +180,8 @@ footer { background:#100f15!important; border-top:1px solid #292331; color:#8f86
 .planned-api-badge { display:inline-block; margin-top:8px; color:var(--accent); font:10px 'Ubuntu Mono',monospace; text-transform:uppercase; letter-spacing:.06em; }
 .api-roadmap { margin-top:20px; text-align:center; font-size:14px; line-height:1.7; color:var(--muted); }
 .api-roadmap strong { color:var(--accent); font-weight:500; }
+
+#demo-output .matrix-rain { position:absolute; inset:0; width:100%; height:100%; pointer-events:none; opacity:0; transition:opacity .3s; z-index:0; }
+#demo-output .matrix-rain.active { opacity:.22; }
+#demo-output .matrix-content { position:relative; z-index:1; }
+@media(prefers-reduced-motion:reduce) { #demo-output .matrix-rain { display:none; } }

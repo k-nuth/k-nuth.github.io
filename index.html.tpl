@@ -106,7 +106,7 @@
     <!-- ClipboardJs -->
     <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
 
-    <link rel="stylesheet" href="./css/site.css" />
+    <link rel="stylesheet" href="./css/site.css?v=20261005-matrix" />
   </head>
 
   <body class="font-cairo antialiased transition-colors duration-300 m-0 p-0">
@@ -1635,6 +1635,51 @@ console.log(address.encodedCashTokens());</code></pre></div>
           });
       }
 
+      // Brief lilac Matrix rain behind the readable output.
+      let matrixRainFrame = 0;
+      function animateOutputRain() {
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        cancelAnimationFrame(matrixRainFrame);
+        const output = document.getElementById('demo-output');
+        let canvas = output.querySelector('.matrix-rain');
+        if (!canvas) {
+          canvas = document.createElement('canvas');
+          canvas.className = 'matrix-rain';
+          canvas.setAttribute('aria-hidden', 'true');
+          output.prepend(canvas);
+        }
+        const ctx = canvas.getContext('2d');
+        if (!ctx) return;
+        canvas.width = output.clientWidth;
+        canvas.height = output.clientHeight;
+        const size = 16;
+        const drops = Array.from({length: Math.ceil(canvas.width / size)}, () => -Math.random() * 12);
+        const chars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
+        const started = performance.now();
+        let lastDraw = 0;
+        canvas.classList.add('active');
+        function draw(now) {
+          if (!canvas.isConnected || now - started > 1800) {
+            canvas.classList.remove('active');
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            return;
+          }
+          if (now - lastDraw >= 45) {
+            ctx.fillStyle = 'rgba(18, 16, 25, 0.16)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#b499fa';
+            ctx.font = size + 'px monospace';
+            drops.forEach((drop, i) => {
+              ctx.fillText(chars[Math.floor(Math.random() * chars.length)], i * size, drop * size);
+              drops[i] = drop * size > canvas.height && Math.random() > 0.96 ? 0 : drop + 1;
+            });
+            lastDraw = now;
+          }
+          matrixRainFrame = requestAnimationFrame(draw);
+        }
+        matrixRainFrame = requestAnimationFrame(draw);
+      }
+
       // Add output to demo output window
       function addOutput(text, type = 'log') {
         const outputDiv = document.getElementById('demo-output');
@@ -1652,6 +1697,7 @@ console.log(address.encodedCashTokens());</code></pre></div>
         contentDiv.appendChild(line);
 
         line.textContent = text;
+        animateOutputRain();
 
         outputDiv.scrollTop = outputDiv.scrollHeight;
 
@@ -1870,6 +1916,8 @@ console.log(\`Debug Mode: \${config.debugMode}\`);`
           outputDiv.appendChild(contentDiv);
         }
 
+        cancelAnimationFrame(matrixRainFrame);
+        outputDiv.querySelector('.matrix-rain')?.remove();
         contentDiv.innerHTML = '<div class="text-gray-500 italic">// Output will appear here...</div>';
       });
 
