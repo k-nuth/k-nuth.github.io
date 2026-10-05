@@ -9,6 +9,20 @@
     />
     <title>Knuth | Bitcoin Cash Full Node and Development Platform</title>
 
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://kth.cash/" />
+    <meta property="og:title" content="Knuth | Bitcoin Cash Full Node and Development Platform" />
+    <meta property="og:description" content="High performance Bitcoin Cash full node and development libraries in C++, C, JavaScript, TypeScript, Python, C#, and WebAssembly." />
+    <meta property="og:image" content="https://kth.cash/img/kth-2025.png" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://kth.cash/" />
+    <meta property="twitter:title" content="Knuth | Bitcoin Cash Full Node and Development Platform" />
+    <meta property="twitter:description" content="High performance Bitcoin Cash full node and development libraries in C++, C, JavaScript, TypeScript, Python, C#, and WebAssembly." />
+    <meta property="twitter:image" content="https://kth.cash/img/kth-2025.png" />
+
     <link rel="icon" href="./img/logo-white.svg" />
 
     <!-- CodeMirror for syntax highlighting -->
@@ -20,6 +34,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/addon/edit/matchbrackets.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/addon/selection/active-line.min.js"></script>
 
+    <script>
+      // Apply the saved appearance before the first paint.
+      try { document.documentElement.classList.toggle('dark', (localStorage.getItem('darkMode') || 'dark') === 'dark'); } catch (_) { document.documentElement.classList.add('dark'); }
+    </script>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -40,7 +58,7 @@
               }
             },
             fontFamily: {
-              'cairo': ['"Cairo"', 'sans-serif'],
+              'cairo': ['"DM Sans"', 'sans-serif'],
               'mono': ['"Ubuntu Mono"', 'monospace']
             },
             animation: {
@@ -69,7 +87,7 @@
 
     <!-- Cairo font -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
 
@@ -88,165 +106,26 @@
     <!-- ClipboardJs -->
     <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
 
-    <style>
-      /* Animated gradient keyframe */
-      @keyframes gradient-shift {
-        0%, 100% {
-          background-position: 0% 50%;
-        }
-        50% {
-          background-position: 100% 50%;
-        }
-      }
-
-      /* Shared animated gradient */
-      .hero-mesh-gradient {
-        background: linear-gradient(-45deg, #7c3aed, #5200cc, #3b009b, #ec4899, #f59e0b);
-        background-size: 400% 400%;
-        animation: gradient-shift 12s ease infinite;
-      }
-
-      /* Menu inicial - visible solo arriba */
-      #initial-menu {
-        background: transparent;
-        transition: opacity 300ms;
-      }
-
-      #initial-menu.hidden-menu {
-        opacity: 0;
-        pointer-events: none;
-      }
-
-      /* Navbar flotante - oculto por defecto */
-      #floating-navbar {
-        background: transparent;
-        opacity: 0;
-        transform: translateY(-100%);
-        transition: opacity 300ms, transform 300ms, box-shadow 300ms;
-      }
-
-      /* Navbar flotante visible cuando scrolleas */
-      #floating-navbar.show {
-        opacity: 1;
-        transform: translateY(0);
-        background: linear-gradient(-45deg, #7c3aed, #5200cc, #3b009b, #ec4899, #f59e0b);
-        background-size: 400% 400%;
-        animation: gradient-shift 12s ease infinite;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-      }
-
-      /* Logo siempre visible en navbar flotante */
-      #floating-navbar #navbar-logo {
-        opacity: 1;
-      }
-
-      /* Smooth scroll behavior */
-      html {
-        scroll-behavior: smooth;
-        scroll-padding-top: 80px; /* Offset for fixed navbar */
-      }
-
-      /* Matrix rain effect background */
-      .matrix-container {
-        position: relative;
-        overflow: hidden;
-      }
-
-      .matrix-rain {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        z-index: 0;
-        opacity: 0;
-        transition: opacity 0.3s;
-      }
-
-      .matrix-rain.active {
-        opacity: 0.15;
-      }
-
-      .matrix-column {
-        position: absolute;
-        top: -100%;
-        font-family: 'Ubuntu Mono', monospace;
-        font-size: 14px;
-        color: #22c55e;
-        text-shadow: 0 0 8px rgba(34, 197, 94, 0.8);
-        white-space: pre;
-        animation: matrix-fall linear;
-      }
-
-      @keyframes matrix-fall {
-        0% {
-          top: -100%;
-          opacity: 0;
-        }
-        10% {
-          opacity: 1;
-        }
-        90% {
-          opacity: 1;
-        }
-        100% {
-          top: 100%;
-          opacity: 0;
-        }
-      }
-
-      /* Output content layer */
-      .matrix-content {
-        position: relative;
-        z-index: 1;
-      }
-
-      /* Character drop effect */
-      .matrix-line {
-        display: block;
-        white-space: pre;
-      }
-
-      .matrix-char {
-        display: inline-block;
-        opacity: 0;
-        text-shadow: 0 0 8px rgba(34, 197, 94, 0.6);
-      }
-
-      @keyframes char-drop {
-        0% {
-          opacity: 0;
-          transform: translateY(-100px);
-          filter: blur(4px);
-        }
-        50% {
-          opacity: 0.7;
-        }
-        100% {
-          opacity: 1;
-          transform: translateY(0);
-          filter: blur(0);
-        }
-      }
-    </style>
+    <link rel="stylesheet" href="./css/site.css" />
   </head>
 
   <body class="font-cairo antialiased transition-colors duration-300 m-0 p-0">
+
+    <a class="skip-link" href="#main-content">Skip to content</a>
+
     <!-- Initial Menu (visible at top only) -->
     <nav id="initial-menu" class="fixed top-0 left-0 right-0 z-50">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-end items-center h-16">
+        <div class="flex justify-between items-center h-16">
+          <a class="nav-brand" href="#home" aria-label="Knuth home"><img src="./img/logo-white.svg" width="76" height="46" alt="Knuth" /></a>
           <!-- Desktop Navigation -->
           <div class="hidden lg:flex lg:items-center lg:space-x-8">
-            <a href="#info" class="text-white font-semibold hover:text-gray-200 transition-all duration-200 hover:scale-105">About</a>
-            <a href="#architecture" class="text-white font-semibold hover:text-gray-200 transition-all duration-200 hover:scale-105">Architecture</a>
-            <a href="#download" class="text-white font-semibold hover:text-gray-200 transition-all duration-200 hover:scale-105">Getting Started</a>
-            <a href="#features-info" class="text-white font-semibold hover:text-gray-200 transition-all duration-200 hover:scale-105">Features</a>
+            <a href="#home" class="text-white font-semibold hover:text-gray-200 transition-all duration-200 hover:scale-105">Overview</a>
+            <a href="#architecture" class="nav-architecture">Architecture</a>
             <a href="#wasm-demo" class="text-white font-semibold hover:text-gray-200 transition-all duration-200 hover:scale-105">Live Demo</a>
             <a href="https://fund.kth.cash" class="text-white font-semibold hover:text-gray-200 transition-all duration-200 hover:scale-105">Funding</a>
-            <a href="#contact" class="text-white font-semibold hover:text-gray-200 transition-all duration-200 hover:scale-105">Contact</a>
 
+            <a href="#download" class="nav-start">Get started <span aria-hidden="true">↗</span></a>
             <!-- Dark Mode Toggle Button -->
             <button id="dark-mode-toggle-initial" class="text-white hover:text-gray-200 focus:outline-none transition-all duration-200 hover:scale-110" aria-label="Toggle dark mode">
               <svg id="sun-icon-initial" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -281,18 +160,6 @@
         </div>
       </div>
 
-      <!-- Mobile Navigation -->
-      <div id="mobile-menu-initial" class="hidden lg:hidden bg-gradient-to-r from-primary to-primary-dark">
-        <div class="px-4 pt-2 pb-4 space-y-2">
-          <a href="#info" class="block text-white font-semibold py-2 px-3 hover:bg-white/10 rounded transition-colors mobile-menu-link">About</a>
-          <a href="#architecture" class="block text-white font-semibold py-2 px-3 hover:bg-white/10 rounded transition-colors mobile-menu-link">Architecture</a>
-          <a href="#download" class="block text-white font-semibold py-2 px-3 hover:bg-white/10 rounded transition-colors mobile-menu-link">Getting Started</a>
-          <a href="#features-info" class="block text-white font-semibold py-2 px-3 hover:bg-white/10 rounded transition-colors mobile-menu-link">Features</a>
-          <a href="#wasm-demo" class="block text-white font-semibold py-2 px-3 hover:bg-white/10 rounded transition-colors mobile-menu-link">Live Demo</a>
-          <a href="https://fund.kth.cash" class="block text-white font-semibold py-2 px-3 hover:bg-white/10 rounded transition-colors mobile-menu-link">Funding</a>
-          <a href="#contact" class="block text-white font-semibold py-2 px-3 hover:bg-white/10 rounded transition-colors mobile-menu-link">Contact</a>
-        </div>
-      </div>
     </nav>
 
     <!-- Floating Navbar (visible when scrolling) -->
@@ -306,14 +173,12 @@
 
           <!-- Desktop Navigation -->
           <div class="hidden lg:flex lg:items-center lg:space-x-8">
-            <a href="#info" class="text-white font-semibold hover:text-gray-200 transition-all duration-200 hover:scale-105">About</a>
-            <a href="#architecture" class="text-white font-semibold hover:text-gray-200 transition-all duration-200 hover:scale-105">Architecture</a>
-            <a href="#download" class="text-white font-semibold hover:text-gray-200 transition-all duration-200 hover:scale-105">Getting Started</a>
-            <a href="#features-info" class="text-white font-semibold hover:text-gray-200 transition-all duration-200 hover:scale-105">Features</a>
+            <a href="#home" class="text-white font-semibold hover:text-gray-200 transition-all duration-200 hover:scale-105">Overview</a>
+            <a href="#architecture" class="nav-architecture">Architecture</a>
             <a href="#wasm-demo" class="text-white font-semibold hover:text-gray-200 transition-all duration-200 hover:scale-105">Live Demo</a>
             <a href="https://fund.kth.cash" class="text-white font-semibold hover:text-gray-200 transition-all duration-200 hover:scale-105">Funding</a>
-            <a href="#contact" class="text-white font-semibold hover:text-gray-200 transition-all duration-200 hover:scale-105">Contact</a>
 
+            <a href="#download" class="nav-start">Get started <span aria-hidden="true">↗</span></a>
             <!-- Dark Mode Toggle Button -->
             <button id="dark-mode-toggle" class="text-white hover:text-gray-200 focus:outline-none transition-all duration-200 hover:scale-110" aria-label="Toggle dark mode">
               <!-- Sun Icon (shown in dark mode) -->
@@ -353,30 +218,229 @@
         </div>
       </div>
 
-      <!-- Mobile Navigation -->
-      <div id="mobile-menu" class="hidden lg:hidden bg-gradient-to-r from-primary to-primary-dark">
-        <div class="px-4 pt-2 pb-4 space-y-2">
-          <a href="#download" class="block text-white font-semibold py-2 px-3 hover:bg-white/10 rounded transition-colors mobile-menu-link">Get Knuth</a>
-          <a href="#features" class="block text-white font-semibold py-2 px-3 hover:bg-white/10 rounded transition-colors mobile-menu-link">Libraries</a>
-          <a href="#features-info" class="block text-white font-semibold py-2 px-3 hover:bg-white/10 rounded transition-colors mobile-menu-link">Features</a>
-          <a href="https://fund.kth.cash" class="block text-white font-semibold py-2 px-3 hover:bg-white/10 rounded transition-colors mobile-menu-link">Funding</a>
-          <a href="#contact" class="block text-white font-semibold py-2 px-3 hover:bg-white/10 rounded transition-colors mobile-menu-link">Contact</a>
-        </div>
-      </div>
     </nav>
 
-    <!-- Hero Header (starts from top, navbar floats over it) -->
-    <header class="relative h-96 lg:h-[500px] hero-mesh-gradient">
-      <div class="absolute inset-0 flex flex-col items-center justify-center gap-6">
-        <img class="h-32 lg:h-64 animate-fade-in drop-shadow-2xl" src="./img/logo-white.svg" alt="Knuth" />
-        <h1 class="text-lg lg:text-2xl font-normal text-white text-center px-4 animate-slide-up drop-shadow-lg" style="animation-delay: 0.3s;">
-          High Performance Bitcoin Cash Development Platform
-        </h1>
+    <!-- Mobile Menu Overlay (Fullscreen) -->
+    <div id="mobile-menu-overlay" class="fixed inset-0 z-[60] hidden lg:hidden">
+      <!-- Backdrop -->
+      <div id="mobile-menu-backdrop" class="absolute inset-0 bg-black/50 backdrop-blur-sm opacity-0 transition-opacity duration-300"></div>
+
+      <!-- Menu Panel -->
+      <div id="mobile-menu-panel" class="absolute top-0 right-0 h-full w-72 bg-white dark:bg-gray-900 shadow-2xl transform translate-x-full transition-transform duration-300">
+        <!-- Header with close button -->
+        <div class="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
+          <span class="text-lg font-bold text-gray-900 dark:text-white">Menu</span>
+          <button id="mobile-menu-close" aria-label="Close menu" class="p-2 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Navigation Links -->
+        <nav class="p-4 space-y-1">
+          <a href="#download" class="mobile-menu-link flex items-center px-4 py-3 text-purple-600 dark:text-purple-300 font-semibold rounded-xl">Get started ↗</a>
+          <a href="#architecture" class="mobile-menu-link flex items-center px-4 py-3 text-gray-700 dark:text-gray-200 font-semibold rounded-xl">Architecture</a>
+          <a href="#home" class="mobile-menu-link flex items-center gap-3 px-4 py-3 text-gray-700 dark:text-gray-200 font-semibold rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+            <svg class="w-5 h-5 text-primary dark:text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+            </svg>
+            Home
+          </a>
+          <a href="#wasm-demo" class="mobile-menu-link flex items-center gap-3 px-4 py-3 text-gray-700 dark:text-gray-200 font-semibold rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+            <svg class="w-5 h-5 text-primary dark:text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            Live Demo
+          </a>
+          <a href="https://fund.kth.cash" class="mobile-menu-link flex items-center gap-3 px-4 py-3 text-gray-700 dark:text-gray-200 font-semibold rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+            <svg class="w-5 h-5 text-primary dark:text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            Funding
+          </a>
+        </nav>
       </div>
+    </div>
+
+    <header class="site-hero" id="home">
+      <div class="hero-layout page-width">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="status-dot"></span> OPEN SOURCE. BUILT FOR BITCOIN CASH.</p>
+          <img class="hero-wordmark" src="./img/logo-white.svg" alt="Knuth" width="280" height="170" />
+          <h1>Bitcoin Cash.<br /><span>Build without limits.</span></h1>
+          <p class="hero-description">A high-performance full node and development toolkit. One C++ core. Seven languages. From your server to the browser.</p>
+          <div class="hero-actions">
+            <a class="action-primary" href="#download">Get started <span aria-hidden="true">↗</span></a>
+            <a class="action-secondary" href="#wasm-demo"><span class="play-icon" aria-hidden="true">▷</span> Try live demo</a>
+          </div>
+          <a class="hero-source" href="https://github.com/k-nuth" target="_blank" rel="noopener noreferrer">Explore the code on GitHub <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="hero-terminal" aria-label="Example: convert a Bitcoin Cash address with Knuth">
+          <div class="terminal-top"><span class="terminal-dots" aria-hidden="true"><i></i><i></i><i></i></span><span>address.js</span><span class="terminal-language">JavaScript / WASM</span></div>
+          <div class="terminal-code"><div class="code-gutter" aria-hidden="true">01<br />02<br />03<br />04<br />05<br />06<br />07<br />08</div><pre><code><span class="code-comment">// Bitcoin Cash, in your browser.</span>
+<span class="code-keyword">const</span> address = PaymentAddress
+  .fromString(
+    <span class="code-string">"bitcoincash:qpm2qsznhks23z7629mms6s4cwef74vcwvy22gdx6a"</span>
+  );
+
+console.log(address.encodedLegacy());
+console.log(address.encodedCashTokens());</code></pre></div>
+          <div class="terminal-result"><p class="code-comment">↳ OUTPUT</p><p>1BpEi6DfDAUFd7GtittLSdBeYJvcoaVggu</p><p class="result-note"><span class="status-dot"></span> Same C++ core. Running in WebAssembly.</p></div>
+          <div class="terminal-footer"><span>Native code. Browser possibilities.</span><a href="#wasm-demo">Run it yourself <span aria-hidden="true">→</span></a></div>
+        </div>
+      </div>
+      <div class="hero-meta page-width"><span>ONE CORE. EVERY ENVIRONMENT.</span><div><span>C++23</span><span>C</span><span>JavaScript</span><span>TypeScript</span><span>Python</span><span>C#</span><span>WebAssembly</span><span class="language-planned">Rust <small>PLANNED</small></span></div></div>
     </header>
 
-    <!-- Main Content Wrapper -->
-    <div class="bg-white dark:bg-gray-900">
+    <!-- Wallet product announcement retained but hidden; product is not planned. -->
+    <section id="wallet-announcement" hidden class="relative py-16 bg-gradient-to-br from-purple-50 via-white to-pink-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors duration-300 overflow-hidden">
+      <!-- Decorative elements -->
+      <div class="absolute top-0 left-0 w-72 h-72 bg-purple-200 dark:bg-purple-900/30 rounded-full blur-3xl opacity-50 -translate-x-1/2 -translate-y-1/2"></div>
+      <div class="absolute bottom-0 right-0 w-72 h-72 bg-pink-200 dark:bg-pink-900/30 rounded-full blur-3xl opacity-50 translate-x-1/2 translate-y-1/2"></div>
+
+      <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row items-center gap-8 md:gap-12">
+          <!-- Icon -->
+          <div class="flex-shrink-0">
+            <div class="w-24 h-24 md:w-32 md:h-32 bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 flex items-center justify-center">
+              <svg class="w-12 h-12 md:w-16 md:h-16 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a2.25 2.25 0 00-2.25-2.25H15a3 3 0 11-6 0H5.25A2.25 2.25 0 003 12m18 0v6a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 18v-6m18 0V9M3 12V9m18 0a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 9m18 0V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v3" />
+              </svg>
+            </div>
+          </div>
+
+          <!-- Content -->
+          <div class="flex-1 text-center md:text-left">
+            <span class="inline-block px-3 py-1 text-xs font-bold text-purple-700 dark:text-purple-300 bg-purple-100 dark:bg-purple-900/50 rounded-full uppercase tracking-wider mb-4">Coming 2026</span>
+            <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+              <span class="bg-gradient-to-r from-primary via-purple-600 to-pink-600 dark:from-purple-400 dark:via-pink-400 dark:to-purple-400 bg-clip-text text-transparent"># The Best BCH Wallet</span>
+            </h2>
+            <p class="text-lg text-gray-600 dark:text-gray-300 mb-6 max-w-xl">
+              A new wallet experience powered by Knuth's battle-tested C++ core. Fast transactions, modern interface, and rock-solid security.
+            </p>
+            <div class="flex flex-wrap justify-center md:justify-start gap-4 text-sm text-gray-500 dark:text-gray-400">
+              <span class="flex items-center gap-1.5">
+                <svg class="w-4 h-4 text-purple-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                Web & Mobile
+              </span>
+              <span class="flex items-center gap-1.5">
+                <svg class="w-4 h-4 text-purple-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                WebAssembly Powered
+              </span>
+              <span class="flex items-center gap-1.5">
+                <svg class="w-4 h-4 text-purple-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                CashTokens Ready
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <main id="main-content" class="bg-white dark:bg-gray-900">
+
+    <section id="wasm-demo" class="relative py-12 bg-white dark:bg-gray-900 transition-colors duration-300 overflow-hidden">
+      <!-- Decorative background -->
+      <div class="absolute inset-0 opacity-10">
+        <div class="absolute top-0 left-1/3 w-96 h-96 bg-purple-500 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-0 right-1/3 w-96 h-96 bg-pink-500 rounded-full blur-3xl"></div>
+      </div>
+
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Header -->
+        <div class="text-center mb-16">
+          <div class="inline-flex items-center gap-2 bg-purple-500/10 dark:bg-purple-500/30 px-4 py-2 rounded-full mb-6 animate-fade-in">
+            <svg class="w-5 h-5 text-purple-600 dark:text-purple-400" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd" />
+            </svg>
+            <span class="text-sm font-bold text-purple-600 dark:text-purple-400 uppercase tracking-wider">Live Demo</span>
+          </div>
+          <h2 class="text-4xl lg:text-5xl font-black text-gray-900 dark:text-white mb-4">
+            <span class="bg-gradient-to-r from-purple-600 via-pink-600 to-red-600 dark:from-purple-400 dark:via-pink-400 dark:to-red-400 bg-clip-text text-transparent">Less explaining. More running.</span>
+          </h2>
+          <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+            Real Knuth code, running in your browser. Pick an example, edit it, and see what happens.
+          </p>
+        </div>
+
+        <!-- Example Selector -->
+        <div class="mb-8">
+          <h3 class="text-sm font-bold text-gray-700 dark:text-gray-300 mb-3">Choose an example:</h3>
+          <div class="flex flex-wrap gap-2">
+            <button onclick="loadExample('address-converter', this)" class="example-btn active px-4 py-2 bg-purple-600 text-white rounded-lg font-semibold text-sm hover:bg-purple-700 transition-all shadow-md">
+              Address Converter
+            </button>
+            <button onclick="loadExample('address-validator', this)" class="example-btn px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg font-semibold text-sm hover:bg-gray-300 dark:hover:bg-gray-600 transition-all">
+              Address Validator
+            </button>
+            <button onclick="loadExample('wallet-generator', this)" class="example-btn px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg font-semibold text-sm hover:bg-gray-300 dark:hover:bg-gray-600 transition-all">
+              Wallet Generator
+            </button>
+            <button onclick="loadExample('sha256-hash', this)" class="example-btn px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg font-semibold text-sm hover:bg-gray-300 dark:hover:bg-gray-600 transition-all">
+              SHA256 Hash
+            </button>
+            <button onclick="loadExample('libconfig', this)" class="example-btn px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg font-semibold text-sm hover:bg-gray-300 dark:hover:bg-gray-600 transition-all">
+              Library Config
+            </button>
+          </div>
+        </div>
+
+        <!-- Demo Content -->
+        <div class="grid lg:grid-cols-2 gap-8">
+          <!-- Code Example -->
+          <div class="bg-gradient-to-br from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 rounded-2xl p-6 border-2 border-gray-200 dark:border-gray-700 shadow-xl">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="text-lg font-bold text-gray-900 dark:text-white flex items-center gap-2">
+                <svg class="w-5 h-5 text-purple-600 dark:text-purple-400" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                </svg>
+                <span id="example-title">Address Converter</span>
+              </h3>
+              <button id="run-example-btn" class="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white font-semibold rounded-lg transition-all duration-300 hover:scale-105 shadow-lg text-sm">
+                ▶ Run
+              </button>
+            </div>
+            <div id="demo-code-wrapper" class="rounded-xl overflow-hidden border-2 border-gray-700"></div>
+          </div>
+
+          <!-- Output Window -->
+          <div class="bg-gradient-to-br from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 rounded-2xl p-6 border-2 border-gray-200 dark:border-gray-700 shadow-xl">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="text-lg font-bold text-gray-900 dark:text-white flex items-center gap-2">
+                <svg class="w-5 h-5 text-purple-600 dark:text-purple-400" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M2 5a2 2 0 012-2h12a2 2 0 012 2v10a2 2 0 01-2 2H4a2 2 0 01-2-2V5zm3.293 1.293a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 01-1.414-1.414L7.586 10 5.293 7.707a1 1 0 010-1.414zM11 12a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd"/>
+                </svg>
+                Output
+              </h3>
+              <button id="clear-output-btn" class="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white font-semibold rounded-lg transition-all duration-300 hover:scale-105 shadow-lg text-sm">
+                Clear
+              </button>
+            </div>
+            <div id="demo-output" role="log" aria-live="polite" aria-label="Demo output" class="matrix-container bg-gray-900 dark:bg-black rounded-xl p-4 font-mono text-sm h-[450px] overflow-y-auto text-gray-300">
+              <div class="matrix-content">
+                <div class="text-gray-500 italic">// Output will appear here...</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Loading Indicator -->
+        <!-- Loading indicator (floating, non-modal) -->
+        <div id="wasm-loader" class="fixed bottom-8 right-8 z-50 animate-fade-in">
+          <div class="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-2xl border-2 border-purple-500/50 dark:border-purple-400/50">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 border-3 border-purple-600 border-t-transparent rounded-full animate-spin"></div>
+              <div>
+                <p class="text-gray-900 dark:text-white font-semibold text-sm">Loading WASM...</p>
+                <p class="text-xs text-gray-600 dark:text-gray-400">Please wait</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- Info Section -->
     <section id="info" class="relative py-12 bg-gradient-to-br from-white via-gray-50/50 to-purple-50/30 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800 transition-colors duration-300">
@@ -384,17 +448,17 @@
         <!-- Header -->
         <div class="text-center mb-16 animate-fade-in">
           <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-            <span class="bg-gradient-to-r from-primary via-purple-600 to-pink-600 dark:from-purple-400 dark:via-pink-400 dark:to-yellow-400 bg-clip-text text-transparent"># Built for Bitcoin Cash Professionals</span>
+            <span class="bg-gradient-to-r from-primary via-purple-600 to-pink-600 dark:from-purple-400 dark:via-pink-400 dark:to-purple-400 bg-clip-text text-transparent">Built for the people building Bitcoin Cash.</span>
           </h2>
           <p class="text-xl lg:text-2xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto">
-            High performance Bitcoin Cash (BCH) full node implementation focused on extra capacity and throughput. More than a client — it's a complete development platform with libraries in 7 languages and an optimized executable node.
+            From mining infrastructure to your first application, Knuth gives you direct access to Bitcoin Cash. Choose the tools that fit your work.
           </p>
         </div>
 
         <!-- Cards Grid -->
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           <!-- Card 1 -->
-          <div class="group bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg dark:shadow-2xl dark:shadow-purple-500/20 hover:shadow-xl dark:hover:shadow-purple-400/30 transition-all duration-300 hover:-translate-y-2 border border-gray-100 dark:border-gray-700 animate-scale-in">
+          <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-100 dark:border-gray-700">
             <div class="flex items-start space-x-4">
               <div class="flex-shrink-0">
                 <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center shadow-lg">
@@ -404,14 +468,14 @@
                 </div>
               </div>
               <div>
-                <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2 group-hover:text-primary dark:group-hover:text-purple-400 transition-colors">Miners & Pools</h3>
+                <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Miners & Pools</h3>
                 <p class="text-gray-600 dark:text-gray-400 text-sm">Running competitive operations at scale</p>
               </div>
             </div>
           </div>
 
           <!-- Card 2 -->
-          <div class="group bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg dark:shadow-2xl dark:shadow-purple-500/20 hover:shadow-xl dark:hover:shadow-purple-400/30 transition-all duration-300 hover:-translate-y-2 border border-gray-100 dark:border-gray-700 animate-scale-in" style="animation-delay: 0.1s;">
+          <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-100 dark:border-gray-700" style="animation-delay: 0.1s;">
             <div class="flex items-start space-x-4">
               <div class="flex-shrink-0">
                 <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center shadow-lg">
@@ -422,14 +486,14 @@
                 </div>
               </div>
               <div>
-                <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2 group-hover:text-primary dark:group-hover:text-purple-400 transition-colors">Exchanges</h3>
+                <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Exchanges</h3>
                 <p class="text-gray-600 dark:text-gray-400 text-sm">Dependable full indexation & high throughput</p>
               </div>
             </div>
           </div>
 
           <!-- Card 3 -->
-          <div class="group bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg dark:shadow-2xl dark:shadow-purple-500/20 hover:shadow-xl dark:hover:shadow-purple-400/30 transition-all duration-300 hover:-translate-y-2 border border-gray-100 dark:border-gray-700 animate-scale-in" style="animation-delay: 0.2s;">
+          <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-100 dark:border-gray-700" style="animation-delay: 0.2s;">
             <div class="flex items-start space-x-4">
               <div class="flex-shrink-0">
                 <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center shadow-lg">
@@ -439,14 +503,14 @@
                 </div>
               </div>
               <div>
-                <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2 group-hover:text-primary dark:group-hover:text-purple-400 transition-colors">Enterprises</h3>
+                <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Enterprises</h3>
                 <p class="text-gray-600 dark:text-gray-400 text-sm">Building production-grade applications</p>
               </div>
             </div>
           </div>
 
           <!-- Card 4 -->
-          <div class="group bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg dark:shadow-2xl dark:shadow-purple-500/20 hover:shadow-xl dark:hover:shadow-purple-400/30 transition-all duration-300 hover:-translate-y-2 border border-gray-100 dark:border-gray-700 animate-scale-in" style="animation-delay: 0.3s;">
+          <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-100 dark:border-gray-700" style="animation-delay: 0.3s;">
             <div class="flex items-start space-x-4">
               <div class="flex-shrink-0">
                 <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center shadow-lg">
@@ -456,14 +520,14 @@
                 </div>
               </div>
               <div>
-                <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2 group-hover:text-primary dark:group-hover:text-purple-400 transition-colors">Developers</h3>
+                <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Developers</h3>
                 <p class="text-gray-600 dark:text-gray-400 text-sm">Taking projects to the next level</p>
               </div>
             </div>
           </div>
 
           <!-- Card 5 -->
-          <div class="group bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg dark:shadow-2xl dark:shadow-purple-500/20 hover:shadow-xl dark:hover:shadow-purple-400/30 transition-all duration-300 hover:-translate-y-2 border border-gray-100 dark:border-gray-700 animate-scale-in" style="animation-delay: 0.4s;">
+          <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-100 dark:border-gray-700" style="animation-delay: 0.4s;">
             <div class="flex items-start space-x-4">
               <div class="flex-shrink-0">
                 <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center shadow-lg">
@@ -473,14 +537,14 @@
                 </div>
               </div>
               <div>
-                <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2 group-hover:text-primary dark:group-hover:text-purple-400 transition-colors">Researchers</h3>
+                <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Researchers</h3>
                 <p class="text-gray-600 dark:text-gray-400 text-sm">Exploring blockchain innovation</p>
               </div>
             </div>
           </div>
 
           <!-- Card 6 -->
-          <div class="group bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg dark:shadow-2xl dark:shadow-purple-500/20 hover:shadow-xl dark:hover:shadow-purple-400/30 transition-all duration-300 hover:-translate-y-2 border border-gray-100 dark:border-gray-700 animate-scale-in" style="animation-delay: 0.5s;">
+          <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-100 dark:border-gray-700" style="animation-delay: 0.5s;">
             <div class="flex items-start space-x-4">
               <div class="flex-shrink-0">
                 <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center shadow-lg">
@@ -490,7 +554,7 @@
                 </div>
               </div>
               <div>
-                <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2 group-hover:text-primary dark:group-hover:text-purple-400 transition-colors">Newcomers</h3>
+                <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Newcomers</h3>
                 <p class="text-gray-600 dark:text-gray-400 text-sm">First steps in the blockchain ecosystem</p>
               </div>
             </div>
@@ -511,7 +575,7 @@
         <!-- Header -->
         <div class="text-center mb-16">
           <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-            <span class="bg-gradient-to-r from-primary via-purple-600 to-pink-600 dark:from-purple-400 dark:via-pink-400 dark:to-yellow-400 bg-clip-text text-transparent"># Layered Architecture</span>
+            <span class="bg-gradient-to-r from-primary via-purple-600 to-pink-600 dark:from-purple-400 dark:via-pink-400 dark:to-purple-400 bg-clip-text text-transparent">One core. Many ways to build.</span>
           </h2>
           <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
             All language bindings share the same high-performance C++23 core. Universal Bitcoin Cash API across all platforms.
@@ -527,7 +591,7 @@
                 High-Level Language Bindings
               </span>
             </div>
-            <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
               <a href="https://github.com/k-nuth/py-api" target="_blank" class="group bg-gradient-to-br from-purple-100 to-pink-50 dark:from-purple-900/30 dark:to-pink-900/30 rounded-xl p-6 border-2 border-purple-200 dark:border-purple-700 hover:scale-105 transition-transform duration-300 hover:shadow-lg">
                 <img src="./images/libraries/python.svg" alt="Python" class="w-12 h-12 mx-auto mb-2" />
                 <p class="text-sm font-bold text-gray-700 dark:text-gray-300 text-center">Python</p>
@@ -545,18 +609,24 @@
                 <p class="text-sm font-bold text-gray-700 dark:text-gray-300 text-center">C#</p>
               </a>
               <a href="https://github.com/k-nuth/js-wasm" target="_blank" class="group relative bg-gradient-to-br from-purple-100 to-pink-50 dark:from-purple-900/30 dark:to-pink-900/30 rounded-xl p-6 border-2 border-purple-200 dark:border-purple-700 hover:scale-105 transition-transform duration-300 hover:shadow-lg">
-                <div class="absolute -top-2 -right-2 bg-gradient-to-r from-green-500 to-emerald-600 text-white text-xs font-bold px-2 py-1 rounded-full shadow-lg">
-                  🔥 HOT
+                <div class="absolute -top-2 -right-2 bg-purple-600 text-white text-xs font-bold px-2 py-1 rounded-full shadow-lg">
+                  NEW
                 </div>
                 <img src="./images/libraries/wasm.svg" alt="WebAssembly" class="w-12 h-12 mx-auto mb-2" />
                 <p class="text-sm font-bold text-gray-700 dark:text-gray-300 text-center">WASM</p>
               </a>
+              <div class="planned-api-card p-6 text-center" aria-label="Rust API, planned">
+                <img src="./images/libraries/rust.svg" alt="" class="w-12 h-12 mx-auto mb-2" />
+                <p class="text-sm font-bold">Rust</p>
+                <span class="planned-api-badge">Planned</span>
+              </div>
             </div>
+            <p class="api-roadmap">Next up: <strong>Rust API.</strong> We plan to implement a Rust binding for the Knuth C++ core.</p>
           </div>
 
           <!-- Arrows Down -->
           <div class="flex justify-center mb-6">
-            <svg class="w-8 h-8 text-primary dark:text-purple-400 animate-bounce" fill="currentColor" viewBox="0 0 20 20">
+            <svg class="w-8 h-8 text-primary dark:text-purple-400" fill="currentColor" viewBox="0 0 20 20">
               <path fill-rule="evenodd" d="M16.707 10.293a1 1 0 010 1.414l-6 6a1 1 0 01-1.414 0l-6-6a1 1 0 111.414-1.414L9 14.586V3a1 1 0 012 0v11.586l4.293-4.293a1 1 0 011.414 0z" clip-rule="evenodd" />
             </svg>
           </div>
@@ -581,19 +651,19 @@
 
           <!-- Arrows Down -->
           <div class="flex justify-center mb-6">
-            <svg class="w-8 h-8 text-primary dark:text-purple-400 animate-bounce" style="animation-delay: 0.2s;" fill="currentColor" viewBox="0 0 20 20">
+            <svg class="w-8 h-8 text-primary dark:text-purple-400" fill="currentColor" viewBox="0 0 20 20">
               <path fill-rule="evenodd" d="M16.707 10.293a1 1 0 010 1.414l-6 6a1 1 0 01-1.414 0l-6-6a1 1 0 111.414-1.414L9 14.586V3a1 1 0 012 0v11.586l4.293-4.293a1 1 0 011.414 0z" clip-rule="evenodd" />
             </svg>
           </div>
 
           <!-- Layer 3: C++ Core -->
-          <div class="mb-6 animate-slide-up" style="animation-delay: 0.2s;">
+          <div class="mb-6">
             <div class="text-center mb-4">
-              <span class="inline-block bg-gradient-to-r from-orange-500 to-red-500 text-white text-sm font-bold px-4 py-2 rounded-full">
+              <span class="inline-block bg-gradient-to-r from-primary to-primary-dark text-white text-sm font-bold px-4 py-2 rounded-full">
                 High-Performance Core
               </span>
             </div>
-            <a href="https://github.com/k-nuth/node" target="_blank" class="block bg-gradient-to-br from-orange-100 to-red-50 dark:from-orange-900/30 dark:to-red-900/30 rounded-2xl p-8 border-4 border-orange-400 dark:border-orange-600 shadow-2xl hover:scale-105 transition-transform duration-300">
+            <a href="https://github.com/k-nuth/node" target="_blank" class="block bg-gradient-to-br from-purple-100 to-pink-50 dark:from-purple-900/30 dark:to-pink-900/30 rounded-2xl p-8 border-4 border-primary dark:border-purple-600 shadow-2xl hover:scale-105 transition-transform duration-300">
               <div class="flex items-center justify-center gap-4">
                 <img src="./images/libraries/cpp.svg" alt="C++" class="w-20 h-20" />
                 <div class="text-left">
@@ -606,9 +676,9 @@
 
           <!-- Info boxes -->
           <div class="grid md:grid-cols-3 gap-4 mt-8">
-            <div class="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-6 border-2 border-blue-200 dark:border-blue-700">
+            <div class="bg-gray-50 dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
               <div class="flex items-start gap-3">
-                <svg class="w-6 h-6 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                <svg class="w-6 h-6 text-primary dark:text-purple-400 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
                   <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/><path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/>
                 </svg>
                 <div>
@@ -617,9 +687,9 @@
                 </div>
               </div>
             </div>
-            <div class="bg-green-50 dark:bg-green-900/20 rounded-xl p-6 border-2 border-green-200 dark:border-green-700">
+            <div class="bg-gray-50 dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
               <div class="flex items-start gap-3">
-                <svg class="w-6 h-6 text-green-600 dark:text-green-400 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                <svg class="w-6 h-6 text-primary dark:text-purple-400 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
                   <path fill-rule="evenodd" d="M2 5a2 2 0 012-2h12a2 2 0 012 2v10a2 2 0 01-2 2H4a2 2 0 01-2-2V5zm3.293 1.293a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 01-1.414-1.414L7.586 10 5.293 7.707a1 1 0 010-1.414zM11 12a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd"/>
                 </svg>
                 <div>
@@ -661,7 +731,7 @@
             <span class="text-sm font-bold text-primary dark:text-purple-400 uppercase tracking-wider">Quick Start Guide</span>
           </div>
           <h2 class="text-4xl lg:text-5xl font-black text-gray-900 dark:text-white mb-4">
-            <span class="bg-gradient-to-r from-primary via-purple-600 to-pink-600 dark:from-purple-400 dark:via-pink-400 dark:to-yellow-400 bg-clip-text text-transparent"># Getting Started</span>
+            <span class="bg-gradient-to-r from-primary via-purple-600 to-pink-600 dark:from-purple-400 dark:via-pink-400 dark:to-purple-400 bg-clip-text text-transparent">Your next project starts here.</span>
           </h2>
           <p class="text-xl text-gray-600 dark:text-gray-300">
             Install and use Knuth in your preferred environment.
@@ -707,13 +777,13 @@
                   <p class="text-sm font-bold text-gray-900 dark:text-white">C#</p>
                 </button>
                 <button onclick="showLibraryA('wasm')" class="lib-card-a group bg-white dark:bg-gray-800 rounded-xl p-4 shadow-lg hover:shadow-2xl transition-all hover:-translate-y-2 border-2 border-transparent hover:border-primary relative">
-                  <div class="absolute -top-1 -right-1 bg-gradient-to-r from-primary to-pink-600 text-white text-xs font-bold px-2 py-0.5 rounded-full">NEW</div>
+                  <div class="absolute -top-1 -right-1 bg-purple-600 text-white text-xs font-bold px-2 py-0.5 rounded-full">NEW</div>
                   <img src="./images/libraries/wasm.svg" alt="WASM" class="w-10 h-10 mx-auto mb-2 group-hover:scale-110 transition-transform" />
                   <p class="text-sm font-bold text-gray-900 dark:text-white">WASM</p>
                 </button>
               </div>
 
-              <div id="content-a-python" class="library-content-a hidden bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-2xl p-6 border-2 border-blue-200 dark:border-blue-800">
+              <div id="content-a-python" class="library-content-a hidden bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 rounded-2xl p-6 border-2 border-purple-200 dark:border-purple-800">
                 <h4 class="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
                   <img src="./images/libraries/python.svg" alt="Python" class="w-6 h-6" />
                   <span>Python</span>
@@ -722,7 +792,7 @@
                   <p class="text-2xl font-bold text-gray-600 dark:text-gray-400">Coming Soon</p>
                 </div>
               </div>
-              <div id="content-a-typescript" class="library-content-a hidden bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-2xl p-6 border-2 border-blue-200 dark:border-blue-800">
+              <div id="content-a-typescript" class="library-content-a hidden bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 rounded-2xl p-6 border-2 border-purple-200 dark:border-purple-800">
                 <h4 class="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
                   <img src="./images/libraries/typescript.svg" alt="TypeScript" class="w-6 h-6" />
                   <span>TypeScript</span>
@@ -732,7 +802,7 @@
                 </div>
               </div>
 
-              <div id="content-a-csharp" class="library-content-a hidden bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-2xl p-6 border-2 border-blue-200 dark:border-blue-800">
+              <div id="content-a-csharp" class="library-content-a hidden bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 rounded-2xl p-6 border-2 border-purple-200 dark:border-purple-800">
                 <h4 class="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
                   <img src="./images/libraries/csharp.svg" alt="C#" class="w-6 h-6" />
                   <span>C#</span>
@@ -742,7 +812,7 @@
                 </div>
               </div>
 
-              <div id="content-a-cpp" class="library-content-a hidden bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-2xl p-6 border-2 border-blue-200 dark:border-blue-800">
+              <div id="content-a-cpp" class="library-content-a hidden bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 rounded-2xl p-6 border-2 border-purple-200 dark:border-purple-800">
                 <h4 class="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
                   <img src="./images/libraries/cpp.svg" alt="C++" class="w-6 h-6" />
                   <span>C++</span>
@@ -804,7 +874,7 @@
                 </div>
               </div>
 
-              <div id="content-a-c" class="library-content-a hidden bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-2xl p-6 border-2 border-blue-200 dark:border-blue-800">
+              <div id="content-a-c" class="library-content-a hidden bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 rounded-2xl p-6 border-2 border-purple-200 dark:border-purple-800">
                 <h4 class="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
                   <img src="./images/libraries/c.svg" alt="C" class="w-6 h-6" />
                   <span>C</span>
@@ -866,7 +936,7 @@
                 </div>
               </div>
 
-              <div id="content-a-javascript" class="library-content-a hidden bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-2xl p-6 border-2 border-blue-200 dark:border-blue-800">
+              <div id="content-a-javascript" class="library-content-a hidden bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 rounded-2xl p-6 border-2 border-purple-200 dark:border-purple-800">
                 <h4 class="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
                   <img src="./images/libraries/javascript.svg" alt="JavaScript" class="w-6 h-6" />
                   <span>JavaScript</span>
@@ -876,7 +946,7 @@
                 </div>
               </div>
 
-              <div id="content-a-wasm" class="library-content-a hidden bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-2xl p-6 border-2 border-blue-200 dark:border-blue-800">
+              <div id="content-a-wasm" class="library-content-a hidden bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 rounded-2xl p-6 border-2 border-purple-200 dark:border-purple-800">
                 <h4 class="text-lg font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-2">
                   <img src="./images/libraries/wasm.svg" alt="WASM" class="w-6 h-6" />
                   <span>WebAssembly</span>
@@ -902,7 +972,7 @@
                 </div>
               </div>
 
-              <div id="content-a-executable" class="library-content-a bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-2xl p-6 border-2 border-blue-200 dark:border-blue-800">
+              <div id="content-a-executable" class="library-content-a bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 rounded-2xl p-6 border-2 border-purple-200 dark:border-purple-800">
                 <h4 class="text-lg font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-2">
                   <svg class="w-6 h-6 text-primary dark:text-purple-400" fill="currentColor" viewBox="0 0 20 20">
                     <path fill-rule="evenodd" d="M2 5a2 2 0 012-2h12a2 2 0 012 2v10a2 2 0 01-2 2H4a2 2 0 01-2-2V5zm3.293 1.293a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 01-1.414-1.414L7.586 10 5.293 7.707a1 1 0 010-1.414zM11 12a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd"/>
@@ -927,7 +997,9 @@
                     Install and configure the Knuth build helper
                   </h5>
 
-                  <!-- SNIPPET:executable-tooling-setup -->
+                                      <div class="relative group">
+                    <!-- SNIPPET:executable-tooling-setup -->
+                  </div>
                 </div>
 
                 <!-- Step 2: Install -->
@@ -937,7 +1009,9 @@
                     Install the node executable
                   </h5>
 
-                  <!-- SNIPPET:executable-install -->
+                                      <div class="relative group">
+                    <!-- SNIPPET:executable-install -->
+                  </div>
                 </div>
 
                 <!-- Step 3: Run -->
@@ -947,7 +1021,9 @@
                     Run the node
                   </h5>
 
-                  <!-- SNIPPET:executable-run -->
+                                      <div class="relative group">
+                    <!-- SNIPPET:executable-run -->
+                  </div>
                 </div>
               </div>
           </div>
@@ -959,34 +1035,63 @@
     <section id="features-info" class="relative bg-gradient-to-br from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 py-12 transition-colors duration-300 overflow-hidden">
       <!-- Decorative background -->
       <div class="absolute inset-0 opacity-10">
-        <div class="absolute top-1/3 left-1/4 w-96 h-96 bg-blue-500 rounded-full blur-3xl"></div>
+        <div class="absolute top-1/3 left-1/4 w-96 h-96 bg-purple-500 rounded-full blur-3xl"></div>
         <div class="absolute bottom-1/3 right-1/4 w-96 h-96 bg-purple-500 rounded-full blur-3xl"></div>
       </div>
 
       <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <!-- Header -->
         <div class="text-center mb-16">
-          <div class="inline-flex items-center gap-2 bg-blue-500/10 dark:bg-blue-500/30 px-4 py-2 rounded-full mb-6 animate-fade-in">
-            <svg class="w-5 h-5 text-blue-600 dark:text-blue-400" fill="currentColor" viewBox="0 0 20 20">
+          <div class="inline-flex items-center gap-2 bg-purple-500/10 dark:bg-purple-500/30 px-4 py-2 rounded-full mb-6 animate-fade-in">
+            <svg class="w-5 h-5 text-purple-600 dark:text-purple-400" fill="currentColor" viewBox="0 0 20 20">
               <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"/>
               <path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd"/>
             </svg>
-            <span class="text-sm font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wider">Technical Excellence</span>
+            <span class="text-sm font-bold text-purple-600 dark:text-purple-400 uppercase tracking-wider">Technical Excellence</span>
           </div>
           <h2 class="text-4xl lg:text-5xl font-black text-gray-900 dark:text-white mb-4">
-            <span class="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 dark:from-blue-400 dark:via-purple-400 dark:to-pink-400 bg-clip-text text-transparent"># Features</span>
+            <span class="bg-gradient-to-r from-purple-600 via-pink-600 to-purple-600 dark:from-purple-400 dark:via-pink-400 dark:to-purple-400 bg-clip-text text-transparent">Built for serious work.</span>
           </h2>
           <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            Modular architecture, beautiful code, and industry-leading standards for building production-grade applications.
+            Modular libraries, modern tooling, and direct blockchain access. The foundations for your next Bitcoin Cash application.
           </p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <!-- Feature 1 -->
-          <div class="group bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg dark:shadow-2xl dark:shadow-blue-500/20 hover:shadow-2xl dark:hover:shadow-blue-400/30 transition-all duration-300 hover:-translate-y-2 border-2 border-transparent hover:border-blue-500 dark:hover:border-blue-400 animate-scale-in">
+          <!-- Feature: Wallet Capabilities -->
+          <div class="relative bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 col-span-1 md:col-span-2 lg:col-span-3" hidden id="wallet-feature">
+            <div class="absolute -top-3 -right-3 bg-purple-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
+              COMING SOON
+            </div>
             <div class="flex items-start gap-4 mb-4">
               <div class="flex-shrink-0">
-                <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                <div class="w-12 h-12 rounded-xl bg-purple-600 flex items-center justify-center shadow-lg">
+                  <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z"/>
+                    <path fill-rule="evenodd" d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z" clip-rule="evenodd"/>
+                  </svg>
+                </div>
+              </div>
+              <div class="flex-1">
+                <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Wallet Capabilities</h3>
+              </div>
+            </div>
+            <p class="text-gray-600 dark:text-gray-300 leading-relaxed text-sm max-w-4xl mb-4">
+              Knuth libraries now include an <strong>evolved Wallet API</strong> for building production-grade wallet applications. Our <strong>WebAssembly binding</strong> enables cutting-edge web and mobile wallets with modern UI/UX — powered by the same battle-tested, high-performance C++ core.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="text-xs bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 px-3 py-1 rounded-full font-semibold">Web Wallets</span>
+              <span class="text-xs bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 px-3 py-1 rounded-full font-semibold">Mobile Wallets</span>
+              <span class="text-xs bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 px-3 py-1 rounded-full font-semibold">WebAssembly Powered</span>
+              <span class="text-xs bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 px-3 py-1 rounded-full font-semibold">Battle-Tested C++ Core</span>
+            </div>
+          </div>
+
+          <!-- Feature 1 -->
+          <div class="group bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg dark:shadow-2xl dark:shadow-purple-500/20 hover:shadow-2xl dark:hover:shadow-purple-400/30 transition-all duration-300 hover:-translate-y-2 border-2 border-transparent hover:border-purple-500 dark:hover:border-purple-400 animate-scale-in">
+            <div class="flex items-start gap-4 mb-4">
+              <div class="flex-shrink-0">
+                <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
                   <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M3 12v3c0 1.657 3.134 3 7 3s7-1.343 7-3v-3c0 1.657-3.134 3-7 3s-7-1.343-7-3z"/>
                     <path d="M3 7v3c0 1.657 3.134 3 7 3s7-1.343 7-3V7c0 1.657-3.134 3-7 3S3 8.657 3 7z"/>
@@ -995,7 +1100,7 @@
                 </div>
               </div>
               <div class="flex-1">
-                <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Development Platform</h3>
+                <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">Development Platform</h3>
               </div>
             </div>
             <p class="text-gray-600 dark:text-gray-300 leading-relaxed text-sm">
@@ -1023,17 +1128,17 @@
           </div>
 
           <!-- Feature 3 -->
-          <div class="group bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg dark:shadow-2xl dark:shadow-green-500/20 hover:shadow-2xl dark:hover:shadow-green-400/30 transition-all duration-300 hover:-translate-y-2 border-2 border-transparent hover:border-green-500 dark:hover:border-green-400 animate-scale-in" style="animation-delay: 0.2s;">
+          <div class="group bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg dark:shadow-2xl dark:shadow-pink-500/20 hover:shadow-2xl dark:hover:shadow-pink-400/30 transition-all duration-300 hover:-translate-y-2 border-2 border-transparent hover:border-pink-500 dark:hover:border-pink-400 animate-scale-in" style="animation-delay: 0.2s;">
             <div class="flex items-start gap-4 mb-4">
               <div class="flex-shrink-0">
-                <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-green-500 to-teal-600 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-pink-500 to-purple-600 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
                   <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 20 20">
                     <path fill-rule="evenodd" d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
                   </svg>
                 </div>
               </div>
               <div class="flex-1">
-                <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors">Optimized Build System</h3>
+                <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-pink-600 dark:group-hover:text-pink-400 transition-colors">Optimized Build System</h3>
               </div>
             </div>
             <p class="text-gray-600 dark:text-gray-300 leading-relaxed text-sm">
@@ -1042,10 +1147,10 @@
           </div>
 
           <!-- Feature 4 -->
-          <div class="group bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg dark:shadow-2xl dark:shadow-orange-500/20 hover:shadow-2xl dark:hover:shadow-orange-400/30 transition-all duration-300 hover:-translate-y-2 border-2 border-transparent hover:border-orange-500 dark:hover:border-orange-400 animate-scale-in" style="animation-delay: 0.3s;">
+          <div class="group bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg dark:shadow-2xl dark:shadow-purple-500/20 hover:shadow-2xl dark:hover:shadow-purple-400/30 transition-all duration-300 hover:-translate-y-2 border-2 border-transparent hover:border-purple-500 dark:hover:border-purple-400 animate-scale-in" style="animation-delay: 0.3s;">
             <div class="flex items-start gap-4 mb-4">
               <div class="flex-shrink-0">
-                <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-orange-500 to-red-600 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
                   <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M3 12v3c0 1.657 3.134 3 7 3s7-1.343 7-3v-3c0 1.657-3.134 3-7 3s-7-1.343-7-3z"/>
                     <path d="M3 7v3c0 1.657 3.134 3 7 3s7-1.343 7-3V7c0 1.657-3.134 3-7 3S3 8.657 3 7z"/>
@@ -1054,7 +1159,7 @@
                 </div>
               </div>
               <div class="flex-1">
-                <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors">Database Modes</h3>
+                <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">Database Modes</h3>
               </div>
             </div>
             <p class="text-gray-600 dark:text-gray-300 leading-relaxed text-sm">
@@ -1063,17 +1168,17 @@
           </div>
 
           <!-- Feature 5 -->
-          <div class="group bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg dark:shadow-2xl dark:shadow-indigo-500/20 hover:shadow-2xl dark:hover:shadow-indigo-400/30 transition-all duration-300 hover:-translate-y-2 border-2 border-transparent hover:border-indigo-500 dark:hover:border-indigo-400 animate-scale-in" style="animation-delay: 0.4s;">
+          <div class="group bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg dark:shadow-2xl dark:shadow-pink-500/20 hover:shadow-2xl dark:hover:shadow-pink-400/30 transition-all duration-300 hover:-translate-y-2 border-2 border-transparent hover:border-pink-500 dark:hover:border-pink-400 animate-scale-in" style="animation-delay: 0.4s;">
             <div class="flex items-start gap-4 mb-4">
               <div class="flex-shrink-0">
-                <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-pink-500 to-purple-600 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
                   <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 20 20">
                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
                   </svg>
                 </div>
               </div>
               <div class="flex-1">
-                <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">Bitcoin Cash Since 2017</h3>
+                <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-pink-600 dark:group-hover:text-pink-400 transition-colors">Bitcoin Cash Since 2017</h3>
               </div>
             </div>
             <p class="text-gray-600 dark:text-gray-300 leading-relaxed text-sm">
@@ -1101,158 +1206,28 @@
           </div>
 
           <!-- Feature 7 -->
-          <div class="group bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg dark:shadow-2xl dark:shadow-cyan-500/20 hover:shadow-2xl dark:hover:shadow-cyan-400/30 transition-all duration-300 hover:-translate-y-2 border-2 border-transparent hover:border-cyan-500 dark:hover:border-cyan-400 animate-scale-in" style="animation-delay: 0.6s;">
+          <div class="group bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg dark:shadow-2xl dark:shadow-purple-500/20 hover:shadow-2xl dark:hover:shadow-purple-400/30 transition-all duration-300 hover:-translate-y-2 border-2 border-transparent hover:border-purple-500 dark:hover:border-purple-400 animate-scale-in" style="animation-delay: 0.6s;">
             <div class="flex items-start gap-4 mb-4">
               <div class="flex-shrink-0">
-                <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
                   <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M7 3a1 1 0 000 2h6a1 1 0 100-2H7zM4 7a1 1 0 011-1h10a1 1 0 110 2H5a1 1 0 01-1-1zM2 11a2 2 0 012-2h12a2 2 0 012 2v4a2 2 0 01-2 2H4a2 2 0 01-2-2v-4z"/>
                   </svg>
                 </div>
               </div>
               <div class="flex-1">
-                <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors">Modular Architecture</h3>
+                <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">Modular Architecture</h3>
               </div>
             </div>
             <p class="text-gray-600 dark:text-gray-300 leading-relaxed text-sm">
               Completely modular design. Each module is an independent library following single-responsibility principle. Use them together or separately. Protocol changes can be introduced faster and more efficiently.
             </p>
           </div>
-
-          <!-- Feature 8 -->
-          <div class="group relative bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg dark:shadow-2xl dark:shadow-emerald-500/20 hover:shadow-2xl dark:hover:shadow-emerald-400/30 transition-all duration-300 hover:-translate-y-2 border-2 border-transparent hover:border-emerald-500 dark:hover:border-emerald-400 animate-scale-in col-span-1 md:col-span-2 lg:col-span-3" style="animation-delay: 0.7s;">
-            <div class="absolute -top-3 -right-3 bg-gradient-to-r from-green-500 to-emerald-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg animate-pulse">
-              🔥 COMING SOON
-            </div>
-            <div class="flex items-start gap-4 mb-4">
-              <div class="flex-shrink-0">
-                <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-500 to-green-600 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-                  <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z"/>
-                    <path fill-rule="evenodd" d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z" clip-rule="evenodd"/>
-                  </svg>
-                </div>
-              </div>
-              <div class="flex-1">
-                <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">Wallet Capabilities</h3>
-              </div>
-            </div>
-            <p class="text-gray-600 dark:text-gray-300 leading-relaxed text-sm max-w-4xl mb-4">
-              Knuth libraries now include an <strong>evolved Wallet API</strong> for building production-grade wallet applications. Our <strong>WebAssembly binding</strong> enables cutting-edge web and mobile wallets with modern UI/UX — powered by the same battle-tested, high-performance C++ core.
-            </p>
-            <div class="flex flex-wrap gap-2">
-              <span class="text-xs bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 px-3 py-1 rounded-full font-semibold">Web Wallets</span>
-              <span class="text-xs bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 px-3 py-1 rounded-full font-semibold">Mobile Wallets</span>
-              <span class="text-xs bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 px-3 py-1 rounded-full font-semibold">WebAssembly Powered</span>
-              <span class="text-xs bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 px-3 py-1 rounded-full font-semibold">Battle-Tested C++ Core</span>
-            </div>
-          </div>
         </div>
       </div>
     </section>
 
     <!-- Interactive WASM Demo Section -->
-    <section id="wasm-demo" class="relative py-12 bg-white dark:bg-gray-900 transition-colors duration-300 overflow-hidden">
-      <!-- Decorative background -->
-      <div class="absolute inset-0 opacity-10">
-        <div class="absolute top-0 left-1/3 w-96 h-96 bg-purple-500 rounded-full blur-3xl"></div>
-        <div class="absolute bottom-0 right-1/3 w-96 h-96 bg-pink-500 rounded-full blur-3xl"></div>
-      </div>
-
-      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <!-- Header -->
-        <div class="text-center mb-16">
-          <div class="inline-flex items-center gap-2 bg-purple-500/10 dark:bg-purple-500/30 px-4 py-2 rounded-full mb-6 animate-fade-in">
-            <svg class="w-5 h-5 text-purple-600 dark:text-purple-400" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd" />
-            </svg>
-            <span class="text-sm font-bold text-purple-600 dark:text-purple-400 uppercase tracking-wider">Live Demo</span>
-          </div>
-          <h2 class="text-4xl lg:text-5xl font-black text-gray-900 dark:text-white mb-4">
-            <span class="bg-gradient-to-r from-purple-600 via-pink-600 to-red-600 dark:from-purple-400 dark:via-pink-400 dark:to-red-400 bg-clip-text text-transparent"># Try it in Your Browser</span>
-          </h2>
-          <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            Experience the power of Knuth running natively in WebAssembly. No installation required!
-          </p>
-        </div>
-
-        <!-- Example Selector -->
-        <div class="mb-8">
-          <h3 class="text-sm font-bold text-gray-700 dark:text-gray-300 mb-3">Choose an example:</h3>
-          <div class="flex flex-wrap gap-2">
-            <button onclick="loadExample('address-converter')" class="example-btn active px-4 py-2 bg-purple-600 text-white rounded-lg font-semibold text-sm hover:bg-purple-700 transition-all shadow-md">
-              📬 Address Converter
-            </button>
-            <button onclick="loadExample('address-validator')" class="example-btn px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg font-semibold text-sm hover:bg-gray-300 dark:hover:bg-gray-600 transition-all">
-              ✅ Address Validator
-            </button>
-            <button onclick="loadExample('wallet-generator')" class="example-btn px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg font-semibold text-sm hover:bg-gray-300 dark:hover:bg-gray-600 transition-all">
-              👛 Wallet Generator
-            </button>
-            <button onclick="loadExample('sha256-hash')" class="example-btn px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg font-semibold text-sm hover:bg-gray-300 dark:hover:bg-gray-600 transition-all">
-              #️⃣ SHA256 Hash
-            </button>
-            <button onclick="loadExample('libconfig')" class="example-btn px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg font-semibold text-sm hover:bg-gray-300 dark:hover:bg-gray-600 transition-all">
-              ⚙️ Library Config
-            </button>
-          </div>
-        </div>
-
-        <!-- Demo Content -->
-        <div class="grid lg:grid-cols-2 gap-8">
-          <!-- Code Example -->
-          <div class="bg-gradient-to-br from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 rounded-2xl p-6 border-2 border-gray-200 dark:border-gray-700 shadow-xl">
-            <div class="flex items-center justify-between mb-4">
-              <h3 class="text-lg font-bold text-gray-900 dark:text-white flex items-center gap-2">
-                <svg class="w-5 h-5 text-purple-600 dark:text-purple-400" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
-                </svg>
-                <span id="example-title">Address Converter</span>
-              </h3>
-              <button id="run-example-btn" class="px-4 py-2 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold rounded-lg transition-all duration-300 hover:scale-105 shadow-lg text-sm">
-                ▶ Run
-              </button>
-            </div>
-            <div id="demo-code-wrapper" class="rounded-xl overflow-hidden border-2 border-gray-700"></div>
-          </div>
-
-          <!-- Output Window -->
-          <div class="bg-gradient-to-br from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 rounded-2xl p-6 border-2 border-gray-200 dark:border-gray-700 shadow-xl">
-            <div class="flex items-center justify-between mb-4">
-              <h3 class="text-lg font-bold text-gray-900 dark:text-white flex items-center gap-2">
-                <svg class="w-5 h-5 text-green-600 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M2 5a2 2 0 012-2h12a2 2 0 012 2v10a2 2 0 01-2 2H4a2 2 0 01-2-2V5zm3.293 1.293a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 01-1.414-1.414L7.586 10 5.293 7.707a1 1 0 010-1.414zM11 12a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd"/>
-                </svg>
-                Output
-              </h3>
-              <button id="clear-output-btn" class="px-4 py-2 text-xs text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">
-                Clear
-              </button>
-            </div>
-            <div id="demo-output" class="matrix-container bg-gray-900 dark:bg-black rounded-xl p-4 font-mono text-sm h-[450px] overflow-y-auto text-gray-300">
-              <canvas id="demo-output-rain" class="matrix-rain"></canvas>
-              <div class="matrix-content">
-                <div class="text-gray-500 italic">// Output will appear here...</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Loading Indicator -->
-        <!-- Loading indicator (floating, non-modal) -->
-        <div id="wasm-loader" class="fixed bottom-8 right-8 z-50 animate-fade-in">
-          <div class="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-2xl border-2 border-purple-500/50 dark:border-purple-400/50">
-            <div class="flex items-center gap-3">
-              <div class="w-8 h-8 border-3 border-purple-600 border-t-transparent rounded-full animate-spin"></div>
-              <div>
-                <p class="text-gray-900 dark:text-white font-semibold text-sm">Loading WASM...</p>
-                <p class="text-xs text-gray-600 dark:text-gray-400">Please wait</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
 
     <!-- Contact Section -->
     <section id="contact" class="relative bg-gradient-to-br from-gray-100 to-gray-50 dark:from-gray-800 dark:to-gray-900 py-12 transition-colors duration-300 overflow-hidden">
@@ -1273,7 +1248,7 @@
             <span class="text-sm font-bold text-purple-600 dark:text-purple-400 uppercase tracking-wider">Let's Connect</span>
           </div>
           <h2 class="text-4xl lg:text-5xl font-black text-gray-900 dark:text-white mb-4">
-            <span class="bg-gradient-to-r from-purple-600 via-pink-600 to-red-600 dark:from-purple-400 dark:via-pink-400 dark:to-red-400 bg-clip-text text-transparent"># Get in Touch</span>
+            <span class="bg-gradient-to-r from-purple-600 via-pink-600 to-red-600 dark:from-purple-400 dark:via-pink-400 dark:to-red-400 bg-clip-text text-transparent">Build with the community.</span>
           </h2>
           <p class="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
             Join our community, follow our updates, or reach out directly. We're always happy to connect!
@@ -1325,16 +1300,15 @@
     </section>
 
     <!-- Back to Top Button -->
-    <a id="back2Top" href="#" class="fixed bottom-12 right-6 w-12 h-12 bg-primary hover:bg-primary-dark text-white rounded-full flex items-center justify-center shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-110 opacity-0 pointer-events-none">
+    <a id="back2Top" aria-label="Back to top" href="#" class="fixed bottom-12 right-6 w-12 h-12 bg-primary hover:bg-primary-dark text-white rounded-full flex items-center justify-center shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-110 opacity-0 pointer-events-none">
       <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
       </svg>
     </a>
 
-    </div>
+    </main>
     <!-- End Main Content Wrapper -->
 
-    <!-- Footer -->
     <!-- Footer -->
     <footer class="bg-gray-900 text-white py-6 text-center">
       <small>
@@ -1425,7 +1399,7 @@
         const originalHTML = btn.innerHTML;
 
         // Show checkmark
-        btn.innerHTML = '<svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>';
+        btn.innerHTML = '<svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>';
 
         // Reset after 2 seconds
         setTimeout(() => {
@@ -1439,6 +1413,9 @@
 
       // Show library content when card is clicked
       function showLibraryA(lang) {
+        document.querySelectorAll('.lib-card-a').forEach(button => {
+          button.setAttribute('aria-pressed', button.getAttribute('onclick') === `showLibraryA('${lang}')` ? 'true' : 'false');
+        });
         // Hide all content
         document.querySelectorAll('.library-content-a').forEach(el => el.classList.add('hidden'));
         // Show selected
@@ -1447,6 +1424,8 @@
           content.classList.remove('hidden');
         }
       }
+
+      showLibraryA('executable');
 
       // Dark mode toggle - for both navbars
       const darkModeToggleInitial = document.getElementById('dark-mode-toggle-initial');
@@ -1465,7 +1444,8 @@
       const moonIconMobile = document.getElementById('moon-icon-mobile');
 
       // Check for saved dark mode preference or default to dark mode
-      const currentMode = localStorage.getItem('darkMode') || 'dark';
+      let currentMode = 'dark';
+      try { currentMode = localStorage.getItem('darkMode') || 'dark'; } catch (_) {}
       if (currentMode === 'dark') {
         document.documentElement.classList.add('dark');
         // Initial menu icons
@@ -1496,7 +1476,7 @@
         moonIconMobile.classList.toggle('hidden');
 
         // Save preference
-        localStorage.setItem('darkMode', isDark ? 'dark' : 'light');
+        try { localStorage.setItem('darkMode', isDark ? 'dark' : 'light'); } catch (_) {}
       }
 
       // Add click listeners to all 4 dark mode buttons
@@ -1505,40 +1485,70 @@
       darkModeToggle.addEventListener('click', toggleDarkMode);
       darkModeToggleMobile.addEventListener('click', toggleDarkMode);
 
-      // Mobile menu toggle - for initial menu
+      // Mobile menu overlay functionality
+      const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+      const mobileMenuBackdrop = document.getElementById('mobile-menu-backdrop');
+      const mobileMenuPanel = document.getElementById('mobile-menu-panel');
+      const mobileMenuClose = document.getElementById('mobile-menu-close');
       const mobileMenuButtonInitial = document.getElementById('mobile-menu-button-initial');
-      const mobileMenuInitial = document.getElementById('mobile-menu-initial');
+      const mobileMenuButton = document.getElementById('mobile-menu-button');
       const menuIconOpenInitial = document.getElementById('menu-icon-open-initial');
       const menuIconCloseInitial = document.getElementById('menu-icon-close-initial');
-
-      mobileMenuButtonInitial.addEventListener('click', () => {
-        mobileMenuInitial.classList.toggle('hidden');
-        menuIconOpenInitial.classList.toggle('hidden');
-        menuIconCloseInitial.classList.toggle('hidden');
-      });
-
-      // Mobile menu toggle - for floating navbar
-      const mobileMenuButton = document.getElementById('mobile-menu-button');
-      const mobileMenu = document.getElementById('mobile-menu');
       const menuIconOpen = document.getElementById('menu-icon-open');
       const menuIconClose = document.getElementById('menu-icon-close');
 
-      mobileMenuButton.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
-        menuIconOpen.classList.toggle('hidden');
-        menuIconClose.classList.toggle('hidden');
+      function openMobileMenu() {
+        mobileMenuOverlay.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+        // Trigger animation after a frame to ensure transition works
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            mobileMenuBackdrop.classList.remove('opacity-0');
+            mobileMenuBackdrop.classList.add('opacity-100');
+            mobileMenuPanel.classList.remove('translate-x-full');
+          });
+        });
+        // Update hamburger icons
+        menuIconOpenInitial.classList.add('hidden');
+        menuIconCloseInitial.classList.remove('hidden');
+        menuIconOpen.classList.add('hidden');
+        menuIconClose.classList.remove('hidden');
+      }
+
+      function closeMobileMenu() {
+        mobileMenuBackdrop.classList.remove('opacity-100');
+        mobileMenuBackdrop.classList.add('opacity-0');
+        mobileMenuPanel.classList.add('translate-x-full');
+        document.body.style.overflow = '';
+        // Wait for animation to finish
+        setTimeout(() => {
+          mobileMenuOverlay.classList.add('hidden');
+        }, 300);
+        // Update hamburger icons
+        menuIconOpenInitial.classList.remove('hidden');
+        menuIconCloseInitial.classList.add('hidden');
+        menuIconOpen.classList.remove('hidden');
+        menuIconClose.classList.add('hidden');
+      }
+
+      // Open menu from both hamburger buttons
+      mobileMenuButtonInitial.addEventListener('click', openMobileMenu);
+      mobileMenuButton.addEventListener('click', openMobileMenu);
+
+      // Close menu
+      mobileMenuClose.addEventListener('click', closeMobileMenu);
+      mobileMenuBackdrop.addEventListener('click', closeMobileMenu);
+
+      // Close menu when clicking a link
+      document.querySelectorAll('.mobile-menu-link').forEach(link => {
+        link.addEventListener('click', closeMobileMenu);
       });
 
-      // Close both mobile menus when clicking a link
-      document.querySelectorAll('.mobile-menu-link').forEach(link => {
-        link.addEventListener('click', () => {
-          mobileMenuInitial.classList.add('hidden');
-          mobileMenu.classList.add('hidden');
-          menuIconOpenInitial.classList.remove('hidden');
-          menuIconCloseInitial.classList.add('hidden');
-          menuIconOpen.classList.remove('hidden');
-          menuIconClose.classList.add('hidden');
-        });
+      // Close menu on Escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !mobileMenuOverlay.classList.contains('hidden')) {
+          closeMobileMenu();
+        }
       });
 
       // Navbar scroll effect - switch between initial and floating
@@ -1546,6 +1556,7 @@
       const floatingNavbar = document.getElementById('floating-navbar');
       const heroSection = document.querySelector('header');
 
+      floatingNavbar.inert = true;
       window.addEventListener('scroll', () => {
         // Get hero height dynamically
         const heroHeight = heroSection.offsetHeight;
@@ -1553,9 +1564,13 @@
         if (window.scrollY > heroHeight - 100) {
           initialMenu.classList.add('hidden-menu');
           floatingNavbar.classList.add('show');
+          floatingNavbar.inert = false;
+          initialMenu.inert = true;
         } else {
           initialMenu.classList.remove('hidden-menu');
           floatingNavbar.classList.remove('show');
+          floatingNavbar.inert = true;
+          initialMenu.inert = false;
         }
       });
 
@@ -1620,245 +1635,6 @@
           });
       }
 
-      // Matrix rain effect (falling down)
-      function createMatrixRain(canvasId, duration = 1500) {
-        const canvas = document.getElementById(canvasId);
-        if (!canvas) return; // Canvas doesn't exist
-
-        const ctx = canvas.getContext('2d');
-        const container = canvas.parentElement;
-
-        canvas.width = container.clientWidth;
-        canvas.height = container.clientHeight;
-
-        const fontSize = 14;
-        const columns = Math.floor(canvas.width / fontSize);
-        const drops = [];
-
-        for (let i = 0; i < columns; i++) {
-          drops[i] = Math.random() * -100;
-        }
-
-        const chars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
-
-        canvas.classList.add('active');
-
-        let frameCount = 0;
-        const maxFrames = duration / 50;
-
-        const draw = () => {
-          ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-          ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-          ctx.fillStyle = '#22c55e';
-          ctx.font = fontSize + 'px monospace';
-
-          for (let i = 0; i < drops.length; i++) {
-            const text = chars[Math.floor(Math.random() * chars.length)];
-            const x = i * fontSize;
-            const y = drops[i] * fontSize;
-
-            ctx.fillText(text, x, y);
-
-            if (y > canvas.height && Math.random() > 0.975) {
-              drops[i] = 0;
-            }
-
-            drops[i]++;
-          }
-
-          frameCount++;
-          if (frameCount < maxFrames) {
-            requestAnimationFrame(draw);
-          } else {
-            canvas.classList.remove('active');
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-          }
-        };
-
-        draw();
-      }
-
-      // Matrix rise effect (rising up from bottom)
-      function createMatrixRise(canvasId, duration = 1500) {
-        const canvas = document.getElementById(canvasId);
-        if (!canvas) return; // Canvas doesn't exist
-
-        const ctx = canvas.getContext('2d');
-        const container = canvas.parentElement;
-
-        canvas.width = container.clientWidth;
-        canvas.height = container.clientHeight;
-
-        const fontSize = 14;
-        const columns = Math.floor(canvas.width / fontSize);
-        const rises = [];
-
-        // Start all columns from bottom
-        for (let i = 0; i < columns; i++) {
-          rises[i] = Math.floor(canvas.height / fontSize) + Math.random() * 20;
-        }
-
-        const chars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
-
-        canvas.classList.add('active');
-
-        let frameCount = 0;
-        const maxFrames = duration / 50;
-
-        const draw = () => {
-          ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-          ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-          ctx.fillStyle = '#22c55e';
-          ctx.font = fontSize + 'px monospace';
-
-          for (let i = 0; i < rises.length; i++) {
-            const text = chars[Math.floor(Math.random() * chars.length)];
-            const x = i * fontSize;
-            const y = rises[i] * fontSize;
-
-            ctx.fillText(text, x, y);
-
-            // Rise up (decrease y position)
-            if (y < -fontSize && Math.random() > 0.975) {
-              rises[i] = Math.floor(canvas.height / fontSize);
-            }
-
-            rises[i]--;
-          }
-
-          frameCount++;
-          if (frameCount < maxFrames) {
-            requestAnimationFrame(draw);
-          } else {
-            canvas.classList.remove('active');
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-          }
-        };
-
-        draw();
-      }
-
-      // Character drop animation - sequential order (pure JavaScript)
-      function createCharacterDrop(lineElement, text) {
-        lineElement.innerHTML = '';
-        const chars = text.split('');
-        const charElements = [];
-
-        // Create span for each character
-        chars.forEach((char, index) => {
-          const span = document.createElement('span');
-          span.textContent = char === ' ' ? '\u00A0' : char; // Non-breaking space
-          span.style.display = 'inline-block';
-          span.style.opacity = '0';
-          span.style.transform = 'translateY(-100px)';
-          span.style.filter = 'blur(4px)';
-          span.style.textShadow = '0 0 8px rgba(34, 197, 94, 0.6)';
-          lineElement.appendChild(span);
-          charElements.push(span);
-        });
-
-        // Animate each character with staggered delays
-        charElements.forEach((span, index) => {
-          const delay = index * 30; // 30ms delay per character
-          const duration = 400 + Math.random() * 200; // Random duration between 400-600ms
-
-          setTimeout(() => {
-            const startTime = performance.now();
-            const startY = -100;
-            const endY = 0;
-
-            function animate(currentTime) {
-              const elapsed = currentTime - startTime;
-              const progress = Math.min(elapsed / duration, 1);
-
-              // Easing function (ease-out)
-              const eased = 1 - Math.pow(1 - progress, 3);
-
-              // Update transform
-              const currentY = startY + (endY - startY) * eased;
-              span.style.transform = `translateY(${currentY}px)`;
-              span.style.opacity = eased;
-              span.style.filter = `blur(${4 * (1 - eased)}px)`;
-
-              if (progress < 1) {
-                requestAnimationFrame(animate);
-              } else {
-                span.style.transform = 'translateY(0)';
-                span.style.opacity = '1';
-                span.style.filter = 'blur(0)';
-              }
-            }
-
-            requestAnimationFrame(animate);
-          }, delay);
-        });
-      }
-
-      // Character drop animation - random order (pure JavaScript)
-      function createCharacterDropRandom(lineElement, text) {
-        lineElement.innerHTML = '';
-        const chars = text.split('');
-        const charElements = [];
-
-        // Create span for each character
-        chars.forEach((char, index) => {
-          const span = document.createElement('span');
-          span.textContent = char === ' ' ? '\u00A0' : char; // Non-breaking space
-          span.style.display = 'inline-block';
-          span.style.opacity = '0';
-          span.style.transform = 'translateY(-100px)';
-          span.style.filter = 'blur(4px)';
-          span.style.textShadow = '0 0 8px rgba(34, 197, 94, 0.6)';
-          lineElement.appendChild(span);
-          charElements.push({ span, index });
-        });
-
-        // Create random order for character drops
-        const randomOrder = [...charElements];
-        for (let i = randomOrder.length - 1; i > 0; i--) {
-          const j = Math.floor(Math.random() * (i + 1));
-          [randomOrder[i], randomOrder[j]] = [randomOrder[j], randomOrder[i]];
-        }
-
-        // Animate each character in random order
-        randomOrder.forEach((item, orderIndex) => {
-          const delay = orderIndex * 25; // 25ms delay between each character drop
-          const duration = 400 + Math.random() * 200; // Random duration between 400-600ms
-
-          setTimeout(() => {
-            const startTime = performance.now();
-            const startY = -100;
-            const endY = 0;
-
-            function animate(currentTime) {
-              const elapsed = currentTime - startTime;
-              const progress = Math.min(elapsed / duration, 1);
-
-              // Easing function (ease-out)
-              const eased = 1 - Math.pow(1 - progress, 3);
-
-              // Update transform
-              const currentY = startY + (endY - startY) * eased;
-              item.span.style.transform = `translateY(${currentY}px)`;
-              item.span.style.opacity = eased;
-              item.span.style.filter = `blur(${4 * (1 - eased)}px)`;
-
-              if (progress < 1) {
-                requestAnimationFrame(animate);
-              } else {
-                item.span.style.transform = 'translateY(0)';
-                item.span.style.opacity = '1';
-                item.span.style.filter = 'blur(0)';
-              }
-            }
-
-            requestAnimationFrame(animate);
-          }, delay);
-        });
-      }
-
       // Add output to demo output window
       function addOutput(text, type = 'log') {
         const outputDiv = document.getElementById('demo-output');
@@ -1872,16 +1648,13 @@
         }
 
         const line = document.createElement('div');
-        line.className = type === 'error' ? 'text-red-400 matrix-line' : 'text-green-400 matrix-line';
+        line.className = type === 'error' ? 'text-red-400 output-line' : 'output-line';
         contentDiv.appendChild(line);
 
-        // Animate characters dropping in random order
-        createCharacterDropRandom(line, text);
+        line.textContent = text;
 
         outputDiv.scrollTop = outputDiv.scrollHeight;
 
-        // Trigger matrix rain background effect
-        createMatrixRain('demo-output-rain', 1000);
       }
 
       // Examples database
@@ -2004,7 +1777,7 @@ console.log(\`Debug Mode: \${config.debugMode}\`);`
       }, 100);
 
       // Load example function
-      window.loadExample = function(exampleId) {
+      window.loadExample = function(exampleId, button) {
         const example = examples[exampleId];
         if (!example) return;
 
@@ -2025,8 +1798,8 @@ console.log(\`Debug Mode: \${config.debugMode}\`);`
           btn.classList.remove('active', 'bg-purple-600', 'text-white', 'shadow-md');
           btn.classList.add('bg-gray-200', 'dark:bg-gray-700', 'text-gray-700', 'dark:text-gray-300');
         });
-        event.target.classList.remove('bg-gray-200', 'dark:bg-gray-700', 'text-gray-700', 'dark:text-gray-300');
-        event.target.classList.add('active', 'bg-purple-600', 'text-white', 'shadow-md');
+        button.classList.remove('bg-gray-200', 'dark:bg-gray-700', 'text-gray-700', 'dark:text-gray-300');
+        button.classList.add('active', 'bg-purple-600', 'text-white', 'shadow-md');
       };
 
       // Run example code

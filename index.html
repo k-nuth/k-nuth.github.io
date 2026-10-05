@@ -34,6 +34,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/addon/edit/matchbrackets.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/addon/selection/active-line.min.js"></script>
 
+    <script>
+      // Apply the saved appearance before the first paint.
+      try { document.documentElement.classList.toggle('dark', (localStorage.getItem('darkMode') || 'dark') === 'dark'); } catch (_) { document.documentElement.classList.add('dark'); }
+    </script>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -54,7 +58,7 @@
               }
             },
             fontFamily: {
-              'cairo': ['"Cairo"', 'sans-serif'],
+              'cairo': ['"DM Sans"', 'sans-serif'],
               'mono': ['"Ubuntu Mono"', 'monospace']
             },
             animation: {
@@ -83,7 +87,7 @@
 
     <!-- Cairo font -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
 
@@ -102,246 +106,26 @@
     <!-- ClipboardJs -->
     <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
 
-    <style>
-      /* Animated gradient keyframe */
-      @keyframes gradient-shift {
-        0%, 100% {
-          background-position: 0% 50%;
-        }
-        50% {
-          background-position: 100% 50%;
-        }
-      }
-
-      /* Shared animated gradient */
-      .hero-mesh-gradient {
-        background: linear-gradient(-45deg, #7c3aed, #5200cc, #3b009b, #ec4899, #f59e0b);
-        background-size: 400% 400%;
-        animation: gradient-shift 12s ease infinite;
-      }
-
-      /* Menu inicial - visible solo arriba */
-      #initial-menu {
-        background: transparent;
-        transition: opacity 300ms;
-      }
-
-      #initial-menu.hidden-menu {
-        opacity: 0;
-        pointer-events: none;
-      }
-
-      /* Navbar flotante - oculto por defecto */
-      #floating-navbar {
-        background: transparent;
-        opacity: 0;
-        transform: translateY(-100%);
-        transition: opacity 300ms, transform 300ms, box-shadow 300ms;
-      }
-
-      /* Navbar flotante visible cuando scrolleas */
-      #floating-navbar.show {
-        opacity: 1;
-        transform: translateY(0);
-        background: linear-gradient(-45deg, #7c3aed, #5200cc, #3b009b, #ec4899, #f59e0b);
-        background-size: 400% 400%;
-        animation: gradient-shift 12s ease infinite;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-      }
-
-      /* Logo siempre visible en navbar flotante */
-      #floating-navbar #navbar-logo {
-        opacity: 1;
-      }
-
-      /* Smooth scroll behavior */
-      html {
-        scroll-behavior: smooth;
-        scroll-padding-top: 80px; /* Offset for fixed navbar */
-      }
-
-      /* Matrix rain effect background */
-      .matrix-container {
-        position: relative;
-        overflow: hidden;
-      }
-
-      .matrix-rain {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        z-index: 0;
-        opacity: 0;
-        transition: opacity 0.3s;
-      }
-
-      .matrix-rain.active {
-        opacity: 0.15;
-      }
-
-      .matrix-column {
-        position: absolute;
-        top: -100%;
-        font-family: 'Ubuntu Mono', monospace;
-        font-size: 14px;
-        color: #22c55e;
-        text-shadow: 0 0 8px rgba(34, 197, 94, 0.8);
-        white-space: pre;
-        animation: matrix-fall linear;
-      }
-
-      @keyframes matrix-fall {
-        0% {
-          top: -100%;
-          opacity: 0;
-        }
-        10% {
-          opacity: 1;
-        }
-        90% {
-          opacity: 1;
-        }
-        100% {
-          top: 100%;
-          opacity: 0;
-        }
-      }
-
-      /* Output content layer */
-      .matrix-content {
-        position: relative;
-        z-index: 1;
-      }
-
-      /* Character drop effect */
-      .matrix-line {
-        display: block;
-        white-space: pre;
-      }
-
-      .matrix-char {
-        display: inline-block;
-        opacity: 0;
-        text-shadow: 0 0 8px rgba(34, 197, 94, 0.6);
-      }
-
-      @keyframes char-drop {
-        0% {
-          opacity: 0;
-          transform: translateY(-100px);
-          filter: blur(4px);
-        }
-        50% {
-          opacity: 0.7;
-        }
-        100% {
-          opacity: 1;
-          transform: translateY(0);
-          filter: blur(0);
-        }
-      }
-
-      /* Mobile optimization for WASM Demo section */
-      @media (max-width: 768px) {
-        #wasm-demo .grid {
-          max-width: 100vw !important;
-          overflow: hidden !important;
-        }
-
-        #wasm-demo .grid > div {
-          padding: 1rem !important;
-          border-width: 1px !important;
-          border-radius: 1rem !important;
-          box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
-          max-width: 100% !important;
-          overflow: hidden !important;
-        }
-
-        #wasm-demo #demo-code-wrapper {
-          border-width: 0 !important;
-          border-radius: 0.5rem !important;
-          overflow-x: auto !important;
-          max-width: 100% !important;
-        }
-
-        #wasm-demo #demo-output {
-          border-width: 0 !important;
-          padding: 0.75rem !important;
-          height: 300px !important;
-          overflow-x: auto !important;
-          overflow-y: auto !important;
-          max-width: 100% !important;
-          box-sizing: border-box !important;
-        }
-
-        #wasm-demo #demo-output .matrix-content,
-        #wasm-demo #demo-output .matrix-content > * {
-          max-width: 100% !important;
-          overflow-wrap: break-word !important;
-          word-wrap: break-word !important;
-          word-break: break-word !important;
-        }
-
-        /* Ensure text doesn't overflow */
-        #wasm-demo .grid > div * {
-          max-width: 100%;
-          overflow-wrap: break-word;
-          word-wrap: break-word;
-        }
-
-        #wasm-demo pre,
-        #wasm-demo code {
-          font-size: 0.75rem !important;
-          white-space: pre-wrap !important;
-          word-break: break-all !important;
-          max-width: 100% !important;
-          overflow-x: auto !important;
-        }
-      }
-    </style>
+    <link rel="stylesheet" href="./css/site.css" />
   </head>
 
   <body class="font-cairo antialiased transition-colors duration-300 m-0 p-0">
 
-    <!-- OPTION 1: Sticky floating banner at the top -->
-    <!-- Uncomment this block to activate option 1 -->
-<!--     
-    <div class="fixed top-0 left-0 right-0 z-[60] bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500 text-white py-3 shadow-2xl animate-fade-in">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-center gap-3 text-center">
-          <span class="text-2xl animate-bounce">💎</span>
-          <p class="text-sm sm:text-base font-bold">
-            <span class="hidden sm:inline">Coming Soon! </span>The best Bitcoin Cash wallet is on its way
-            <span class="ml-2 px-2 py-1 bg-white/20 rounded-full text-xs font-semibold">Coming Soon</span>
-          </p>
-          <span class="text-2xl animate-bounce" style="animation-delay: 0.1s;">💎</span>
-        </div>
-      </div>
-    </div>
-    -->
+    <a class="skip-link" href="#main-content">Skip to content</a>
 
     <!-- Initial Menu (visible at top only) -->
     <nav id="initial-menu" class="fixed top-0 left-0 right-0 z-50">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-end items-center h-16">
+        <div class="flex justify-between items-center h-16">
+          <a class="nav-brand" href="#home" aria-label="Knuth home"><img src="./img/logo-white.svg" width="76" height="46" alt="Knuth" /></a>
           <!-- Desktop Navigation -->
           <div class="hidden lg:flex lg:items-center lg:space-x-8">
-            <a href="#" class="text-white font-semibold hover:text-gray-200 transition-all duration-200 hover:scale-105">Home</a>
+            <a href="#home" class="text-white font-semibold hover:text-gray-200 transition-all duration-200 hover:scale-105">Overview</a>
+            <a href="#architecture" class="nav-architecture">Architecture</a>
             <a href="#wasm-demo" class="text-white font-semibold hover:text-gray-200 transition-all duration-200 hover:scale-105">Live Demo</a>
             <a href="https://fund.kth.cash" class="text-white font-semibold hover:text-gray-200 transition-all duration-200 hover:scale-105">Funding</a>
 
-            <!-- OPTION 4: Badge in navbar -->
-            <!-- Uncomment this block to activate option 4 in navbar -->
-<!--
-            <div class="relative flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full shadow-lg">
-              <span class="text-sm">💎</span>
-              <span class="text-white font-bold text-xs sm:text-sm">Wallet Coming Soon!</span>
-            </div>
-            -->
-
+            <a href="#download" class="nav-start">Get started <span aria-hidden="true">↗</span></a>
             <!-- Dark Mode Toggle Button -->
             <button id="dark-mode-toggle-initial" class="text-white hover:text-gray-200 focus:outline-none transition-all duration-200 hover:scale-110" aria-label="Toggle dark mode">
               <svg id="sun-icon-initial" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -389,19 +173,12 @@
 
           <!-- Desktop Navigation -->
           <div class="hidden lg:flex lg:items-center lg:space-x-8">
-            <a href="#" class="text-white font-semibold hover:text-gray-200 transition-all duration-200 hover:scale-105">Home</a>
+            <a href="#home" class="text-white font-semibold hover:text-gray-200 transition-all duration-200 hover:scale-105">Overview</a>
+            <a href="#architecture" class="nav-architecture">Architecture</a>
             <a href="#wasm-demo" class="text-white font-semibold hover:text-gray-200 transition-all duration-200 hover:scale-105">Live Demo</a>
             <a href="https://fund.kth.cash" class="text-white font-semibold hover:text-gray-200 transition-all duration-200 hover:scale-105">Funding</a>
 
-            <!-- OPTION 4: Badge in navbar -->
-            <!-- Uncomment this block to activate option 4 in navbar -->
-            
-            <!-- <div class="relative flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full shadow-lg">
-              <span class="text-sm">💎</span>
-              <span class="text-white font-bold text-xs sm:text-sm">Wallet Coming Soon!</span>
-            </div> -->
-           
-
+            <a href="#download" class="nav-start">Get started <span aria-hidden="true">↗</span></a>
             <!-- Dark Mode Toggle Button -->
             <button id="dark-mode-toggle" class="text-white hover:text-gray-200 focus:outline-none transition-all duration-200 hover:scale-110" aria-label="Toggle dark mode">
               <!-- Sun Icon (shown in dark mode) -->
@@ -453,7 +230,7 @@
         <!-- Header with close button -->
         <div class="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
           <span class="text-lg font-bold text-gray-900 dark:text-white">Menu</span>
-          <button id="mobile-menu-close" class="p-2 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+          <button id="mobile-menu-close" aria-label="Close menu" class="p-2 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
             <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
             </svg>
@@ -462,7 +239,9 @@
 
         <!-- Navigation Links -->
         <nav class="p-4 space-y-1">
-          <a href="#" class="mobile-menu-link flex items-center gap-3 px-4 py-3 text-gray-700 dark:text-gray-200 font-semibold rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+          <a href="#download" class="mobile-menu-link flex items-center px-4 py-3 text-purple-600 dark:text-purple-300 font-semibold rounded-xl">Get started ↗</a>
+          <a href="#architecture" class="mobile-menu-link flex items-center px-4 py-3 text-gray-700 dark:text-gray-200 font-semibold rounded-xl">Architecture</a>
+          <a href="#home" class="mobile-menu-link flex items-center gap-3 px-4 py-3 text-gray-700 dark:text-gray-200 font-semibold rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
             <svg class="w-5 h-5 text-primary dark:text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
             </svg>
@@ -485,35 +264,38 @@
       </div>
     </div>
 
-    <!-- Hero Header (starts from top, navbar floats over it) -->
-    <header class="relative h-96 lg:h-[500px] hero-mesh-gradient">
-      <div class="absolute inset-0 flex flex-col items-center justify-center gap-6">
-        <img class="h-32 lg:h-64 animate-fade-in drop-shadow-2xl" src="./img/logo-white.svg" alt="Knuth" />
-        <h1 class="text-lg lg:text-2xl font-normal text-white text-center px-4 animate-slide-up drop-shadow-lg" style="animation-delay: 0.3s;">
-          High Performance Bitcoin Cash Development Platform
-        </h1>
-
-        <!-- OPTION 2: Announcement in Hero section -->
-        <!-- Uncomment this block to activate option 2 -->
-<!--         
-        <div class="mt-4 px-6 py-3 bg-white/10 backdrop-blur-lg border-2 border-white/30 rounded-full shadow-2xl animate-fade-in" style="animation-delay: 0.6s;">
-          <div class="flex items-center gap-3">
-            <span class="text-2xl">💎</span>
-            <p class="text-white font-bold text-sm sm:text-base">
-              The best BCH wallet is coming soon!
-              <span class="ml-2 px-2 py-1 bg-purple-500 rounded-full text-xs">Coming Soon</span>
-            </p>
-            <span class="text-2xl">💎</span>
+    <header class="site-hero" id="home">
+      <div class="hero-layout page-width">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="status-dot"></span> OPEN SOURCE. BUILT FOR BITCOIN CASH.</p>
+          <img class="hero-wordmark" src="./img/logo-white.svg" alt="Knuth" width="280" height="170" />
+          <h1>Bitcoin Cash.<br /><span>Build without limits.</span></h1>
+          <p class="hero-description">A high-performance full node and development toolkit. One C++ core. Seven languages. From your server to the browser.</p>
+          <div class="hero-actions">
+            <a class="action-primary" href="#download">Get started <span aria-hidden="true">↗</span></a>
+            <a class="action-secondary" href="#wasm-demo"><span class="play-icon" aria-hidden="true">▷</span> Try live demo</a>
           </div>
+          <a class="hero-source" href="https://github.com/k-nuth" target="_blank" rel="noopener noreferrer">Explore the code on GitHub <span aria-hidden="true">↗</span></a>
         </div>
-        -->
+        <div class="hero-terminal" aria-label="Example: convert a Bitcoin Cash address with Knuth">
+          <div class="terminal-top"><span class="terminal-dots" aria-hidden="true"><i></i><i></i><i></i></span><span>address.js</span><span class="terminal-language">JavaScript / WASM</span></div>
+          <div class="terminal-code"><div class="code-gutter" aria-hidden="true">01<br />02<br />03<br />04<br />05<br />06<br />07<br />08</div><pre><code><span class="code-comment">// Bitcoin Cash, in your browser.</span>
+<span class="code-keyword">const</span> address = PaymentAddress
+  .fromString(
+    <span class="code-string">"bitcoincash:qpm2qsznhks23z7629mms6s4cwef74vcwvy22gdx6a"</span>
+  );
+
+console.log(address.encodedLegacy());
+console.log(address.encodedCashTokens());</code></pre></div>
+          <div class="terminal-result"><p class="code-comment">↳ OUTPUT</p><p>1BpEi6DfDAUFd7GtittLSdBeYJvcoaVggu</p><p class="result-note"><span class="status-dot"></span> Same C++ core. Running in WebAssembly.</p></div>
+          <div class="terminal-footer"><span>Native code. Browser possibilities.</span><a href="#wasm-demo">Run it yourself <span aria-hidden="true">→</span></a></div>
+        </div>
       </div>
+      <div class="hero-meta page-width"><span>ONE CORE. EVERY ENVIRONMENT.</span><div><span>C++23</span><span>C</span><span>JavaScript</span><span>TypeScript</span><span>Python</span><span>C#</span><span>WebAssembly</span><span class="language-planned">Rust <small>PLANNED</small></span></div></div>
     </header>
 
-    <!-- OPTION 3: Featured independent section -->
-    <!-- Uncomment this block to activate option 3 -->
-
-    <section class="relative py-16 bg-gradient-to-br from-purple-50 via-white to-pink-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors duration-300 overflow-hidden">
+    <!-- Wallet product announcement retained but hidden; product is not planned. -->
+    <section id="wallet-announcement" hidden class="relative py-16 bg-gradient-to-br from-purple-50 via-white to-pink-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors duration-300 overflow-hidden">
       <!-- Decorative elements -->
       <div class="absolute top-0 left-0 w-72 h-72 bg-purple-200 dark:bg-purple-900/30 rounded-full blur-3xl opacity-50 -translate-x-1/2 -translate-y-1/2"></div>
       <div class="absolute bottom-0 right-0 w-72 h-72 bg-pink-200 dark:bg-pink-900/30 rounded-full blur-3xl opacity-50 translate-x-1/2 translate-y-1/2"></div>
@@ -556,10 +338,109 @@
         </div>
       </div>
     </section>
-   
 
-    <!-- Main Content Wrapper -->
-    <div class="bg-white dark:bg-gray-900">
+    <main id="main-content" class="bg-white dark:bg-gray-900">
+
+    <section id="wasm-demo" class="relative py-12 bg-white dark:bg-gray-900 transition-colors duration-300 overflow-hidden">
+      <!-- Decorative background -->
+      <div class="absolute inset-0 opacity-10">
+        <div class="absolute top-0 left-1/3 w-96 h-96 bg-purple-500 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-0 right-1/3 w-96 h-96 bg-pink-500 rounded-full blur-3xl"></div>
+      </div>
+
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Header -->
+        <div class="text-center mb-16">
+          <div class="inline-flex items-center gap-2 bg-purple-500/10 dark:bg-purple-500/30 px-4 py-2 rounded-full mb-6 animate-fade-in">
+            <svg class="w-5 h-5 text-purple-600 dark:text-purple-400" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd" />
+            </svg>
+            <span class="text-sm font-bold text-purple-600 dark:text-purple-400 uppercase tracking-wider">Live Demo</span>
+          </div>
+          <h2 class="text-4xl lg:text-5xl font-black text-gray-900 dark:text-white mb-4">
+            <span class="bg-gradient-to-r from-purple-600 via-pink-600 to-red-600 dark:from-purple-400 dark:via-pink-400 dark:to-red-400 bg-clip-text text-transparent">Less explaining. More running.</span>
+          </h2>
+          <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+            Real Knuth code, running in your browser. Pick an example, edit it, and see what happens.
+          </p>
+        </div>
+
+        <!-- Example Selector -->
+        <div class="mb-8">
+          <h3 class="text-sm font-bold text-gray-700 dark:text-gray-300 mb-3">Choose an example:</h3>
+          <div class="flex flex-wrap gap-2">
+            <button onclick="loadExample('address-converter', this)" class="example-btn active px-4 py-2 bg-purple-600 text-white rounded-lg font-semibold text-sm hover:bg-purple-700 transition-all shadow-md">
+              Address Converter
+            </button>
+            <button onclick="loadExample('address-validator', this)" class="example-btn px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg font-semibold text-sm hover:bg-gray-300 dark:hover:bg-gray-600 transition-all">
+              Address Validator
+            </button>
+            <button onclick="loadExample('wallet-generator', this)" class="example-btn px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg font-semibold text-sm hover:bg-gray-300 dark:hover:bg-gray-600 transition-all">
+              Wallet Generator
+            </button>
+            <button onclick="loadExample('sha256-hash', this)" class="example-btn px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg font-semibold text-sm hover:bg-gray-300 dark:hover:bg-gray-600 transition-all">
+              SHA256 Hash
+            </button>
+            <button onclick="loadExample('libconfig', this)" class="example-btn px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg font-semibold text-sm hover:bg-gray-300 dark:hover:bg-gray-600 transition-all">
+              Library Config
+            </button>
+          </div>
+        </div>
+
+        <!-- Demo Content -->
+        <div class="grid lg:grid-cols-2 gap-8">
+          <!-- Code Example -->
+          <div class="bg-gradient-to-br from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 rounded-2xl p-6 border-2 border-gray-200 dark:border-gray-700 shadow-xl">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="text-lg font-bold text-gray-900 dark:text-white flex items-center gap-2">
+                <svg class="w-5 h-5 text-purple-600 dark:text-purple-400" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                </svg>
+                <span id="example-title">Address Converter</span>
+              </h3>
+              <button id="run-example-btn" class="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white font-semibold rounded-lg transition-all duration-300 hover:scale-105 shadow-lg text-sm">
+                ▶ Run
+              </button>
+            </div>
+            <div id="demo-code-wrapper" class="rounded-xl overflow-hidden border-2 border-gray-700"></div>
+          </div>
+
+          <!-- Output Window -->
+          <div class="bg-gradient-to-br from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 rounded-2xl p-6 border-2 border-gray-200 dark:border-gray-700 shadow-xl">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="text-lg font-bold text-gray-900 dark:text-white flex items-center gap-2">
+                <svg class="w-5 h-5 text-purple-600 dark:text-purple-400" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M2 5a2 2 0 012-2h12a2 2 0 012 2v10a2 2 0 01-2 2H4a2 2 0 01-2-2V5zm3.293 1.293a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 01-1.414-1.414L7.586 10 5.293 7.707a1 1 0 010-1.414zM11 12a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd"/>
+                </svg>
+                Output
+              </h3>
+              <button id="clear-output-btn" class="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white font-semibold rounded-lg transition-all duration-300 hover:scale-105 shadow-lg text-sm">
+                Clear
+              </button>
+            </div>
+            <div id="demo-output" role="log" aria-live="polite" aria-label="Demo output" class="matrix-container bg-gray-900 dark:bg-black rounded-xl p-4 font-mono text-sm h-[450px] overflow-y-auto text-gray-300">
+              <div class="matrix-content">
+                <div class="text-gray-500 italic">// Output will appear here...</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Loading Indicator -->
+        <!-- Loading indicator (floating, non-modal) -->
+        <div id="wasm-loader" class="fixed bottom-8 right-8 z-50 animate-fade-in">
+          <div class="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-2xl border-2 border-purple-500/50 dark:border-purple-400/50">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 border-3 border-purple-600 border-t-transparent rounded-full animate-spin"></div>
+              <div>
+                <p class="text-gray-900 dark:text-white font-semibold text-sm">Loading WASM...</p>
+                <p class="text-xs text-gray-600 dark:text-gray-400">Please wait</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- Info Section -->
     <section id="info" class="relative py-12 bg-gradient-to-br from-white via-gray-50/50 to-purple-50/30 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800 transition-colors duration-300">
@@ -567,10 +448,10 @@
         <!-- Header -->
         <div class="text-center mb-16 animate-fade-in">
           <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-            <span class="bg-gradient-to-r from-primary via-purple-600 to-pink-600 dark:from-purple-400 dark:via-pink-400 dark:to-purple-400 bg-clip-text text-transparent"># Built for Bitcoin Cash Professionals</span>
+            <span class="bg-gradient-to-r from-primary via-purple-600 to-pink-600 dark:from-purple-400 dark:via-pink-400 dark:to-purple-400 bg-clip-text text-transparent">Built for the people building Bitcoin Cash.</span>
           </h2>
           <p class="text-xl lg:text-2xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto">
-            High performance Bitcoin Cash (BCH) full node implementation focused on extra capacity and throughput. More than a client — it's a complete development platform with libraries in 7 languages and an optimized executable node.
+            From mining infrastructure to your first application, Knuth gives you direct access to Bitcoin Cash. Choose the tools that fit your work.
           </p>
         </div>
 
@@ -694,7 +575,7 @@
         <!-- Header -->
         <div class="text-center mb-16">
           <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-            <span class="bg-gradient-to-r from-primary via-purple-600 to-pink-600 dark:from-purple-400 dark:via-pink-400 dark:to-purple-400 bg-clip-text text-transparent"># Layered Architecture</span>
+            <span class="bg-gradient-to-r from-primary via-purple-600 to-pink-600 dark:from-purple-400 dark:via-pink-400 dark:to-purple-400 bg-clip-text text-transparent">One core. Many ways to build.</span>
           </h2>
           <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
             All language bindings share the same high-performance C++23 core. Universal Bitcoin Cash API across all platforms.
@@ -710,7 +591,7 @@
                 High-Level Language Bindings
               </span>
             </div>
-            <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
               <a href="https://github.com/k-nuth/py-api" target="_blank" class="group bg-gradient-to-br from-purple-100 to-pink-50 dark:from-purple-900/30 dark:to-pink-900/30 rounded-xl p-6 border-2 border-purple-200 dark:border-purple-700 hover:scale-105 transition-transform duration-300 hover:shadow-lg">
                 <img src="./images/libraries/python.svg" alt="Python" class="w-12 h-12 mx-auto mb-2" />
                 <p class="text-sm font-bold text-gray-700 dark:text-gray-300 text-center">Python</p>
@@ -734,7 +615,13 @@
                 <img src="./images/libraries/wasm.svg" alt="WebAssembly" class="w-12 h-12 mx-auto mb-2" />
                 <p class="text-sm font-bold text-gray-700 dark:text-gray-300 text-center">WASM</p>
               </a>
+              <div class="planned-api-card p-6 text-center" aria-label="Rust API, planned">
+                <img src="./images/libraries/rust.svg" alt="" class="w-12 h-12 mx-auto mb-2" />
+                <p class="text-sm font-bold">Rust</p>
+                <span class="planned-api-badge">Planned</span>
+              </div>
             </div>
+            <p class="api-roadmap">Next up: <strong>Rust API.</strong> We plan to implement a Rust binding for the Knuth C++ core.</p>
           </div>
 
           <!-- Arrows Down -->
@@ -844,7 +731,7 @@
             <span class="text-sm font-bold text-primary dark:text-purple-400 uppercase tracking-wider">Quick Start Guide</span>
           </div>
           <h2 class="text-4xl lg:text-5xl font-black text-gray-900 dark:text-white mb-4">
-            <span class="bg-gradient-to-r from-primary via-purple-600 to-pink-600 dark:from-purple-400 dark:via-pink-400 dark:to-purple-400 bg-clip-text text-transparent"># Getting Started</span>
+            <span class="bg-gradient-to-r from-primary via-purple-600 to-pink-600 dark:from-purple-400 dark:via-pink-400 dark:to-purple-400 bg-clip-text text-transparent">Your next project starts here.</span>
           </h2>
           <p class="text-xl text-gray-600 dark:text-gray-300">
             Install and use Knuth in your preferred environment.
@@ -951,7 +838,7 @@
                     <div><span class="text-green-400">$ </span><span class="text-cyan-300">conan remote add</span> <span class="text-orange-300">kth</span> <span class="text-blue-300">https://packages.kth.cash/api</span></div>
                     <div><span class="text-green-400">$ </span><span class="text-cyan-300">conan config install</span> <span class="text-blue-300">https://github.com/k-nuth/ci-utils/raw/master/conan/config2023.zip</span></div>
                                         </div>
-                                        <button class="copy-btn absolute top-2 right-2 p-1.5 bg-gray-800 hover:bg-primary rounded transition-all opacity-0 group-hover:opacity-100" data-clipboard-text="pip3 install kthbuild conan --user&#10;conan profile detect --force&#10;conan remote add kth https://packages.kth.cash/api&#10;conan config install https://github.com/k-nuth/ci-utils/raw/master/conan/config2023.zip">
+                                        <button aria-label="Copy code" class="copy-btn absolute top-2 right-2 p-1.5 bg-gray-800 hover:bg-primary rounded transition-all opacity-0 group-hover:opacity-100" data-clipboard-text="pip3 install kthbuild conan --user&#10;conan profile detect --force&#10;conan remote add kth https://packages.kth.cash/api&#10;conan config install https://github.com/k-nuth/ci-utils/raw/master/conan/config2023.zip">
                                           <svg class="w-4 h-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
                                           </svg>
@@ -966,7 +853,7 @@
                   <div class="relative group mb-3">
                                         <div class="bg-gray-900 rounded-lg p-3 font-mono text-base overflow-x-auto text-gray-300">
                     <div><span class="text-purple-300">[requires]</span></div>
-                    <div>kth/<span id="kth-version-c-conanfile">KNUTH_PKG_VERSION</span></div>
+                    <div>kth/<span id="kth-version-cpp-conanfile">KNUTH_PKG_VERSION</span></div>
                     <div></div>
                     <div><span class="text-purple-300">[generators]</span></div>
                     <div>CMakeDeps</div>
@@ -975,7 +862,7 @@
                     <div><span class="text-purple-300">[layout]</span></div>
                     <div>cmake_layout</div>
                                         </div>
-                                        <button class="copy-btn absolute top-2 right-2 p-1.5 bg-gray-800 hover:bg-primary rounded transition-all opacity-0 group-hover:opacity-100" data-clipboard-text="[requires]&#10;kth/KNUTH_PKG_VERSION&#10;&#10;[generators]&#10;CMakeDeps&#10;CMakeToolchain&#10;&#10;[layout]&#10;cmake_layout">
+                                        <button aria-label="Copy code" class="copy-btn absolute top-2 right-2 p-1.5 bg-gray-800 hover:bg-primary rounded transition-all opacity-0 group-hover:opacity-100" data-clipboard-text="[requires]&#10;kth/KNUTH_PKG_VERSION&#10;&#10;[generators]&#10;CMakeDeps&#10;CMakeToolchain&#10;&#10;[layout]&#10;cmake_layout">
                                           <svg class="w-4 h-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
                                           </svg>
@@ -995,7 +882,7 @@
                     <div><span class="text-purple-300">add_executable</span>(<span class="text-yellow-300">${PROJECT_NAME}</span> pizza.cpp)</div>
                     <div><span class="text-purple-300">target_link_libraries</span>(<span class="text-yellow-300">${PROJECT_NAME}</span> <span class="text-orange-300">PRIVATE</span> kth::node)</div>
                                         </div>
-                                        <button class="copy-btn absolute top-2 right-2 p-1.5 bg-gray-800 hover:bg-primary rounded transition-all opacity-0 group-hover:opacity-100" data-clipboard-text="cmake_minimum_required(VERSION 3.23)&#10;project(pizza CXX)&#10; &#10;set(CMAKE_CXX_STANDARD 23)&#10;set(CMAKE_CXX_STANDARD_REQUIRED ON)&#10; &#10;find_package(kth REQUIRED)&#10; &#10;add_executable(${PROJECT_NAME} pizza.cpp)&#10;target_link_libraries(${PROJECT_NAME} PRIVATE kth::node)">
+                                        <button aria-label="Copy code" class="copy-btn absolute top-2 right-2 p-1.5 bg-gray-800 hover:bg-primary rounded transition-all opacity-0 group-hover:opacity-100" data-clipboard-text="cmake_minimum_required(VERSION 3.23)&#10;project(pizza CXX)&#10; &#10;set(CMAKE_CXX_STANDARD 23)&#10;set(CMAKE_CXX_STANDARD_REQUIRED ON)&#10; &#10;find_package(kth REQUIRED)&#10; &#10;add_executable(${PROJECT_NAME} pizza.cpp)&#10;target_link_libraries(${PROJECT_NAME} PRIVATE kth::node)">
                                           <svg class="w-4 h-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
                                           </svg>
@@ -1097,7 +984,7 @@
                     <div>&nbsp;&nbsp;<span class="text-purple-300">return</span> <span class="text-cyan-300">0</span>;</div>
                     <div>}</div>
                                         </div>
-                                        <button class="copy-btn absolute top-2 right-2 p-1.5 bg-gray-800 hover:bg-primary rounded transition-all opacity-0 group-hover:opacity-100" data-clipboard-text="#include <atomic>&#10;#include <csignal>&#10;#include <print>&#10;#include <thread>&#10;#include <kth/node.hpp>&#10;#include <kth/node/executor/executor.hpp>&#10; &#10;using namespace kth;&#10; &#10;constexpr uint64_t pizza_block = 57043; // Bitcoin Pizza Day (May 22, 2010)&#10; &#10;std::atomic<bool> keep_running{true};&#10;std::atomic<bool> block_received{false};&#10; &#10;void handle_signal(int sig) {&#10;  keep_running = false;&#10;  std::println(&quot;\nInterrupted by signal&quot;);&#10;}&#10; &#10;int main() {&#10;  std::signal(SIGINT, handle_signal);&#10;  std::signal(SIGTERM, handle_signal);&#10; &#10;  node::configuration config{domain::config::network::mainnet};&#10;  node::executor exec{config, false};&#10; &#10;  std::println(&quot;Initializing and starting node...&quot;);&#10; &#10;  bool started = false;&#10;  exec.init_run(&quot;&quot;, node::start_modules::all, [&amp;](code const&amp; ec) {&#10;    if (ec) {&#10;      std::println(&quot;Error starting node: {}&quot;, ec.message());&#10;      return;&#10;    }&#10;    started = true;&#10;    std::println(&quot;✓ Node running&quot;);&#10;  });&#10; &#10;  while (!started &amp;&amp; keep_running) {&#10;    std::this_thread::sleep_for(std::chrono::milliseconds(100));&#10;  }&#10; &#10;  if (!started) return 1;&#10; &#10;  auto&amp; chain = exec.node().chain();&#10; &#10;  // Wait for sync to pizza_block&#10;  size_t current_height = 0;&#10;  while (keep_running &amp;&amp; current_height < pizza_block) {&#10;    chain.fetch_last_height([&amp;](code const&amp; ec, size_t h) {&#10;      if (!ec) current_height = h;&#10;    });&#10;    std::print(&quot;\r🔄 Syncing... {}/{}&quot;, current_height, pizza_block);&#10;    std::this_thread::sleep_for(std::chrono::seconds(1));&#10;  }&#10; &#10;  if (!keep_running) {&#10;    exec.close();&#10;    return 0;&#10;  }&#10; &#10;  std::println(&quot;\n✓ Synced to block {}&quot;, pizza_block);&#10;  std::println(&quot;Fetching block {} (Bitcoin Pizza Day)...&quot;, pizza_block);&#10; &#10;  chain.fetch_block(pizza_block, [&amp;](code const&amp; ec, block_const_ptr block, size_t h) {&#10;    if (ec) {&#10;      std::println(&quot;Error fetching block: {}&quot;, ec.message());&#10;      block_received = true;&#10;      return;&#10;    }&#10; &#10;    auto hash = block->hash();&#10;    std::print(&quot;Block {}: &quot;, h);&#10;    for (int i = hash.size() - 1; i >= 0; --i) {&#10;      std::print(&quot;{:02x}&quot;, (int)hash[i]);&#10;    }&#10;    std::println(&quot;&quot;);&#10;    block_received = true;&#10;  });&#10; &#10;  // Wait for block to be received or interrupted&#10;  while (keep_running &amp;&amp; !block_received) {&#10;    std::this_thread::sleep_for(std::chrono::seconds(1));&#10;  }&#10; &#10;  exec.close();&#10;  return 0;&#10;}">
+                                        <button aria-label="Copy code" class="copy-btn absolute top-2 right-2 p-1.5 bg-gray-800 hover:bg-primary rounded transition-all opacity-0 group-hover:opacity-100" data-clipboard-text="#include <atomic>&#10;#include <csignal>&#10;#include <print>&#10;#include <thread>&#10;#include <kth/node.hpp>&#10;#include <kth/node/executor/executor.hpp>&#10; &#10;using namespace kth;&#10; &#10;constexpr uint64_t pizza_block = 57043; // Bitcoin Pizza Day (May 22, 2010)&#10; &#10;std::atomic<bool> keep_running{true};&#10;std::atomic<bool> block_received{false};&#10; &#10;void handle_signal(int sig) {&#10;  keep_running = false;&#10;  std::println(&quot;\nInterrupted by signal&quot;);&#10;}&#10; &#10;int main() {&#10;  std::signal(SIGINT, handle_signal);&#10;  std::signal(SIGTERM, handle_signal);&#10; &#10;  node::configuration config{domain::config::network::mainnet};&#10;  node::executor exec{config, false};&#10; &#10;  std::println(&quot;Initializing and starting node...&quot;);&#10; &#10;  bool started = false;&#10;  exec.init_run(&quot;&quot;, node::start_modules::all, [&amp;](code const&amp; ec) {&#10;    if (ec) {&#10;      std::println(&quot;Error starting node: {}&quot;, ec.message());&#10;      return;&#10;    }&#10;    started = true;&#10;    std::println(&quot;✓ Node running&quot;);&#10;  });&#10; &#10;  while (!started &amp;&amp; keep_running) {&#10;    std::this_thread::sleep_for(std::chrono::milliseconds(100));&#10;  }&#10; &#10;  if (!started) return 1;&#10; &#10;  auto&amp; chain = exec.node().chain();&#10; &#10;  // Wait for sync to pizza_block&#10;  size_t current_height = 0;&#10;  while (keep_running &amp;&amp; current_height < pizza_block) {&#10;    chain.fetch_last_height([&amp;](code const&amp; ec, size_t h) {&#10;      if (!ec) current_height = h;&#10;    });&#10;    std::print(&quot;\r🔄 Syncing... {}/{}&quot;, current_height, pizza_block);&#10;    std::this_thread::sleep_for(std::chrono::seconds(1));&#10;  }&#10; &#10;  if (!keep_running) {&#10;    exec.close();&#10;    return 0;&#10;  }&#10; &#10;  std::println(&quot;\n✓ Synced to block {}&quot;, pizza_block);&#10;  std::println(&quot;Fetching block {} (Bitcoin Pizza Day)...&quot;, pizza_block);&#10; &#10;  chain.fetch_block(pizza_block, [&amp;](code const&amp; ec, block_const_ptr block, size_t h) {&#10;    if (ec) {&#10;      std::println(&quot;Error fetching block: {}&quot;, ec.message());&#10;      block_received = true;&#10;      return;&#10;    }&#10; &#10;    auto hash = block->hash();&#10;    std::print(&quot;Block {}: &quot;, h);&#10;    for (int i = hash.size() - 1; i >= 0; --i) {&#10;      std::print(&quot;{:02x}&quot;, (int)hash[i]);&#10;    }&#10;    std::println(&quot;&quot;);&#10;    block_received = true;&#10;  });&#10; &#10;  // Wait for block to be received or interrupted&#10;  while (keep_running &amp;&amp; !block_received) {&#10;    std::this_thread::sleep_for(std::chrono::seconds(1));&#10;  }&#10; &#10;  exec.close();&#10;  return 0;&#10;}">
                                           <svg class="w-4 h-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
                                           </svg>
@@ -1114,7 +1001,7 @@
                     <div><span class="text-green-400">$ </span><span class="text-cyan-300">cmake</span> <span class="text-purple-300">--preset conan-release</span></div>
                     <div><span class="text-green-400">$ </span><span class="text-cyan-300">cmake --build</span> <span class="text-purple-300">--preset conan-release</span></div>
                                         </div>
-                                        <button class="copy-btn absolute top-2 right-2 p-1.5 bg-gray-800 hover:bg-primary rounded transition-all opacity-0 group-hover:opacity-100" data-clipboard-text="conan install . --build=missing -s compiler.cppstd=23&#10;cmake --preset conan-release&#10;cmake --build --preset conan-release">
+                                        <button aria-label="Copy code" class="copy-btn absolute top-2 right-2 p-1.5 bg-gray-800 hover:bg-primary rounded transition-all opacity-0 group-hover:opacity-100" data-clipboard-text="conan install . --build=missing -s compiler.cppstd=23&#10;cmake --preset conan-release&#10;cmake --build --preset conan-release">
                                           <svg class="w-4 h-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
                                           </svg>
@@ -1129,7 +1016,7 @@
                                         <div class="bg-gray-900 rounded-lg p-3 font-mono text-base overflow-x-auto text-gray-300">
                     <div><span class="text-green-400">$ </span><span class="text-cyan-300">./build/Release/pizza</span></div>
                                         </div>
-                                        <button class="copy-btn absolute top-2 right-2 p-1.5 bg-gray-800 hover:bg-primary rounded transition-all opacity-0 group-hover:opacity-100" data-clipboard-text="./build/Release/pizza">
+                                        <button aria-label="Copy code" class="copy-btn absolute top-2 right-2 p-1.5 bg-gray-800 hover:bg-primary rounded transition-all opacity-0 group-hover:opacity-100" data-clipboard-text="./build/Release/pizza">
                                           <svg class="w-4 h-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
                                           </svg>
@@ -1164,7 +1051,7 @@
                     <div><span class="text-green-400">$ </span><span class="text-cyan-300">conan remote add</span> <span class="text-orange-300">kth</span> <span class="text-blue-300">https://packages.kth.cash/api</span></div>
                     <div><span class="text-green-400">$ </span><span class="text-cyan-300">conan config install</span> <span class="text-blue-300">https://github.com/k-nuth/ci-utils/raw/master/conan/config2023.zip</span></div>
                                         </div>
-                                        <button class="copy-btn absolute top-2 right-2 p-1.5 bg-gray-800 hover:bg-primary rounded transition-all opacity-0 group-hover:opacity-100" data-clipboard-text="pip3 install kthbuild conan --user&#10;conan profile detect --force&#10;conan remote add kth https://packages.kth.cash/api&#10;conan config install https://github.com/k-nuth/ci-utils/raw/master/conan/config2023.zip">
+                                        <button aria-label="Copy code" class="copy-btn absolute top-2 right-2 p-1.5 bg-gray-800 hover:bg-primary rounded transition-all opacity-0 group-hover:opacity-100" data-clipboard-text="pip3 install kthbuild conan --user&#10;conan profile detect --force&#10;conan remote add kth https://packages.kth.cash/api&#10;conan config install https://github.com/k-nuth/ci-utils/raw/master/conan/config2023.zip">
                                           <svg class="w-4 h-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
                                           </svg>
@@ -1188,7 +1075,7 @@
                     <div><span class="text-purple-300">[layout]</span></div>
                     <div>cmake_layout</div>
                                         </div>
-                                        <button class="copy-btn absolute top-2 right-2 p-1.5 bg-gray-800 hover:bg-primary rounded transition-all opacity-0 group-hover:opacity-100" data-clipboard-text="[requires]&#10;kth/KNUTH_PKG_VERSION&#10;&#10;[generators]&#10;CMakeDeps&#10;CMakeToolchain&#10;&#10;[layout]&#10;cmake_layout">
+                                        <button aria-label="Copy code" class="copy-btn absolute top-2 right-2 p-1.5 bg-gray-800 hover:bg-primary rounded transition-all opacity-0 group-hover:opacity-100" data-clipboard-text="[requires]&#10;kth/KNUTH_PKG_VERSION&#10;&#10;[generators]&#10;CMakeDeps&#10;CMakeToolchain&#10;&#10;[layout]&#10;cmake_layout">
                                           <svg class="w-4 h-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
                                           </svg>
@@ -1209,7 +1096,7 @@
                     <div><span class="text-purple-300">set_target_properties</span>(<span class="text-yellow-300">${PROJECT_NAME}</span> <span class="text-orange-300">PROPERTIES LINKER_LANGUAGE</span> <span class="text-cyan-300">CXX</span>)</div>
                     <div><span class="text-purple-300">target_link_libraries</span>(<span class="text-yellow-300">${PROJECT_NAME}</span> <span class="text-orange-300">PRIVATE</span> kth::c-api)</div>
                                         </div>
-                                        <button class="copy-btn absolute top-2 right-2 p-1.5 bg-gray-800 hover:bg-primary rounded transition-all opacity-0 group-hover:opacity-100" data-clipboard-text="cmake_minimum_required(VERSION 3.23)&#10;project(pizza C CXX)&#10; &#10;set(CMAKE_C_STANDARD 11)&#10;set(CMAKE_C_STANDARD_REQUIRED ON)&#10; &#10;find_package(kth REQUIRED)&#10; &#10;add_executable(${PROJECT_NAME} pizza.c)&#10;set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)&#10;target_link_libraries(${PROJECT_NAME} PRIVATE kth::c-api)">
+                                        <button aria-label="Copy code" class="copy-btn absolute top-2 right-2 p-1.5 bg-gray-800 hover:bg-primary rounded transition-all opacity-0 group-hover:opacity-100" data-clipboard-text="cmake_minimum_required(VERSION 3.23)&#10;project(pizza C CXX)&#10; &#10;set(CMAKE_C_STANDARD 11)&#10;set(CMAKE_C_STANDARD_REQUIRED ON)&#10; &#10;find_package(kth REQUIRED)&#10; &#10;add_executable(${PROJECT_NAME} pizza.c)&#10;set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)&#10;target_link_libraries(${PROJECT_NAME} PRIVATE kth::c-api)">
                                           <svg class="w-4 h-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
                                           </svg>
@@ -1294,7 +1181,7 @@
                     <div>&nbsp;&nbsp;<span class="text-purple-300">return</span> <span class="text-cyan-300">0</span>;</div>
                     <div>}</div>
                                         </div>
-                                        <button class="copy-btn absolute top-2 right-2 p-1.5 bg-gray-800 hover:bg-primary rounded transition-all opacity-0 group-hover:opacity-100" data-clipboard-text="#include <signal.h>&#10;#include <stdatomic.h>&#10;#include <stdio.h>&#10;#include <unistd.h>&#10;#include <kth/capi.h>&#10; &#10;#define PIZZA_BLOCK 57043 // Bitcoin Pizza Day (May 22, 2010)&#10; &#10;atomic_int keep_running = 1;&#10;atomic_int block_received = 0;&#10; &#10;void handle_signal(int sig) {&#10;  keep_running = 0;&#10;  printf(&quot;\nInterrupted by signal\n&quot;);&#10;}&#10; &#10;void print_block(kth_chain_t c, void* ctx, kth_error_code_t err, kth_block_t block, kth_size_t h) {&#10;  if (err != kth_ec_success) {&#10;    printf(&quot;Error fetching block: %d\n&quot;, err);&#10;    block_received = 1;&#10;    return;&#10;  }&#10;  kth_hash_t hash = kth_chain_block_hash(block);&#10;  printf(&quot;Block %llu: &quot;, (unsigned long long)h);&#10;  for (int i = 31; i >= 0; --i) printf(&quot;%02x&quot;, hash.hash[i]);&#10;  printf(&quot;\n&quot;);&#10;  kth_chain_block_destruct(block);&#10;  block_received = 1;&#10;}&#10; &#10;int main() {&#10;  signal(SIGINT, handle_signal);&#10;  signal(SIGTERM, handle_signal);&#10; &#10;  kth_settings cfg = kth_config_settings_default(kth_network_mainnet);&#10;  kth_node_t node = kth_node_construct(&amp;cfg, 0);&#10; &#10;  printf(&quot;Starting node...\n&quot;);&#10;  fflush(stdout);&#10;  if (!node || kth_node_init_run_sync(node, kth_start_modules_all) != kth_ec_success) return 1;&#10;  printf(&quot;✓ Node running\n&quot;);&#10; &#10;  kth_chain_t chain = kth_node_get_chain(node);&#10;  uint64_t h = 0;&#10;  kth_chain_sync_last_height(chain, &amp;h);&#10; &#10;  // Wait for sync to PIZZA_BLOCK&#10;  while (keep_running &amp;&amp; h < PIZZA_BLOCK) {&#10;    printf(&quot;\r🔄 Syncing... %llu/%llu&quot;, h, (uint64_t)PIZZA_BLOCK);&#10;    fflush(stdout);&#10;    sleep(1);&#10;    kth_chain_sync_last_height(chain, &amp;h);&#10;  }&#10; &#10;  if (!keep_running) {&#10;    kth_node_destruct(node);&#10;    return 0;&#10;  }&#10; &#10;  printf(&quot;\n✓ Synced to block %llu\n&quot;, h);&#10;  printf(&quot;Fetching block %llu (Bitcoin Pizza Day)...\n&quot;, (uint64_t)PIZZA_BLOCK);&#10;  kth_chain_async_block_by_height(chain, NULL, PIZZA_BLOCK, print_block);&#10; &#10;  // Wait for block to be received or interrupted&#10;  while (keep_running &amp;&amp; !block_received) {&#10;    sleep(1);&#10;  }&#10; &#10;  kth_node_destruct(node);&#10;  return 0;&#10;}">
+                                        <button aria-label="Copy code" class="copy-btn absolute top-2 right-2 p-1.5 bg-gray-800 hover:bg-primary rounded transition-all opacity-0 group-hover:opacity-100" data-clipboard-text="#include <signal.h>&#10;#include <stdatomic.h>&#10;#include <stdio.h>&#10;#include <unistd.h>&#10;#include <kth/capi.h>&#10; &#10;#define PIZZA_BLOCK 57043 // Bitcoin Pizza Day (May 22, 2010)&#10; &#10;atomic_int keep_running = 1;&#10;atomic_int block_received = 0;&#10; &#10;void handle_signal(int sig) {&#10;  keep_running = 0;&#10;  printf(&quot;\nInterrupted by signal\n&quot;);&#10;}&#10; &#10;void print_block(kth_chain_t c, void* ctx, kth_error_code_t err, kth_block_t block, kth_size_t h) {&#10;  if (err != kth_ec_success) {&#10;    printf(&quot;Error fetching block: %d\n&quot;, err);&#10;    block_received = 1;&#10;    return;&#10;  }&#10;  kth_hash_t hash = kth_chain_block_hash(block);&#10;  printf(&quot;Block %llu: &quot;, (unsigned long long)h);&#10;  for (int i = 31; i >= 0; --i) printf(&quot;%02x&quot;, hash.hash[i]);&#10;  printf(&quot;\n&quot;);&#10;  kth_chain_block_destruct(block);&#10;  block_received = 1;&#10;}&#10; &#10;int main() {&#10;  signal(SIGINT, handle_signal);&#10;  signal(SIGTERM, handle_signal);&#10; &#10;  kth_settings cfg = kth_config_settings_default(kth_network_mainnet);&#10;  kth_node_t node = kth_node_construct(&amp;cfg, 0);&#10; &#10;  printf(&quot;Starting node...\n&quot;);&#10;  fflush(stdout);&#10;  if (!node || kth_node_init_run_sync(node, kth_start_modules_all) != kth_ec_success) return 1;&#10;  printf(&quot;✓ Node running\n&quot;);&#10; &#10;  kth_chain_t chain = kth_node_get_chain(node);&#10;  uint64_t h = 0;&#10;  kth_chain_sync_last_height(chain, &amp;h);&#10; &#10;  // Wait for sync to PIZZA_BLOCK&#10;  while (keep_running &amp;&amp; h < PIZZA_BLOCK) {&#10;    printf(&quot;\r🔄 Syncing... %llu/%llu&quot;, h, (uint64_t)PIZZA_BLOCK);&#10;    fflush(stdout);&#10;    sleep(1);&#10;    kth_chain_sync_last_height(chain, &amp;h);&#10;  }&#10; &#10;  if (!keep_running) {&#10;    kth_node_destruct(node);&#10;    return 0;&#10;  }&#10; &#10;  printf(&quot;\n✓ Synced to block %llu\n&quot;, h);&#10;  printf(&quot;Fetching block %llu (Bitcoin Pizza Day)...\n&quot;, (uint64_t)PIZZA_BLOCK);&#10;  kth_chain_async_block_by_height(chain, NULL, PIZZA_BLOCK, print_block);&#10; &#10;  // Wait for block to be received or interrupted&#10;  while (keep_running &amp;&amp; !block_received) {&#10;    sleep(1);&#10;  }&#10; &#10;  kth_node_destruct(node);&#10;  return 0;&#10;}">
                                           <svg class="w-4 h-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
                                           </svg>
@@ -1311,7 +1198,7 @@
                     <div><span class="text-green-400">$ </span><span class="text-cyan-300">cmake</span> <span class="text-purple-300">--preset conan-release</span></div>
                     <div><span class="text-green-400">$ </span><span class="text-cyan-300">cmake --build</span> <span class="text-purple-300">--preset conan-release</span></div>
                                         </div>
-                                        <button class="copy-btn absolute top-2 right-2 p-1.5 bg-gray-800 hover:bg-primary rounded transition-all opacity-0 group-hover:opacity-100" data-clipboard-text="conan install . --build=missing -s compiler.cppstd=23&#10;cmake --preset conan-release&#10;cmake --build --preset conan-release">
+                                        <button aria-label="Copy code" class="copy-btn absolute top-2 right-2 p-1.5 bg-gray-800 hover:bg-primary rounded transition-all opacity-0 group-hover:opacity-100" data-clipboard-text="conan install . --build=missing -s compiler.cppstd=23&#10;cmake --preset conan-release&#10;cmake --build --preset conan-release">
                                           <svg class="w-4 h-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
                                           </svg>
@@ -1326,7 +1213,7 @@
                                         <div class="bg-gray-900 rounded-lg p-3 font-mono text-base overflow-x-auto text-gray-300">
                     <div><span class="text-green-400">$ </span><span class="text-cyan-300">./build/Release/pizza</span></div>
                                         </div>
-                                        <button class="copy-btn absolute top-2 right-2 p-1.5 bg-gray-800 hover:bg-primary rounded transition-all opacity-0 group-hover:opacity-100" data-clipboard-text="./build/Release/pizza">
+                                        <button aria-label="Copy code" class="copy-btn absolute top-2 right-2 p-1.5 bg-gray-800 hover:bg-primary rounded transition-all opacity-0 group-hover:opacity-100" data-clipboard-text="./build/Release/pizza">
                                           <svg class="w-4 h-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
                                           </svg>
@@ -1396,17 +1283,19 @@
                     Install and configure the Knuth build helper
                   </h5>
 
-                                      <div class="bg-gray-900 rounded-lg p-3 font-mono text-base overflow-x-auto text-gray-300">
+                                      <div class="relative group">
+                                        <div class="bg-gray-900 rounded-lg p-3 font-mono text-base overflow-x-auto text-gray-300">
                     <div><span class="text-green-400">$ </span><span class="text-cyan-300">pip3 install kthbuild conan --user</span></div>
                     <div><span class="text-green-400">$ </span><span class="text-cyan-300">conan profile detect --force</span></div>
                     <div><span class="text-green-400">$ </span><span class="text-cyan-300">conan remote add kth https://packages.kth.cash/api</span></div>
                     <div><span class="text-green-400">$ </span><span class="text-cyan-300">conan config install https://github.com/k-nuth/ci-utils/raw/master/conan/config2023.zip</span></div>
                                         </div>
-                                        <button class="copy-btn absolute top-2 right-2 p-1.5 bg-gray-800 hover:bg-primary rounded transition-all opacity-0 group-hover:opacity-100" data-clipboard-text="pip3 install kthbuild conan --user&#10;conan profile detect --force&#10;conan remote add kth https://packages.kth.cash/api&#10;conan config install https://github.com/k-nuth/ci-utils/raw/master/conan/config2023.zip">
+                                        <button aria-label="Copy code" class="copy-btn absolute top-2 right-2 p-1.5 bg-gray-800 hover:bg-primary rounded transition-all opacity-0 group-hover:opacity-100" data-clipboard-text="pip3 install kthbuild conan --user&#10;conan profile detect --force&#10;conan remote add kth https://packages.kth.cash/api&#10;conan config install https://github.com/k-nuth/ci-utils/raw/master/conan/config2023.zip">
                                           <svg class="w-4 h-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
                                           </svg>
                                         </button>
+                  </div>
                 </div>
 
                 <!-- Step 2: Install -->
@@ -1416,14 +1305,16 @@
                     Install the node executable
                   </h5>
 
-                                      <div class="bg-gray-900 rounded-lg p-3 font-mono text-base overflow-x-auto text-gray-300">
+                                      <div class="relative group">
+                                        <div class="bg-gray-900 rounded-lg p-3 font-mono text-base overflow-x-auto text-gray-300">
                     <div><span class="text-green-400">$ </span><span class="text-cyan-300">conan install --requires=kth/KNUTH_PKG_VERSION --build=missing --update --deployer=direct_deploy -s compiler.cppstd=23</span></div>
                                         </div>
-                                        <button class="copy-btn absolute top-2 right-2 p-1.5 bg-gray-800 hover:bg-primary rounded transition-all opacity-0 group-hover:opacity-100" data-clipboard-text="conan install --requires=kth/KNUTH_PKG_VERSION --build=missing --update --deployer=direct_deploy -s compiler.cppstd=23">
+                                        <button aria-label="Copy code" class="copy-btn absolute top-2 right-2 p-1.5 bg-gray-800 hover:bg-primary rounded transition-all opacity-0 group-hover:opacity-100" data-clipboard-text="conan install --requires=kth/KNUTH_PKG_VERSION --build=missing --update --deployer=direct_deploy -s compiler.cppstd=23">
                                           <svg class="w-4 h-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
                                           </svg>
                                         </button>
+                  </div>
                 </div>
 
                 <!-- Step 3: Run -->
@@ -1433,14 +1324,16 @@
                     Run the node
                   </h5>
 
-                                      <div class="bg-gray-900 rounded-lg p-3 font-mono text-base overflow-x-auto text-gray-300">
+                                      <div class="relative group">
+                                        <div class="bg-gray-900 rounded-lg p-3 font-mono text-base overflow-x-auto text-gray-300">
                     <div><span class="text-green-400">$ </span><span class="text-cyan-300">./direct_deploy/kth/bin/kth --init_run</span></div>
                                         </div>
-                                        <button class="copy-btn absolute top-2 right-2 p-1.5 bg-gray-800 hover:bg-primary rounded transition-all opacity-0 group-hover:opacity-100" data-clipboard-text="./direct_deploy/kth/bin/kth --init_run">
+                                        <button aria-label="Copy code" class="copy-btn absolute top-2 right-2 p-1.5 bg-gray-800 hover:bg-primary rounded transition-all opacity-0 group-hover:opacity-100" data-clipboard-text="./direct_deploy/kth/bin/kth --init_run">
                                           <svg class="w-4 h-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
                                           </svg>
                                         </button>
+                  </div>
                 </div>
               </div>
           </div>
@@ -1467,16 +1360,16 @@
             <span class="text-sm font-bold text-purple-600 dark:text-purple-400 uppercase tracking-wider">Technical Excellence</span>
           </div>
           <h2 class="text-4xl lg:text-5xl font-black text-gray-900 dark:text-white mb-4">
-            <span class="bg-gradient-to-r from-purple-600 via-pink-600 to-purple-600 dark:from-purple-400 dark:via-pink-400 dark:to-purple-400 bg-clip-text text-transparent"># Features</span>
+            <span class="bg-gradient-to-r from-purple-600 via-pink-600 to-purple-600 dark:from-purple-400 dark:via-pink-400 dark:to-purple-400 bg-clip-text text-transparent">Built for serious work.</span>
           </h2>
           <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            Modular architecture, beautiful code, and industry-leading standards for building production-grade applications.
+            Modular libraries, modern tooling, and direct blockchain access. The foundations for your next Bitcoin Cash application.
           </p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <!-- Feature: Wallet Capabilities -->
-          <div class="relative bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 col-span-1 md:col-span-2 lg:col-span-3">
+          <div class="relative bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 col-span-1 md:col-span-2 lg:col-span-3" hidden id="wallet-feature">
             <div class="absolute -top-3 -right-3 bg-purple-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
               COMING SOON
             </div>
@@ -1645,107 +1538,6 @@
     </section>
 
     <!-- Interactive WASM Demo Section -->
-    <section id="wasm-demo" class="relative py-12 bg-white dark:bg-gray-900 transition-colors duration-300 overflow-hidden">
-      <!-- Decorative background -->
-      <div class="absolute inset-0 opacity-10">
-        <div class="absolute top-0 left-1/3 w-96 h-96 bg-purple-500 rounded-full blur-3xl"></div>
-        <div class="absolute bottom-0 right-1/3 w-96 h-96 bg-pink-500 rounded-full blur-3xl"></div>
-      </div>
-
-      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <!-- Header -->
-        <div class="text-center mb-16">
-          <div class="inline-flex items-center gap-2 bg-purple-500/10 dark:bg-purple-500/30 px-4 py-2 rounded-full mb-6 animate-fade-in">
-            <svg class="w-5 h-5 text-purple-600 dark:text-purple-400" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd" />
-            </svg>
-            <span class="text-sm font-bold text-purple-600 dark:text-purple-400 uppercase tracking-wider">Live Demo</span>
-          </div>
-          <h2 class="text-4xl lg:text-5xl font-black text-gray-900 dark:text-white mb-4">
-            <span class="bg-gradient-to-r from-purple-600 via-pink-600 to-red-600 dark:from-purple-400 dark:via-pink-400 dark:to-red-400 bg-clip-text text-transparent"># Try it in Your Browser</span>
-          </h2>
-          <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            Experience the power of Knuth running natively in WebAssembly. No installation required!
-          </p>
-        </div>
-
-        <!-- Example Selector -->
-        <div class="mb-8">
-          <h3 class="text-sm font-bold text-gray-700 dark:text-gray-300 mb-3">Choose an example:</h3>
-          <div class="flex flex-wrap gap-2">
-            <button onclick="loadExample('address-converter')" class="example-btn active px-4 py-2 bg-purple-600 text-white rounded-lg font-semibold text-sm hover:bg-purple-700 transition-all shadow-md">
-              📬 Address Converter
-            </button>
-            <button onclick="loadExample('address-validator')" class="example-btn px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg font-semibold text-sm hover:bg-gray-300 dark:hover:bg-gray-600 transition-all">
-              ✅ Address Validator
-            </button>
-            <button onclick="loadExample('wallet-generator')" class="example-btn px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg font-semibold text-sm hover:bg-gray-300 dark:hover:bg-gray-600 transition-all">
-              👛 Wallet Generator
-            </button>
-            <button onclick="loadExample('sha256-hash')" class="example-btn px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg font-semibold text-sm hover:bg-gray-300 dark:hover:bg-gray-600 transition-all">
-              #️⃣ SHA256 Hash
-            </button>
-            <button onclick="loadExample('libconfig')" class="example-btn px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg font-semibold text-sm hover:bg-gray-300 dark:hover:bg-gray-600 transition-all">
-              ⚙️ Library Config
-            </button>
-          </div>
-        </div>
-
-        <!-- Demo Content -->
-        <div class="grid lg:grid-cols-2 gap-8">
-          <!-- Code Example -->
-          <div class="bg-gradient-to-br from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 rounded-2xl p-6 border-2 border-gray-200 dark:border-gray-700 shadow-xl">
-            <div class="flex items-center justify-between mb-4">
-              <h3 class="text-lg font-bold text-gray-900 dark:text-white flex items-center gap-2">
-                <svg class="w-5 h-5 text-purple-600 dark:text-purple-400" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
-                </svg>
-                <span id="example-title">Address Converter</span>
-              </h3>
-              <button id="run-example-btn" class="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white font-semibold rounded-lg transition-all duration-300 hover:scale-105 shadow-lg text-sm">
-                ▶ Run
-              </button>
-            </div>
-            <div id="demo-code-wrapper" class="rounded-xl overflow-hidden border-2 border-gray-700"></div>
-          </div>
-
-          <!-- Output Window -->
-          <div class="bg-gradient-to-br from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 rounded-2xl p-6 border-2 border-gray-200 dark:border-gray-700 shadow-xl">
-            <div class="flex items-center justify-between mb-4">
-              <h3 class="text-lg font-bold text-gray-900 dark:text-white flex items-center gap-2">
-                <svg class="w-5 h-5 text-purple-600 dark:text-purple-400" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M2 5a2 2 0 012-2h12a2 2 0 012 2v10a2 2 0 01-2 2H4a2 2 0 01-2-2V5zm3.293 1.293a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 01-1.414-1.414L7.586 10 5.293 7.707a1 1 0 010-1.414zM11 12a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd"/>
-                </svg>
-                Output
-              </h3>
-              <button id="clear-output-btn" class="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white font-semibold rounded-lg transition-all duration-300 hover:scale-105 shadow-lg text-sm">
-                🗑️ Clear
-              </button>
-            </div>
-            <div id="demo-output" class="matrix-container bg-gray-900 dark:bg-black rounded-xl p-4 font-mono text-sm h-[450px] overflow-y-auto text-gray-300">
-              <canvas id="demo-output-rain" class="matrix-rain"></canvas>
-              <div class="matrix-content">
-                <div class="text-gray-500 italic">// Output will appear here...</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Loading Indicator -->
-        <!-- Loading indicator (floating, non-modal) -->
-        <div id="wasm-loader" class="fixed bottom-8 right-8 z-50 animate-fade-in">
-          <div class="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-2xl border-2 border-purple-500/50 dark:border-purple-400/50">
-            <div class="flex items-center gap-3">
-              <div class="w-8 h-8 border-3 border-purple-600 border-t-transparent rounded-full animate-spin"></div>
-              <div>
-                <p class="text-gray-900 dark:text-white font-semibold text-sm">Loading WASM...</p>
-                <p class="text-xs text-gray-600 dark:text-gray-400">Please wait</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
 
     <!-- Contact Section -->
     <section id="contact" class="relative bg-gradient-to-br from-gray-100 to-gray-50 dark:from-gray-800 dark:to-gray-900 py-12 transition-colors duration-300 overflow-hidden">
@@ -1766,7 +1558,7 @@
             <span class="text-sm font-bold text-purple-600 dark:text-purple-400 uppercase tracking-wider">Let's Connect</span>
           </div>
           <h2 class="text-4xl lg:text-5xl font-black text-gray-900 dark:text-white mb-4">
-            <span class="bg-gradient-to-r from-purple-600 via-pink-600 to-red-600 dark:from-purple-400 dark:via-pink-400 dark:to-red-400 bg-clip-text text-transparent"># Get in Touch</span>
+            <span class="bg-gradient-to-r from-purple-600 via-pink-600 to-red-600 dark:from-purple-400 dark:via-pink-400 dark:to-red-400 bg-clip-text text-transparent">Build with the community.</span>
           </h2>
           <p class="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
             Join our community, follow our updates, or reach out directly. We're always happy to connect!
@@ -1818,16 +1610,15 @@
     </section>
 
     <!-- Back to Top Button -->
-    <a id="back2Top" href="#" class="fixed bottom-12 right-6 w-12 h-12 bg-primary hover:bg-primary-dark text-white rounded-full flex items-center justify-center shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-110 opacity-0 pointer-events-none">
+    <a id="back2Top" aria-label="Back to top" href="#" class="fixed bottom-12 right-6 w-12 h-12 bg-primary hover:bg-primary-dark text-white rounded-full flex items-center justify-center shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-110 opacity-0 pointer-events-none">
       <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
       </svg>
     </a>
 
-    </div>
+    </main>
     <!-- End Main Content Wrapper -->
 
-    <!-- Footer -->
     <!-- Footer -->
     <footer class="bg-gray-900 text-white py-6 text-center">
       <small>
@@ -1932,6 +1723,9 @@
 
       // Show library content when card is clicked
       function showLibraryA(lang) {
+        document.querySelectorAll('.lib-card-a').forEach(button => {
+          button.setAttribute('aria-pressed', button.getAttribute('onclick') === `showLibraryA('${lang}')` ? 'true' : 'false');
+        });
         // Hide all content
         document.querySelectorAll('.library-content-a').forEach(el => el.classList.add('hidden'));
         // Show selected
@@ -1940,6 +1734,8 @@
           content.classList.remove('hidden');
         }
       }
+
+      showLibraryA('executable');
 
       // Dark mode toggle - for both navbars
       const darkModeToggleInitial = document.getElementById('dark-mode-toggle-initial');
@@ -1958,7 +1754,8 @@
       const moonIconMobile = document.getElementById('moon-icon-mobile');
 
       // Check for saved dark mode preference or default to dark mode
-      const currentMode = localStorage.getItem('darkMode') || 'dark';
+      let currentMode = 'dark';
+      try { currentMode = localStorage.getItem('darkMode') || 'dark'; } catch (_) {}
       if (currentMode === 'dark') {
         document.documentElement.classList.add('dark');
         // Initial menu icons
@@ -1989,7 +1786,7 @@
         moonIconMobile.classList.toggle('hidden');
 
         // Save preference
-        localStorage.setItem('darkMode', isDark ? 'dark' : 'light');
+        try { localStorage.setItem('darkMode', isDark ? 'dark' : 'light'); } catch (_) {}
       }
 
       // Add click listeners to all 4 dark mode buttons
@@ -2069,6 +1866,7 @@
       const floatingNavbar = document.getElementById('floating-navbar');
       const heroSection = document.querySelector('header');
 
+      floatingNavbar.inert = true;
       window.addEventListener('scroll', () => {
         // Get hero height dynamically
         const heroHeight = heroSection.offsetHeight;
@@ -2076,9 +1874,13 @@
         if (window.scrollY > heroHeight - 100) {
           initialMenu.classList.add('hidden-menu');
           floatingNavbar.classList.add('show');
+          floatingNavbar.inert = false;
+          initialMenu.inert = true;
         } else {
           initialMenu.classList.remove('hidden-menu');
           floatingNavbar.classList.remove('show');
+          floatingNavbar.inert = true;
+          initialMenu.inert = false;
         }
       });
 
@@ -2143,245 +1945,6 @@
           });
       }
 
-      // Matrix rain effect (falling down)
-      function createMatrixRain(canvasId, duration = 1500) {
-        const canvas = document.getElementById(canvasId);
-        if (!canvas) return; // Canvas doesn't exist
-
-        const ctx = canvas.getContext('2d');
-        const container = canvas.parentElement;
-
-        canvas.width = container.clientWidth;
-        canvas.height = container.clientHeight;
-
-        const fontSize = 14;
-        const columns = Math.floor(canvas.width / fontSize);
-        const drops = [];
-
-        for (let i = 0; i < columns; i++) {
-          drops[i] = Math.random() * -100;
-        }
-
-        const chars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
-
-        canvas.classList.add('active');
-
-        let frameCount = 0;
-        const maxFrames = duration / 50;
-
-        const draw = () => {
-          ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-          ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-          ctx.fillStyle = '#22c55e';
-          ctx.font = fontSize + 'px monospace';
-
-          for (let i = 0; i < drops.length; i++) {
-            const text = chars[Math.floor(Math.random() * chars.length)];
-            const x = i * fontSize;
-            const y = drops[i] * fontSize;
-
-            ctx.fillText(text, x, y);
-
-            if (y > canvas.height && Math.random() > 0.975) {
-              drops[i] = 0;
-            }
-
-            drops[i]++;
-          }
-
-          frameCount++;
-          if (frameCount < maxFrames) {
-            requestAnimationFrame(draw);
-          } else {
-            canvas.classList.remove('active');
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-          }
-        };
-
-        draw();
-      }
-
-      // Matrix rise effect (rising up from bottom)
-      function createMatrixRise(canvasId, duration = 1500) {
-        const canvas = document.getElementById(canvasId);
-        if (!canvas) return; // Canvas doesn't exist
-
-        const ctx = canvas.getContext('2d');
-        const container = canvas.parentElement;
-
-        canvas.width = container.clientWidth;
-        canvas.height = container.clientHeight;
-
-        const fontSize = 14;
-        const columns = Math.floor(canvas.width / fontSize);
-        const rises = [];
-
-        // Start all columns from bottom
-        for (let i = 0; i < columns; i++) {
-          rises[i] = Math.floor(canvas.height / fontSize) + Math.random() * 20;
-        }
-
-        const chars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
-
-        canvas.classList.add('active');
-
-        let frameCount = 0;
-        const maxFrames = duration / 50;
-
-        const draw = () => {
-          ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-          ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-          ctx.fillStyle = '#22c55e';
-          ctx.font = fontSize + 'px monospace';
-
-          for (let i = 0; i < rises.length; i++) {
-            const text = chars[Math.floor(Math.random() * chars.length)];
-            const x = i * fontSize;
-            const y = rises[i] * fontSize;
-
-            ctx.fillText(text, x, y);
-
-            // Rise up (decrease y position)
-            if (y < -fontSize && Math.random() > 0.975) {
-              rises[i] = Math.floor(canvas.height / fontSize);
-            }
-
-            rises[i]--;
-          }
-
-          frameCount++;
-          if (frameCount < maxFrames) {
-            requestAnimationFrame(draw);
-          } else {
-            canvas.classList.remove('active');
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-          }
-        };
-
-        draw();
-      }
-
-      // Character drop animation - sequential order (pure JavaScript)
-      function createCharacterDrop(lineElement, text) {
-        lineElement.innerHTML = '';
-        const chars = text.split('');
-        const charElements = [];
-
-        // Create span for each character
-        chars.forEach((char, index) => {
-          const span = document.createElement('span');
-          span.textContent = char === ' ' ? '\u00A0' : char; // Non-breaking space
-          span.style.display = 'inline-block';
-          span.style.opacity = '0';
-          span.style.transform = 'translateY(-100px)';
-          span.style.filter = 'blur(4px)';
-          span.style.textShadow = '0 0 8px rgba(34, 197, 94, 0.6)';
-          lineElement.appendChild(span);
-          charElements.push(span);
-        });
-
-        // Animate each character with staggered delays
-        charElements.forEach((span, index) => {
-          const delay = index * 30; // 30ms delay per character
-          const duration = 400 + Math.random() * 200; // Random duration between 400-600ms
-
-          setTimeout(() => {
-            const startTime = performance.now();
-            const startY = -100;
-            const endY = 0;
-
-            function animate(currentTime) {
-              const elapsed = currentTime - startTime;
-              const progress = Math.min(elapsed / duration, 1);
-
-              // Easing function (ease-out)
-              const eased = 1 - Math.pow(1 - progress, 3);
-
-              // Update transform
-              const currentY = startY + (endY - startY) * eased;
-              span.style.transform = `translateY(${currentY}px)`;
-              span.style.opacity = eased;
-              span.style.filter = `blur(${4 * (1 - eased)}px)`;
-
-              if (progress < 1) {
-                requestAnimationFrame(animate);
-              } else {
-                span.style.transform = 'translateY(0)';
-                span.style.opacity = '1';
-                span.style.filter = 'blur(0)';
-              }
-            }
-
-            requestAnimationFrame(animate);
-          }, delay);
-        });
-      }
-
-      // Character drop animation - random order (pure JavaScript)
-      function createCharacterDropRandom(lineElement, text) {
-        lineElement.innerHTML = '';
-        const chars = text.split('');
-        const charElements = [];
-
-        // Create span for each character
-        chars.forEach((char, index) => {
-          const span = document.createElement('span');
-          span.textContent = char === ' ' ? '\u00A0' : char; // Non-breaking space
-          span.style.display = 'inline-block';
-          span.style.opacity = '0';
-          span.style.transform = 'translateY(-100px)';
-          span.style.filter = 'blur(4px)';
-          span.style.textShadow = '0 0 8px rgba(34, 197, 94, 0.6)';
-          lineElement.appendChild(span);
-          charElements.push({ span, index });
-        });
-
-        // Create random order for character drops
-        const randomOrder = [...charElements];
-        for (let i = randomOrder.length - 1; i > 0; i--) {
-          const j = Math.floor(Math.random() * (i + 1));
-          [randomOrder[i], randomOrder[j]] = [randomOrder[j], randomOrder[i]];
-        }
-
-        // Animate each character in random order
-        randomOrder.forEach((item, orderIndex) => {
-          const delay = orderIndex * 25; // 25ms delay between each character drop
-          const duration = 400 + Math.random() * 200; // Random duration between 400-600ms
-
-          setTimeout(() => {
-            const startTime = performance.now();
-            const startY = -100;
-            const endY = 0;
-
-            function animate(currentTime) {
-              const elapsed = currentTime - startTime;
-              const progress = Math.min(elapsed / duration, 1);
-
-              // Easing function (ease-out)
-              const eased = 1 - Math.pow(1 - progress, 3);
-
-              // Update transform
-              const currentY = startY + (endY - startY) * eased;
-              item.span.style.transform = `translateY(${currentY}px)`;
-              item.span.style.opacity = eased;
-              item.span.style.filter = `blur(${4 * (1 - eased)}px)`;
-
-              if (progress < 1) {
-                requestAnimationFrame(animate);
-              } else {
-                item.span.style.transform = 'translateY(0)';
-                item.span.style.opacity = '1';
-                item.span.style.filter = 'blur(0)';
-              }
-            }
-
-            requestAnimationFrame(animate);
-          }, delay);
-        });
-      }
-
       // Add output to demo output window
       function addOutput(text, type = 'log') {
         const outputDiv = document.getElementById('demo-output');
@@ -2395,16 +1958,13 @@
         }
 
         const line = document.createElement('div');
-        line.className = type === 'error' ? 'text-red-400 matrix-line' : 'text-green-400 matrix-line';
+        line.className = type === 'error' ? 'text-red-400 output-line' : 'output-line';
         contentDiv.appendChild(line);
 
-        // Animate characters dropping in random order
-        createCharacterDropRandom(line, text);
+        line.textContent = text;
 
         outputDiv.scrollTop = outputDiv.scrollHeight;
 
-        // Trigger matrix rain background effect
-        createMatrixRain('demo-output-rain', 1000);
       }
 
       // Examples database
@@ -2527,7 +2087,7 @@ console.log(\`Debug Mode: \${config.debugMode}\`);`
       }, 100);
 
       // Load example function
-      window.loadExample = function(exampleId) {
+      window.loadExample = function(exampleId, button) {
         const example = examples[exampleId];
         if (!example) return;
 
@@ -2548,8 +2108,8 @@ console.log(\`Debug Mode: \${config.debugMode}\`);`
           btn.classList.remove('active', 'bg-purple-600', 'text-white', 'shadow-md');
           btn.classList.add('bg-gray-200', 'dark:bg-gray-700', 'text-gray-700', 'dark:text-gray-300');
         });
-        event.target.classList.remove('bg-gray-200', 'dark:bg-gray-700', 'text-gray-700', 'dark:text-gray-300');
-        event.target.classList.add('active', 'bg-purple-600', 'text-white', 'shadow-md');
+        button.classList.remove('bg-gray-200', 'dark:bg-gray-700', 'text-gray-700', 'dark:text-gray-300');
+        button.classList.add('active', 'bg-purple-600', 'text-white', 'shadow-md');
       };
 
       // Run example code
