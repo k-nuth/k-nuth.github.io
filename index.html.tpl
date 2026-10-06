@@ -106,7 +106,7 @@
     <!-- ClipboardJs -->
     <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
 
-    <link rel="stylesheet" href="./css/site.css?v=20261006-contact-row" />
+    <link rel="stylesheet" href="./css/site.css?v=20261006-architecture-notes" />
   </head>
 
   <body class="font-cairo antialiased transition-colors duration-300 m-0 p-0">
@@ -694,7 +694,7 @@ console.log(address.encodedCashTokens());</code></pre></div>
           </div>
 
           <!-- Info boxes -->
-          <div class="grid md:grid-cols-3 gap-4 mt-8">
+          <div class="architecture-notes grid md:grid-cols-3 gap-4 mt-8">
             <div class="bg-gray-50 dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
               <div class="flex items-start gap-3">
                 <svg class="w-6 h-6 text-primary dark:text-purple-400 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
