@@ -205,3 +205,24 @@ footer { background:#100f15!important; border-top:1px solid #292331; color:#8f86
 .sync-engine-description a { display:inline-block; margin-top:18px; color:var(--accent); font-size:13px; }
 .sync-engine-description a:hover { text-decoration:underline; text-underline-offset:4px; }
 @media(max-width:767px) { .sync-section { padding:44px 0; } .sync-layout { grid-template-columns:1fr; gap:32px; } .sync-story h2 { font-size:36px; } }
+
+/* Hero and navigation follow the selected theme; code panels retain their terminal palette. */
+:root:not(.dark) .site-hero { background:var(--page); color:var(--ink); }
+:root:not(.dark) #initial-menu, :root:not(.dark) #floating-navbar.show { background:var(--page); border-bottom-color:var(--line); }
+:root:not(.dark) #initial-menu a, :root:not(.dark) #floating-navbar a,
+:root:not(.dark) #initial-menu button, :root:not(.dark) #floating-navbar button { color:var(--ink); }
+:root:not(.dark) #initial-menu .nav-start, :root:not(.dark) #floating-navbar .nav-start { color:var(--accent); border-color:var(--line); }
+:root:not(.dark) .nav-brand img, :root:not(.dark) #navbar-logo, :root:not(.dark) .hero-wordmark { filter:brightness(0); }
+:root:not(.dark) .site-hero .eyebrow { color:var(--accent); }
+:root:not(.dark) .hero-copy h1 span { color:var(--accent); }
+:root:not(.dark) .hero-description { color:var(--muted); }
+:root:not(.dark) .action-primary { background:var(--accent); color:#fff; }
+:root:not(.dark) .action-primary:hover { background:#5932b9; }
+:root:not(.dark) .action-secondary { color:var(--ink); border-color:var(--line); }
+:root:not(.dark) .action-secondary:hover { background:var(--accent-soft); }
+:root:not(.dark) .hero-source { color:var(--muted); }
+:root:not(.dark) .hero-source:hover { color:var(--accent); }
+:root:not(.dark) .hero-meta { border-color:var(--line); }
+:root:not(.dark) .hero-meta>span, :root:not(.dark) .hero-meta>div { color:var(--muted); }
+:root:not(.dark) .language-planned { color:var(--accent); }
+:root:not(.dark) .language-planned small { border-color:var(--line); }

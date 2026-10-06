@@ -106,7 +106,7 @@
     <!-- ClipboardJs -->
     <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
 
-    <link rel="stylesheet" href="./css/site.css?v=20261005-utxoz" />
+    <link rel="stylesheet" href="./css/site.css?v=20261006-theme" />
   </head>
 
   <body class="font-cairo antialiased transition-colors duration-300 m-0 p-0">
@@ -242,7 +242,10 @@
         <!-- Navigation Links -->
         <nav class="p-4 space-y-1">
           <a href="#download" class="mobile-menu-link flex items-center px-4 py-3 text-purple-600 dark:text-purple-300 font-semibold rounded-xl">Get started ↗</a>
-          <a href="#architecture" class="mobile-menu-link flex items-center px-4 py-3 text-gray-700 dark:text-gray-200 font-semibold rounded-xl">Architecture</a>
+          <a href="#architecture" class="mobile-menu-link flex items-center gap-3 px-4 py-3 text-gray-700 dark:text-gray-200 font-semibold rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+            <svg class="w-5 h-5 text-primary dark:text-purple-400" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="9" y="3" width="6" height="6" rx="1"/><rect x="3" y="15" width="6" height="6" rx="1"/><rect x="15" y="15" width="6" height="6" rx="1"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3M6 15v-3h12v3"/></svg>
+            Architecture
+          </a>
           <a href="#home" class="mobile-menu-link flex items-center gap-3 px-4 py-3 text-gray-700 dark:text-gray-200 font-semibold rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
             <svg class="w-5 h-5 text-primary dark:text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
@@ -256,7 +259,10 @@
             </svg>
             Live Demo
           </a>
-          <a href="#performance" class="mobile-menu-link flex items-center px-4 py-3 text-gray-700 dark:text-gray-200 font-semibold rounded-xl">Performance</a>
+          <a href="#performance" class="mobile-menu-link flex items-center gap-3 px-4 py-3 text-gray-700 dark:text-gray-200 font-semibold rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+            <svg class="w-5 h-5 text-primary dark:text-purple-400" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.2 18a9 9 0 1115.6 0M12 5v2M5.6 8.6L7 10m11.4-1.4L17 10M8 18h8m-4-4l4-4"/><circle cx="12" cy="14" r="1"/></svg>
+            Performance
+          </a>
           <a href="https://fund.kth.cash" class="mobile-menu-link flex items-center gap-3 px-4 py-3 text-gray-700 dark:text-gray-200 font-semibold rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
             <svg class="w-5 h-5 text-primary dark:text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
