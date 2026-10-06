@@ -226,3 +226,13 @@ footer { background:#100f15!important; border-top:1px solid #292331; color:#8f86
 :root:not(.dark) .hero-meta>span, :root:not(.dark) .hero-meta>div { color:var(--muted); }
 :root:not(.dark) .language-planned { color:var(--accent); }
 :root:not(.dark) .language-planned small { border-color:var(--line); }
+
+/* Vector language marks with transparent lettering for dark surfaces. */
+.dark img[src="./images/libraries/c.svg"] { content:url("../images/libraries/c-white.svg"); filter:none; }
+.dark img[src="./images/libraries/cpp.svg"] { content:url("../images/libraries/cpp-white.svg"); filter:none; }
+.dark img[src="./images/libraries/csharp.svg"] { content:url("../images/libraries/csharp-white.svg"); filter:none; }
+.dark img[src="./images/libraries/python.svg"] { content:url("../images/libraries/python-white.svg"); filter:none; }
+.dark img[src="./images/libraries/javascript.svg"] { content:url("../images/libraries/javascript-white.svg"); filter:none; }
+.dark img[src="./images/libraries/typescript.svg"] { content:url("../images/libraries/typescript-white.svg"); filter:none; }
+.dark img[src="./images/libraries/wasm.svg"] { content:url("../images/libraries/wasm-white.svg"); filter:none; }
+.dark img[src="./images/libraries/rust.svg"] { content:url("../images/libraries/rust-white.svg"); filter:none; }
