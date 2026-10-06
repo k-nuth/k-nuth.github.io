@@ -239,3 +239,10 @@ footer { background:#100f15!important; border-top:1px solid #292331; color:#8f86
 
 /* Contact icons inherit the theme color; no image inversion required. */
 #contact a svg { color:var(--ink); }
+
+@media (max-width:640px) {
+  #contact .contact-links { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:8px; }
+  #contact .contact-links a { min-width:0; }
+  #contact .contact-links a>div { width:56px; height:56px; }
+  #contact .contact-links a>span { font-size:12px; white-space:nowrap; }
+}
