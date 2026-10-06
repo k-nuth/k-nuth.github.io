@@ -106,7 +106,7 @@
     <!-- ClipboardJs -->
     <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
 
-    <link rel="stylesheet" href="./css/site.css?v=20261006-mobile-menu" />
+    <link rel="stylesheet" href="./css/site.css?v=20261006-solid-icons" />
   </head>
 
   <body class="font-cairo antialiased transition-colors duration-300 m-0 p-0">
@@ -1279,7 +1279,7 @@ console.log(address.encodedCashTokens());</code></pre></div>
           <!-- GitHub -->
           <a target="_blank" href="https://github.com/k-nuth" class="group flex flex-col items-center">
             <div class="w-16 h-16 bg-white dark:bg-gray-800 rounded-full flex items-center justify-center shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border border-gray-200 dark:border-gray-700">
-              <img class="w-8 h-8 dark:invert" src="./img/icons/github.svg" alt="GitHub" />
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72" class="w-8 h-8" aria-hidden="true" focusable="false"><path d="M35.99774,1.86428A35.00333,35.00333,0,0,0,24.93688,70.07554c1.75006.321,2.38883-.75954,2.38883-1.68709,0-.83087-.0303-3.03192-.04727-5.95274C17.54263,64.5508,15.48835,57.744,15.48835,57.744c-1.5915-4.04327-3.886-5.11973-3.886-5.11973-3.17781-2.1716.24043-2.12756.24043-2.12756,3.51235.24752,5.361,3.60689,5.361,3.60689,3.12215,5.34855,8.1916,3.80412,10.18595,2.90815a7.4783,7.4783,0,0,1,2.22209-4.679c-7.772-.8833-15.94251-3.886-15.94251-17.29808A13.52878,13.52878,0,0,1,17.2719,25.6428a12.58868,12.58868,0,0,1,.34314-9.26269s2.93866-.94109,9.62472,3.588a33.17461,33.17461,0,0,1,17.52455,0c6.682-4.52907,9.61527-3.588,9.61527-3.588a12.57119,12.57119,0,0,1,.34829,9.26269,13.5058,13.5058,0,0,1,3.59764,9.39182c0,13.44561-8.18322,16.40425-15.98033,17.27079,1.25673,1.08054,2.37615,3.21669,2.37615,6.48151,0,4.679-.043,8.45395-.043,9.60153,0,.93593.63041,2.02485,2.40667,1.683A35.00521,35.00521,0,0,0,35.99774,1.86428Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" /></svg>
             </div>
             <span class="mt-3 text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-white transition-colors">GitHub</span>
           </a>
@@ -1287,7 +1287,8 @@ console.log(address.encodedCashTokens());</code></pre></div>
           <!-- X (Twitter) -->
           <a target="_blank" rel="nofollow" href="https://twitter.com/KnuthNode" class="group flex flex-col items-center">
             <div class="w-16 h-16 bg-white dark:bg-gray-800 rounded-full flex items-center justify-center shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border border-gray-200 dark:border-gray-700">
-              <img class="w-8 h-8 dark:invert" src="./img/icons/x-twitter.svg" alt="X (Twitter)" />
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-8 h-8" aria-hidden="true" focusable="false"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" fill="currentColor" />
+</svg>
             </div>
             <span class="mt-3 text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-white transition-colors">X (Twitter)</span>
           </a>
@@ -1295,7 +1296,7 @@ console.log(address.encodedCashTokens());</code></pre></div>
           <!-- Telegram -->
           <a target="_blank" href="https://t.me/knuth_cash" class="group flex flex-col items-center">
             <div class="w-16 h-16 bg-white dark:bg-gray-800 rounded-full flex items-center justify-center shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border border-gray-200 dark:border-gray-700">
-              <img class="w-8 h-8 dark:invert" src="./img/icons/telegram.svg" alt="Telegram" />
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72" class="w-8 h-8" aria-hidden="true" focusable="false"><path d="M66.27387,7.03237,4.26808,30.94152C.03569,32.63934.0609,35.00068,3.49671,36.05262l15.9098,4.96609.00229.00072L56.24694,17.77866c1.7391-1.05463,3.33552-.48817,2.02555.67482L28.42443,45.38888l-.00046.00039-.00013.00164,7.27,5.37119,2.58516,1.91L54.36463,64.55628c2.96054,1.63344,5.09659.78748,5.83418-2.74812L70.7584,12.04744C71.83932,7.71309,69.1062,5.74657,66.27387,7.03237Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" /><path d="M28.42292,45.39022l.001-.00095,0-.00066.00043.00027,29.84806-26.9354c1.31-1.163-.28645-1.72945-2.02555-.67482L19.4088,41.01943l-.00229-.00072,5.47171,18.00755c.71935,1.98583.36476,2.77332,2.4504,2.77332l1.09522-16.40867Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" /><polygon points="28.424 45.389 28.424 45.389 28.424 45.389 28.424 45.389" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" /><path d="M35.69388,50.7621l-7.27-5.37119L27.32862,61.79958a4.12444,4.12444,0,0,0,3.21857-1.60928L38.279,52.67205Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" /><polygon points="28.423 45.39 28.424 45.391 28.424 45.389 28.423 45.39" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" /><polygon points="28.423 45.39 28.424 45.391 28.424 45.389 28.423 45.39" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" /></svg>
             </div>
             <span class="mt-3 text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-white transition-colors">Telegram</span>
           </a>
@@ -1303,7 +1304,7 @@ console.log(address.encodedCashTokens());</code></pre></div>
           <!-- Email -->
           <a target="_blank" href="mailto:info@kth.cash" class="group flex flex-col items-center">
             <div class="w-16 h-16 bg-white dark:bg-gray-800 rounded-full flex items-center justify-center shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border border-gray-200 dark:border-gray-700">
-              <img class="w-8 h-8 dark:invert" src="./img/icons/mail.svg" alt="Email" />
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72" class="w-8 h-8" aria-hidden="true" focusable="false"><rect x="1" y="15" width="70" height="42" rx="3.24681" transform="translate(72 72) rotate(180)" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" /><path d="M40.99945,39.8429l29.37378-23.499A3.23457,3.23457,0,0,0,67.75317,15H4.24683a3.23457,3.23457,0,0,0-2.62006,1.34387l29.37378,23.499A8.003,8.003,0,0,0,40.99945,39.8429Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" /></svg>
             </div>
             <span class="mt-3 text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-white transition-colors">Email</span>
           </a>
