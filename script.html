@@ -148,13 +148,13 @@
         <textarea id="libraryInfo" readonly></textarea>
     </div>
 
-    <script type="text/javascript" src="kth.js"></script>
+    <script type="text/javascript" src="kth.js?v=3.0.0"></script>
     <script type="text/javascript">
         function delay(ms) {
             return new Promise(resolve => setTimeout(resolve, ms));
         }
 
-        const { loadLib, Kth, Script, hexStrToBytes } = __KTH_MODULE__;
+        const { loadLib, Kth, Script, ScriptFlags, hexStrToBytes } = __KTH_MODULE__;
         window.Kth = Kth;
         window.Script = Script;
 
@@ -168,7 +168,7 @@
         }
         animateLoadingDots();
 
-        loadLib('kth.wasm', 'kth.js').then(delay(2000)).then(async function() {
+        loadLib('kth.wasm?v=3.0.0', 'kth.js?v=3.0.0').then(async function() {
             document.getElementById('loadingMessage').style.display = 'none';
             document.getElementById('inputBox').disabled = false;
             document.getElementById('analyzeButton').disabled = false;
@@ -176,7 +176,7 @@
             const config = Kth.getLibconfig();
             const libraryInfo = `
 WASM Lib version:   ${config.wasmLibraryVersion.padEnd(8, ' ')} ${new Date(config.wasmBuildTimestamp).toISOString()}
-C Lib version:      ${config.capiVersion.padEnd(8, ' ')} ${new Date(config.capiBuildTimestamp).toISOString()}
+C Lib version:      ${config.capiVersion.padEnd(8, ' ')} ${(config.capiBuildTimestamp ? new Date(config.capiBuildTimestamp).toISOString() : 'not recorded')}
 C++ Lib version:    ${config.cppapiVersion.padEnd(8, ' ')} ${new Date(config.cppapiBuildTimestamp).toISOString()}
 Architecture:       ${config.architecture} - ${config.endianness.toLowerCase()} - pointer size: ${config.typeSizesPointer} bytes
 OS Name:            ${config.osName}
@@ -205,13 +205,13 @@ Emscripten version: ${config.emscriptenVersion}
 
             document.getElementById('errorMessage').style.display = 'none';
             document.getElementById('scriptDetails').style.display = 'block';
-            document.getElementById('scriptDetails').textContent = `Script Details: ${script.toString()}`;
+            document.getElementById('scriptDetails').textContent = `Script Details: ${script.toString(ScriptFlags.noRules)}`;
 
             document.getElementById('operations').style.display = 'block';
-            document.getElementById('operations').textContent = `Operations: ${script.operations.map(op => op.toString()).join(', ')}`;
+            document.getElementById('operations').textContent = `Operations: ${script.operations.map(op => op.toString(ScriptFlags.noRules)).join(', ')}`;
 
             document.getElementById('scriptType').style.display = 'block';
-            document.getElementById('scriptType').textContent = `Script Type: ${script.type}`;
+            document.getElementById('scriptType').textContent = `Script Type: ${script.pattern()}`;
         });
     </script>
 </body>
