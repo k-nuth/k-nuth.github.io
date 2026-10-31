@@ -1,0 +1,11 @@
+{
+    "package": "@knuth/js-wasm",
+    "version": "3.0.0",
+    "coreVersion": "1.5.2",
+    "emscriptenVersion": "6.0.13",
+    "release": "https://github.com/k-nuth/js-wasm/releases/tag/v3.0.0",
+    "sha256": {
+        "kth.js": "4e980de33f8a64199b10da535bc5ae16df141c0b941f78aba79275d12c3588c7",
+        "kth.wasm": "209623a8b37668c292354189040b0637c3f0be484335e70b5d190d2f052b01ea"
+    }
+}

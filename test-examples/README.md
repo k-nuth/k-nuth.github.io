@@ -230,3 +230,11 @@ docker run -it kth-c-example ./test-docker.sh
 5. **Syntax Highlighting**: Beautiful code display on website
 6. **Copy Button**: Users can easily copy code
 7. **Automated Tests**: Generated test scripts ensure examples work
+
+## WebAssembly live examples
+
+The editable browser examples live in js/wasm-examples.js; the page and the smoke test use the same code.
+Run node test-examples/wasm/smoke.cjs from the repository root. It checks known outputs for every example,
+JS-WASM 3.0.0 / KTH 1.5.2 metadata, and SHA-256 digests recorded in js/wasm-runtime.json. The runtime files
+come from the published @knuth/js-wasm release. After changing the page template, run
+node test-examples/scripts/embed-snippets.js to refresh index.html.

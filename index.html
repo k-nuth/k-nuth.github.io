@@ -363,27 +363,23 @@ console.log(address.encodedCashTokens());</code></pre></div>
           <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
             Real Knuth code, running in your browser. Pick an example, edit it, and see what happens.
           </p>
+          <p id="wasm-runtime-version" role="status" class="mt-3 text-sm font-mono text-purple-700 dark:text-purple-300">Loading JS-WASM 3.0.0…</p>
         </div>
 
         <!-- Example Selector -->
         <div class="mb-8">
           <h3 class="text-sm font-bold text-gray-700 dark:text-gray-300 mb-3">Choose an example:</h3>
           <div class="flex flex-wrap gap-2">
-            <button onclick="loadExample('address-converter', this)" class="example-btn active px-4 py-2 bg-purple-600 text-white rounded-lg font-semibold text-sm hover:bg-purple-700 transition-all shadow-md">
-              Address Converter
-            </button>
-            <button onclick="loadExample('address-validator', this)" class="example-btn px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg font-semibold text-sm hover:bg-gray-300 dark:hover:bg-gray-600 transition-all">
-              Address Validator
-            </button>
-            <button onclick="loadExample('wallet-generator', this)" class="example-btn px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg font-semibold text-sm hover:bg-gray-300 dark:hover:bg-gray-600 transition-all">
-              Wallet Generator
-            </button>
-            <button onclick="loadExample('sha256-hash', this)" class="example-btn px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg font-semibold text-sm hover:bg-gray-300 dark:hover:bg-gray-600 transition-all">
-              SHA256 Hash
-            </button>
-            <button onclick="loadExample('libconfig', this)" class="example-btn px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg font-semibold text-sm hover:bg-gray-300 dark:hover:bg-gray-600 transition-all">
-              Library Config
-            </button>
+            <button onclick="loadExample('address-converter', this)" class="example-btn active bg-purple-600 text-white shadow-md px-4 py-2 rounded-lg font-semibold text-sm hover:bg-purple-500 transition-all">Address Converter</button>
+            <button onclick="loadExample('address-validator', this)" class="example-btn bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-4 py-2 rounded-lg font-semibold text-sm hover:bg-purple-500 transition-all">Address Validator</button>
+            <button onclick="loadExample('wallet-generator', this)" class="example-btn bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-4 py-2 rounded-lg font-semibold text-sm hover:bg-purple-500 transition-all">HD Wallet</button>
+            <button onclick="loadExample('sha256-hash', this)" class="example-btn bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-4 py-2 rounded-lg font-semibold text-sm hover:bg-purple-500 transition-all">SHA256 Hash</button>
+            <button onclick="loadExample('transaction-inspector', this)" class="example-btn bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-4 py-2 rounded-lg font-semibold text-sm hover:bg-purple-500 transition-all">Transaction Inspector</button>
+            <button onclick="loadExample('script-assembly', this)" class="example-btn bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-4 py-2 rounded-lg font-semibold text-sm hover:bg-purple-500 transition-all">Script Assembly</button>
+            <button onclick="loadExample('script-execution', this)" class="example-btn bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-4 py-2 rounded-lg font-semibold text-sm hover:bg-purple-500 transition-all">Script Execution</button>
+            <button onclick="loadExample('script-debugger', this)" class="example-btn bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-4 py-2 rounded-lg font-semibold text-sm hover:bg-purple-500 transition-all">Script Debugger</button>
+            <button onclick="loadExample('cashtokens-data', this)" class="example-btn bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-4 py-2 rounded-lg font-semibold text-sm hover:bg-purple-500 transition-all">CashTokens Data</button>
+            <button onclick="loadExample('libconfig', this)" class="example-btn bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-4 py-2 rounded-lg font-semibold text-sm hover:bg-purple-500 transition-all">Library Config</button>
           </div>
         </div>
 
@@ -398,7 +394,7 @@ console.log(address.encodedCashTokens());</code></pre></div>
                 </svg>
                 <span id="example-title">Address Converter</span>
               </h3>
-              <button id="run-example-btn" class="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white font-semibold rounded-lg transition-all duration-300 hover:scale-105 shadow-lg text-sm">
+              <button id="run-example-btn" disabled class="disabled:opacity-50 disabled:cursor-wait px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white font-semibold rounded-lg transition-all duration-300 hover:scale-105 shadow-lg text-sm">
                 ▶ Run
               </button>
             </div>
@@ -657,7 +653,7 @@ console.log(address.encodedCashTokens());</code></pre></div>
                 Universal C Bindings
               </span>
             </div>
-            <a href="https://github.com/k-nuth/c-api" target="_blank" class="block bg-gradient-to-br from-primary/10 to-purple-500/10 dark:from-primary/20 dark:to-purple-500/20 rounded-2xl p-8 border-4 border-primary dark:border-purple-500 shadow-2xl hover:scale-105 transition-transform duration-300">
+            <a href="https://github.com/k-nuth/kth/tree/master/src/c-api" target="_blank" class="block bg-gradient-to-br from-primary/10 to-purple-500/10 dark:from-primary/20 dark:to-purple-500/20 rounded-2xl p-8 border-4 border-primary dark:border-purple-500 shadow-2xl hover:scale-105 transition-transform duration-300">
               <div class="flex items-center justify-center gap-4">
                 <img src="./images/libraries/c.svg" alt="C" class="w-16 h-16" />
                 <div class="text-left">
@@ -682,7 +678,7 @@ console.log(address.encodedCashTokens());</code></pre></div>
                 High-Performance Core
               </span>
             </div>
-            <a href="https://github.com/k-nuth/node" target="_blank" class="block bg-gradient-to-br from-purple-100 to-pink-50 dark:from-purple-900/30 dark:to-pink-900/30 rounded-2xl p-8 border-4 border-primary dark:border-purple-600 shadow-2xl hover:scale-105 transition-transform duration-300">
+            <a href="https://github.com/k-nuth/kth" target="_blank" class="block bg-gradient-to-br from-purple-100 to-pink-50 dark:from-purple-900/30 dark:to-pink-900/30 rounded-2xl p-8 border-4 border-primary dark:border-purple-600 shadow-2xl hover:scale-105 transition-transform duration-300">
               <div class="flex items-center justify-center gap-4">
                 <img src="./images/libraries/cpp.svg" alt="C++" class="w-20 h-20" />
                 <div class="text-left">
@@ -1257,12 +1253,12 @@ console.log(address.encodedCashTokens());</code></pre></div>
                   <span>WebAssembly</span>
                 </h4>
 
-                <!-- Prerequisites -->
                 <div class="mb-6">
-                  <p class="text-base font-semibold text-gray-700 dark:text-gray-300 mb-2">Prerequisites:</p>
-                  <ul class="text-base text-gray-600 dark:text-gray-400 list-disc list-inside">
-                    <li>Modern browser with WebAssembly support</li>
-                  </ul>
+                  <p class="text-base font-semibold text-gray-700 dark:text-gray-300 mb-2">JS-WASM 3.0.0 · KTH 1.5.2</p>
+                  <p class="text-base text-gray-600 dark:text-gray-400 mb-3">Use the same Bitcoin Cash API in a modern browser or Node.js 22 and later.</p>
+                  <pre class="bg-gray-900 text-gray-100 p-4 rounded-xl overflow-x-auto"><code>npm install @knuth/js-wasm@3.0.0</code></pre>
+                  <p class="mt-3 text-sm text-gray-600 dark:text-gray-400">The package includes JavaScript, the matching WASM binary and TypeScript declarations. Initialize it with loadLib() before calling the API.</p>
+                  <p class="mt-3"><a href="https://github.com/k-nuth/js-wasm#quick-start" target="_blank" rel="noopener noreferrer" class="text-purple-700 dark:text-purple-300 underline">Installation and initialization examples ↗</a></p>
                 </div>
 
                 <!-- Link to Try it in Your Browser -->
@@ -1647,7 +1643,8 @@ console.log(address.encodedCashTokens());</code></pre></div>
     </footer>
 
     <!-- Knuth WASM Library -->
-    <script type="text/javascript" src="./kth.js"></script>
+    <script type="text/javascript" src="./kth.js?v=3.0.0"></script>
+    <script src="./js/wasm-examples.js?v=3.0.0"></script>
 
     <!-- JavaScript -->
     <script>
@@ -1656,14 +1653,16 @@ console.log(address.encodedCashTokens());</code></pre></div>
 
       // Fetch latest Knuth version from GitHub
       async function fetchLatestVersion() {
-        let version = '0.73.0'; // Default version
+        let version = '1.5.2'; // Fallback for offline or rate-limited requests
 
         try {
-          const response = await fetch('https://api.github.com/repos/k-nuth/kth-mono/releases/latest');
+          const response = await fetch('https://api.github.com/repos/k-nuth/kth/releases/latest');
+          if (!response.ok) throw new Error('Release lookup failed');
           const data = await response.json();
+          if (!/^v?\d+\.\d+\.\d+$/.test(data.tag_name)) throw new Error('Invalid release version');
           version = data.tag_name.replace('v', ''); // Remove 'v' prefix if exists
         } catch (error) {
-          console.log('Using default version 0.73.0');
+          console.log('Using fallback KTH version 1.5.2');
         }
 
         // Replace all KNUTH_PKG_VERSION placeholders in the page
@@ -1942,27 +1941,51 @@ console.log(address.encodedCashTokens());</code></pre></div>
       // ===== WASM Demo Functionality =====
       let wasmReady = false;
 
-      // Wait for WASM module to be available
+      function showWasmError(error) {
+        document.getElementById('wasm-runtime-version').textContent = 'Demo unavailable';
+        const loader = document.getElementById('wasm-loader');
+        loader.querySelector('.animate-spin').style.display = 'none';
+        const messages = loader.querySelectorAll('p');
+        messages[0].textContent = 'Unable to load WebAssembly';
+        messages[1].textContent = 'Reload the page to retry.';
+        addOutput('Unable to load WebAssembly. Reload the page to retry.', 'error');
+        console.error('Failed to load WASM:', error);
+      }
+
       if (typeof __KTH_MODULE__ !== 'undefined') {
-        const { loadLib, Kth, PaymentAddress, Wallet, HdPublic, HashFunctions } = __KTH_MODULE__;
-        window.Kth = Kth;
-        window.PaymentAddress = PaymentAddress;
-        window.Wallet = Wallet;
-        window.HdPublic = HdPublic;
-        window.HashFunctions = HashFunctions;
+        const { loadLib } = __KTH_MODULE__;
+        const names = ["Kth","PaymentAddress","Wallet","HdPublic","HashFunctions","Transaction","Script","ScriptFlags","Program","Interpreter","Debugger","TokenData","TokenDataBothKinds","bytesToHexStr","hexStrToBytes","encodeHash","decodeHash"];
+        for (const name of names) window[name] = __KTH_MODULE__[name];
 
-        // Load WASM
-        loadLib('./kth.wasm', './kth.js')
+        async function loadDemoRuntime() {
+          const wasmUrl = './kth.wasm?v=3.0.0';
+          let timeout;
+          try {
+            await Promise.race([
+              loadLib(wasmUrl, './kth.js?v=3.0.0'),
+              new Promise((_, reject) => {
+                timeout = setTimeout(() => reject(new Error('WebAssembly load timed out')), 90000);
+              })
+            ]);
+          } finally {
+            clearTimeout(timeout);
+          }
+        }
+        loadDemoRuntime()
           .then(() => {
+            const config = Kth.getLibconfig();
+            if (config.wasmLibraryVersion !== '3.0.0' || config.cppapiVersion !== '1.5.2') {
+              throw new Error('Unexpected runtime version');
+            }
             wasmReady = true;
-
-            // Hide loader
+            document.getElementById('wasm-runtime-version').textContent =
+              'JS-WASM ' + config.wasmLibraryVersion + ' · KTH ' + config.cppapiVersion;
+            document.getElementById('run-example-btn').disabled = false;
             document.getElementById('wasm-loader').style.display = 'none';
           })
-          .catch(err => {
-            console.error('Failed to load WASM:', err);
-            document.getElementById('wasm-loader').style.display = 'none';
-          });
+          .catch(showWasmError);
+      } else {
+        showWasmError(new Error('JavaScript runtime is unavailable'));
       }
 
       // The output characters fall into their final positions in random order.
@@ -2025,105 +2048,7 @@ console.log(address.encodedCashTokens());</code></pre></div>
 
       }
 
-      // Examples database
-      const examples = {
-        'address-converter': {
-          title: 'Address Converter',
-          code: `const addr = PaymentAddress.fromString(
-  "bitcoincash:qpm2qsznhks23z7629mms6s4cwef74vcwvy22gdx6a"
-);
-
-if (!addr) {
-  console.log("Error: Invalid address");
-  throw new Error("Invalid address");
-}
-
-console.log(\`Cash Address: \${addr.encodedCashAddr()}\`);
-console.log(\`Legacy: \${addr.encodedLegacy()}\`);
-console.log(\`CashTokens: \${addr.encodedCashTokens()}\`);`
-        },
-        'address-validator': {
-          title: 'Address Validator',
-          code: `const addresses = [
-  "bitcoincash:qpm2qsznhks23z7629mms6s4cwef74vcwvy22gdx6a",
-  "invalid_address_123",
-  "1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa"
-];
-
-addresses.forEach(addr => {
-  const isValid = PaymentAddress.isValid(addr);
-  console.log(\`"\${addr.substring(0, 30)}..."\`);
-  console.log(\`  Valid: \${isValid}\`);
-  console.log("");
-});`
-        },
-        'wallet-generator': {
-          title: 'Wallet Generator',
-          code: `// Replace with your own 12-word mnemonic seed phrase
-const mnemonic = "";
-const derivationPath = "m/44'/145'/0'/0";
-const network = 'MAINNET';
-
-if (!mnemonic || mnemonic.trim() === "") {
-  console.log("Error: Please provide a valid mnemonic seed phrase");
-  console.log("Example: 'word1 word2 word3 ... word12'");
-  throw new Error("Mnemonic is required");
-}
-
-const wallet = Wallet.fromMnemonic(mnemonic.split(" "), derivationPath, network);
-
-const addresses = await wallet.getAddresses(5);
-
-console.log("Generated addresses:");
-addresses.forEach((addr, index) => {
-  console.log(\`  [\${index}]: \${addr.encodedCashAddr()}\`);
-});`
-        },
-        'sha256-hash': {
-          title: 'SHA256 Hash',
-          code: `const messages = ["Hello Bitcoin Cash", "Knuth Node", "WebAssembly"];
-
-messages.forEach(msg => {
-  const bytes = new Uint8Array(
-    msg.split('').map(c => c.charCodeAt(0))
-  );
-
-  const hash = HashFunctions.sha256(bytes);
-  const hashHex = Array.from(hash)
-    .map(b => b.toString(16).padStart(2, '0'))
-    .join('');
-
-  console.log(\`Message: "\${msg}"\`);
-  console.log(\`SHA256:  \${hashHex}\`);
-  console.log("");
-});`
-        },
-        'libconfig': {
-          title: 'Library Configuration',
-          code: `const config = Kth.getLibconfig();
-
-console.log("Knuth WebAssembly Library");
-console.log("");
-console.log(\`WASM Library: \${config.wasmLibraryVersion}\`);
-console.log(\`C++ API: \${config.cppapiVersion}\`);
-console.log(\`C API: \${config.capiVersion}\`);
-console.log("");
-console.log("Currency");
-console.log(\`Network: \${config.currency}\`);
-console.log(\`Symbol: \${config.currencySymbol}\`);
-console.log("");
-console.log("Build Info");
-console.log(\`Architecture: \${config.architecture}\`);
-console.log(\`Compiler: \${config.compilerName}\`);
-console.log(\`Emscripten: \${config.emscriptenVersion}\`);
-console.log(\`Optimization: \${config.optimizationLevel}\`);
-console.log("");
-console.log("Features");
-console.log(\`Mempool: \${config.mempool}\`);
-console.log(\`Read-only DB: \${config.dbReadonly}\`);
-console.log(\`Debug Mode: \${config.debugMode}\`);`
-        }
-      };
+      const examples = window.knuthWasmExamples;
 
       // Initialize CodeMirror
       let codeEditor;
@@ -2134,7 +2059,8 @@ console.log(\`Debug Mode: \${config.debugMode}\`);`
           theme: 'dracula',
           lineNumbers: true,
           lineWrapping: true,
-          tabSize: 2,
+          tabSize: 4,
+          indentUnit: 4,
           indentWithTabs: false,
           matchBrackets: true,
           autoCloseBrackets: true,
@@ -2192,6 +2118,9 @@ console.log(\`Debug Mode: \${config.debugMode}\`);`
           return;
         }
 
+        const runButton = document.getElementById('run-example-btn');
+        runButton.disabled = true;
+
         // Save original console methods
         const originalLog = console.log;
         const originalError = console.error;
@@ -2200,7 +2129,7 @@ console.log(\`Debug Mode: \${config.debugMode}\`);`
           // Create a custom console.log for capturing output
           console.log = function(...args) {
             const output = args.map(arg =>
-              typeof arg === 'object' ? JSON.stringify(arg, null, 2) : String(arg)
+              typeof arg === 'object' ? JSON.stringify(arg, (_, value) => typeof value === 'bigint' ? value.toString() : value, 2) : String(arg)
             ).join(' ');
             // If output is empty string, add a blank line
             addOutput(output === '' ? ' ' : output);
@@ -2224,6 +2153,7 @@ console.log(\`Debug Mode: \${config.debugMode}\`);`
           // ALWAYS restore original console methods
           console.log = originalLog;
           console.error = originalError;
+          runButton.disabled = !wasmReady;
         }
       });
 
