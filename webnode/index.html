@@ -8,8 +8,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Ubuntu+Mono&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=0.11.0">
-<link rel="stylesheet" href="headers.css?v=0.11.0">
+<link rel="stylesheet" href="style.css?v=0.11.1">
+<link rel="stylesheet" href="headers.css?v=0.11.1">
 <script>window.KNUTH_PAGE_PATH = () => location.pathname.startsWith("/webnode/") ? "/" + location.pathname.slice(9) : location.pathname;</script>
 </head>
 <body>
@@ -48,8 +48,8 @@
 </section>
 <section class="panel pool-distribution" aria-label="Transaction size distribution"><div class="section-heading"><h2>Transaction sizes</h2><span>BYTES / TRANSACTION</span></div><div id="pool-distribution" class="pool-bars"></div></section>
 <section class="headers-card pool-table-card" aria-label="Observed mempool transactions">
-<div class="pool-toolbar"><div><h2>Live transactions</h2><span id="pool-results">0 transactions</span></div><div class="pool-controls"><input id="pool-search" type="search" aria-label="Filter transactions by ID" placeholder="Filter by transaction ID…" autocomplete="off" spellcheck="false"><select id="pool-sort" aria-label="Sort transactions"><option value="newest">Newest first</option><option value="oldest">Oldest first</option><option value="largest">Largest first</option></select></div></div>
-<div class="headers-table-wrap"><table class="headers-table pool-table"><thead><tr><th scope="col">TRANSACTION</th><th scope="col">FIRST SEEN</th><th scope="col">SIZE</th><th scope="col">STATUS</th></tr></thead><tbody id="pool-rows"></tbody></table></div>
+<div class="pool-toolbar"><div><h2>Live transactions</h2><span id="pool-results">0 transactions</span></div><div class="pool-controls"><select id="pool-sort" aria-label="Sort transactions"><option value="newest">Newest first</option><option value="oldest">Oldest first</option><option value="largest">Largest first</option></select></div></div>
+<div class="headers-table-wrap"><table class="headers-table pool-table"><thead><tr><th scope="col">TRANSACTION</th><th scope="col">FIRST SEEN</th><th scope="col">SIZE</th></tr></thead><tbody id="pool-rows"></tbody></table></div>
 <div class="headers-bottom"><span id="pool-status" role="status">Start the node to receive transactions.</span><div class="pool-pagination"><button id="pool-prev" aria-label="Previous transactions" disabled>←</button><span id="pool-page">1 / 1</span><button id="pool-next" aria-label="Next transactions" disabled>→</button></div></div>
 </section></main>
 <main id="chain-state-view" class="headers-page chain-state-page" hidden>
@@ -105,21 +105,23 @@
 </aside>
 <aside id="block-age-tooltip" class="upgrade-story timestamp-tooltip" popover role="dialog" aria-labelledby="block-age-tooltip-title"><button class="upgrade-story-close" popovertarget="block-age-tooltip" popovertargetaction="hide" aria-label="Close block age">×</button><h2 id="block-age-tooltip-title">Block age</h2><p id="block-age-tooltip-value"></p></aside>
 
-<script src="number-format.js"></script>
-<script src="block-age.js"></script>
-<script src="sdk-version.js"></script>
-<script src="version.js?v=0.11.0"></script>
-<script src="transaction-utils.js"></script>
-<script src="headers-view.js"></script>
-<script src="content-view.js"></script>
-<script src="network-upgrades.js"></script>
-<script src="chain-state-view.js"></script>
-<script src="config.js"></script>
-<script src="chain-reset.js"></script>
-<script src="node-settings.js"></script>
-<script src="runtime-settings.js"></script>
-<script src="node-logs.js"></script>
-<script src="app.js?v=0.11.0"></script>
-<script src="libconfig-settings.js"></script>
-<script src="layout-debug.js?v=2"></script>
+<script src="number-format.js?v=0.11.1"></script>
+<script src="settings-display.js?v=0.11.1"></script>
+<script src="consensus-flags.js?v=0.11.1"></script>
+<script src="block-age.js?v=0.11.1"></script>
+<script src="sdk-version.js?v=0.11.1"></script>
+<script src="version.js?v=0.11.1"></script>
+<script src="transaction-utils.js?v=0.11.1"></script>
+<script src="headers-view.js?v=0.11.1"></script>
+<script src="content-view.js?v=0.11.1"></script>
+<script src="network-upgrades.js?v=0.11.1"></script>
+<script src="chain-state-view.js?v=0.11.1"></script>
+<script src="config.js?v=0.11.1"></script>
+<script src="chain-reset.js?v=0.11.1"></script>
+<script src="node-settings.js?v=0.11.1"></script>
+<script src="runtime-settings.js?v=0.11.1"></script>
+<script src="node-logs.js?v=0.11.1"></script>
+<script src="app.js?v=0.11.1"></script>
+<script src="libconfig-settings.js?v=0.11.1"></script>
+<script src="layout-debug.js?v=0.11.1"></script>
 </body></html>

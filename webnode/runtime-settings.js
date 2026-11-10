@@ -27,6 +27,15 @@
                 }
                 const field = document.createElement('dd');
                 field.textContent = Array.isArray(value) ? value.length ? value.map(item=>typeof item==='number'?window.KnuthFormat.number(item):String(item)).join('\n') : '[]' : value === '' ? '""' : typeof value==='number' || (typeof value==='string' && /^-?\d{16,}$/.test(value)) ? window.KnuthFormat.number(value) : String(value);
+                if (group === 'network' && key === 'identifier') {
+                    field.textContent = '0x' + BigInt(value).toString(16).padStart(8,'0');
+                    field.title = 'Network magic: the P2P message identifier';
+                }
+                const info = window.KnuthSettingsDisplay.upgrades[key];
+                if (info) window.KnuthSettingsDisplay.help(label, ...info);
+                if (window.KnuthSettingsDisplay.timestamp(key) && value != null) {
+                    window.KnuthSettingsDisplay.help(field, key, Number(value) === 0 ? 'Not configured (0)' : window.KnuthSettingsDisplay.date(value));
+                }
                 row.append(label, field); fields.append(row);
             }
             panel.append(heading, fields); container.append(panel);
