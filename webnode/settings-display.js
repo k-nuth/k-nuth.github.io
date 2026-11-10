@@ -8,6 +8,26 @@
         bch_uahf: ['Bitcoin Cash launch · 2017-Aug-01', 'User Activated Hard Fork: the upgrade that launched Bitcoin Cash, increased the block-size limit to 8 MB, introduced replay protection and the emergency difficulty adjustment. This is the mainnet edition date; test-network activation can differ.', 'https://upgradespecs.bitcoincashnode.org/uahf-technical-spec/'],
         bch_daa_cw144: ['Difficulty adjustment · 2017-Nov-13', 'CW-144 (chainwork over 144 blocks) replaced the emergency difficulty adjustment with a per-block difficulty algorithm based on accumulated work and elapsed time. The upgrade also enforced LOW_S and NULLFAIL signature rules. This is the mainnet edition date; test-network activation can differ.', 'https://upgradespecs.bitcoincashnode.org/nov-13-hardfork-spec/']
     };
+    function upgradeInfo(key, network) {
+        if (!key.startsWith('bch_')) return null;
+        if (upgrades[key]) return [upgrades[key][0], 'Network: ' + network + '. ' + upgrades[key][1], upgrades[key][2]];
+        const id = key.slice(4), catalog = window.KnuthUpgrades;
+        const edition = catalog?.editions[id], change = catalog?.changes[id];
+        if (!edition || !change) return upgrades[key] || null;
+        return [catalog.name(id) + ' · Mainnet edition ' + edition,
+            'Network: ' + network + '. Mainnet edition: ' + edition + '.\n\n' + change.items.join('\n') +
+            '\n\nThis setting enables the upgrade rules in the node configuration. Chain state shows which rules are active at the current block. Test-network activation can be earlier.', change.source];
+    }
+    // Default mainnet activation timestamps from the matching KTH 1.6.1 settings.
+    const mainnetActivations = {leibniz_activation_time:1778846400, cantor_activation_time:1810382400};
+    function activationDescription(key, value, network) {
+        let description = 'Network: ' + network + '\n' + (Number(value) === 0 ? 'Not configured (0)' : date(value));
+        if (mainnetActivations[key] && network.toLowerCase() !== 'mainnet') {
+            description += '\n\nMainnet default: ' + date(mainnetActivations[key]) + '. This network can activate the upgrade earlier.';
+        }
+        if (key === 'cantor_activation_time') description += '\nThe Faster Blocks proposal remains unconfirmed for mainnet.';
+        return description;
+    }
     function help(element, heading, description, source) {
         let popup = document.getElementById('setting-info');
         if (!popup) {
@@ -27,5 +47,5 @@
         };
         element.replaceChildren(button);
     }
-    window.KnuthSettingsDisplay = {date, timestamp, upgrades, help};
+    window.KnuthSettingsDisplay = {date, timestamp, upgrades, upgradeInfo, activationDescription, help};
 })();
