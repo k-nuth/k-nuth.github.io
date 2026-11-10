@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<base href="/webnode/">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Knuth Web Node</title>
+<link rel="icon" href="logo-white.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Ubuntu+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=0.11.0">
+<link rel="stylesheet" href="headers.css?v=0.11.0">
+<script>window.KNUTH_PAGE_PATH = () => location.pathname.startsWith("/webnode/") ? "/" + location.pathname.slice(9) : location.pathname;</script>
+</head>
+<body>
+<div class="app-shell"><header><a class="brand brand-about" href="/webnode/about" data-view-link aria-label="About Knuth Web Node"><img src="logo-white.svg" width="84" height="49" alt="Knuth"><span>Web Node</span><small class="app-version" data-app-version aria-label="Web Node version"></small></a><div class="header-indicators"><div id="node-header-indicator" class="node-indicator" role="status" aria-live="polite" aria-label="Tempnet · Stopped" title="Tempnet · Stopped"><span id="header-network" class="headers-network" aria-hidden="true">TEMPNET</span><span class="node-status-dot" aria-hidden="true"></span><span id="node-status" class="visually-hidden" data-status="stopped">Stopped</span></div></div></header>
+<nav id="app-nav" class="dashboard-nav" aria-label="Views"><a href="/webnode/" data-view-link aria-current="page">Overview</a><a href="/webnode/headers" data-view-link>Blocks</a><a href="/webnode/mempool" data-view-link>Mempool</a><a href="/webnode/chain-state" data-view-link aria-label="Chain state"><span class="nav-wide">Chain state</span><span class="nav-compact" aria-hidden="true">State</span></a><a href="/webnode/settings" data-view-link>Settings</a><a href="/webnode/about" data-view-link>About</a><a id="toggle-logs" href="/webnode/logs" data-view-link>Logs</a></nav><section id="node-loading" class="node-loading" role="status" aria-live="polite" hidden><span class="loading-spinner" aria-hidden="true"></span><div><strong id="loading-title">Loading node</strong><span id="loading-detail">Initializing the local engine…</span></div><span class="loading-stage">LOCAL DATA</span></section></div>
+<section id="node-error" class="node-error" role="alert" hidden><div><strong>Node error</strong><span id="node-error-message"></span></div><button id="view-error-logs">View logs</button></section>
+<main id="sync-view">
+
+<div class="dashboard-grid"><section class="panel sync-panel"><div class="section-heading"><h2>Chain status</h2></div>
+<div class="status"><span id="light"></span><span id="state">Ready to start</span></div>
+<div id="height">—</div>
+<div class="metrics"><div><span id="rate-label">Blocks / second</span><strong id="rate">—</strong></div><div><span>Block index memory</span><strong id="memory">—</strong></div><div><span>Session uptime</span><strong id="elapsed">00:00</strong></div></div>
+<div class="actions"><button id="start"><span aria-hidden="true">▶</span> Start</button><button id="stop" disabled><span aria-hidden="true">■</span> Stop</button><button id="reset-chain">Reset chain</button></div>
+<p id="detail" hidden>Start the node to restore your saved chain and connect to the network.</p>
+</section><aside class="panel node-panel" hidden><div class="section-heading"><h2>Node details</h2></div><dl class="node-facts"><div><dt>Network</dt><dd id="network-name">Tempnet</dd></div><div><dt>Transport</dt><dd>WebSocket P2P</dd></div><div><dt>Storage</dt><dd id="storage-state">Not loaded</dd></div><div><dt>Web Node</dt><dd data-app-version></dd></div><div><dt>JS-WASM</dt><dd><span data-sdk-version>4.0.0</span></dd></div><div><dt>KTH C++ Core</dt><dd><span data-core-version>1.6.1</span></dd></div></dl></aside></div>
+<section class="panel peers-panel"><div class="section-heading"><div><p class="eyebrow">NETWORK</p><h2>Peers</h2></div><span class="peer-total"><strong id="peer-count">0</strong> connected</span></div><div class="peer-table"><div class="peer-labels"><span>ENDPOINT</span><span>USER AGENT</span><span>TRANSPORT</span><span>CONNECTION</span></div><div class="peer-row"><code id="peer-endpoint">—</code><code id="peer-agent">—</code><span id="peer-transport">—</span><span id="peer-state">Disconnected</span></div><div id="peer-additional"></div></div></section>
+
+
+</main>
+<main id="headers-view" class="headers-page" hidden>
+<div class="headers-title-row"><div><h1>Latest blocks</h1></div><div class="latest-block-age"><span>Last block</span><strong id="latest-block-age">—</strong></div><div class="headers-live" hidden><span id="headers-dot" class="headers-dot"></span><span id="headers-node-state">Not started</span></div></div>
+<section id="header-detail" class="header-detail" hidden aria-label="Block details"><div class="header-detail-heading"><h2 id="header-detail-title"></h2><a href="/webnode/headers" data-view-link>Back to latest ↗</a></div><dl id="header-fields" class="header-fields"></dl></section>
+<section class="headers-card" aria-label="Validated blocks">
+<div class="headers-table-wrap"><table class="headers-table"><thead><tr><th scope="col">HEIGHT</th><th scope="col">TIMESTAMP · UTC</th><th scope="col" title="Difference between this block’s header timestamp and the previous block’s timestamp">BLOCK TIME</th><th scope="col">TX</th><th scope="col">SIZE</th><th scope="col">MINER</th><th scope="col"><span aria-label="Details"></span></th></tr></thead><tbody id="header-rows"><tr><td colspan="7" class="headers-empty"><strong>The browser node has not started yet.</strong>Start the node from the overview.<br><a href="/webnode/" data-view-link>Go to overview →</a></td></tr></tbody></table></div>
+<div class="headers-bottom"><nav class="headers-pager" aria-label="Pagination"><a id="headers-latest" href="/webnode/headers" data-view-link>Latest</a><a id="headers-newer" href="/webnode/headers" data-view-link aria-disabled="true">← Newer</a><a id="headers-older" href="/webnode/headers" data-view-link aria-disabled="true">Older →</a></nav></div></section>
+<p id="headers-error" class="headers-statusline" role="status"></p>
+</main>
+<main id="settings-view" class="settings-page" hidden><div class="settings-heading"><h1>Settings</h1></div><div class="runtime-heading"><h2 class="settings-group-title">Runtime settings</h2><span id="runtime-status">Start the node to load native runtime settings</span></div><div id="runtime-fields" class="settings-grid runtime-settings-grid"></div><h2 class="settings-group-title">Library configuration</h2><p id="libconfig-status" role="status">Loading library configuration…</p><div id="libconfig-fields" class="settings-grid"></div><h2 class="settings-group-title">Browser</h2><div class="settings-grid"><section class="panel"><div class="section-heading"><h2>Network</h2></div><dl class="settings-fields"><div><dt>Network</dt><dd id="setting-network">—</dd></div><div><dt>Peer endpoints</dt><dd id="setting-peer">—</dd></div><div><dt>Endpoint source</dt><dd id="setting-peer-source">—</dd></div><div><dt>Transport</dt><dd id="setting-transport">—</dd></div><div><dt>Maximum outbound peers</dt><dd id="setting-peers">—</dd></div></dl></section><section class="panel"><div class="section-heading"><h2>Chain & storage</h2></div><dl class="settings-fields"><div><dt>Index capacity</dt><dd id="setting-capacity">—</dd></div><div><dt>Validation</dt><dd>Local · Knuth WebAssembly</dd></div><div><dt>Persistence</dt><dd>IndexedDB / IDBFS</dd></div><div><dt>Database</dt><dd id="setting-database">—</dd></div><div><dt>Storage origin</dt><dd id="setting-origin">—</dd></div><div><dt>Minimum save interval</dt><dd id="setting-save">—</dd></div><div><dt>Save on Stop</dt><dd>Enabled</dd></div></dl></section><section class="panel"><div class="section-heading"><h2>Runtime & reconnection</h2></div><dl class="settings-fields"><div><dt>Execution</dt><dd>Dedicated Web Worker</dd></div><div><dt>Resume on reload</dt><dd id="setting-resume">—</dd></div><div><dt>Automatic reconnection</dt><dd>Enabled while started</dd></div><div><dt>Retry backoff</dt><dd id="setting-retry">—</dd></div><div><dt>Retry jitter</dt><dd id="setting-jitter">—</dd></div><div><dt>UI progress interval</dt><dd id="setting-progress">—</dd></div></dl></section></div></main>
+<main id="mempool-view" class="headers-page mempool-page" hidden>
+<div class="headers-title-row"><h1>Mempool</h1><div class="headers-live"><span id="pool-dot" class="headers-dot"></span><span id="pool-connection">Not started</span></div></div>
+<section class="pool-stats" aria-label="Mempool statistics">
+<div class="pool-stat"><span>Transactions</span><strong id="pool-count">0</strong><small>Observed locally</small></div>
+<div class="pool-stat"><span>Total size</span><strong id="pool-bytes">0 B</strong><small>Transaction data</small></div>
+<div class="pool-stat"><span>Average size</span><strong id="pool-average">—</strong><small>Per transaction</small></div>
+<div class="pool-stat"><span>Oldest transaction</span><strong id="pool-oldest">—</strong><small>Time since first seen</small></div>
+</section>
+<section class="panel pool-distribution" aria-label="Transaction size distribution"><div class="section-heading"><h2>Transaction sizes</h2><span>BYTES / TRANSACTION</span></div><div id="pool-distribution" class="pool-bars"></div></section>
+<section class="headers-card pool-table-card" aria-label="Observed mempool transactions">
+<div class="pool-toolbar"><div><h2>Live transactions</h2><span id="pool-results">0 transactions</span></div><div class="pool-controls"><input id="pool-search" type="search" aria-label="Filter transactions by ID" placeholder="Filter by transaction ID…" autocomplete="off" spellcheck="false"><select id="pool-sort" aria-label="Sort transactions"><option value="newest">Newest first</option><option value="oldest">Oldest first</option><option value="largest">Largest first</option></select></div></div>
+<div class="headers-table-wrap"><table class="headers-table pool-table"><thead><tr><th scope="col">TRANSACTION</th><th scope="col">FIRST SEEN</th><th scope="col">SIZE</th><th scope="col">STATUS</th></tr></thead><tbody id="pool-rows"></tbody></table></div>
+<div class="headers-bottom"><span id="pool-status" role="status">Start the node to receive transactions.</span><div class="pool-pagination"><button id="pool-prev" aria-label="Previous transactions" disabled>←</button><span id="pool-page">1 / 1</span><button id="pool-next" aria-label="Next transactions" disabled>→</button></div></div>
+</section></main>
+<main id="chain-state-view" class="headers-page chain-state-page" hidden>
+<div class="headers-title-row"><h1>Chain state</h1><span id="chain-state-status" class="headers-live" hidden>Not started</span></div>
+<div id="chain-state-empty" class="panel chain-state-empty">Start the node to load the current block state.</div>
+<section id="chain-state-summary" class="panel" hidden><div class="chain-state-tip"><div><span class="eyebrow">CURRENT BLOCK</span><strong id="chain-state-height">—</strong></div><div><span class="eyebrow">BLOCK INTERVAL</span><strong id="chain-state-interval">—</strong></div></div><code id="chain-state-hash" class="chain-state-hash"></code></section>
+<div id="chain-state-fields" class="settings-grid"></div>
+<details id="chain-state-raw" class="chain-state-raw" hidden><summary>Native snapshot · JSON</summary><pre id="chain-state-json"></pre></details>
+</main>
+<main id="about-web-node" class="headers-page about-page" aria-labelledby="about-web-node-title" hidden><article class="panel about-content">
+<p class="eyebrow">YOUR BROWSER. YOUR NODE.</p>
+<h1 id="about-web-node-title">Knuth Web Node</h1>
+<p>A Bitcoin Cash node running in your browser. The application is a static website: HTML, CSS, JavaScript and the Knuth C++ engine compiled to WebAssembly. The node runs locally in a background worker, and its saved chain lives in your browser’s storage.</p>
+<h3>A direct connection to the network</h3>
+<p>Chain data comes from Bitcoin Cash peers, not from Fulcrum, an address indexer or a block-explorer API. Knuth nodes implement a WebSocket transport for the peer-to-peer protocol, allowing the browser to speak P2P directly to compatible nodes. The website host delivers the application files; the peers deliver the network data.</p>
+<p>WebSocket changes the transport, not the nature of that connection. The browser node can connect to multiple peers, discover compatible peers and receive block and transaction announcements.</p>
+<h3>What this node verifies</h3>
+<p>Knuth validates the block-header chain locally, including proof of work and difficulty rules. It can download recent block bodies, check that they match their headers and Merkle commitments, and perform structural checks before releasing the full bodies. A bounded cache retains useful recent-block information.</p>
+<p>The current node does not keep the full blockchain or a UTXO set, so it does not perform full transaction validation against unspent outputs. Its observed transaction pool is not a fully validated mempool.</p>
+<h3>Why run it in a browser?</h3>
+<p>No node installation is required. You inspect the chain and consensus state using the actual Knuth engine on your device, with local header verification and multiple peer connections, without depending on a hosted indexer’s view of the chain.</p>
+<p>The limited storage budget is a practical design choice, not a fundamental restriction of WebAssembly. More browser storage could make a full-node implementation more practical, alongside the necessary work on validation, performance, bandwidth and reliable background execution.</p>
+<h3>A path to a browser-native SPV wallet</h3>
+<p>Yes: this provides a foundation for a real Simplified Payment Verification wallet. It could maintain a locally validated header chain, obtain wallet transactions and verify their Merkle inclusion in that chain, then broadcast signed transactions directly to peers.</p>
+<p>That wallet is a future capability. It still needs key management, transaction discovery, inclusion-proof retrieval and verification, and wallet transaction handling. SPV verifies inclusion under proof-of-work assumptions; it does not provide the same independent transaction validation as a full node. Direct P2P access also does not automatically make wallet activity private.</p>
+<a href="https://bitcoin.org/bitcoin.pdf#page=5" target="_blank" rel="noopener noreferrer">Read Satoshi’s description of SPV · Bitcoin whitepaper, section 8 ↗</a>
+</article></main>
+<main id="logs-panel" class="headers-page logs-page" aria-label="Node logs" hidden><div class="logs-heading"><h1>Node logs</h1><div><button id="clear-logs">Clear</button></div></div><div id="logs-list" class="logs-list" role="log" aria-live="polite"></div><details class="raw-events"><summary>Raw events</summary><pre id="events"></pre></details></main>
+<dialog id="reset-dialog" class="reset-dialog" aria-labelledby="reset-dialog-title" aria-describedby="reset-dialog-description"><div class="reset-dialog-top"><span class="reset-dialog-icon" aria-hidden="true">↻</span><button id="close-chain-reset" class="reset-dialog-close" aria-label="Close reset dialog">×</button></div><p class="reset-eyebrow">CHAIN MANAGEMENT</p><h2 id="reset-dialog-title">Reset local chain?</h2><p id="reset-dialog-description">Clear the saved <strong id="reset-network">Tempnet</strong> chain and download it again from genesis.</p><div class="reset-scope"><span>Other networks</span><strong>Kept intact</strong></div><p class="reset-warning">The current local chain will be permanently deleted.</p><div class="reset-dialog-actions"><button id="cancel-chain-reset" autofocus>Cancel</button><button id="confirm-chain-reset">Reset and restart <span aria-hidden="true">↗</span></button></div></dialog>
+<aside id="upgrade-story" class="upgrade-story" popover role="dialog" aria-labelledby="upgrade-story-title">
+<button class="upgrade-story-close" popovertarget="upgrade-story" popovertargetaction="hide" aria-label="Close upgrade naming story">×</button>
+<p class="eyebrow">BEHIND THE NAMES</p>
+<h2 id="upgrade-story-title">The path to Satoshi</h2>
+<p>Starting with the May 2018 edition, I chose to name Knuth’s network upgrades after mathematicians, giving each upgrade an identity of its own. These names belong to Knuth; they are not official Bitcoin Cash upgrade names.</p>
+<p>They are a tribute, but also a way of tracing the path to Satoshi. Across centuries, these mathematicians devoted their lives to discovering mathematical truths and developing ideas that became part of the foundations on which Bitcoin rests.</p>
+<p>Work on prime numbers and other abstract questions could once seem to have no practical purpose. Yet, over thousands of years, those discoveries helped make Bitcoin possible. Their value was not limited to what anyone could imagine using them for at the time.</p>
+<p>For me, that path culminates in Satoshi. Bitcoin needed the work of those who came before; those of us who continue developing it carry that legacy forward.</p>
+<p class="upgrade-story-author">— Fernando Pelliccioni</p>
+</aside>
+<aside id="daa-story" class="upgrade-story daa-story" popover role="dialog" aria-labelledby="daa-story-title">
+<button class="upgrade-story-close" popovertarget="daa-story" popovertargetaction="hide" aria-label="Close difficulty adjustment explanation">×</button>
+<p class="eyebrow">CONSENSUS EXPLAINED</p>
+<h2 id="daa-story-title">DAA · Difficulty Adjustment Algorithm</h2>
+<p>Mining power changes as miners join, leave or switch chains. The DAA changes how hard it is to find a valid block, keeping the average block interval near the network’s target. It sets a probability, not a deadline: individual blocks can arrive much sooner or later.</p>
+<ol class="daa-timeline">
+<li><h3>2009-Jan · Original Bitcoin retarget</h3><p>Satoshi’s algorithm adjusts difficulty every 2'016 blocks, aiming for roughly two weeks per period at a ten-minute average. It compares elapsed time with the expected duration and limits each adjustment to a factor of four. This simple design works well with gradual changes in mining power, but can respond slowly to a sudden loss of miners.</p></li>
+<li><h3>2017-Aug-01 · EDA</h3><p>The Emergency Difficulty Adjustment supplemented the original rule when Bitcoin Cash launched. If median chain time advanced by at least twelve hours across six blocks, it raised the proof-of-work target by 25%, making difficulty 20% lower. This helped the new chain keep moving with less mining power, but sharp reductions encouraged cycles of slow blocks followed by bursts of fast ones.</p></li>
+<li><h3>2017-Nov-13 · CW-144</h3><p>Chainwork over 144 blocks replaced EDA with an adjustment for every block. It estimates mining power from accumulated work and elapsed time over a rolling window of about one day. This responded faster to miners arriving or leaving, but the window could produce recurring difficulty swings and reward miners who switched chains at favourable moments.</p></li>
+<li><h3>2020-Nov-15 · ASERT</h3><p>Absolutely Scheduled Exponentially Rising Targets compares the chain’s progress with an ideal schedule relative to an anchor block. Running ahead raises difficulty; falling behind lowers it. Its exponential response avoids the old rolling-window cycle and reduces the incentive to switch mining power opportunistically.</p><p>The mainnet version, <code>aserti3-2d</code>, uses a two-day half-life: two days behind schedule halves difficulty; two days ahead doubles it. This balances responsiveness with resistance to random timing noise.</p></li>
+</ol>
+<p class="daa-network-note">These dates describe Bitcoin Cash mainnet history. Test networks can activate rules earlier and use different intervals or half-lives. The live values in this panel come from the selected network’s native chain state.</p>
+<p class="daa-sources">Read more: <a href="https://developer.bitcoin.org/devguide/block_chain.html#proof-of-work" target="_blank" rel="noopener noreferrer">Original retarget</a> · <a href="https://documentation.cash/protocol/blockchain/proof-of-work/difficulty-adjustment-algorithm.html" target="_blank" rel="noopener noreferrer">DAA history</a> · <a href="https://upgradespecs.bitcoincashnode.org/2020-11-15-asert/" target="_blank" rel="noopener noreferrer">ASERT specification</a></p>
+</aside>
+<aside id="block-age-tooltip" class="upgrade-story timestamp-tooltip" popover role="dialog" aria-labelledby="block-age-tooltip-title"><button class="upgrade-story-close" popovertarget="block-age-tooltip" popovertargetaction="hide" aria-label="Close block age">×</button><h2 id="block-age-tooltip-title">Block age</h2><p id="block-age-tooltip-value"></p></aside>
+
+<script src="number-format.js"></script>
+<script src="block-age.js"></script>
+<script src="sdk-version.js"></script>
+<script src="version.js?v=0.11.0"></script>
+<script src="transaction-utils.js"></script>
+<script src="headers-view.js"></script>
+<script src="content-view.js"></script>
+<script src="network-upgrades.js"></script>
+<script src="chain-state-view.js"></script>
+<script src="config.js"></script>
+<script src="chain-reset.js"></script>
+<script src="node-settings.js"></script>
+<script src="runtime-settings.js"></script>
+<script src="node-logs.js"></script>
+<script src="app.js?v=0.11.0"></script>
+<script src="libconfig-settings.js"></script>
+<script src="layout-debug.js?v=2"></script>
+</body></html>
