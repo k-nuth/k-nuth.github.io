@@ -176,7 +176,7 @@ function startNode() {
         element('elapsed').textContent = String(Math.floor(seconds / 60)).padStart(2, '0') + ':' + String(seconds % 60).padStart(2, '0');
     }, 1000);
     state('Loading node…');
-    worker = new Worker('worker.js');
+    worker = new Worker('worker.js?v=' + encodeURIComponent(window.KNUTH_WEB_NODE_VERSION || 'dev'));
     worker.onmessage = ({ data }) => {
         window.dispatchEvent(new CustomEvent('node-message', { detail: data }));
         if (['headerWindow','observedPool','contentProgress'].includes(data.type)) return;

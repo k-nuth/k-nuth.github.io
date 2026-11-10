@@ -19,26 +19,35 @@
             const track=document.createElement('div');track.className='pool-bar-track';const fill=document.createElement('span');fill.style.height=(count/maximum*100)+'%';track.append(fill);
             bar.append(text('strong',number(count)),track,text('span',labels[i]));return bar;
         }));
-        const query=byId('pool-search').value.trim().toLowerCase();
-        const filtered=transactions.filter(tx=>tx.txid.toLowerCase().includes(query));
+        const sorted=[...transactions];
         const sort=byId('pool-sort').value;
-        filtered.sort((a,b)=>(sort==='largest'?b.bytes-a.bytes:sort==='oldest'?a.received_at-b.received_at:b.received_at-a.received_at)||a.txid.localeCompare(b.txid));
-        const pages=Math.max(1,Math.ceil(filtered.length/limit));page=Math.min(page,pages-1);
-        byId('pool-results').textContent=query?number(filtered.length)+' matching · '+number(transactions.length)+' total':number(transactions.length)+' transactions';
+        sorted.sort((a,b)=>(sort==='largest'?b.bytes-a.bytes:sort==='oldest'?a.received_at-b.received_at:b.received_at-a.received_at)||a.txid.localeCompare(b.txid));
+        const pages=Math.max(1,Math.ceil(sorted.length/limit));page=Math.min(page,pages-1);
+        byId('pool-results').textContent=number(transactions.length)+' transactions';
         const fragment=document.createDocumentFragment();
-        for(const tx of filtered.slice(page*limit,(page+1)*limit)){
+        for(const tx of sorted.slice(page*limit,(page+1)*limit)){
             const row=document.createElement('tr');
-            const id=document.createElement('td');id.className='pool-txid';const code=text('code',tx.txid.slice(0,16)+'…'+tx.txid.slice(-12));code.title=tx.txid;id.append(code);
-            const expand=document.createElement('details');expand.append(text('summary','Full ID'),text('code',tx.txid,'pool-full-id'));id.append(expand);row.append(id);
+            const id=document.createElement('td');id.className='pool-txid';const copy=text('button',tx.txid.slice(0,16)+'…'+tx.txid.slice(-12),'pool-copy');copy.type='button';copy.title='Copy transaction ID';copy.setAttribute('aria-label','Copy transaction ID '+tx.txid);
+            copy.onclick=async()=>{
+                try{
+                    if(navigator.clipboard && window.isSecureContext)await navigator.clipboard.writeText(tx.txid);
+                    else{
+                        const field=document.createElement('textarea');field.value=tx.txid;field.readOnly=true;field.style.cssText='position:fixed;opacity:0;pointer-events:none';document.body.append(field);
+                        try{field.select();if(!document.execCommand('copy'))throw Error('Clipboard unavailable');}finally{field.remove();copy.focus({preventScroll:true});}
+                    }
+                    copy.title='Transaction ID copied';copy.setAttribute('aria-label','Transaction ID copied');copy.classList.add('copied');
+                }catch{copy.classList.remove('copied');copy.title='Could not copy transaction ID';copy.setAttribute('aria-label','Could not copy transaction ID');}
+                setTimeout(()=>{copy.title='Copy transaction ID';copy.setAttribute('aria-label','Copy transaction ID '+tx.txid);copy.classList.remove('copied');},2000);
+            };
+            id.append(copy);row.append(id);
             const seen=text('td',age(tx.received_at)+' ago','pool-seen');seen.dataset.seen=tx.received_at;seen.title=new Date(tx.received_at*1000).toISOString();row.append(seen,text('td',bytes(tx.bytes)));
-            const status=document.createElement('td');status.append(text('span','Unconfirmed','pool-tx-status'));row.append(status);fragment.append(row);
+            fragment.append(row);
         }
-        if(!filtered.length){const row=document.createElement('tr'),cell=document.createElement('td');cell.colSpan=4;cell.className='headers-empty';cell.append(text('strong',query?'No matching transactions':connected?'Waiting for transactions':'No transactions observed'),text('span',query?'Try another transaction ID.':connected?'New transactions will appear here as peers announce them.':'Start the node from Overview to receive transactions.'));row.append(cell);fragment.append(row);}
+        if(!sorted.length){const row=document.createElement('tr'),cell=document.createElement('td');cell.colSpan=3;cell.className='headers-empty';cell.append(text('strong',connected?'Waiting for transactions':'No transactions observed'),text('span',connected?'New transactions will appear here as peers announce them.':'Start the node from Overview to receive transactions.'));row.append(cell);fragment.append(row);}
         byId('pool-rows').replaceChildren(fragment);byId('pool-page').textContent=(page+1)+' / '+pages;
         byId('pool-prev').disabled=page===0;byId('pool-next').disabled=page>=pages-1;
     }
     function clear(){pending=0;lastPoolRevision=-1;transactions=[];page=0;dirty=true;connected=false;byId('pool-status').textContent='Start the node to receive transactions.';byId('pool-connection').textContent='Not started';byId('pool-dot').classList.remove('live');render();}
-    byId('pool-search').addEventListener('input',()=>{page=0;render();});
     byId('pool-sort').addEventListener('change',()=>{page=0;render();});
     byId('pool-prev').onclick=()=>{page=Math.max(0,page-1);render();};byId('pool-next').onclick=()=>{++page;render();};
     window.addEventListener('node-view-changed',()=>{active=window.KNUTH_PAGE_PATH().replace(/\/$/,'')==='/mempool';if(active){render();request();}});

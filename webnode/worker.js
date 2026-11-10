@@ -9,7 +9,7 @@ let pendingStop;
 let pendingRefresh;
 self.onmessage = ({ data }) => {
     if (data.type === 'getChainState') {
-        try { postMessage({type:'chainState',requestId:data.requestId,state:client?.chainStateSnapshot ? JSON.parse(client.chainStateSnapshot()) : null}); }
+        try { postMessage({type:'chainState',requestId:data.requestId,state:client?.chainStateSnapshot ? JSON.parse(client.chainStateSnapshot().replace(/("enabled_flags"\s*:\s*)(\d+)/, '$1"$2"')) : null}); }
         catch(error) { postMessage({type:'chainState',requestId:data.requestId,state:null,error:String(error)}); }
     } else if (data.type === 'getPool') {
         postMessage({type:'observedPool',requestId:data.requestId,transactions:client?.observedTransactions ? JSON.parse(client.observedTransactions()) : []});
