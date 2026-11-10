@@ -10,6 +10,7 @@
         });
     }
     function render(settings) {
+        const network = settings.header_sync?.network || document.getElementById('setting-network')?.textContent || 'Unknown network';
         container.replaceChildren();
         for (const group of ['node', 'header_sync', 'network', 'chain']) {
             const panel = document.createElement('section'); panel.className = 'panel';
@@ -31,10 +32,14 @@
                     field.textContent = '0x' + BigInt(value).toString(16).padStart(8,'0');
                     field.title = 'Network magic: the P2P message identifier';
                 }
-                const info = window.KnuthSettingsDisplay.upgrades[key];
-                if (info) window.KnuthSettingsDisplay.help(label, ...info);
+                const info = window.KnuthSettingsDisplay.upgradeInfo(key, network);
+                if (info) {
+                    const activation = settings.chain?.[key.slice(4) + '_activation_time'];
+                    if (activation != null) info[1] += '\n\nConfigured activation on ' + network + ': ' + (Number(activation) === 0 ? 'Not configured (0)' : window.KnuthSettingsDisplay.date(activation));
+                    window.KnuthSettingsDisplay.help(label, ...info);
+                }
                 if (window.KnuthSettingsDisplay.timestamp(key) && value != null) {
-                    window.KnuthSettingsDisplay.help(field, key, Number(value) === 0 ? 'Not configured (0)' : window.KnuthSettingsDisplay.date(value));
+                    window.KnuthSettingsDisplay.help(field, key + ' · ' + network, window.KnuthSettingsDisplay.activationDescription(key, value, network));
                 }
                 row.append(label, field); fields.append(row);
             }
