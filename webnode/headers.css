@@ -168,7 +168,7 @@
 
 /* Use one typeface and weight throughout the block list. */
 #headers-view .headers-table th,
-#headers-view .headers-table td{font-family:'DM Sans',sans-serif;font-weight:400;font-variant-numeric:tabular-nums}
+#headers-view .headers-table td{font-family:'Ubuntu Mono',monospace;font-weight:400;font-variant-numeric:tabular-nums}
 #headers-view .headers-table td{font-size:13px}
 #headers-view .headers-table td a,
 #headers-view .headers-table .timestamp-trigger{font-family:inherit;font-weight:inherit}
