@@ -4,7 +4,15 @@ const config = window.KTH_BROWSER_CONFIG || {};
 const settings = window.KTH_NODE_SETTINGS;
 const networkNames = {tempnet:'Tempnet',mainnet:'Mainnet',chipnet:'Chipnet',testnet4:'Testnet4',testnet:'Testnet',scalenet:'Scalenet',regtest:'Regtest'};
 let network = networkNames[config.network] ? config.network : 'tempnet';
-try { const saved = sessionStorage.getItem('kth-network'); if (networkNames[saved]) network = saved; } catch {}
+try {
+    if (config.networkRevision && sessionStorage.getItem('kth-network-revision') !== config.networkRevision) {
+        sessionStorage.setItem('kth-network', network);
+        sessionStorage.setItem('kth-network-revision', config.networkRevision);
+    } else {
+        const saved = sessionStorage.getItem('kth-network');
+        if (networkNames[saved]) network = saved;
+    }
+} catch {}
 let switching = false;
 let nextNetwork;
 function peersFor(name) {
