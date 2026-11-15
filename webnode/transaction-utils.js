@@ -19,7 +19,7 @@
         // A miner can identify itself with a /domain.name/ tag without being
         // in this catalogue. Keep arbitrary printable coinbase text unattributed.
         const declared = /\/((?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z]{2,24})\//i.exec(tag);
-        return declared && declared[1].length <= 128 ? declared[1] : 'Unknown';
+        return declared && declared[1].length <= 128 ? declared[1] : 'Unidentified';
     }
     function poolSummary(transactions) {
         const sizes = transactions.map(tx => Number(tx.bytes));
