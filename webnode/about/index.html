@@ -8,12 +8,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Ubuntu+Mono&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=0.11.2">
-<link rel="stylesheet" href="headers.css?v=0.11.2">
+<link rel="stylesheet" href="style.css?v=0.12.0">
+<link rel="stylesheet" href="headers.css?v=0.12.0">
 <script>window.KNUTH_PAGE_PATH = () => location.pathname.startsWith("/webnode/") ? "/" + location.pathname.slice(9) : location.pathname;</script>
 </head>
 <body>
-<div class="app-shell"><header><a class="brand brand-about" href="/webnode/about" data-view-link aria-label="About Knuth Web Node"><img src="logo-white.svg" width="84" height="49" alt="Knuth"><span>Web Node</span><small class="app-version" data-app-version aria-label="Web Node version"></small></a><div class="header-indicators"><div id="node-header-indicator" class="node-indicator" role="status" aria-live="polite" aria-label="Tempnet · Stopped" title="Tempnet · Stopped"><span id="header-network" class="headers-network" aria-hidden="true">TEMPNET</span><span class="node-status-dot" aria-hidden="true"></span><span id="node-status" class="visually-hidden" data-status="stopped">Stopped</span></div></div></header>
+<div class="app-shell"><header><a class="brand brand-about" href="/webnode/about" data-view-link aria-label="About Knuth Web Node"><img src="logo-white.svg" width="84" height="49" alt="Knuth"><span>Web Node</span><small class="app-version" data-app-version aria-label="Web Node version"></small></a><div class="header-indicators"><div id="node-header-indicator" class="node-indicator" role="status" aria-live="polite" aria-label="Chipnet · Stopped" title="Chipnet · Stopped"><span id="header-network" class="headers-network" aria-hidden="true">CHIPNET</span><span class="node-status-dot" aria-hidden="true"></span><span id="node-status" class="visually-hidden" data-status="stopped">Stopped</span></div></div></header>
 <nav id="app-nav" class="dashboard-nav" aria-label="Views"><a href="/webnode/" data-view-link aria-current="page">Overview</a><a href="/webnode/headers" data-view-link>Blocks</a><a href="/webnode/mempool" data-view-link>Mempool</a><a href="/webnode/chain-state" data-view-link aria-label="Chain state"><span class="nav-wide">Chain state</span><span class="nav-compact" aria-hidden="true">State</span></a><a href="/webnode/settings" data-view-link>Settings</a><a href="/webnode/about" data-view-link>About</a><a id="toggle-logs" href="/webnode/logs" data-view-link>Logs</a></nav><section id="node-loading" class="node-loading" role="status" aria-live="polite" hidden><span class="loading-spinner" aria-hidden="true"></span><div><strong id="loading-title">Loading node</strong><span id="loading-detail">Initializing the local engine…</span></div><span class="loading-stage">LOCAL DATA</span></section></div>
 <section id="node-error" class="node-error" role="alert" hidden><div><strong>Node error</strong><span id="node-error-message"></span></div><button id="view-error-logs">View logs</button></section>
 <main id="sync-view">
@@ -24,7 +24,7 @@
 <div class="metrics"><div><span id="rate-label">Blocks / second</span><strong id="rate">—</strong></div><div><span>Block index memory</span><strong id="memory">—</strong></div><div><span>Session uptime</span><strong id="elapsed">00:00</strong></div></div>
 <div class="actions"><button id="start"><span aria-hidden="true">▶</span> Start</button><button id="stop" disabled><span aria-hidden="true">■</span> Stop</button><button id="reset-chain">Reset chain</button></div>
 <p id="detail" hidden>Start the node to restore your saved chain and connect to the network.</p>
-</section><aside class="panel node-panel" hidden><div class="section-heading"><h2>Node details</h2></div><dl class="node-facts"><div><dt>Network</dt><dd id="network-name">Tempnet</dd></div><div><dt>Transport</dt><dd>WebSocket P2P</dd></div><div><dt>Storage</dt><dd id="storage-state">Not loaded</dd></div><div><dt>Web Node</dt><dd data-app-version></dd></div><div><dt>JS-WASM</dt><dd><span data-sdk-version>4.0.0</span></dd></div><div><dt>KTH C++ Core</dt><dd><span data-core-version>1.6.1</span></dd></div></dl></aside></div>
+</section><aside class="panel node-panel" hidden><div class="section-heading"><h2>Node details</h2></div><dl class="node-facts"><div><dt>Network</dt><dd id="network-name">Chipnet</dd></div><div><dt>Transport</dt><dd>WebSocket P2P</dd></div><div><dt>Storage</dt><dd id="storage-state">Not loaded</dd></div><div><dt>Web Node</dt><dd data-app-version></dd></div><div><dt>JS-WASM</dt><dd><span data-sdk-version>4.0.0</span></dd></div><div><dt>KTH C++ Core</dt><dd><span data-core-version>1.6.1</span></dd></div></dl></aside></div>
 <section class="panel peers-panel"><div class="section-heading"><div><p class="eyebrow">NETWORK</p><h2>Peers</h2></div><span class="peer-total"><strong id="peer-count">0</strong> connected</span></div><div class="peer-table"><div class="peer-labels"><span>ENDPOINT</span><span>USER AGENT</span><span>TRANSPORT</span><span>CONNECTION</span></div><div class="peer-row"><code id="peer-endpoint">—</code><code id="peer-agent">—</code><span id="peer-transport">—</span><span id="peer-state">Disconnected</span></div><div id="peer-additional"></div></div></section>
 
 
@@ -78,7 +78,7 @@
 <a href="https://bitcoin.org/bitcoin.pdf#page=5" target="_blank" rel="noopener noreferrer">Read Satoshi’s description of SPV · Bitcoin whitepaper, section 8 ↗</a>
 </article></main>
 <main id="logs-panel" class="headers-page logs-page" aria-label="Node logs" hidden><div class="logs-heading"><h1>Node logs</h1><div><button id="clear-logs">Clear</button></div></div><div id="logs-list" class="logs-list" role="log" aria-live="polite"></div><details class="raw-events"><summary>Raw events</summary><pre id="events"></pre></details></main>
-<dialog id="reset-dialog" class="reset-dialog" aria-labelledby="reset-dialog-title" aria-describedby="reset-dialog-description"><div class="reset-dialog-top"><span class="reset-dialog-icon" aria-hidden="true">↻</span><button id="close-chain-reset" class="reset-dialog-close" aria-label="Close reset dialog">×</button></div><p class="reset-eyebrow">CHAIN MANAGEMENT</p><h2 id="reset-dialog-title">Reset local chain?</h2><p id="reset-dialog-description">Clear the saved <strong id="reset-network">Tempnet</strong> chain and download it again from genesis.</p><div class="reset-scope"><span>Other networks</span><strong>Kept intact</strong></div><p class="reset-warning">The current local chain will be permanently deleted.</p><div class="reset-dialog-actions"><button id="cancel-chain-reset" autofocus>Cancel</button><button id="confirm-chain-reset">Reset and restart <span aria-hidden="true">↗</span></button></div></dialog>
+<dialog id="reset-dialog" class="reset-dialog" aria-labelledby="reset-dialog-title" aria-describedby="reset-dialog-description"><div class="reset-dialog-top"><span class="reset-dialog-icon" aria-hidden="true">↻</span><button id="close-chain-reset" class="reset-dialog-close" aria-label="Close reset dialog">×</button></div><p class="reset-eyebrow">CHAIN MANAGEMENT</p><h2 id="reset-dialog-title">Reset local chain?</h2><p id="reset-dialog-description">Clear the saved <strong id="reset-network">Chipnet</strong> chain and download it again from genesis.</p><div class="reset-scope"><span>Other networks</span><strong>Kept intact</strong></div><p class="reset-warning">The current local chain will be permanently deleted.</p><div class="reset-dialog-actions"><button id="cancel-chain-reset" autofocus>Cancel</button><button id="confirm-chain-reset">Reset and restart <span aria-hidden="true">↗</span></button></div></dialog>
 <aside id="upgrade-story" class="upgrade-story" popover role="dialog" aria-labelledby="upgrade-story-title">
 <button class="upgrade-story-close" popovertarget="upgrade-story" popovertargetaction="hide" aria-label="Close upgrade naming story">×</button>
 <p class="eyebrow">BEHIND THE NAMES</p>
@@ -105,23 +105,23 @@
 </aside>
 <aside id="block-age-tooltip" class="upgrade-story timestamp-tooltip" popover role="dialog" aria-labelledby="block-age-tooltip-title"><button class="upgrade-story-close" popovertarget="block-age-tooltip" popovertargetaction="hide" aria-label="Close block age">×</button><h2 id="block-age-tooltip-title">Block age</h2><p id="block-age-tooltip-value"></p></aside>
 
-<script src="number-format.js?v=0.11.2"></script>
-<script src="settings-display.js?v=0.11.2"></script>
-<script src="consensus-flags.js?v=0.11.2"></script>
-<script src="block-age.js?v=0.11.2"></script>
-<script src="sdk-version.js?v=0.11.2"></script>
-<script src="version.js?v=0.11.2"></script>
-<script src="transaction-utils.js?v=0.11.2"></script>
-<script src="headers-view.js?v=0.11.2"></script>
-<script src="content-view.js?v=0.11.2"></script>
-<script src="network-upgrades.js?v=0.11.2"></script>
-<script src="chain-state-view.js?v=0.11.2"></script>
-<script src="config.js?v=0.11.2"></script>
-<script src="chain-reset.js?v=0.11.2"></script>
-<script src="node-settings.js?v=0.11.2"></script>
-<script src="runtime-settings.js?v=0.11.2"></script>
-<script src="node-logs.js?v=0.11.2"></script>
-<script src="app.js?v=0.11.2"></script>
-<script src="libconfig-settings.js?v=0.11.2"></script>
-<script src="layout-debug.js?v=0.11.2"></script>
+<script src="number-format.js?v=0.12.0"></script>
+<script src="settings-display.js?v=0.12.0"></script>
+<script src="consensus-flags.js?v=0.12.0"></script>
+<script src="block-age.js?v=0.12.0"></script>
+<script src="sdk-version.js?v=0.12.0"></script>
+<script src="version.js?v=0.12.0"></script>
+<script src="transaction-utils.js?v=0.12.0"></script>
+<script src="headers-view.js?v=0.12.0"></script>
+<script src="content-view.js?v=0.12.0"></script>
+<script src="network-upgrades.js?v=0.12.0"></script>
+<script src="chain-state-view.js?v=0.12.0"></script>
+<script src="config.js?v=0.12.0"></script>
+<script src="chain-reset.js?v=0.12.0"></script>
+<script src="node-settings.js?v=0.12.0"></script>
+<script src="runtime-settings.js?v=0.12.0"></script>
+<script src="node-logs.js?v=0.12.0"></script>
+<script src="app.js?v=0.12.0"></script>
+<script src="libconfig-settings.js?v=0.12.0"></script>
+<script src="layout-debug.js?v=0.12.0"></script>
 </body></html>
