@@ -8,13 +8,14 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Ubuntu+Mono&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=0.12.0">
-<link rel="stylesheet" href="headers.css?v=0.12.0-table-mono">
+<link rel="stylesheet" href="style.css?v=0.13.0">
+<link rel="stylesheet" href="headers.css?v=0.13.0">
+<link rel="stylesheet" href="live.css?v=0.13.0">
 <script>window.KNUTH_PAGE_PATH = () => location.pathname.startsWith("/webnode/") ? "/" + location.pathname.slice(9) : location.pathname;</script>
 </head>
 <body>
 <div class="app-shell"><header><a class="brand brand-about" href="/webnode/about" data-view-link aria-label="About Knuth Web Node"><img src="logo-white.svg" width="84" height="49" alt="Knuth"><span>Web Node</span><small class="app-version" data-app-version aria-label="Web Node version"></small></a><div class="header-indicators"><div id="node-header-indicator" class="node-indicator" role="status" aria-live="polite" aria-label="Chipnet · Stopped" title="Chipnet · Stopped"><span id="header-network" class="headers-network" aria-hidden="true">CHIPNET</span><span class="node-status-dot" aria-hidden="true"></span><span id="node-status" class="visually-hidden" data-status="stopped">Stopped</span></div></div></header>
-<nav id="app-nav" class="dashboard-nav" aria-label="Views"><a href="/webnode/" data-view-link aria-current="page">Overview</a><a href="/webnode/headers" data-view-link>Blocks</a><a href="/webnode/mempool" data-view-link>Mempool</a><a href="/webnode/chain-state" data-view-link aria-label="Chain state"><span class="nav-wide">Chain state</span><span class="nav-compact" aria-hidden="true">State</span></a><a href="/webnode/settings" data-view-link>Settings</a><a href="/webnode/about" data-view-link>About</a><a id="toggle-logs" href="/webnode/logs" data-view-link>Logs</a></nav><section id="node-loading" class="node-loading" role="status" aria-live="polite" hidden><span class="loading-spinner" aria-hidden="true"></span><div><strong id="loading-title">Loading node</strong><span id="loading-detail">Initializing the local engine…</span></div><span class="loading-stage">LOCAL DATA</span></section></div>
+<nav id="app-nav" class="dashboard-nav" aria-label="Views"><a href="/webnode/" data-view-link aria-current="page">Overview</a><a href="/webnode/headers" data-view-link>Blocks</a><a href="/webnode/live" data-view-link>Live</a><a href="/webnode/mempool" data-view-link>Mempool</a><a href="/webnode/chain-state" data-view-link aria-label="Chain state"><span class="nav-wide">Chain state</span><span class="nav-compact" aria-hidden="true">State</span></a><a href="/webnode/settings" data-view-link>Settings</a><a href="/webnode/about" data-view-link>About</a><a id="toggle-logs" href="/webnode/logs" data-view-link>Logs</a></nav><section id="node-loading" class="node-loading" role="status" aria-live="polite" hidden><span class="loading-spinner" aria-hidden="true"></span><div><strong id="loading-title">Loading node</strong><span id="loading-detail">Initializing the local engine…</span></div><span class="loading-stage">LOCAL DATA</span></section></div>
 <section id="node-error" class="node-error" role="alert" hidden><div><strong>Node error</strong><span id="node-error-message"></span></div><button id="view-error-logs">View logs</button></section>
 <main id="sync-view">
 
@@ -37,6 +38,15 @@
 <div class="headers-bottom"><nav class="headers-pager" aria-label="Pagination"><a id="headers-latest" href="/webnode/headers" data-view-link>Latest</a><a id="headers-newer" href="/webnode/headers" data-view-link aria-disabled="true">← Newer</a><a id="headers-older" href="/webnode/headers" data-view-link aria-disabled="true">Older →</a></nav></div></section>
 <p id="headers-error" class="headers-statusline" role="status"></p>
 </main>
+<main id="live-view" class="headers-page" hidden>
+<div class="live-heading"><h1>Live network</h1><button id="live-pause" type="button" aria-pressed="false">Pause animation</button></div>
+<div class="live-stats"><div>Connected peers<strong id="live-peer-count">0</strong></div><div>Transactions received<strong id="live-tx-count">0</strong></div><div>New block heights<strong id="live-block-count">0</strong></div></div>
+<div class="live-stage" aria-label="Live P2P activity"><span class="live-source">P2P NETWORK</span><span class="live-destination">LOCAL CHAIN</span><div id="live-particles" aria-hidden="true"></div><div class="live-core"><img src="logo-white.svg" alt="Knuth"><span id="live-state">Ready to start</span></div></div>
+<div class="live-legend"><span>Peer announcements</span><span>Transactions received</span><span>Validated header tip</span></div>
+<div id="live-peers" class="live-peers" aria-label="Connected peer endpoints"></div><div id="live-chain" class="live-chain" aria-label="Recent validated tips"></div>
+<h2>Activity</h2><ul id="live-events" class="live-events" aria-label="Recent network activity"></ul>
+<p class="live-note">Current session · Particles summarize real events between native snapshots. Transaction counters have no per-peer attribution. Saved chain loading is excluded. Block updates represent locally validated headers.</p>
+<dialog id="live-detail-dialog" class="live-dialog"><button id="live-detail-close" type="button" aria-label="Close">×</button><pre id="live-detail"></pre></dialog></main>
 <main id="settings-view" class="settings-page" hidden><div class="settings-heading"><h1>Settings</h1></div><div class="runtime-heading"><h2 class="settings-group-title">Runtime settings</h2><span id="runtime-status">Start the node to load native runtime settings</span></div><div id="runtime-fields" class="settings-grid runtime-settings-grid"></div><h2 class="settings-group-title">Library configuration</h2><p id="libconfig-status" role="status">Loading library configuration…</p><div id="libconfig-fields" class="settings-grid"></div><h2 class="settings-group-title">Browser</h2><div class="settings-grid"><section class="panel"><div class="section-heading"><h2>Network</h2></div><dl class="settings-fields"><div><dt>Network</dt><dd id="setting-network">—</dd></div><div><dt>Peer endpoints</dt><dd id="setting-peer">—</dd></div><div><dt>Endpoint source</dt><dd id="setting-peer-source">—</dd></div><div><dt>Transport</dt><dd id="setting-transport">—</dd></div><div><dt>Maximum outbound peers</dt><dd id="setting-peers">—</dd></div></dl></section><section class="panel"><div class="section-heading"><h2>Chain & storage</h2></div><dl class="settings-fields"><div><dt>Index capacity</dt><dd id="setting-capacity">—</dd></div><div><dt>Validation</dt><dd>Local · Knuth WebAssembly</dd></div><div><dt>Persistence</dt><dd>IndexedDB / IDBFS</dd></div><div><dt>Database</dt><dd id="setting-database">—</dd></div><div><dt>Storage origin</dt><dd id="setting-origin">—</dd></div><div><dt>Minimum save interval</dt><dd id="setting-save">—</dd></div><div><dt>Save on Stop</dt><dd>Enabled</dd></div></dl></section><section class="panel"><div class="section-heading"><h2>Runtime & reconnection</h2></div><dl class="settings-fields"><div><dt>Execution</dt><dd>Dedicated Web Worker</dd></div><div><dt>Resume on reload</dt><dd id="setting-resume">—</dd></div><div><dt>Automatic reconnection</dt><dd>Enabled while started</dd></div><div><dt>Retry backoff</dt><dd id="setting-retry">—</dd></div><div><dt>Retry jitter</dt><dd id="setting-jitter">—</dd></div><div><dt>UI progress interval</dt><dd id="setting-progress">—</dd></div></dl></section></div></main>
 <main id="mempool-view" class="headers-page mempool-page" hidden>
 <div class="headers-title-row"><h1>Mempool</h1><div class="headers-live"><span id="pool-dot" class="headers-dot"></span><span id="pool-connection">Not started</span></div></div>
@@ -105,23 +115,25 @@
 </aside>
 <aside id="block-age-tooltip" class="upgrade-story timestamp-tooltip" popover role="dialog" aria-labelledby="block-age-tooltip-title"><button class="upgrade-story-close" popovertarget="block-age-tooltip" popovertargetaction="hide" aria-label="Close block age">×</button><h2 id="block-age-tooltip-title">Block age</h2><p id="block-age-tooltip-value"></p></aside>
 
-<script src="number-format.js?v=0.12.0"></script>
-<script src="settings-display.js?v=0.12.0"></script>
-<script src="consensus-flags.js?v=0.12.0"></script>
-<script src="block-age.js?v=0.12.0"></script>
-<script src="sdk-version.js?v=0.12.0"></script>
-<script src="version.js?v=0.12.0"></script>
-<script src="transaction-utils.js?v=0.12.0-miner-label"></script>
-<script src="headers-view.js?v=0.12.0"></script>
-<script src="content-view.js?v=0.12.0"></script>
-<script src="network-upgrades.js?v=0.12.0"></script>
-<script src="chain-state-view.js?v=0.12.0"></script>
-<script src="config.js?v=0.12.0"></script>
-<script src="chain-reset.js?v=0.12.0"></script>
-<script src="node-settings.js?v=0.12.0"></script>
-<script src="runtime-settings.js?v=0.12.0"></script>
-<script src="node-logs.js?v=0.12.0"></script>
-<script src="app.js?v=0.12.0"></script>
-<script src="libconfig-settings.js?v=0.12.0"></script>
-<script src="layout-debug.js?v=0.12.0"></script>
+<script src="number-format.js?v=0.13.0"></script>
+<script src="settings-display.js?v=0.13.0"></script>
+<script src="consensus-flags.js?v=0.13.0"></script>
+<script src="block-age.js?v=0.13.0"></script>
+<script src="sdk-version.js?v=0.13.0"></script>
+<script src="version.js?v=0.13.0"></script>
+<script src="transaction-utils.js?v=0.13.0"></script>
+<script src="live-model.js?v=0.13.0"></script>
+<script src="live-view.js?v=0.13.0"></script>
+<script src="headers-view.js?v=0.13.0"></script>
+<script src="content-view.js?v=0.13.0"></script>
+<script src="network-upgrades.js?v=0.13.0"></script>
+<script src="chain-state-view.js?v=0.13.0"></script>
+<script src="config.js?v=0.13.0"></script>
+<script src="chain-reset.js?v=0.13.0"></script>
+<script src="node-settings.js?v=0.13.0"></script>
+<script src="runtime-settings.js?v=0.13.0"></script>
+<script src="node-logs.js?v=0.13.0"></script>
+<script src="app.js?v=0.13.0"></script>
+<script src="libconfig-settings.js?v=0.13.0"></script>
+<script src="layout-debug.js?v=0.13.0"></script>
 </body></html>
