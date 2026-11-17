@@ -105,6 +105,8 @@
     }
     function route() {
         active = /^\/headers(?:\.html)?\/?$/.test(window.KNUTH_PAGE_PATH());
+        const liveView = /^\/live\/?$/.test(window.KNUTH_PAGE_PATH());
+        byId('live-view').hidden = !liveView;
         const aboutView = /^\/about\/?$/.test(window.KNUTH_PAGE_PATH());
         byId('about-web-node').hidden = !aboutView;
         const logsView = /^\/logs\/?$/.test(window.KNUTH_PAGE_PATH());
@@ -115,15 +117,15 @@
         byId('mempool-view').hidden = !poolView;
         const settingsView = /^\/settings(?:\.html)?\/?$/.test(window.KNUTH_PAGE_PATH());
         byId('settings-view').hidden = !settingsView;
-        byId('sync-view').hidden = active || settingsView || poolView || chainView || logsView || aboutView;
+        byId('sync-view').hidden = liveView || active || settingsView || poolView || chainView || logsView || aboutView;
         byId('headers-view').hidden = !active;
-        document.body.dataset.view = aboutView ? 'about' : logsView ? 'logs' : chainView ? 'chain-state' : poolView ? 'mempool' : settingsView ? 'settings' : active ? 'headers' : 'sync';
+        document.body.dataset.view = liveView ? 'live' : aboutView ? 'about' : logsView ? 'logs' : chainView ? 'chain-state' : poolView ? 'mempool' : settingsView ? 'settings' : active ? 'headers' : 'sync';
         for (const link of document.querySelectorAll('#app-nav a')) {
-            const selected = link.getAttribute('href') === (aboutView ? '/webnode/about' : logsView ? '/webnode/logs' : chainView ? '/webnode/chain-state' : poolView ? '/webnode/mempool' : settingsView ? '/webnode/settings' : active ? '/webnode/headers' : '/webnode/');
+            const selected = link.getAttribute('href') === (liveView ? '/webnode/live' : aboutView ? '/webnode/about' : logsView ? '/webnode/logs' : chainView ? '/webnode/chain-state' : poolView ? '/webnode/mempool' : settingsView ? '/webnode/settings' : active ? '/webnode/headers' : '/webnode/');
             if (selected) link.setAttribute('aria-current', 'page');
             else link.removeAttribute('aria-current');
         }
-        document.title = aboutView ? 'About · Knuth Web Node' : logsView ? 'Logs · Knuth Web Node' : chainView ? 'Chain state · Knuth Web Node' : poolView ? 'Mempool · Knuth Web Node' : settingsView ? 'Settings · Knuth Web Node' : active ? 'Blocks · Knuth Web Node' : 'Knuth Web Node';
+        document.title = liveView ? 'Live · Knuth Web Node' : aboutView ? 'About · Knuth Web Node' : logsView ? 'Logs · Knuth Web Node' : chainView ? 'Chain state · Knuth Web Node' : poolView ? 'Mempool · Knuth Web Node' : settingsView ? 'Settings · Knuth Web Node' : active ? 'Blocks · Knuth Web Node' : 'Knuth Web Node';
         window.dispatchEvent(new Event('node-view-changed'));
         if (active) { updateAges(); request(true); }
     }
