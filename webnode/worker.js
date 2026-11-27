@@ -90,8 +90,9 @@ async function synchronize(options) {
     try {
         postMessage({ type: 'loading' });
         const endpoints=self.KnuthPeerEndpoint.unique(options.peers?.length ? options.peers : [options.bridge]);
-        importScripts('browser_headers_persistent_v1.js', 'header-storage.js');
-        const core = await createHeaders({ locateFile: file => file.endsWith('.wasm') ? 'browser_headers_persistent_v1.wasm' : file, printErr: message => postMessage({ type: 'diagnostic', message }) });
+        const assetVersion = self.location?.search || "";
+        importScripts('browser_headers_persistent_v1.js' + assetVersion, 'header-storage.js');
+        const core = await createHeaders({ locateFile: file => file.endsWith('.wasm') ? 'browser_headers_persistent_v1.wasm' + assetVersion : file, printErr: message => postMessage({ type: 'diagnostic', message }) });
         storage = new HeaderStorage(core, options.network ?? 'mainnet');
         await storage.open();
         if (!stopRequested) {
